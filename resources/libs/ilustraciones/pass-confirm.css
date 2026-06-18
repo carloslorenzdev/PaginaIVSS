@@ -1,0 +1,84 @@
+svg#pass-confirm:not(.animated-pass-confirm) .animable {
+    opacity: 0;
+}
+
+svg#pass-confirm.animated-pass-confirm #freepik--Floor--inject-3 {
+    animation: 0.6s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) slideLeft;
+    animation-delay: 0s;
+}
+
+svg#pass-confirm.animated-pass-confirm #freepik--Plants--inject-3 {
+    animation: 0.6s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) slideLeft;
+    animation-delay: 0s;
+}
+
+svg#pass-confirm.animated-pass-confirm #freepik--Device--inject-3 {
+    animation: 0.6s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) slideUp;
+    animation-delay: 0s;
+}
+
+svg#pass-confirm.animated-pass-confirm #freepik--Screen--inject-3 {
+    animation: 0.6s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) slideUp;
+    animation-delay: 0s;
+}
+
+svg#pass-confirm.animated-pass-confirm #freepik--Fingerprint--inject-3 {
+    animation: 0.6s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) slideDown;
+    animation-delay: 0s;
+}
+
+svg#pass-confirm.animated-pass-confirm #freepik--face-recognition--inject-3 {
+    animation: 0.6s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) slideDown;
+    animation-delay: 0s;
+}
+
+svg#pass-confirm.animated-pass-confirm #freepik--Character--inject-3 {
+    animation: 0.7s 1 forwards cubic-bezier(.36, -0.01, .5, 1.38) fadeIn;
+    animation-delay: 0s;
+}
+
+@keyframes slideLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: inherit;
+    }
+}
+
+@keyframes slideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

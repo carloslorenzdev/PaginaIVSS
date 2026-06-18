@@ -1,0 +1,40 @@
+@import "tailwindcss";
+@import 'tailwind-animations';
+
+@import "../../node_modules/preline/variants.css";
+@import "../../node_modules/preline/src/plugins/datepicker/styles.css";
+@source "../../node_modules/preline/dist/*.js";
+@source "../views";
+@source "../**/*.js";
+@source "../**/*.vue";
+
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/forms";
+
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant hover (&:hover);
+
+@layer base {
+
+    button:not(:disabled),
+    [role="button"]:not(:disabled) {
+        cursor: pointer;
+    }
+}
+
+/* EDITOR */
+.ProseMirror:focus {
+    outline: none;
+}
+
+.tiptap ul p,
+.tiptap ol p {
+    display: inline;
+}
+
+.tiptap p.is-editor-empty:first-child::before {
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    pointer-events: none;
+}

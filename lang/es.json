@@ -1,0 +1,12 @@
+{
+    "There was an error on row :row. :message": "Hubo un error en la fila :row. :message",
+    "User does not have the right roles.":"Acceso denegado debido a la falta de roles asignados.",
+    "User does not have the right permissions.":"No tienes permisos suficientes para realizar esta acción.",
+    "User does not have any of the necessary access rights.":"Acceso denegado: el usuario no posee los permisos adecuados.",
+    "This action is unauthorized.":"Acción no autorizada",
+    "Unauthorized":"No autorizado",
+    "Not Found":"Página no encontrada",
+    "Page Expired":"Página expirada",
+    "Too Many Requests":"Demasiadas peticiones. Espere unos minutos",
+    "Service Unavailable":"Sistema en mantenimiento"
+}

@@ -1,0 +1,66 @@
+.carousel-3d-style .carousel-item {
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+    transform-style: preserve-3d;
+}
+.carousel-3d-style .carousel-item-next.carousel-item-left,
+.carousel-3d-style .carousel-item-prev.carousel-item-right {
+    transform: rotateY(0deg) scale(1);
+    opacity: 1;
+}
+.carousel-3d-style .carousel-item-next,
+.carousel-3d-style .active.carousel-item-right {
+    transform: rotateY(90deg) scale(0.8);
+    opacity: 0;
+}
+.carousel-3d-style .carousel-item-prev,
+.carousel-3d-style .active.carousel-item-left {
+    transform: rotateY(-90deg) scale(0.8);
+    opacity: 0;
+}
+
+.carousel-cinematic-style .hero-container-boxed {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+    margin: 0;
+    box-shadow: none;
+}
+.carousel-cinematic-style .container {
+    max-width: 100%;
+    padding: 0;
+}
+.carousel-cinematic-style .hero-parallax-img {
+    filter: brightness(0.7) contrast(1.2);
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Base image styling to avoid distortion globally */
+.hero-parallax-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Custom CSS for Section 3 UI Elements */
+.card-hover-scale .bg-image-zoom {
+    transition: transform 0.5s ease;
+}
+.card-hover-scale:hover .bg-image-zoom {
+    transform: scale(1.1) !important;
+}
+.overlay-red {
+    background: rgba(186, 28, 41, 0.75);
+    mix-blend-mode: multiply;
+    transition: opacity 0.3s ease;
+}
+.card-hover-scale:hover .overlay-red {
+    opacity: 0.9;
+}
+.transition-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.transition-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}

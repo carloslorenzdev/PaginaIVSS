@@ -1,0 +1,55 @@
+{
+    "private": true,
+    "type": "module",
+    "version": "v1.0.0",
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite",
+        "actualizar": "npx npm-check-updates"
+    },
+    "devDependencies": {
+        "@tailwindcss/forms": "^0.5.11",
+        "@tailwindcss/typography": "^0.5.19",
+        "@tailwindcss/vite": "^4.1.18",
+        "@vitejs/plugin-legacy": "^7.2.1",
+        "concurrently": "^9.2.1",
+        "glob": "^13.0.1",
+        "laravel-vite-plugin": "^2.1.0",
+        "sass": "^1.97.3",
+        "sass-loader": "^16.0.7",
+        "vite": "^7.3.1",
+        "vite-plugin-manifest-sri": "^0.2.0"
+    },
+    "dependencies": {
+        "@fontsource/inter": "^5.2.8",
+        "@tiptap/core": "^3.19.0",
+        "@tiptap/extension-character-count": "^3.19.0",
+        "@tiptap/extension-font-family": "^3.27.0",
+        "@tiptap/extension-link": "^3.19.0",
+        "@tiptap/extension-placeholder": "^3.19.0",
+        "@tiptap/extension-text-align": "^3.27.0",
+        "@tiptap/extension-text-style": "^3.27.0",
+        "@tiptap/extension-underline": "^3.19.0",
+        "@tiptap/pm": "^3.19.0",
+        "@tiptap/starter-kit": "^3.19.0",
+        "apexcharts": "^5.3.6",
+        "boxicons": "^2.1.4",
+        "countup.js": "^2.9.0",
+        "jquery": "^4.0.0",
+        "lodash": "^4.17.23",
+        "perfect-scrollbar": "^1.5.6",
+        "preline": "^4.0.1",
+        "puppeteer": "^24.37.2",
+        "tailwind-animations": "^1.0.1",
+        "toastify-js": "^1.12.0",
+        "vanilla-calendar-pro": "^3.1.0"
+    },
+    "browserslist": [
+        "> 0.2%",
+        "last 5 versions",
+        "not dead",
+        "Chrome >= 105",
+        "Firefox >= 105",
+        "ie >= 11"
+    ]
+}

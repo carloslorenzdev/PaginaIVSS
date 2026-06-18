@@ -1,0 +1,5 @@
+*
+!.gitignore
+!acciones/
+!jobs/
+!supervisor/
