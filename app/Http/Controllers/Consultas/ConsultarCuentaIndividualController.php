@@ -10,8 +10,8 @@ class ConsultarCuentaIndividualController extends Controller
 {
     public function __invoke(Request $request, ConsultarCuentaIndividualAction $action)
     {
-        $nacionalidad = $request->input('nacionalidad_aseg', 'V');
-        $cedula = $request->input('cedula_aseg', '');
+        $nacionalidad = $request->input('nacionalidad', 'V');
+        $cedula = $request->input('cedula', '');
         
         if (empty($cedula)) {
             return response()->json(['success' => false, 'message' => 'Cédula vacía.']);
