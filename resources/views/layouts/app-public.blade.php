@@ -103,24 +103,31 @@
                 <div class="col-lg-5">
                     <div class="d-flex align-items-center mb-4">
                         <img src="{{ asset('img/ivss-logo-rojo.png') }}" alt="Logo" width="45">
-                        <h4 class="ms-3 mb-0">IVSS<span class="text-danger">.</span></h4>
+                        <h4 class="ms-3 mb-0">IVSS</h4>
                     </div>
                     <p class="text-muted small w-75">Garantizando la seguridad social con eficiencia, transparencia y compromiso humano para todo el pueblo venezolano.</p>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h6 class="fw-bold mb-4">ENLACES</h6>
                     <ul class="list-unstyled small">
-                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Sobre nosotros</a></li>
-                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Gaceta Oficial</a></li>
-                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Atención al Ciudadano</a></li>
+                        <li class="mb-2"><a href="{{ route('quienes_somos') }}" class="text-muted text-decoration-none">Sobre nosotros</a></li>
+                        <li class="mb-2"><a href="{{ route('marco_normativo') }}" class="text-muted text-decoration-none">Gaceta Oficial</a></li>
+                        <li class="mb-2"><a href="/#servicios" class="text-muted text-decoration-none">Atención al Ciudadano</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <h6 class="fw-bold mb-4">SÍGUENOS</h6>
-                    <div class="d-flex gap-3 mb-4">
-                        <a href="#" class="text-danger"><i class="fab fa-twitter fs-5"></i></a>
-                        <a href="#" class="text-danger"><i class="fab fa-instagram fs-5"></i></a>
-                        <a href="#" class="text-danger"><i class="fab fa-facebook fs-5"></i></a>
+                    @php
+                        $redesFooter = $redes ?? \App\Models\Configuracion::whereIn('clave', ['url_instagram', 'url_twitter', 'url_youtube', 'url_tiktok', 'url_facebook', 'url_telegram', 'url_threads'])->pluck('valor', 'clave');
+                    @endphp
+                    <div class="d-flex gap-3 mb-4 flex-wrap">
+                        <a href="{{ $redesFooter['url_instagram'] ?? '#' }}" target="_blank" class="text-danger" title="Instagram"><i class="fab fa-instagram fs-5"></i></a>
+                        <a href="{{ $redesFooter['url_twitter'] ?? '#' }}" target="_blank" class="text-danger" title="X"><i class="fa-brands fa-x-twitter fs-5"></i></a>
+                        <a href="{{ $redesFooter['url_youtube'] ?? '#' }}" target="_blank" class="text-danger" title="YouTube"><i class="fab fa-youtube fs-5"></i></a>
+                        <a href="{{ $redesFooter['url_tiktok'] ?? '#' }}" target="_blank" class="text-danger" title="TikTok"><i class="fab fa-tiktok fs-5"></i></a>
+                        <a href="{{ $redesFooter['url_telegram'] ?? '#' }}" target="_blank" class="text-danger" title="Telegram"><i class="fab fa-telegram fs-5"></i></a>
+                        <a href="{{ $redesFooter['url_facebook'] ?? '#' }}" target="_blank" class="text-danger" title="Facebook"><i class="fab fa-facebook fs-5"></i></a>
+                        <a href="{{ $redesFooter['url_threads'] ?? '#' }}" target="_blank" class="text-danger" title="Threads"><i class="fa-brands fa-threads fs-5"></i></a>
                     </div>
                     <p class="small text-muted mb-0">Caracas, Venezuela. Sede Principal Altagracia.</p>
                 </div>

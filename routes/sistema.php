@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([
     'prefix' => 'sistema',
-    'middleware' => ['role:Admin'],
+    'middleware' => ['role:admin'],
     'as' => 'sistema.',
 ], function () {
     // CACHE

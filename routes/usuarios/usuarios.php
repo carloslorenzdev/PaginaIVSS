@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([
     'prefix' => 'usuarios',
-    'middleware' => ['role:Admin|Director'],
+    'middleware' => ['role:admin|director'],
     'controller' => UsuarioController::class,
     'as' => 'usuarios.',
 ], function () {
