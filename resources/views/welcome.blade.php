@@ -558,14 +558,14 @@
             
             <div class="d-flex overflow-auto gap-4 pb-4 carrusel-promociones" style="scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch;">
                 @foreach($promociones as $promo)
-                <div class="flex-shrink-0" style="width: 85%; max-width: 500px; scroll-snap-align: start;" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
+                <div class="flex-shrink-0" style="width: 85%; max-width: 300px; scroll-snap-align: start;" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
                     <div class="rounded-4 overflow-hidden shadow-sm hover-shadow transition-all position-relative" 
                          style="border: 2px solid #e0e0e0; cursor: pointer;" 
                          data-bs-toggle="modal" 
                          data-bs-target="#modalPromoDinamico"
                          data-ruta="{{ asset('storage/' . $promo->ruta_imagen) }}" 
                          data-enlace="{{ $promo->enlace ?? '' }}">
-                        <img src="{{ asset('storage/' . $promo->ruta_imagen) }}" alt="{{ $promo->titulo }}" class="w-100 h-auto" style="object-fit: cover; aspect-ratio: 4/3;">
+                        <img src="{{ asset('storage/' . $promo->ruta_imagen) }}" alt="{{ $promo->titulo }}" class="w-100 h-auto">
                         <div class="position-absolute top-0 end-0 m-3">
                             <span class="bg-white text-danger rounded-circle shadow-sm d-flex align-items-center justify-content-center" style="width: 35px; height: 35px; opacity: 0.9;">
                                 <i class="fas fa-search-plus"></i>
