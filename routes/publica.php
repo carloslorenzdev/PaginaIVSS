@@ -50,3 +50,10 @@ Route::get('/contrataciones-publicas', [\App\Http\Controllers\Consultas\Contrata
 Route::get('/boletin-informativo', [\App\Http\Controllers\Consultas\BoletinInformativoController::class, 'index'])->name('boletin_informativo');
 Route::get('/revista-digital', [\App\Http\Controllers\Publico\RevistaController::class, 'index'])->name('revista_digital');
 Route::get('/revista-digital/{revista}', [\App\Http\Controllers\Publico\RevistaController::class, 'show'])->name('revista_digital.show');
+
+// CIUDADANOS
+Route::get('/ciudadano/informacion-general', [\App\Http\Controllers\Publico\CiudadanoController::class, 'informacionGeneral'])->name('ciudadano.informacion');
+Route::get('/ciudadano/beneficio-medico', [\App\Http\Controllers\Publico\CiudadanoController::class, 'beneficioMedico'])->name('ciudadano.beneficio');
+Route::get('/ciudadano/continuidad-facultativa', [\App\Http\Controllers\Publico\CiudadanoController::class, 'continuidadFacultativa'])->name('ciudadano.continuidad');
+Route::get('/ciudadano/perdida-empleo', [\App\Http\Controllers\Publico\CiudadanoController::class, 'perdidaEmpleo'])->name('ciudadano.perdida');
+Route::get('/ciudadano/tramites', [\App\Http\Controllers\Publico\CiudadanoController::class, 'tramites'])->name('ciudadano.tramites');
