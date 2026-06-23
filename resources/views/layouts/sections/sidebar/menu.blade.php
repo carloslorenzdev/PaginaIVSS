@@ -32,6 +32,26 @@
     </x-nav.accordion>
 </li>
 
+{{-- BOLETINES --}}
+<li>
+    @canany(['ver-panel'])
+        <x-nav.link href="{{ route('admin.boletines.index') }}" active="{{ routeActive('admin.boletines.*') }}">
+            <i class="bx bx-news bx-sm"></i>
+            Boletines Informativos
+        </x-nav.link>
+    @endcanany
+</li>
+
+{{-- REVISTAS DIGITALES --}}
+<li>
+    @canany(['ver-panel'])
+        <x-nav.link href="{{ route('admin.revistas.index') }}" active="{{ routeActive('admin.revistas.*') }}">
+            <i class="bx bx-book-open bx-sm"></i>
+            Revistas Digitales
+        </x-nav.link>
+    @endcanany
+</li>
+
 {{-- CATEGORÍAS --}}
 @hasrole('admin')
 <li>

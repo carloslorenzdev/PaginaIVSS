@@ -110,7 +110,8 @@
                                     'bg_tiuna' => 'Fondo Sistema Tiuna',
                                     'bg_farmacias' => 'Fondo Farmacias de Alto Costo',
                                     'bg_centros_salud' => 'Fondo Centros de Salud',
-                                    'bg_oficinas' => 'Fondo Oficinas Administrativas'
+                                    'bg_oficinas' => 'Fondo Oficinas Administrativas',
+                                    'bg_servicios_funcionario' => 'Fondo Servicios al Funcionario'
                                 ];
                             @endphp
 

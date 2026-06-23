@@ -66,13 +66,11 @@ class GestionarEnlacesController extends Controller
                 'url_verificacion_pension' => 'Verificar Constancia de Pensión',
                 'url_verificacion_cotizacion' => 'Verificar Constancia Cotización',
             ],
-            'Otros Enlaces' => [
-                'url_marco_normativo' => 'Marco Normativo',
-                'url_biblioteca_formas' => 'Biblioteca de Formas',
-                'url_contrataciones_publicas' => 'Contrataciones Públicas',
-                'url_farmapatria' => 'Farmapatria',
-                'url_boletin_informativo' => 'Boletín Informativo',
-                'url_revista' => 'Revista Digital'
+            'Servicios al Funcionario' => [
+                'url_verificacion_constancia' => 'Verificación de Constancia',
+                'url_ingresa_correo' => 'Ingresa a tu Correo',
+                'url_solicitudes_rrhh' => 'Solicitudes a RRHH',
+                'url_consulta_prestaciones' => 'Consulta de Prestaciones Sociales',
             ]
         ];
 

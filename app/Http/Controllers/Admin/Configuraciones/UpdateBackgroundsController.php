@@ -20,6 +20,7 @@ class UpdateBackgroundsController extends Controller
             'bg_farmacias' => 'nullable|image|max:10240',
             'bg_centros_salud' => 'nullable|image|max:10240',
             'bg_oficinas' => 'nullable|image|max:10240',
+            'bg_servicios_funcionario' => 'nullable|image|max:10240',
         ]);
 
         $action->execute($request->allFiles());

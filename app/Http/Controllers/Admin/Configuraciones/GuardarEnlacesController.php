@@ -38,9 +38,8 @@ class GuardarEnlacesController extends Controller
                 'url_constancia_cotizaciones', 'url_constancia_pension', 'url_constancia_autorizacion',
                 'url_verificacion_autorizacion', 'url_verificacion_pension', 'url_verificacion_cotizacion'
             ],
-            'Otros Enlaces' => [
-                'url_marco_normativo', 'url_biblioteca_formas', 'url_contrataciones_publicas',
-                'url_farmapatria', 'url_boletin_informativo', 'url_revista'
+            'Servicios al Funcionario' => [
+                'url_verificacion_constancia', 'url_ingresa_correo', 'url_solicitudes_rrhh', 'url_consulta_prestaciones'
             ]
         ];
 

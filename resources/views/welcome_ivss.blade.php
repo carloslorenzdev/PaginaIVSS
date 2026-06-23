@@ -382,7 +382,7 @@
                     <div class="tile-icon bg-warning text-white"><i class="fas fa-bookmark"></i></div>
                     <div>
                         <h6 class="fw-bold mb-0">Revista Digital</h6>
-                        <a href="{{ $configuraciones['url_revista'] ?? '#' }}" class="text-muted small text-decoration-none" target="_blank">Leer más <i class="fas fa-chevron-right ms-1"></i></a>
+                        <a href="{{ route('revista_digital') }}" class="text-muted small text-decoration-none">Ver más <i class="fas fa-chevron-right ms-1"></i></a>
                     </div>
                 </div>
                 <!-- Verificaciones -->

@@ -9,7 +9,7 @@ class ActualizarBackgroundsAction
 {
     public function execute(array $archivos)
     {
-        $clavesValidas = ['bg_consultas', 'bg_tiuna', 'bg_farmacias', 'bg_centros_salud', 'bg_oficinas'];
+        $clavesValidas = ['bg_consultas', 'bg_tiuna', 'bg_farmacias', 'bg_centros_salud', 'bg_oficinas', 'bg_servicios_funcionario'];
 
         foreach ($archivos as $clave => $archivo) {
             if (in_array($clave, $clavesValidas)) {

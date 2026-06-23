@@ -43,3 +43,10 @@ Route::post('/consulta-pensionado', \App\Http\Controllers\Consultas\ConsultarPen
 Route::post('/consulta-orden-pago', \App\Http\Controllers\Consultas\ConsultarOrdenPagoController::class)->name('consulta.ordenpago');
 Route::post('/consulta-cuenta-individual', \App\Http\Controllers\Consultas\ConsultarCuentaIndividualController::class)->name('consulta.cuenta_individual');
 
+// SERVICIOS COMPLEMENTARIOS
+Route::get('/marco-normativo', [\App\Http\Controllers\Consultas\MarcoNormativoController::class, 'index'])->name('marco_normativo');
+Route::get('/biblioteca-formas', [\App\Http\Controllers\Consultas\BibliotecaFormasController::class, 'index'])->name('biblioteca_formas');
+Route::get('/contrataciones-publicas', [\App\Http\Controllers\Consultas\ContratacionesPublicasController::class, 'index'])->name('contrataciones_publicas');
+Route::get('/boletin-informativo', [\App\Http\Controllers\Consultas\BoletinInformativoController::class, 'index'])->name('boletin_informativo');
+Route::get('/revista-digital', [\App\Http\Controllers\Publico\RevistaController::class, 'index'])->name('revista_digital');
+Route::get('/revista-digital/{revista}', [\App\Http\Controllers\Publico\RevistaController::class, 'show'])->name('revista_digital.show');

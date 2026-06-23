@@ -21,9 +21,18 @@ class ConsultarPensionadoController extends Controller
         $result = $action->execute($request->only(['nacionalidad', 'cedula', 'd1', 'm1', 'y1']));
 
         if ($result['success']) {
-            return response()->json(['success' => true, 'message' => $result['message']]);
+            return response()->json([
+                'success' => true, 
+                'isHtml' => $result['isHtml'] ?? false,
+                'message' => $result['message'] ?? '',
+                'html' => $result['html'] ?? ''
+            ]);
         } else {
-            return response()->json(['success' => false, 'message' => $result['message']]);
+            return response()->json([
+                'success' => false, 
+                'isHtml' => false,
+                'message' => $result['message'] ?? 'Error desconocido'
+            ]);
         }
     }
 }

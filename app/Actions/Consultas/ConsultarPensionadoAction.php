@@ -36,20 +36,33 @@ class ConsultarPensionadoAction
             $html = mb_convert_encoding($html, 'UTF-8', 'ISO-8859-1');
 
             if (preg_match("/alert\(['\"](.*?)['\"]\)/i", $html, $matches)) {
-                return ['success' => true, 'message' => $matches[1]];
+                return ['success' => true, 'isHtml' => false, 'message' => $matches[1]];
             }
 
             if (str_contains($html, 'pensión asociada') || str_contains(strtolower($html), 'no tiene pensión')) {
                 if (preg_match("/EL CIUDADANO:(.*?)no tiene Pensión Asociada/i", $html, $m)) {
-                    return ['success' => true, 'message' => "EL CIUDADANO:" . $m[1] . "no tiene Pensión Asociada"];
+                    return ['success' => true, 'isHtml' => false, 'message' => "EL CIUDADANO:" . $m[1] . "no tiene Pensión Asociada"];
                 }
-                return ['success' => true, 'message' => 'El ciudadano no tiene Pensión Asociada.'];
+                return ['success' => true, 'isHtml' => false, 'message' => 'El ciudadano no tiene Pensión Asociada.'];
             }
 
-            return ['success' => true, 'message' => 'Consulta procesada. Por favor verifique sus datos directamente en el portal del IVSS si no recibe el resultado esperado.'];
+            // Inyectar etiqueta <base> para que los estilos e imágenes relativas carguen correctamente
+            $baseUrl = 'http://www.ivss.gob.ve:28080/Pensionado/';
+            $baseTag = "<base href=\"{$baseUrl}\">";
+            
+            if (strpos($html, '<head>') !== false) {
+                $html = str_replace('<head>', "<head>\n    " . $baseTag, $html);
+            } else {
+                $html = $baseTag . "\n" . $html;
+            }
+
+            // Remover el alert fastidioso que a veces tira IVSS al imprimir "Consulta procesada..." o scripts que cierran ventanas
+            $html = preg_replace('/<script[^>]*>.*?quitarFrame.*?<\/script>/is', '', $html);
+
+            return ['success' => true, 'isHtml' => true, 'html' => $html];
 
         } catch (\Exception $e) {
-            return ['success' => false, 'message' => 'Error de conexión con el servidor del IVSS. Detalles: ' . $e->getMessage()];
+            return ['success' => false, 'isHtml' => false, 'message' => 'Error de conexión con el servidor del IVSS. Detalles: ' . $e->getMessage()];
         }
     }
 }

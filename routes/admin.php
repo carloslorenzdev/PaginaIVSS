@@ -84,6 +84,32 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 
     // ----------------------------------------------------------------
+    // BOLETINES INFORMATIVOS
+    // ----------------------------------------------------------------
+    Route::prefix('boletines')->name('boletines.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\Boletines\BoletinAdminController::class, 'index'])->name('index');
+        Route::get('/crear', [\App\Http\Controllers\Admin\Boletines\BoletinAdminController::class, 'crear'])->name('crear');
+        Route::post('/guardar', [\App\Http\Controllers\Admin\Boletines\BoletinAdminController::class, 'guardar'])->name('guardar');
+        Route::get('/{boletin}', [\App\Http\Controllers\Admin\Boletines\BoletinAdminController::class, 'ver'])->name('ver');
+        Route::put('/{boletin}', [\App\Http\Controllers\Admin\Boletines\BoletinAdminController::class, 'actualizar'])->name('actualizar');
+        Route::delete('/{boletin}', [\App\Http\Controllers\Admin\Boletines\BoletinAdminController::class, 'eliminar'])->name('eliminar');
+        Route::post('/{boletin}/publicar', [\App\Http\Controllers\Admin\Boletines\BoletinAdminController::class, 'togglePublicacion'])->name('publicar');
+    });
+
+    // ----------------------------------------------------------------
+    // REVISTAS DIGITALES
+    // ----------------------------------------------------------------
+    Route::prefix('revistas')->name('revistas.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\Revistas\RevistaAdminController::class, 'index'])->name('index');
+        Route::get('/crear', [\App\Http\Controllers\Admin\Revistas\RevistaAdminController::class, 'crear'])->name('crear');
+        Route::post('/guardar', [\App\Http\Controllers\Admin\Revistas\RevistaAdminController::class, 'guardar'])->name('guardar');
+        Route::get('/{revista}', [\App\Http\Controllers\Admin\Revistas\RevistaAdminController::class, 'ver'])->name('ver');
+        Route::put('/{revista}', [\App\Http\Controllers\Admin\Revistas\RevistaAdminController::class, 'actualizar'])->name('actualizar');
+        Route::delete('/{revista}', [\App\Http\Controllers\Admin\Revistas\RevistaAdminController::class, 'eliminar'])->name('eliminar');
+        Route::post('/{revista}/publicar', [\App\Http\Controllers\Admin\Revistas\RevistaAdminController::class, 'togglePublicacion'])->name('publicar');
+    });
+
+    // ----------------------------------------------------------------
     // BANNERS Y ALERTAS
     // ----------------------------------------------------------------
     Route::prefix('banners')->name('banners.')->group(function () {
