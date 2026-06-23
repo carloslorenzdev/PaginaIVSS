@@ -43,11 +43,7 @@
                         @endif
 
                         <div class="article-content" style="font-size: 1.15rem; line-height: 1.8; color: #4b5563;">
-                            @if($noticia->resumen)
-                                <p class="lead fw-semibold text-secondary mb-5 border-start border-danger border-4 ps-4 py-2 bg-light rounded-end">
-                                    {{ $noticia->resumen }}
-                                </p>
-                            @endif
+
 
                             <div class="contenido-html">
                                 {!! $noticia->contenido !!}
