@@ -57,3 +57,27 @@ Route::get('/ciudadano/beneficio-medico', [\App\Http\Controllers\Publico\Ciudada
 Route::get('/ciudadano/continuidad-facultativa', [\App\Http\Controllers\Publico\CiudadanoController::class, 'continuidadFacultativa'])->name('ciudadano.continuidad');
 Route::get('/ciudadano/perdida-empleo', [\App\Http\Controllers\Publico\CiudadanoController::class, 'perdidaEmpleo'])->name('ciudadano.perdida');
 Route::get('/ciudadano/tramites', [\App\Http\Controllers\Publico\CiudadanoController::class, 'tramites'])->name('ciudadano.tramites');
+
+// PENSIONADOS
+Route::get('/pensionado/informacion-general', [\App\Http\Controllers\Publico\PensionadoController::class, 'informacionGeneral'])->name('pensionado.informacion');
+Route::get('/pensionado/tipos-pensiones', [\App\Http\Controllers\Publico\PensionadoController::class, 'tiposPensiones'])->name('pensionado.tipos_pensiones');
+Route::get('/pensionado/pensionados-exterior', [\App\Http\Controllers\Publico\PensionadoController::class, 'pensionadosExterior'])->name('pensionado.pensionados_exterior');
+Route::get('/pensionado/tramites', [\App\Http\Controllers\Publico\PensionadoController::class, 'tramites'])->name('pensionado.tramites');
+Route::get('/pensionado/contacto', [\App\Http\Controllers\Publico\PensionadoController::class, 'contacto'])->name('pensionado.contacto');
+Route::get('/pensionado/formularios', [\App\Http\Controllers\Publico\PensionadoController::class, 'formularios'])->name('pensionado.formularios');
+
+// EMPLEADORES
+Route::get('/empleador/informacion-general', [\App\Http\Controllers\Publico\EmpleadorController::class, 'informacionGeneral'])->name('empleador.informacion');
+Route::get('/empleador/quien-es', [\App\Http\Controllers\Publico\EmpleadorController::class, 'quienEs'])->name('empleador.quien_es');
+Route::get('/empleador/tipos-empresas', [\App\Http\Controllers\Publico\EmpleadorController::class, 'tiposEmpresas'])->name('empleador.tipos_empresas');
+Route::get('/empleador/sistema-autoliquidacion', [\App\Http\Controllers\Publico\EmpleadorController::class, 'sistemaAutoliquidacion'])->name('empleador.sistema_autoliquidacion');
+Route::get('/empleador/tramites', [\App\Http\Controllers\Publico\EmpleadorController::class, 'tramites'])->name('empleador.tramites');
+
+// FARMACIAS DE ALTO COSTO
+Route::get('/farmacias', [\App\Http\Controllers\Publico\FarmaciaController::class, 'index'])->name('farmacias');
+
+// CENTROS DE SALUD
+Route::get('/centros-de-salud', [\App\Http\Controllers\Publico\CentroSaludController::class, 'index'])->name('centros_salud');
+
+// OFICINAS ADMINISTRATIVAS
+Route::get('/oficinas-administrativas', [\App\Http\Controllers\Publico\OficinaAdministrativaController::class, 'index'])->name('oficinas_administrativas');

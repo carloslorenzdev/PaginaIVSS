@@ -16,7 +16,7 @@ Route::group([
     // LISTADO
     Route::get('', 'listado')->name('listado');
     // REGISTRAR
-    Route::get('registrar', [RegistrarUsuarioController::class, 'registrar'])->name('registrar');
+
     Route::post('registrar', [RegistrarUsuarioController::class, 'crear']);
 
     Route::group([

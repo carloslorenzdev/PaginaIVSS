@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'IVSS | Innovación en Seguridad Social')</title>
+    <title>@yield('title', 'IVSS | Instituto Venezolano de los Seguros Sociales')</title>
     <link rel="icon" type="image/png" href="{{ asset('img/ivss-logo-rojo.png') }}">
     
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" nonce="{{ app('csp-nonce') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" nonce="{{ app('csp-nonce') }}">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" nonce="{{ app('csp-nonce') }}">
-    
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" nonce="{{ app('csp-nonce') }}">
+    <link href="{{ asset('css/all.min.css') }}" rel="stylesheet" nonce="{{ app('csp-nonce') }}">
+    <link href="{{ asset('css/aos.css') }}" rel="stylesheet" nonce="{{ app('csp-nonce') }}">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet" nonce="{{ app('csp-nonce') }}">
     <link rel="stylesheet" href="{{ asset('css/modern-style.css') }}" nonce="{{ app('csp-nonce') }}">
     
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -137,9 +137,9 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" nonce="{{ app('csp-nonce') }}"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" nonce="{{ app('csp-nonce') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" nonce="{{ app('csp-nonce') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}" nonce="{{ app('csp-nonce') }}"></script>
+    <script src="{{ asset('js/aos.js') }}" nonce="{{ app('csp-nonce') }}"></script>
+    <script src="{{ asset('js/sweetalert2.min.js') }}" nonce="{{ app('csp-nonce') }}"></script>
     <script nonce="{{ app('csp-nonce') }}">
         document.addEventListener("DOMContentLoaded", function() {
             AOS.init({ duration: 800, once: true });

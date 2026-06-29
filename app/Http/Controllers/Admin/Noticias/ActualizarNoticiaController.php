@@ -26,9 +26,12 @@ class ActualizarNoticiaController extends Controller
             'creditos_autor' => 'required|string|max:255',
         ]);
 
+        $data = $request->only(['titulo', 'resumen', 'categorias', 'enlace_externo', 'etiquetas', 'creditos_autor', 'leyenda', 'eliminar_imagen']);
+        $data['contenido'] = clean($request->input('contenido'));
+
         $action->execute(
             $noticia,
-            $request->only(['titulo', 'resumen', 'categorias', 'contenido', 'enlace_externo', 'etiquetas', 'creditos_autor', 'leyenda', 'eliminar_imagen']),
+            $data,
             $request->file('archivo'),
             auth()->id()
         );

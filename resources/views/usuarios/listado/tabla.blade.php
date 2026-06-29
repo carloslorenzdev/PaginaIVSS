@@ -20,9 +20,18 @@
             </div>
             <div class="md:col-span-1 lg:col-span-2 xl:col-span-1">
                 <p class="text-xs uppercase text-gray-500 dark:text-neutral-500">Roles</p>
-                <div class="flex gap-x-3">
+                <div class="flex gap-x-3 mb-2">
                     <p class="text-sm">{{ $user->getRoleNames()->join(', ', ' y ') ?: '-' }}</p>
                 </div>
+                <p class="text-xs uppercase text-gray-500 dark:text-neutral-500">Última Conexión</p>
+                <p class="text-sm">
+                    @if($user->ultimoAcceso)
+                        {{ $user->ultimoAcceso->ip }} <br>
+                        <span class="text-xs text-gray-400">{{ $user->ultimoAcceso->login->diffForHumans() }}</span>
+                    @else
+                        -
+                    @endif
+                </p>
             </div>
             <div class="md:col-span-1 lg:col-span-2 xl:col-span-1">
                 <p class="text-xs uppercase text-gray-500 dark:text-neutral-500">F. Registro</p>

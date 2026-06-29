@@ -114,7 +114,35 @@
     </x-nav.accordion>
 </li>
 
-{{-- CONFIGURACIÓN --}}
+{{-- DIRECTORIOS --}}
+@hasrole('admin')
+<li>
+    <x-nav.accordion id="directorios-acordion" active="{{ request()->routeIs('admin.directorios.*') }}">
+        <x-slot:heading>
+            <i class="bx bx-buildings bx-sm"></i>
+            Directorios
+        </x-slot:heading>
+        <ul class="ps-8 pt-1 space-y-1">
+            <li>
+                <x-nav.link href="{{ route('admin.directorios.index', ['tipo' => 'farmacia']) }}" active="{{ request('tipo') == 'farmacia' }}">
+                    Farmacias
+                </x-nav.link>
+            </li>
+            <li>
+                <x-nav.link href="{{ route('admin.directorios.index', ['tipo' => 'centro_salud']) }}" active="{{ request('tipo') == 'centro_salud' }}">
+                    Centros de Salud
+                </x-nav.link>
+            </li>
+            <li>
+                <x-nav.link href="{{ route('admin.directorios.index', ['tipo' => 'oficina_administrativa']) }}" active="{{ request('tipo') == 'oficina_administrativa' }}">
+                    Oficinas Administrativas
+                </x-nav.link>
+            </li>
+        </ul>
+    </x-nav.accordion>
+</li>
+@endhasrole
+
 @hasrole('admin')
 <li>
     <x-nav.accordion id="config-acordion" active="{{ routeActive('admin.config.*') }}">
@@ -153,9 +181,7 @@
                 </x-nav.link>
             </li>
             <li>
-                <x-nav.link href="{{ route('usuarios.registrar') }}" active="{{ routeActive('usuarios.registrar') }}">
-                    Registrar
-                </x-nav.link>
+
             </li>
         </ul>
     </x-nav.accordion>
@@ -182,6 +208,11 @@
             <li>
                 <x-nav.link href="{{ route('sistema.cache.limpiar') }}" active="{{ routeActive('sistema.cache.limpiar') }}">
                     Limpiar Cache
+                </x-nav.link>
+            </li>
+            <li>
+                <x-nav.link href="{{ route('admin.backups.index') }}" active="{{ routeActive('admin.backups.*') }}">
+                    Respaldos
                 </x-nav.link>
             </li>
         </ul>

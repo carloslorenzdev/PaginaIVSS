@@ -24,16 +24,8 @@ class GestionarEnlacesController extends Controller
                 'url_threads' => 'Threads',
             ],
             'Servicios Principales' => [
-                'url_sistema_en_linea' => 'Sistema en Línea',
-                'url_ciudadano' => 'Ciudadano',
-                'url_pensionados' => 'Pensionados',
-                'url_empleadores' => 'Empleadores',
-                'url_cuenta_individual' => 'Cuenta Individual',
                 'url_tiuna' => 'Tiuna',
                 'url_registro_tiuna' => 'Registro Tiuna',
-                'url_farmacias' => 'Farmacias de Alto Costo',
-                'url_centros_salud' => 'Centros de Salud',
-                'url_oficinas' => 'Oficinas Administrativas',
             ],
             'Sistemas en Línea' => [
                 'url_sistema_estado_cuenta' => 'Estado de Cuenta',
@@ -44,19 +36,6 @@ class GestionarEnlacesController extends Controller
                 'url_sistema_indemnizaciones_unicas' => 'Indemnizaciones Únicas',
                 'url_sistema_sigesp_v3' => 'Sigesp_v3',
                 'url_sistema_sigesp_v4' => 'Sigesp_v4',
-            ],
-            'Ciudadanos' => [
-                'url_ciudadano_informacion' => 'Información General',
-                'url_ciudadano_beneficio_medico' => 'Beneficio Médico Integral',
-                'url_ciudadano_continuidad' => 'Continuidad Facultativa',
-                'url_ciudadano_perdida_empleo' => '¿Perdiste tu empleo?',
-                'url_ciudadano_tramites' => 'Trámites',
-            ],
-            'Pensionados' => [
-                'url_pensionados_informacion' => 'Información General',
-                'url_pensionados_tipos' => 'Tipos de Pensiones',
-                'url_pensionados_exterior' => 'Pensionados en el Exterior',
-                'url_pensionados_tramites' => 'Trámites',
             ],
             'Constancias y Verificaciones' => [
                 'url_constancia_cotizaciones' => 'Constancias: Cotizaciones',

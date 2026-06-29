@@ -1,0 +1,163 @@
+{
+  "Apure": [
+    {
+      "nombre": "AMBULATORIO SAN FERNANDO DE APURE",
+      "direccion": "Carretera naciona Biruaca, San Fernando. Al lado del INCE",
+      "telefono": "(0247) 364.58.28"
+    }
+  ],
+  "Aragua": [
+    {
+      "nombre": "HOSPITAL DR. JOSE MARIA CARBALLO TOSTA",
+      "direccion": "Av. Principal de San José, cerca del terminal de Pasajeros",
+      "telefono": "(0243) 236.53.76"
+    },
+    {
+      "nombre": "HOSPITAL JOSE ANTONIO VARGAS",
+      "direccion": "Urb. La Ovallera- Palo Negro",
+      "telefono": "(0243) 267.30.80 / 267.23.39"
+    },
+    {
+      "nombre": "AMBULATORIO DR. LUIS RICHARD DIAZ",
+      "direccion": "Urb. Las Mercedes, al lado del Hospital Dr. José M. Benitez. La Victoria",
+      "telefono": "(0244) 321.24.64 / 321.12.86 /321.86.09"
+    }
+  ],
+  "Barinas": [
+    {
+      "nombre": "HOSPITAL MATERNO INFANTIL DR. SAMUEL DARIO MALDONADO",
+      "direccion": "Av. Agustin Codazzi, entrada al Barrio 1º de Diciembre. Frente al Mega Mercal",
+      "telefono": "(0273) 533.90.22/98.22"
+    },
+    {
+      "nombre": "AMBULATORIO DR. EMILIO CARMONA GÓMEZ",
+      "direccion": "Vía El Cariz, Calle 12, detrás del colegio Fe y Alegria. Barinas",
+      "telefono": "(0273) 533.93.33/533.83.74/ 533.48.48"
+    }
+  ],
+  "Carabobo": [
+    {
+      "nombre": "HOSPITAL DR. ANGEL LARRALDE",
+      "direccion": "Altos de la Colina de Barbula, Valencia (final de la carretera)",
+      "telefono": "0241- 6144003"
+    },
+    {
+      "nombre": "HOSPITAL DR. JOSE FRANCISCO MOLINA SIERRA",
+      "direccion": "Final calle Plaza, Av. Juan J. Flores, sector Rancho Grande. Pro Cabello",
+      "telefono": "(0242) 361.46.10/ 361.14.80"
+    },
+    {
+      "nombre": "AMBULATORIO DR. LUIS GUADA LACAU",
+      "direccion": "Urb. Caprenco, calle Guere con antigua calle Manga de Coleo. Valencia",
+      "telefono": "0241- 8664512"
+    },
+    {
+      "nombre": "AMBULATORIO DR. EMILIANO AZCUNEZ",
+      "direccion": "Av. Lisandro Alvarado, Frente al Cementerio Municipal de Valencia",
+      "telefono": "0241- 8086742"
+    },
+    {
+      "nombre": "AMBULATORIO DE YAGUA",
+      "direccion": "Calle Sucre con Briceño, Carretera Principal Yagua.",
+      "telefono": "0245- 4152893"
+    },
+    {
+      "nombre": "AMBULATORIO DR. LUIS IZAGUIRRE",
+      "direccion": "Calle los Proceres con Miranda, barrio Mariscal sucre. Mariara",
+      "telefono": "0243- 2189692"
+    },
+    {
+      "nombre": "AMBULATORIO PARAPARAL",
+      "direccion": "Av. Principal, sector Rosa Linda, Municipio los Guayos. Valencia",
+      "telefono": "0241- 6180029"
+    }
+  ],
+  "Cojedes": [
+    {
+      "nombre": "AMBULATORIO SAN CARLOS",
+      "direccion": "Av. San José Laureano Silva, Cruce con calle Sucre, via Acarigua",
+      "telefono": "(0258) 433.08.51"
+    },
+    {
+      "nombre": "AMBULATORIO DE TINAQUILLO",
+      "direccion": "Carretera Nacional Zona Industrial Tinaquillo",
+      "telefono": "(0258) 766.09.12"
+    }
+  ],
+  "Lara": [
+    {
+      "nombre": "HOSPITAL DR. PASTOR OROPEZA RIERA",
+      "direccion": "Prolongación Av. La Salle, fente a la Urb. El Sisal II, Barquisimeto.",
+      "telefono": "0251- 4421432"
+    },
+    {
+      "nombre": "HOSPITAL DR. JUAN DAZA PEREIRA",
+      "direccion": "Carrera 13, entre calle 49 y 50. Barquisimeto",
+      "telefono": "(0251) 445.45.42"
+    }
+  ],
+  "Miranda": [
+    {
+      "nombre": "FARMACIA DE MEDICAMENTOS DE ALTO COSTO DEL IVSS LOS RUICES",
+      "direccion": "Zona Industrial de los Ruices, entre 2da y 3ra transversal, Municipio Sucre",
+      "telefono": "0212-2396186"
+    },
+    {
+      "nombre": "HOSPITAL DR. DOMINGO LUCIANI (EL LLANITO)",
+      "direccion": "final avda. Río de Janeiro,sector El LLanito /Petare",
+      "telefono": "(02122573518 / 2572672"
+    },
+    {
+      "nombre": "AMBULATORIO DR. GERMÁN QUINTERO",
+      "direccion": "Calle Miquileni con Arismendi, Edf. San Jose. Los Teques",
+      "telefono": "(0212) 364. 01.87"
+    }
+  ],
+  "Nueva Esparta": [
+    {
+      "nombre": "HOSPITAL DR. LUÍS ORTEGA",
+      "direccion": "Av. 4 de Mayo. Porlamar.",
+      "telefono": "0295- 2647616/ 2636865"
+    }
+  ],
+  "Portuguesa": [
+    {
+      "nombre": "HOSPITAL MATERNO INFANTIL DR. JOSE GREGORIO HERNÁNDEZ",
+      "direccion": "Avda 17 Urb. Mamanico (diagonal al Colegio de Periodistas). Acarigua.",
+      "telefono": "0255- 4149661"
+    }
+  ],
+  "Trujillo": [
+    {
+      "nombre": "HOSPITAL DR. JUAN MOTEZUMA GINNARI",
+      "direccion": "Urb. La Beatriz, Valera",
+      "telefono": "0271- 2351214/1212"
+    }
+  ],
+  "Vargas": [
+    {
+      "nombre": "HOSPITAL JOSÉ MARÍA VARGAS",
+      "direccion": "Av. Soublette, al lado de la Electricidad de la Guaira, sector Guanapel.",
+      "telefono": "(0212) 331.65.55  332.73.94   332.96.67"
+    }
+  ],
+  "Yaracuy": [
+    {
+      "nombre": "CENTRO AMBULATORIO CHIVACOA",
+      "direccion": "Ur. Bicentenaria, al lado del estadio de Beisbol Menor. Chivacoa",
+      "telefono": "0251- 8831190"
+    }
+  ],
+  "Zulia": [
+    {
+      "nombre": "FARMACIA ALTO COSTO DE MARACAIBO",
+      "direccion": "Av. Fuerzas Armadas, sector Canchancha. Maracaibo. al lado del Hospital Dr. Adolfo Pons",
+      "telefono": "0261- 744.08.45"
+    },
+    {
+      "nombre": "HOSPITAL DR PEDRO GARCÍA CLARA",
+      "direccion": "Av. 34, frente al Barrio Obrero. Ciudad Ojeda.",
+      "telefono": "0265- 6322212/ 6411765"
+    }
+  ]
+}

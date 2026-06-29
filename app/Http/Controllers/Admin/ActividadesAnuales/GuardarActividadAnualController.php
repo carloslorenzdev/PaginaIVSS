@@ -17,8 +17,11 @@ class GuardarActividadAnualController extends Controller
             'documento_adjunto' => 'nullable|file|mimes:pdf,doc,docx|max:51200'
         ]);
 
+        $data = $request->only(['titulo', 'activa']);
+        $data['descripcion'] = clean($request->input('descripcion'));
+
         $action->execute(
-            $request->only(['titulo', 'descripcion', 'activa']),
+            $data,
             $request->file('archivo'),
             $request->file('documento_adjunto'),
             auth()->id()

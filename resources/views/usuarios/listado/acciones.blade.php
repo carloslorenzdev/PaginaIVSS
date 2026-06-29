@@ -9,10 +9,14 @@
             Detalle
         </x-nav.link>
         @if ($user->isActivo())
-            <x-nav.link href="{{ route('usuarios.editar', $user) }}">
+            <button type="button" class="btn-edit-user w-full text-left flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700"
+                data-usuario="{{ $user->usuario }}"
+                data-nombre="{{ $user->nombre }}"
+                data-email="{{ $user->email }}"
+                data-rol="{{ $user->roles->first()?->name ?? '' }}">
                 <i class="bx bx-edit-alt"></i>
                 Editar
-            </x-nav.link>
+            </button>
             <x-modal.button data-ruta="{{ route('usuarios.restablecer', $user) }}" data-usuario="{{ $user->usuario }}"
                 data-tipo="Restablecer Contraseña"
                 class="w-full text-gray-800 hover:bg-gray-100 focus:bg-gray-100 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-900">

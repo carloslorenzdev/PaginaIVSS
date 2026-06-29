@@ -25,8 +25,11 @@ class GuardarNoticiaController extends Controller
             'creditos_autor' => 'required|string|max:255',
         ]);
 
+        $data = $request->only(['titulo', 'resumen', 'categorias', 'enlace_externo', 'etiquetas', 'creditos_autor', 'leyenda']);
+        $data['contenido'] = clean($request->input('contenido'));
+
         $action->execute(
-            $request->only(['titulo', 'resumen', 'categorias', 'contenido', 'enlace_externo', 'etiquetas', 'creditos_autor', 'leyenda']),
+            $data,
             $request->file('archivo'),
             auth()->id()
         );

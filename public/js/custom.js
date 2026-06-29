@@ -253,4 +253,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const formOrden = document.getElementById('formOrdenPago');
     if(formOrden) formOrden.addEventListener('submit', submitOrdenPago);
+
+    const formConstanciaTrabajo = document.getElementById('formConstanciaTrabajo');
+    if(formConstanciaTrabajo) {
+        formConstanciaTrabajo.addEventListener('submit', function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Servicio no disponible',
+                text: 'El servicio de verificación de constancias de trabajo no se encuentra disponible en este momento.',
+                icon: 'info',
+                confirmButtonText: 'Entendido',
+                confirmButtonColor: '#3f6087'
+            });
+        });
+    }
 });

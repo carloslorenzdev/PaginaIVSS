@@ -9,9 +9,9 @@ Route::group([
     'middleware' => ['guest']
 ], function () {
     // LOGIN
-    Route::get('login', [AuthenticatedSessionController::class, 'create'])
+    Route::get('Padminlogin', [AuthenticatedSessionController::class, 'create'])
         ->name('login');
-    Route::post('login', [AuthenticatedSessionController::class, 'store']);
+    Route::post('Padminlogin', [AuthenticatedSessionController::class, 'store']);
 });
 
 Route::group([

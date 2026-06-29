@@ -13,22 +13,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Role;
-
 class RegistrarUsuarioController extends Controller
 {
-    /**
-     * Formulario para registrar usuario
-     */
-    public function registrar(Request $request): View
-    {
-        $roles = Role::where('name', '<>', 'Patrono')->orderBy('name');
-        if (!$request->user()->isAdmin()) {
-            $roles->orWhere('name', '<>', 'Admin');
-        }
-        $roles = $roles->get();
-        return view('usuarios.registrar', compact('roles'));
-    }
-
     /**
      * Post para registrar usuario
      */

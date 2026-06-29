@@ -59,36 +59,12 @@
                         @if(isset($configuraciones['membrete_img']))
                             <img src="{{ asset('storage/' . $configuraciones['membrete_img']) }}" alt="Membrete Actual" class="max-w-full h-auto rounded shadow-sm opacity-80 hover:opacity-100 transition-opacity">
                         @else
-                            <img src="{{ asset('img/cintilloRecurso-24mdpi.png') }}" alt="Membrete por Defecto" class="max-w-full h-auto rounded shadow-sm opacity-80 bg-white">
+                            <img src="{{ asset('imagenes/cintillo ivss_2026.png') }}" alt="Membrete por Defecto" class="max-w-full h-auto rounded shadow-sm opacity-80 bg-white">
                         @endif
                     </div>
                 </x-card>
 
-                {{-- 2. ESTILO DEL CARRUSEL --}}
-                <x-card class="p-5">
-                    <x-card.title class="mb-4">
-                        <i class="bx bx-carousel"></i> 2. Estilo del Carrusel
-                    </x-card.title>
-                    <form action="{{ route('admin.config.visual.carrusel') }}" method="POST" class="space-y-4">
-                        @csrf
-                        <div>
-                            <x-input.label for="carrusel_estilo" value="Selecciona un estilo visual para el Hero" />
-                            <select name="carrusel_estilo" id="carrusel_estilo" class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-red-500 focus:ring-red-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400">
-                                <option value="default" {{ ($configuraciones['carrusel_estilo'] ?? '') == 'default' ? 'selected' : '' }}>Predeterminado (Normal)</option>
-                                <option value="3d" {{ ($configuraciones['carrusel_estilo'] ?? '') == '3d' ? 'selected' : '' }}>Carrusel 3D Animado</option>
-                                <option value="cinematic" {{ ($configuraciones['carrusel_estilo'] ?? '') == 'cinematic' ? 'selected' : '' }}>Cinemático Horizontal</option>
-                            </select>
-                        </div>
-                        <div class="flex flex-wrap gap-2 pt-2">
-                            <button type="button" onclick="previewCarruselReal()" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
-                                <i class="bx bx-show text-lg"></i> Vista Previa Real
-                            </button>
-                            <x-input.button class="bg-red-600 hover:bg-red-700 focus:bg-red-700">
-                                <i class="bx bx-save mr-1"></i> Guardar Estilo
-                            </x-input.button>
-                        </div>
-                    </form>
-                </x-card>
+
             </div>
 
             {{-- COLUMNA DERECHA --}}
@@ -145,6 +121,9 @@
             </div>
         </div>
     </x-section>
+
+    {{-- Botón Oculto para abrir el modal desde JS --}}
+    <button type="button" id="hiddenPreviewBtn" class="hidden" data-hs-overlay="#previewModal"></button>
 
     {{-- MODAL VISTA PREVIA (Iframe) --}}
     <div id="previewModal" class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none bg-black/80 backdrop-blur-sm" role="dialog" tabindex="-1">
@@ -248,19 +227,7 @@
         loader.style.display = 'flex';
         iframe.style.opacity = '0';
         iframe.src = baseUrl;
-        HSOverlay.open(document.querySelector('#previewModal'));
-    }
-
-    function previewCarruselReal() {
-        currentPreviewType = 'carrusel';
-        const estilo = document.getElementById('carrusel_estilo').value;
-        const baseUrl = "{{ route('inicio') }}";
-        
-        loader.style.display = 'flex';
-        iframe.style.opacity = '0';
-        
-        iframe.src = baseUrl + "?preview_carousel=" + estilo + "#hero";
-        HSOverlay.open(document.querySelector('#previewModal'));
+        document.getElementById('hiddenPreviewBtn').click();
     }
 </script>
 @endpush

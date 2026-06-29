@@ -28,15 +28,17 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->trustProxies(at: '*');
         $middleware->throttleWithRedis();
         $middleware->redirectUsersTo('/admin/panel');
         $middleware->prepend([
             TrustHosts::class,
-            TrustProxies::class
         ]);
         $middleware->append([
             AddCspHeaders::class,
             AddContextLog::class,
+            \App\Http\Middleware\SecurityHeaders::class,
+            \App\Http\Middleware\SessionFingerprintMiddleware::class,
         ]);
         $middleware->alias([
             '2fa' => TwoFactorAuthenticator::class,

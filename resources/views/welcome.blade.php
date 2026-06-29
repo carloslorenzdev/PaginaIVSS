@@ -209,8 +209,11 @@
         </p>
 
         <div class="d-flex flex-column text-start">
-              <a href="{{ $configuraciones['url_ciudadanos_constancias'] ?? '#' }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank"><i class="fas fa-file-alt me-2"></i> Constancias</a>
-              <a href="{{ $configuraciones['url_ciudadanos_verificaciones'] ?? '#' }}" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0" target="_blank"><i class="fas fa-check-double me-2"></i> Verificaciones</a>
+              <a href="{{ route('ciudadano.informacion') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-info-circle me-2"></i> Información General</a>
+              <a href="{{ route('ciudadano.beneficio') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-heartbeat me-2"></i> Beneficio Médico Integral</a>
+              <a href="{{ route('ciudadano.continuidad') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-route me-2"></i> Continuidad Facultativa</a>
+              <a href="{{ route('ciudadano.perdida') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-user-injured me-2"></i> ¿Perdiste tu empleo?</a>
+              <a href="{{ route('ciudadano.tramites') }}" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0"><i class="fas fa-file-signature me-2"></i> Trámites</a>
         </div>
       </div>
     </div>
@@ -237,8 +240,10 @@
         </p>
 
         <div class="d-flex flex-column text-start">
-              <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#modalConstancias" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-file-signature me-2"></i> Constancias</a>
-              <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#modalVerificaciones" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0"><i class="fas fa-clipboard-check me-2"></i> Verificaciones</a>
+              <a href="{{ route('pensionado.informacion') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-info-circle me-2"></i> Información General</a>
+              <a href="{{ route('pensionado.tipos_pensiones') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-list-ul me-2"></i> Tipos de Pensiones</a>
+              <a href="{{ route('pensionado.pensionados_exterior') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-globe-americas me-2"></i> Pensionados en el Exterior</a>
+              <a href="{{ route('pensionado.tramites') }}" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0"><i class="fas fa-file-signature me-2"></i> Trámites</a>
         </div>
       </div>
     </div>
@@ -265,8 +270,11 @@
         </p>
 
         <div class="d-flex flex-column text-start">
-              <a href="{{ $configuraciones['url_empleadores_constancias'] ?? '#' }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank"><i class="fas fa-building me-2"></i> Constancias</a>
-              <a href="{{ $configuraciones['url_empleadores_verificaciones'] ?? '#' }}" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0" target="_blank"><i class="fas fa-tasks me-2"></i> Verificaciones</a>
+              <a href="{{ route('empleador.informacion') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-info-circle me-2"></i> Información General</a>
+              <a href="{{ route('empleador.quien_es') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-question-circle me-2"></i> ¿Quién es el Empleador(a)?</a>
+              <a href="{{ route('empleador.tipos_empresas') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-industry me-2"></i> Tipos de Empresas</a>
+              <a href="{{ route('empleador.sistema_autoliquidacion') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-laptop-house me-2"></i> Sistema Autoliquidación</a>
+              <a href="{{ route('empleador.tramites') }}" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0"><i class="fas fa-folder-open me-2"></i> Trámites</a>
         </div>
       </div>
     </div>
@@ -344,7 +352,7 @@
             <div class="row g-4 justify-content-center">
                 <!-- Farmacias de Alto Costo -->
                 <div class="col-lg-3 col-md-6" data-aos="fade-up">
-                    <a href="{{ $configuraciones['url_farmacias'] ?? '#' }}" class="d-block text-decoration-none h-100 rounded-4 overflow-hidden position-relative card-hover-scale" style="min-height: 220px; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
+                    <a href="{{ route('farmacias') }}" class="d-block text-decoration-none h-100 rounded-4 overflow-hidden position-relative card-hover-scale" style="min-height: 220px; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
                         <div class="position-absolute w-100 h-100 bg-image-zoom" style="background-image: url('{{ !empty($configuraciones['bg_farmacias']) ? asset('storage/' . $configuraciones['bg_farmacias']) : asset('img/medical-aesthetic-1.png') }}'); background-size: cover; background-position: center;"></div>
                         <div class="position-absolute w-100 h-100 overlay-red"></div>
                         <div class="position-relative z-10 h-100 d-flex flex-column justify-content-center align-items-center text-white p-4 text-center">
@@ -355,7 +363,7 @@
                 </div>
                 <!-- Centros de Salud -->
                 <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <a href="{{ $configuraciones['url_centros_salud'] ?? '#' }}" class="d-block text-decoration-none h-100 rounded-4 overflow-hidden position-relative card-hover-scale" style="min-height: 220px; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
+                    <a href="{{ route('centros_salud') }}" class="d-block text-decoration-none h-100 rounded-4 overflow-hidden position-relative card-hover-scale" style="min-height: 220px; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
                         <div class="position-absolute w-100 h-100 bg-image-zoom" style="background-image: url('{{ !empty($configuraciones['bg_centros_salud']) ? asset('storage/' . $configuraciones['bg_centros_salud']) : asset('img/medical-aesthetic-2.png') }}'); background-size: cover; background-position: center;"></div>
                         <div class="position-absolute w-100 h-100 overlay-red"></div>
                         <div class="position-relative z-10 h-100 d-flex flex-column justify-content-center align-items-center text-white p-4 text-center">
@@ -366,7 +374,7 @@
                 </div>
                 <!-- Oficinas Administrativas -->
                 <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <a href="{{ $configuraciones['url_oficinas'] ?? '#' }}" class="d-block text-decoration-none h-100 rounded-4 overflow-hidden position-relative card-hover-scale" style="min-height: 220px; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
+                    <a href="{{ route('oficinas_administrativas') }}" class="d-block text-decoration-none h-100 rounded-4 overflow-hidden position-relative card-hover-scale" style="min-height: 220px; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
                         <div class="position-absolute w-100 h-100 bg-image-zoom" style="background-image: url('{{ !empty($configuraciones['bg_oficinas']) ? asset('storage/' . $configuraciones['bg_oficinas']) : asset('img/hero-innovation-bg.png') }}'); background-size: cover; background-position: center;"></div>
                         <div class="position-absolute w-100 h-100 overlay-red"></div>
                         <div class="position-relative z-10 h-100 d-flex flex-column justify-content-center align-items-center text-white p-4 text-center">
@@ -391,40 +399,84 @@
 
         <!-- Modal Servicios al Funcionario -->
         <div class="modal fade" id="modalServiciosFuncionario" tabindex="-1" aria-labelledby="modalServiciosFuncionarioLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
-                <div class="modal-content border-0 shadow-lg" style="border-radius: 0; overflow: hidden; background-color: #e2e3e5;">
-                    <div class="p-0 position-relative">
-                        <button type="button" class="btn-close position-absolute top-0 end-0 m-3 z-3" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow-lg" style="border-radius: 1.5rem; overflow: hidden;">
+                    <div class="p-4 text-center position-relative">
+                        <button type="button" class="btn-close position-absolute top-0 end-0 m-4" data-bs-dismiss="modal" aria-label="Close"></button>
                         
-                        <div class="d-flex align-items-center mb-4 mt-4">
-                            <div class="bg-danger text-white py-2 px-4 d-inline-flex align-items-center shadow-sm" style="clip-path: polygon(0 0, 95% 0, 100% 50%, 95% 100%, 0 100%); min-width: 60%;">
-                                <h5 class="mb-0 fw-bold ms-3" style="letter-spacing: 1px;">SERVICIOS AL FUNCIONARIO</h5>
-                            </div>
+                        <div class="mx-auto mb-4 d-flex justify-content-center align-items-center bg-danger bg-opacity-10 text-danger rounded-circle" style="width: 64px; height: 64px;">
+                            <i class="fas fa-users-cog fa-2x"></i>
                         </div>
 
-                        <div class="row g-0 p-4 pt-0">
-                            <div class="col-md-5 text-center px-3">
-                                <img src="{{ asset('img/Verificacion-1.png') }}" class="img-fluid border border-4 border-white shadow-sm w-100" style="object-fit: cover;" alt="Servicios al Funcionario">
-                            </div>
-                            <div class="col-md-7 d-flex flex-column justify-content-center ps-md-4 mt-4 mt-md-0">
-                                <a href="{{ $configuraciones['url_verificacion_constancia'] ?? '#' }}" target="_blank" class="text-decoration-none text-secondary fw-semibold mb-3 fs-6 d-flex align-items-center hover-red transition-all">
-                                    Verificación de Constancia
-                                </a>
-                                <a href="{{ $configuraciones['url_ingresa_correo'] ?? '#' }}" target="_blank" class="text-decoration-none text-secondary fw-semibold mb-3 fs-6 d-flex align-items-center hover-red transition-all">
-                                    Ingresa a tu Correo
-                                </a>
-                                <a href="{{ $configuraciones['url_solicitudes_rrhh'] ?? '#' }}" target="_blank" class="text-decoration-none text-secondary fw-semibold mb-3 fs-6 d-flex align-items-center hover-red transition-all">
-                                    Solicitudes a RRHH
-                                </a>
-                                <a href="{{ $configuraciones['url_consulta_prestaciones'] ?? '#' }}" target="_blank" class="text-decoration-none text-secondary fw-semibold fs-6 d-flex align-items-center hover-red transition-all">
-                                    Consulta de Prestaciones Sociales
-                                </a>
-                            </div>
+                        <h4 id="modalServiciosFuncionarioLabel" class="fw-bold text-dark mb-2">
+                            Servicios al Funcionario
+                        </h4>
+                        <p class="small text-muted mb-4">
+                            Accesos directos para la gestión de recursos humanos y beneficios.
+                        </p>
+
+                        <div class="d-flex flex-column text-start">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#modalConstanciaTrabajo" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0">
+                                <i class="fas fa-check-double me-2"></i> Verificación de Constancia
+                            </a>
+                            <a href="{{ $configuraciones['url_ingresa_correo'] ?? '#' }}" target="_blank" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0">
+                                <i class="fas fa-envelope me-2"></i> Ingresa a tu Correo
+                            </a>
+                            <a href="{{ $configuraciones['url_solicitudes_rrhh'] ?? '#' }}" target="_blank" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0">
+                                <i class="fas fa-file-alt me-2"></i> Solicitudes a RRHH
+                            </a>
+                            <a href="{{ $configuraciones['url_consulta_prestaciones'] ?? '#' }}" target="_blank" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0">
+                                <i class="fas fa-hand-holding-usd me-2"></i> Consulta de Prestaciones Sociales
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Modal Constancia de Trabajo -->
+        <div class="modal fade" id="modalConstanciaTrabajo" tabindex="-1" aria-labelledby="modalConstanciaTrabajoLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow-lg" style="border-radius: 1.5rem; overflow: hidden;">
+                    <div class="p-4 text-center position-relative">
+                        <button type="button" class="btn-close position-absolute top-0 end-0 m-4" data-bs-dismiss="modal" aria-label="Close"></button>
+                        
+                        <div class="mx-auto mb-4 d-flex justify-content-center align-items-center bg-danger bg-opacity-10 text-danger rounded-circle" style="width: 64px; height: 64px;">
+                            <i class="fas fa-file-contract fa-2x"></i>
+                        </div>
+
+                        <h4 id="modalConstanciaTrabajoLabel" class="fw-bold text-dark mb-2">
+                            Constancias de Trabajo
+                        </h4>
+                        <p class="small text-muted mb-4">
+                            Verifique la autenticidad de una constancia de trabajo.
+                        </p>
+
+                        <form id="formConstanciaTrabajo" class="text-start">
+                            <div class="mb-3">
+                                <label class="form-label text-muted small fw-bold text-uppercase mb-2">NÚMERO DE CÉDULA</label>
+                                <div class="input-group border rounded shadow-sm">
+                                    <select name="nacionalidad_constancia" class="form-select border-0 bg-light text-muted fw-bold" style="max-width: 80px;" required>
+                                        <option value="V">V.</option>
+                                        <option value="E">E.</option>
+                                    </select>
+                                    <input type="number" name="cedula_constancia" class="form-control border-0" placeholder="Ej. 12345678" required>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label text-muted small fw-bold text-uppercase mb-2">CÓDIGO</label>
+                                <input type="text" name="codigo_constancia" class="form-control border rounded shadow-sm" placeholder="" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-danger w-100 py-3 fw-bold rounded-pill shadow-sm text-uppercase" id="btnConsultarConstancia">
+                                Consultar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
 
     <!-- Section 4: Grid Services (Legacy Transformation) -->
@@ -534,6 +586,75 @@
                   </div>
               </div>
           </div>
+          
+        <!-- Modal Verificaciones -->
+        <div class="modal fade" id="modalVerificaciones" tabindex="-1" aria-labelledby="modalVerificacionesLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow-lg" style="border-radius: 1.5rem; overflow: hidden;">
+                    <div class="p-4 text-center position-relative">
+                        <button type="button" class="btn-close position-absolute top-0 end-0 m-4" data-bs-dismiss="modal" aria-label="Close"></button>
+                        
+                        <div class="mx-auto mb-4 d-flex justify-content-center align-items-center bg-danger bg-opacity-10 text-danger rounded-circle" style="width: 64px; height: 64px;">
+                            <i class="fas fa-check-double fa-2x"></i>
+                        </div>
+
+                        <h4 id="modalVerificacionesLabel" class="fw-bold text-dark mb-2">
+                            Verificaciones
+                        </h4>
+                        <p class="small text-muted mb-4">
+                            Verifique la autenticidad de constancias y autorizaciones.
+                        </p>
+
+                        <div class="d-flex flex-column text-start">
+                            <a href="{{ $configuraciones['url_verificacion_autorizacion'] ?? '#' }}" target="_blank" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0">
+                                <i class="fas fa-check-circle me-2"></i> Verificación de Autorización de Cobro de Pensión
+                            </a>
+                            <a href="{{ $configuraciones['url_verificacion_pension'] ?? '#' }}" target="_blank" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0">
+                                <i class="fas fa-blind me-2"></i> Constancia de Pensión
+                            </a>
+                            <a href="{{ $configuraciones['url_verificacion_cotizacion'] ?? '#' }}" target="_blank" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0">
+                                <i class="fas fa-hourglass-half me-2"></i> Constancia de Cotización
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Constancias -->
+        <div class="modal fade" id="modalConstancias" tabindex="-1" aria-labelledby="modalConstanciasLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow-lg" style="border-radius: 1.5rem; overflow: hidden;">
+                    <div class="p-4 text-center position-relative">
+                        <button type="button" class="btn-close position-absolute top-0 end-0 m-4" data-bs-dismiss="modal" aria-label="Close"></button>
+                        
+                        <div class="mx-auto mb-4 d-flex justify-content-center align-items-center bg-danger bg-opacity-10 text-danger rounded-circle" style="width: 64px; height: 64px;">
+                            <i class="fas fa-file-signature fa-2x"></i>
+                        </div>
+
+                        <h4 id="modalConstanciasLabel" class="fw-bold text-dark mb-2">
+                            Constancias
+                        </h4>
+                        <p class="small text-muted mb-4">
+                            Descargue constancias y autorizaciones del sistema.
+                        </p>
+
+                        <div class="d-flex flex-column text-start">
+                            <a href="{{ $configuraciones['url_constancia_cotizaciones'] ?? '#' }}" target="_blank" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0">
+                                <i class="fas fa-hourglass-half me-2"></i> Cotizaciones
+                            </a>
+                            <a href="{{ $configuraciones['url_constancia_pension'] ?? '#' }}" target="_blank" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0">
+                                <i class="fas fa-blind me-2"></i> Pensión
+                            </a>
+                            <a href="{{ $configuraciones['url_constancia_autorizacion'] ?? '#' }}" target="_blank" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0">
+                                <i class="fas fa-file-contract me-2"></i> Autorización de Cobro de Pensión
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
       </section>
 
     <!-- Section 5: Promociones / Alertas -->

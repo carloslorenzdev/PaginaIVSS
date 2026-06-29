@@ -1,0 +1,545 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="http://www.ivss.gov.ve/"/>
+<script type="text/javascript" src="paquete/jquery/jquery.js"></script>
+<!-- 
+<script type="text/javascript" src="paquete/jquery/jquery-ui.js"></script>
+<link type="text/css" media="all" href="paquete/jquery/jquery-ui.css" rel="stylesheet" />
+-->
+
+<script type="text/javascript" src="paquete/lazyload/jquery.lazyload.js"></script>
+<script type="text/javascript" src="paquete/ajaxupload/ajaxupload.js"></script>
+<script type="text/javascript" src="paquete/nicEdit/nicEdit.js"></script>
+
+<!-- 
+<script src='https://www.google.com/recaptcha/api.js'></script>
+-->
+
+<script type="text/javascript">
+var DGIfacturacion_fecha='05/2026';
+</script><link media="all" type="text/css" rel="stylesheet" href="css/pag.css"/>
+<script type="text/javascript" src="css/pag.js"></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="author" content="instituto venezolano de los seguros sociales"/>
+<meta name="keywords" content="salud, seguro, social, venezuela, venezolano, pensionado, jubilado, asegurado, empleado, empleador, empresa, patrono, usuario, beneficiario, pension, vejez, invalidez, hospital"/>
+<meta name="description" content="instituto venezolano de los seguros sociales, la seguridad social es tu derecho, seguro social venezolano, pensionado, ivss, patrono, registrado en ivss"/>
+<meta name="viewport" content="width=device-width" />
+<meta name="date" content="2015"/>
+<meta name="language" content="es"/>
+<meta name="robots" content="all"/>
+<meta name="copyright" content="Â© 2015 www.ivss.gov.ve. IVSS todos los Derechos Reservados."/> 
+<meta name="MSSmartTagsPreventParsing" content="true"/> 
+<meta http-equiv="imagetoolbar" content="Yes"/>
+<meta name="verify-v1" content="mRTA9EhlUwVU7H9pwB0ipttuCUFaQSbJoz8cU+8L3kc="/>
+<meta name="bitly-verification" content="4d02cd432ee8"/>
+
+<link rel="shortcut icon" href="imag/favicon.png" type="imag/png"/>
+<title>Centros de Salud - IVSS Instituto Venezolano de los Seguros Sociales | La Seguridad Social es tu Derecho</title>
+</head>
+<body>
+
+<div id="pag_ivss">
+<div id="pag_banner" class="banner_scroll"><style type="text/css">
+#pag_banner{background:#2B4A7E url(imag/var/fondo_rojo_banner_efectodimension%7B200x50%7D.jpg) no-repeat center/cover; /*background-blend-mode:multiply;*/ /*background-blend-mode:soft-light;*/}
+#banner{position:relative; width:65%; margin:20px 0; left:8px; float:left; box-shadow:0 0 0px 8px rgba(255,255,255,0.4); background:#FFF;}
+.banner{position:relative; overflow:hidden;}
+.banner:before{content:""; position:relative; padding-top:50%; display:block;}
+.banner>div{position:absolute; width:100%; height:100%; top:0; clear:left; display:none; background:no-repeat center/contain;}
+.banner>div[data-tipo="noticia"]>div.titulo{position:relative; padding:20px 50px; color:#444; font-size:30px; text-shadow:1px 1px 0 #FFF;}
+.banner>div[data-tipo="noticia"]>div.contenido{position:relative; padding:0 50px; color:#222; font-size:14px; text-align:justify;}
+.banner>div[data-tipo="noticia"]>div.imagen{position:absolute; width:100%; height:100%; opacity:0.4; background:no-repeat center/cover;}
+.banner>div[data-tipo="noticia"]:before{content:"Leer mÃ¡s"; position:absolute; width:auto; margin:10px; padding:5px 10px; bottom:0; left:40px; color:#FFF; font-size:12px; box-shadow:1px 1px 5px #999; background:#009CDF;}
+
+#banner_control{position:absolute; margin:20px 50px; bottom:0px; right:0px; padding:5px; border-radius:10px; border:1px solid #CCC; overflow:hidden; display:none;}
+#banner_control>div{position:relative; width:12px; height:12px; margin:0px 5px; border:1px solid #BBB; border-radius:10px; cursor:pointer; display:inline-block; background:#ECE4E2;}
+
+
+.nav_banner{position:absolute; width:50px; height:50px; margin:0px 5px; top:50%; margin-top:-25px; cursor:pointer; background:url(imag/var/menu.png) no-repeat 0 0; display:none;}
+.nav_banner.sig{right:0; transform:rotate(180deg);}
+.nav_banner.ant{}
+
+
+
+/** NOTICIAS **/
+#banner_noticia{position:relative; width:28%; margin:20px 0; right:8px; float:right; box-shadow:0 0 0px 8px rgba(255,255,255,0.4); background:#FFF; overflow:hidden; display:none}
+.banner_noticia:before{content:""; position:relative; padding-top:116%; display:block;}
+#banner_noticia>.banner_noticia>div{position:absolute; height:100%; top:0; background:no-repeat center/cover; display:none;}
+#banner_noticia>.banner_noticia>div>span{padding:0px 15px; color:#555; font-size:12px; display:block;}
+#banner_noticia>.banner_noticia>div>span:nth-child(2){padding:25px 15px; font-size:15px; font-weight:bold;}
+#banner_noticia>.banner_noticia>div>span:nth-child(3){text-align:justify;}
+#banner_noticia>.banner_noticia>div>div{position:absolute; width:100%; height:100%; opacity:0.3; background:no-repeat center/cover;}
+#banner_noticia>.banner_noticia>div:before{content:"Leer mÃ¡s"; position:absolute; width:auto; margin:10px; padding:5px 10px; bottom:0; color:#FFF; font-size:12px; box-shadow:1px 1px 5px #999; background:#009CDF;}
+
+.nav_noticia{position:absolute; width:30px; height:30px; bottom:10px; right:10px; cursor:pointer; box-shadow:inset 0 0 3px #FFF; background:#EEE url(imag/var/menu.png) no-repeat -45px -8px; /*background-blend-mode:multiply;*/ display:block;}
+.nav_noticia:hover{/*background-color:#94D9E3; background-blend-mode:screen;*/ background-position:-85px -8px;}
+.nav_noticia.sig{transform:rotate(180deg);}
+.nav_noticia.ant{right:40px;}
+
+
+
+/** TWITTER **/
+#banner_twitter{display: none !important; opacity: 0 !important;   position:relative; width:28%; margin:20px 0; padding:0 1%; right:8px; float:right; box-shadow:0 0 0px 8px rgba(255,255,255,0.4); background:#FFF; overflow:hidden;}
+.banner_twitter:before{content:""; padding-top:116%; display:block;}
+.banner_twitter>div{position:absolute; width:90%;  height:45%; top:0; border-top:1px solid #DDD; overflow:hidden;}
+.banner_twitter>div:before{content:"@ivssoficial"/*TWITTER de */; padding:10px 0 0 0; color:#668FC6; font-size:12px; display:block;}
+.banner_twitter>div:last-child{top:50%;}
+.banner_twitter>div:last-child:before{content:"@magallyvina"/*TWITTER de */;}
+.banner_twitter iframe{}
+.stream{height:100px !important;}
+
+.banner_twitter .twitter_opcion{position:absolute; margin:0; top:5px; right:0px;}
+.banner_twitter .twitter_opcion div{position:relative; padding:0 0 0 20px; color:#55ACEE; font-size:12px; cursor:pointer; display:inline-block; vertical-align:middle; background:transparent url(imag/var/icono/extra/twitter.png) no-repeat 0 0; background-size: 177px 241px;}
+.banner_twitter .twitter_opcion div[data-tipo="seguir"]{background-position:-73px -160px;}
+.banner_twitter .twitter_opcion div[data-tipo="seguir"]:before{content:"seguir"; display:inline-block;}
+.banner_twitter .twitter_opcion div[data-tipo="twitter"]{background-position:-100px -140px/*-134px -86px*/;}
+.banner_twitter .twitter_opcion div[data-tipo="twitter"]:before{content:"twittear"; display:inline-block;}
+
+
+
+
+/** ADICIONAL **/
+#banner_adicional{position:relative; width:100%; padding:25px 0px; clear:both; background:#2E73B7; display:none;}
+#banner_adicional>div>div{position:absolute; padding:10px 30px; top:-10px; right:0px; box-shadow:2px 2px 5px -1px #111;background:#00C8DC;}
+</style>
+
+
+<div class="pag_contenido">
+
+<div id="banner">
+<div class="banner">
+<div data-tipo="imagen" title="CONVOCATORIA A CONCURSO MEDICO " style="background-image:url(imag/banner/virus_ebola.jpeg)"><a href="http://www.ivss.gov.ve/imag/banner/virus_ebola.jpeg"></a></div><div data-tipo="imagen" title="CONVOCATORIA A CONCURSO MEDICO" style="background-image:url(imag/banner/banner_1630701175.jpg)"><a href="http://www.ivss.gov.ve/imag/page/pagina_1630701052/pdf_llamado_a_concurso_2025_2026.pdf"></a></div><div data-tipo="imagen" title="Pago Listado de Febrero 2020" style="background-image:url(imag/banner/banner_1628889073.jpg)"><a href="http://www.ivss.gov.ve/imag/page/pagina_1628889199/pago_de_prestaciones_listado_febrero_2020.jpg"></a></div><div data-tipo="noticia" title="COMANDANTE HUGO CHÃVEZ FRÃAS PRESENTE EN EL CORAZÃN DE LOS TRABAJADORES DEL IVSS"><div class="imagen" style="background-image:url(imag/page/pagina_1614995773dimension{300x300}.jpg);"></div><div class="titulo">COMANDANTE HUGO CHÃVEZ FRÃAS PRESENTE EN EL CORAZÃN DE LOS TRABAJADORES DEL IVSS</div><div class="contenido">
+
+Caracas,
+05 de marzo de 2021.- El compromiso patrio de las servidoras y servidores
+pÃºblicos del Instituto Venezolano de los Seguros Sociales (IVSS), la FundaciÃ³n
+Nacional El NiÃ±o SimÃ³n (FNNS) Y el Instituto Nacional de Servicios Sociales
+(INASS), marcÃ³ el acto de conmemoraciÃ³n del 8vo aniversario del paso a la
+inmortalidad del Gigante de AmÃ©rica, Hugo Rafael ChÃ¡vez FrÃ­as, en esta
+instituciÃ³n garante de la salud del pueblo venezolano.
+
+La
+presidenta del Seguro Social y de l ...</div><a href="noticia/comandante-hugo-chvez-fras-presente-en-el-corazn-de-los-trabajadores-del-ivss"></a></div></div>
+
+<div>
+<div class="nav_banner sig" onclick="banner('sig')"></div>
+<div class="nav_banner ant" onclick="banner('ant')"></div>
+<div id="banner_control" align="center"></div>
+</div>
+</div>
+
+
+<div id="banner_noticia">
+<div class="banner_noticia">
+<div title="COMANDANTE HUGO CHÃVEZ FRÃAS PRESENTE EN EL CORAZÃN DE LOS TRABAJADORES DEL IVSS"><div style="background-image:url(imag/page/pagina_1614995773dimension{300x300}.jpg);"></div><span>COMANDANTE HUGO CHÃVEZ FRÃAS PRESENTE EN EL CORAZÃN DE LOS TRABAJADORES DEL IVSS</span><span>
+
+Caracas,
+05 de marzo de 2021.- El compromiso patrio de las servidoras y servidores
+pÃºblicos del Instituto Venezolano de los Seguros Sociales (IVSS), la FundaciÃ³n
+Nacional El NiÃ±o SimÃ³n (FNNS) Y el Instituto Nacional de Servicios Sociales
+(INASS), marcÃ³ el acto de conmemoraciÃ³n del 8vo aniversario del paso a la
+inmortalidad del Gigante de AmÃ©rica, Hugo Rafael ChÃ¡vez FrÃ­as, en esta
+instituciÃ³n garante de la salud del pueblo venezolano.
+
+La
+presidenta del Seguro Social y de l ...</span><a href="noticia/comandante-hugo-chvez-fras-presente-en-el-corazn-de-los-trabajadores-del-ivss" title="COMANDANTE HUGO CHÃVEZ FRÃAS PRESENTE EN EL CORAZÃN DE LOS TRABAJADORES DEL IVSS"></a></div><div title="IVSS REALIZÃ ENTREGA DE CICLADORAS PARA DIÃLISIS PERITONEAL EN EL HOSPITAL DE NIÃOS JOSÃ MANUEL DE LOS RÃOS"><div style="background-image:url(imag/page/pagina_1651872979dimension{300x300}.jpeg);"></div><span>IVSS REALIZÃ ENTREGA DE CICLADORAS PARA DIÃLISIS PERITONEAL EN EL HOSPITAL DE NIÃOS JOSÃ MANUEL DE LOS RÃOS</span><span>Caracas
+06 de mayo de 2022 - Amor, inocencia, futuro y responsabilidad, son algunas de las
+palabras que definen a nuestras niÃ±as y niÃ±os de la patria, quienes son la cara
+del maÃ±ana de Venezuela,&nbsp; y prometen
+continuar trabajando por el fortalecimiento del paÃ­s. El Gobierno Bolivariano, en conjunto con el Ministerio del Poder
+Popular para la Salud (MPPS) y el
+Instituto Venezolano de los Seguros Sociales (IVSS) se encarga de ofrecerles una mano amiga a los pequeÃ±ines del
+paÃ­s, qu ...</span><a href="noticia/ivss-realiz-entrega-de-cicladoras-para-dilisis-peritoneal-en-el-hospital-de-nios-jos-manuel-de-los-r" title="IVSS REALIZÃ ENTREGA DE CICLADORAS PARA DIÃLISIS PERITONEAL EN EL HOSPITAL DE NIÃOS JOSÃ MANUEL DE LOS RÃOS"></a></div><div title="Gobierno Bolivariano entrega medicamentos de Alto Costo a pacientes con cÃ¡ncer"><div style="background-image:url(imag/var/icono/ivssdimension{300x300}.png);"></div><span>Gobierno Bolivariano entrega medicamentos de Alto Costo a pacientes con cÃ¡ncer</span><span>
+
+Caracas, 07 de febrero de 2023.- Como un dispositivo para
+garantizar la pronta respuesta a las necesidades del pueblo venezolano, las 7
+lÃ­neas de trabajo para el 2023 continÃºan operando en todo el territorio
+nacional. En tal sentido, en horas de la tarde de este martes, pacientes con
+neoplasia que realizaron su respectiva solicitud, recibieron medicamentos gratuitamente
+en la Farmacia de Alto Costo del Instituto Venezolano de los Seguros Sociales
+(IVSS) ubicada en Los Ruices.
+
+Dilm ...</span><a href="noticia/gobierno-bolivariano-entrega-medicamentos-de-alto-costo-a-pacientes-con-cncer" title="Gobierno Bolivariano entrega medicamentos de Alto Costo a pacientes con cÃ¡ncer"></a></div></div>
+<div class="nav_noticia sig" onclick="banner_noticia('sig')"></div>
+<div class="nav_noticia ant" onclick="banner_noticia('ant')"></div>
+</div>
+
+
+<div id="banner_twitter">
+<div class="banner_twitter">
+
+<div>
+<a class="twitter-timeline" lang="es" href="https://twitter.com/ivssoficial" data-widget-id="623270280404824064" data-chrome="noheader  nofooter noscrollbar transparent"></a>
+<div class="twitter_opcion">
+<div data-tipo="seguir" onclick="window.open('https://twitter.com/intent/follow?screen_name=ivssoficial','','scrollbars=yes,width=550,height=400')"></div>
+<div data-tipo="twitter" onclick="window.open('https://twitter.com/intent/tweet?screen_name=ivssoficial','','scrollbars=yes,width=550,height=400')"></div>
+</div>
+</div>
+
+<div>
+<a class="twitter-timeline" lang="es" href="https://twitter.com/magallyvina?ref_src=twsrc%5Etfw" data-widget-id="623839337139015680" data-chrome="noheader  nofooter noscrollbar transparent"></a>
+<div class="twitter_opcion">
+<div data-tipo="seguir" onclick="window.open('https://twitter.com/intent/follow?screen_name=magallyvina','','scrollbars=yes,width=550,height=400')"></div>
+<div data-tipo="twitter" onclick="window.open('https://twitter.com/intent/tweet?screen_name=magallyvina','','scrollbars=yes,width=550,height=400')"></div>
+</div>
+<script>//Tweets por el @c_rotondaro.noheader  nofooter
+//https://twitter.com/intent/follow?screen_name=ivssoficial
+//https://twitter.com/intent/tweet?screen_name=ivssoficial
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+</script>
+</div>
+
+</div>
+</div>
+
+</div>
+
+
+<div id="banner_adicional" class="txt_blancom">
+<div class="pag_contenido">
+IVSS RECUERDA A LOS EMPLEADORES Y EMPLEADORAS EL CUMPLIMIENTO DE LA PROVIDENCIA 003...
+<div>Ver MÃ¡s</div>
+</div>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+/** BANNER **/
+var banner_time=0;
+var img_accion = 0;
+var img = '.banner>div';
+var img_cantidad = $(img).length;
+
+var control_banner = '#banner_control';
+var control_banner_icono = '#banner_control>div';
+for(i=0; i<img_cantidad; i++){$(control_banner).prepend('<div></div>');}
+
+function banner(accion){
+clearTimeout(banner_time);
+var time_efecto = 1000;
+var time_cambio = 6000;
+
+if(accion=='sig'){img_accion++;}else 
+if(accion=='ant'){img_accion--;}else{img_accion=accion;}
+if(img_accion>=img_cantidad){img_accion=0;}else if(img_accion<0){img_accion=img_cantidad-1;}
+
+if($(img).eq(img_accion).is(':hidden')){
+$(control_banner_icono).css({'background':''});
+$(control_banner_icono).eq(img_accion).css({'background':'#0097F7'});
+$(img).fadeOut(time_efecto, function(){ });
+$(img).eq(img_accion).fadeIn(time_efecto, function(){ });}
+banner_time=setTimeout("banner('sig')",time_cambio);}
+banner(img_accion);
+
+
+$(document).ready(function(){
+$(control_banner_icono).mouseenter(function(){banner($(this).index());});
+$(control_banner_icono).mouseleave(function(){});
+
+$('#pag_banner').mouseleave(function(){ banner_navegar('salir'); });
+$('#pag_banner').mouseenter(function(){ banner_navegar('entrar'); });
+});
+
+
+
+function banner_navegar(accion){
+if(accion=='entrar'){
+$('#banner_control').fadeIn(); 
+$('.nav_banner').fadeIn();} 
+else{ 
+$('#banner_control').fadeOut(); 
+$('.nav_banner').fadeOut();}}
+
+
+
+
+/** NOTICIA **/
+var noticia_time=0;
+var noticia_accion = 0;
+var noticia = '.banner_noticia>div';
+var noticia_cantidad = $(noticia).length;
+
+function banner_noticia(accion){
+clearTimeout(noticia_time);
+var time_efecto = 1000;
+var time_cambio = 6000;
+
+if(accion=='sig'){noticia_accion++;}else 
+if(accion=='ant'){noticia_accion--;}else{noticia_accion=accion;}
+if(noticia_accion>=noticia_cantidad){noticia_accion=0;}else if(noticia_accion<0){noticia_accion=noticia_cantidad-1;}
+
+if($(noticia).eq(noticia_accion).is(':hidden')){
+$(noticia).fadeOut(time_efecto, function(){ });
+$(noticia).eq(noticia_accion).fadeIn(time_efecto, function(){ });}
+noticia_time=setTimeout("banner_noticia('sig')",time_cambio);}
+banner_noticia(noticia_accion);
+
+
+
+///TWITTER
+/*
+$('body').on('mouseenter','.banner_twitter iframe',function(e){ movetwitter();});
+function movetwitter(){
+$('.banner_twitter iframe').contents().find("html, body").animate({scrollTop:250},1000);}
+*/
+
+//]]>
+</script>
+</div>
+<div id="pag_centro">
+<style type="text/css">
+#centro_menu{position:absolute; width:25%; height:100%; box-shadow:inset -1px 0px 0px 0px #CCC; background:#EEE; transition:all 2s;}
+#centro_menu .centro_menu_contenedor{position:absolute; box-shadow:inset 0px 0px 0px 1px #CCC; top:0px; background:#EEE;}
+#centro_menu .centro_menu_contenedor:not(:nth-child(1)){position:absolute; width:auto; min-width:200px; left:160px; display:none; z-index:1;}
+#centro_menu .centro_menu_contenedor a{position:absolute;}
+#centro_menu>.centro_menu_contenedor{position:relative; height:100%; box-shadow:inset -2px 0px 0px -1px #CCC; display:block;}
+.centro_menu{position:relative; padding:5px 5px; color:#555; border-bottom:1px solid rgba(200,200,200,0.2); cursor:pointer; /*transition:all 1s;*/}
+.centro_menu:hover{background:#2E73B7/*rgba(200,200,200,0.3)#DDD*/; color:#FFF;/*#0066FF*/;}
+
+
+@media screen and (min-width:701px){
+#centro_menu>.centro_menu_contenedor{display:block !important;}}
+@media screen and (max-width:700px), screen and (max-device-width:480px){
+#centro_menu{width:auto; cursor:pointer;}
+#centro_menu:before{content:""; position:absolute; width:20px; height:100%; left:0; 
+background:linear-gradient(to right, #CCC 70%, #555 70%, #555 80%, #CCC 80%, #CCC 90%, #555 90%);
+/*background:linear-gradient(to right, transparent 10%, #333 10%, #333 20%, transparent 20%, transparent 30%, #333 30%, #333 40%, transparent 40%, transparent 50%, #333 50%, #333 60%, transparent 60%, transparent 70%, #333 70%, #333 80%, transparent 80%, transparent 90%);*/}
+#centro_menu>.centro_menu_contenedor{display:none; margin:0 0 0 20px; transition:all 2s;}
+#centro_menu .centro_menu_contenedor:not(:nth-child(1)){display:none !important;}}
+</style>
+
+
+<script type="text/javascript">
+$('body').on('click mouseenter','#centro_menu>div>.centro_menu',function(){  menu_contendor(this,'entrar'); });/*.centro_menu*/
+$('body').on('click mouseleave','.centro_menu',function(){  menu_contendor(this,'salir'); });
+$('body').on('click','#centro_menu',function(e){ menu_movil(this); });
+
+
+function menu_contendor(elemento,accion){
+var contenedor_menu=$('#centro_menu');
+var contenedor_menu_top=contenedor_menu.offset().top;
+var contenedor_menu_alto=contenedor_menu.height();
+var contenedor_menu_bottom=contenedor_menu_top-(-contenedor_menu_alto);
+
+var contenedor_interno=$(elemento).find('>.centro_menu_contenedor');
+if(accion=='entrar' && contenedor_interno.length>0){
+contenedor_interno.stop().fadeIn(200);
+var contenedor_interno_top=contenedor_interno.offset().top;
+var contenedor_interno_alto=contenedor_interno.height();
+var contenedor_interno_bottom=contenedor_interno_top-(-contenedor_interno_alto);
+var contenedor_interno_top_nuevo=contenedor_menu_bottom-contenedor_interno_alto;
+//console.log(contenedor_menu_top+' / '+contenedor_menu_alto);
+if(contenedor_interno_bottom>contenedor_menu_bottom){
+contenedor_interno.offset({top:contenedor_interno_top_nuevo});}}
+else{
+$(elemento).find('.centro_menu_contenedor').stop().fadeOut(100);}}
+
+function menu_movil(elemento){
+$(elemento).find('>.centro_menu_contenedor').fadeToggle();}
+</script>
+<style type="text/css">
+/*** CONTENIDO ***/
+#pag_centro{background:#EEE/*#639ACA linear-gradient(#639ACA,#6095C4 20%,#3368A0 100%)*/;}
+.centro_interna{min-height:450px; overflow:hidden;}
+#centro_interna{position:relative; width:75%; float:right; overflow:hidden;}
+#centro_interna img{max-width:100%;}
+.centro_interna_contendor{position:relative; padding:15px; clear:left; overflow:hidden; /*background:#EEE;*/}
+.centro_interna_contendor a{position:relative;}
+.centro_interna_titulo{position:relative; padding:10px 0px;}
+.centro_interna_imagen{position:relative; width:250px; height:150px; margin:0px 20px 0px 0px; float:left; border:3px solid #FFF; box-shadow:1px 1px 5px #CCC; overflow:hidden; background:no-repeat center;}
+.centro_interna_contendor:nth-child(1) .centro_interna_imagen{width:400px; height:250px; margin:0px 0px 0px 40px; float:right;}
+.centro_interna_descripcion{position:relative; float:left;}
+
+
+/** MENU **/
+#centro_interna .centro_menu_contenedor{/*border:1px solid #E5E5E5;*/ border-radius:5px; background:#E5E5E5;}
+#centro_interna .centro_menu_contenedor .centro_menu{color:#2E73B7; border-bottom:1px solid #F5F5F5;}
+#centro_interna .centro_menu_contenedor .centro_menu:last-child{border-bottom:none;}
+#centro_interna .centro_menu_contenedor .centro_menu:hover{color:#555; background:#E8E8E8;}
+#centro_interna .centro_menu_contenedor a{position:absolute;}
+.centro_interna_contendor>.centro_menu_contenedor{margin:10px 0 0 0;}
+
+@media screen and (max-width:700px), screen and (max-device-width:480px){
+#centro_interna{width:100%;}
+.centro_interna_contendor{padding:15px 15px 15px 35px;}}
+</style>
+
+
+<div class="pag_contenido centro_interna txtm" align="justify">
+<div id="centro_interna">
+
+<div class="centro_interna_contendor texto_zoom" title="LocalizaciÃ³n de Centros de Salud"><div class="centro_enlace"><div class="zoom_texto" title="Ampliar Texto"></div><div><a href="" title="Inicio"></a></div><div>LocalizaciÃ³n<a href="contenido/Localizacion" title="LocalizaciÃ³n"></a></div><div>Centros de Salud<a href="contenido/Centros-de-Salud" title="Centros de Salud"></a></div></div><div class="centro_interna_titulo txtg"><strong>LocalizaciÃ³n de Centros de Salud</strong></div><br><table width="1" border="0" align="center" height="5"><tbody><tr><td valign="top" width="383"><table width="612" border="0" align="center" height="251"><tbody><tr><td width="378"><img name="mapa" src="http://ivss.gob.ve/imag/page/869/mapa.jpg" id="mapa" usemap="#m_mapa" alt="" border="0" align="none"></td><td valign="top" width="383"><b><i><font size="2"><br><br><br><br>Seleccione en la siguiente lista para obtener informaciÃ³n sobre los Centros de Salud ubicados en su regiÃ³n.</font></i></b></td></tr></tbody></table></td></tr></tbody></table><div class="centro_menu_contenedor"><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Distrito Capital<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Distrito-Capital" title="LocalizaciÃ³n Centros de Salud IVSS: Distrito Capital"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado Apure<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Apure" title="LocalizaciÃ³n Centros de Salud IVSS: Estado Apure"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado Aragua<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Aragua" title="LocalizaciÃ³n Centros de Salud IVSS: Estado Aragua"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS:  Estado AnzoÃ¡tegui<a href="contenido/Localizacion-Centros-de-Salud-IVSS:--Estado-Anzoategui" title="LocalizaciÃ³n Centros de Salud IVSS:  Estado AnzoÃ¡tegui"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado Cojedes<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Cojedes" title="LocalizaciÃ³n Centros de Salud IVSS: Estado Cojedes"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado Miranda<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Miranda" title="LocalizaciÃ³n Centros de Salud IVSS: Estado Miranda"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado Barinas<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Barinas" title="LocalizaciÃ³n Centros de Salud IVSS: Estado Barinas"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado BolÃ­var<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Bolivar" title="LocalizaciÃ³n Centros de Salud IVSS: Estado BolÃ­var"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado Carabobo<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Carabobo" title="LocalizaciÃ³n Centros de Salud IVSS: Estado Carabobo"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado FalcÃ³n<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Falcon" title="LocalizaciÃ³n Centros de Salud IVSS: Estado FalcÃ³n"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado GuÃ¡rico<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Guarico" title="LocalizaciÃ³n Centros de Salud IVSS: Estado GuÃ¡rico"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado Lara<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Lara" title="LocalizaciÃ³n Centros de Salud IVSS: Estado Lara"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado MÃ©rida<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Merida" title="LocalizaciÃ³n Centros de Salud IVSS: Estado MÃ©rida"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado Monagas<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Monagas" title="LocalizaciÃ³n Centros de Salud IVSS: Estado Monagas"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado Nueva Esparta<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Nueva-Esparta" title="LocalizaciÃ³n Centros de Salud IVSS: Estado Nueva Esparta"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado Portuguesa<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Portuguesa" title="LocalizaciÃ³n Centros de Salud IVSS: Estado Portuguesa"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado TÃ¡chira<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Tachira" title="LocalizaciÃ³n Centros de Salud IVSS: Estado TÃ¡chira"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de  Salud IVSS: Estado Trujillo<a href="contenido/Localizacion-Centros-de--Salud-IVSS:-Estado-Trujillo" title="LocalizaciÃ³n Centros de  Salud IVSS: Estado Trujillo"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado Yaracuy<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Yaracuy" title="LocalizaciÃ³n Centros de Salud IVSS: Estado Yaracuy"></a></div><div class="centro_menu">LocalizaciÃ²n Centros de Salud IVSS : Estado Insular<a href="contenido/Localizacion-Centros-de-Salud-IVSS-:-Estado-Insular" title="LocalizaciÃ²n Centros de Salud IVSS : Estado Insular"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Vargas<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Vargas" title="LocalizaciÃ³n Centros de Salud IVSS: Vargas"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado Zulia<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Zulia" title="LocalizaciÃ³n Centros de Salud IVSS: Estado Zulia"></a></div></div><div class="centro_menu_contenedor"><div class="centro_menu"><strong>Volver a LocalizaciÃ³n</strong><a href="contenido/Localizacion" title="LocalizaciÃ³n"></a></div></div></div>
+</div>
+<div id="centro_menu"><div class="centro_menu_contenedor"><div class="centro_menu"><a href="contenido/" title=""></a></div><div class="centro_menu">Baremo<a href="contenido/Baremo" title="Baremo"></a></div><div class="centro_menu">Noticias<a href="noticia"></a></div><div class="centro_menu">Pensionados (as)<a href="contenido/Pensionados-(as)" title="Pensionados (as)"></a><div class="centro_menu_contenedor"><div class="centro_menu">Tipos de Pensiones<a href="contenido/Tipos-de-Pensiones" title="Tipos de Pensiones"></a><div class="centro_menu_contenedor"><div class="centro_menu">PensiÃ³n por Sobreviviente<a href="contenido/Pension-por-Sobreviviente" title="PensiÃ³n por Sobreviviente"></a><div class="centro_menu_contenedor"><div class="centro_menu">Base Legal<a href="contenido/Base-Legal" title="Base Legal"></a></div></div></div><div class="centro_menu">PensiÃ³n por Invalidez<a href="contenido/Pension-por-Invalidez" title="PensiÃ³n por Invalidez"></a><div class="centro_menu_contenedor"><div class="centro_menu">Base Legal Invalidez<a href="contenido/Base-Legal-Invalidez" title="Base Legal Invalidez"></a></div></div></div><div class="centro_menu">PensiÃ³n por Vejez<a href="contenido/Pension-por-Vejez" title="PensiÃ³n por Vejez"></a><div class="centro_menu_contenedor"><div class="centro_menu">Base Legal Vejez<a href="contenido/Base-Legal-Vejez" title="Base Legal Vejez"></a></div></div></div><div class="centro_menu">PensiÃ³n por Incapacidad<a href="contenido/Pension-por-Incapacidad" title="PensiÃ³n por Incapacidad"></a><div class="centro_menu_contenedor"><div class="centro_menu">Base Legal Incapacidad<a href="contenido/Base-Legal-Incapacidad" title="Base Legal Incapacidad"></a></div></div></div></div></div><div class="centro_menu">CoordinaciÃ³n Bancaria<a href="contenido/Coordinacion-Bancaria" title="CoordinaciÃ³n Bancaria"></a></div><div class="centro_menu">Solicitud de PrÃ³rroga de Prestaciones<a href="contenido/Solicitud-de-Prorroga-de-Prestaciones" title="Solicitud de PrÃ³rroga de Prestaciones"></a></div><div class="centro_menu">Pensionados en el Exterior<a href="contenido/Pensionados-en-el-Exterior" title="Pensionados en el Exterior"></a><div class="centro_menu_contenedor"><div class="centro_menu">Contacto<a href="contenido/Contacto" title="Contacto"></a></div><div class="centro_menu">InformaciÃ³n complementaria y formularios<a href="contenido/Informacion-complementaria-y-formularios" title="InformaciÃ³n complementaria y formularios"></a></div></div></div><div class="centro_menu">Indemnizaciones Diarias<a href="contenido/Indemnizaciones-Diarias" title="Indemnizaciones Diarias"></a><div class="centro_menu_contenedor"><div class="centro_menu">Base Legal Indemnizaciones<a href="contenido/Base-Legal-Indemnizaciones" title="Base Legal Indemnizaciones"></a></div></div></div><div class="centro_menu">Convenios Internacionales<a href="contenido/Convenios-Internacionales" title="Convenios Internacionales"></a></div></div></div><div class="centro_menu">Ciudadano (a)<a href="contenido/Ciudadano-(a)" title="Ciudadano (a)"></a><div class="centro_menu_contenedor"><div class="centro_menu">Seguro Social Obligatorio<a href="contenido/Seguro-Social-Obligatorio" title="Seguro Social Obligatorio"></a></div><div class="centro_menu">TrÃ¡mites del Ciudadano<a href="contenido/Tramites-del-Ciudadano" title="TrÃ¡mites del Ciudadano"></a><div class="centro_menu_contenedor"><div class="centro_menu">CorreciÃ³n de Datos del Ciudadano<a href="contenido/Correcion-de-Datos-del-Ciudadano" title="CorreciÃ³n de Datos del Ciudadano"></a></div><div class="centro_menu">Solicitud de Indemnizaciones Diarias<a href="contenido/Solicitud-de-Indemnizaciones-Diarias" title="Solicitud de Indemnizaciones Diarias"></a></div><div class="centro_menu">PrestaciÃ³n Dineraria por PÃ©rdida Involutaria del Empleo (PIE)<a href="contenido/Prestacion-Dineraria-por-Perdida-Involutaria-del-Empleo-(PIE)" title="PrestaciÃ³n Dineraria por PÃ©rdida Involutaria del Empleo (PIE)"></a></div><div class="centro_menu">InscripciÃ³n de ContinuaciÃ³n Facultativa y Trabajador No Dependiente<a href="contenido/Inscripcion-de-Continuacion-Facultativa-y-Trabajador-No-Dependiente" title="InscripciÃ³n de ContinuaciÃ³n Facultativa y Trabajador No Dependiente"></a></div><div class="centro_menu">Cambio de la DirecciÃ³n de HabitaciÃ³n del Asegurado<a href="contenido/Cambio-de-la-Direccion-de-Habitacion-del-Asegurado" title="Cambio de la DirecciÃ³n de HabitaciÃ³n del Asegurado"></a></div><div class="centro_menu">Cambio de Nacionalidad<a href="contenido/Cambio-de-Nacionalidad" title="Cambio de Nacionalidad"></a></div></div></div><div class="centro_menu">PÃ©rdida Involuntaria de Empleo<a href="contenido/Perdida-Involuntaria-de-Empleo" title="PÃ©rdida Involuntaria de Empleo"></a><div class="centro_menu_contenedor"><div class="centro_menu">Deberes para optar a la PrestaciÃ³n Dineraria<a href="contenido/Deberes-para-optar-a-la-Prestacion-Dineraria" title="Deberes para optar a la PrestaciÃ³n Dineraria"></a></div><div class="centro_menu">Requisitos para Solicitar la PrestaciÃ³n Dineraria<a href="contenido/Requisitos-para-Solicitar-la-Prestacion-Dineraria" title="Requisitos para Solicitar la PrestaciÃ³n Dineraria"></a><div class="centro_menu_contenedor"><div class="centro_menu"> En caso de miembros de Cooperativas, deben adicionalmente presentar: <a href="contenido/-En-caso-de-miembros-de-Cooperativas,-deben-adicionalmente-presentar:" title=" En caso de miembros de Cooperativas, deben adicionalmente presentar: "></a></div><div class="centro_menu">En el caso de Demanda Laboral, deben adicionalmente presentar:<a href="contenido/En-el-caso-de-Demanda-Laboral,-deben-adicionalmente-presentar:" title="En el caso de Demanda Laboral, deben adicionalmente presentar:"></a></div><div class="centro_menu"> En los casos de cobro de la PrestaciÃ³n Dineraria a  travÃ©s de Apoderados, los requisitos  bÃ¡sicos  a consignar son:<a href="contenido/-En-los-casos-de-cobro-de-la-Prestacion-Dineraria-a--traves-de-Apoderados,-los-requisitos--basicos--a-consignar-son:" title=" En los casos de cobro de la PrestaciÃ³n Dineraria a  travÃ©s de Apoderados, los requisitos  bÃ¡sicos  a consignar son:"></a></div><div class="centro_menu">En los casos de Fallecimiento del Beneficiario:<a href="contenido/En-los-casos-de-Fallecimiento-del-Beneficiario:" title="En los casos de Fallecimiento del Beneficiario:"></a></div></div></div><div class="centro_menu">DÃ³nde hacer la solicitud de PrestaciÃ³n Dineraria por PÃ©rdida Involuntaria de Empleo<a href="contenido/Donde-hacer-la-solicitud-de-Prestacion-Dineraria-por-Perdida-Involuntaria-de-Empleo" title="DÃ³nde hacer la solicitud de PrestaciÃ³n Dineraria por PÃ©rdida Involuntaria de Empleo"></a></div><div class="centro_menu">Causas de la TerminaciÃ³n de la RelaciÃ³n de Trabajo y Bases Legales, que dan derecho a la calificaciÃ³n y pago de la PrestaciÃ³n Dineraria por PÃ©rdida Involuntaria del Empleo<a href="contenido/Causas-de-la-Terminacion-de-la-Relacion-de-Trabajo-y-Bases-Legales,-que-dan-derecho-a-la-calificacion-y-pago-de-la-Prestacion-Dineraria-por-Perdida-Involuntaria-del-Empleo" title="Causas de la TerminaciÃ³n de la RelaciÃ³n de Trabajo y Bases Legales, que dan derecho a la calificaciÃ³n y pago de la PrestaciÃ³n Dineraria por PÃ©rdida Involuntaria del Empleo"></a></div></div></div><div class="centro_menu">Beneficio MÃ©dico Integral<a href="contenido/Beneficio-Medico-Integral" title="Beneficio MÃ©dico Integral"></a></div><div class="centro_menu">Asistencia MÃ©dica del IVSS<a href="contenido/Asistencia-Medica-del-IVSS" title="Asistencia MÃ©dica del IVSS"></a></div><div class="centro_menu">Denuncias<a href="contenido/Denuncias" title="Denuncias"></a></div></div></div><div class="centro_menu">Empleador (a)<a href="contenido/Empleador-(a)" title="Empleador (a)"></a><div class="centro_menu_contenedor"><div class="centro_menu">TrÃ¡mites del Empleador (a)<a href="contenido/Tramites-del-Empleador-(a)" title="TrÃ¡mites del Empleador (a)"></a><div class="centro_menu_contenedor"><div class="centro_menu">CorrecciÃ³n de Datos del Empleador <a href="contenido/Correccion-de-Datos-del-Empleador" title="CorrecciÃ³n de Datos del Empleador "></a></div><div class="centro_menu">ActualizaciÃ³n de Registro de InformaciÃ³n Fiscal (RIF)<a href="contenido/Actualizacion-de-Registro-de-Informacion-Fiscal-(RIF)" title="ActualizaciÃ³n de Registro de InformaciÃ³n Fiscal (RIF)"></a></div><div class="centro_menu">ActualizaciÃ³n de RazÃ³n Social del Empleador (a)<a href="contenido/Actualizacion-de-Razon-Social-del-Empleador-(a)" title="ActualizaciÃ³n de RazÃ³n Social del Empleador (a)"></a></div><div class="centro_menu">ActualizaciÃ³n de Domicilio Fiscal y/o Comercial<a href="contenido/Actualizacion-de-Domicilio-Fiscal-y/o-Comercial" title="ActualizaciÃ³n de Domicilio Fiscal y/o Comercial"></a></div><div class="centro_menu">CorrecciÃ³n de Fecha de ConstituciÃ³n del Empleador (a)<a href="contenido/Correccion-de-Fecha-de-Constitucion-del-Empleador-(a)" title="CorrecciÃ³n de Fecha de ConstituciÃ³n del Empleador (a)"></a></div><div class="centro_menu">Requisito para la Solicitud de Convenio  de Pago <a href="contenido/Requisito-para-la-Solicitud-de-Convenio--de-Pago" title="Requisito para la Solicitud de Convenio  de Pago "></a></div><div class="centro_menu">Cambio de DirecciÃ³n de la Empresa<a href="contenido/Cambio-de-Direccion-de-la-Empresa" title="Cambio de DirecciÃ³n de la Empresa"></a></div></div></div><div class="centro_menu">QuiÃ©n es el Empleador (a)<a href="contenido/Quien-es-el-Empleador-(a)" title="QuiÃ©n es el Empleador (a)"></a></div><div class="centro_menu">CÃ³mo Registrar TÃº Empresa (TIUNA)<a href="contenido/Como-Registrar-Tu-Empresa-(TIUNA)" title="CÃ³mo Registrar TÃº Empresa (TIUNA)"></a></div><div class="centro_menu">Tipos de Empresas<a href="contenido/Tipos-de-Empresas" title="Tipos de Empresas"></a></div><div class="centro_menu"> Sistema de GestiÃ³n y AutoliquidaciÃ³n de Empresas (TIUNA)<a href="contenido/-Sistema-de-Gestion-y-Autoliquidacion-de-Empresas-(TIUNA)" title=" Sistema de GestiÃ³n y AutoliquidaciÃ³n de Empresas (TIUNA)"></a></div></div></div><div class="centro_menu">LocalizaciÃ³n<a href="contenido/Localizacion" title="LocalizaciÃ³n"></a><div class="centro_menu_contenedor"><div class="centro_menu">Sede Principal<a href="contenido/Sede-Principal" title="Sede Principal"></a></div><div class="centro_menu">Centros de Salud<a href="contenido/Centros-de-Salud" title="Centros de Salud"></a><div class="centro_menu_contenedor"><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Distrito Capital<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Distrito-Capital" title="LocalizaciÃ³n Centros de Salud IVSS: Distrito Capital"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado Apure<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Apure" title="LocalizaciÃ³n Centros de Salud IVSS: Estado Apure"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado Aragua<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Aragua" title="LocalizaciÃ³n Centros de Salud IVSS: Estado Aragua"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS:  Estado AnzoÃ¡tegui<a href="contenido/Localizacion-Centros-de-Salud-IVSS:--Estado-Anzoategui" title="LocalizaciÃ³n Centros de Salud IVSS:  Estado AnzoÃ¡tegui"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado Cojedes<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Cojedes" title="LocalizaciÃ³n Centros de Salud IVSS: Estado Cojedes"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado Miranda<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Miranda" title="LocalizaciÃ³n Centros de Salud IVSS: Estado Miranda"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado Barinas<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Barinas" title="LocalizaciÃ³n Centros de Salud IVSS: Estado Barinas"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado BolÃ­var<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Bolivar" title="LocalizaciÃ³n Centros de Salud IVSS: Estado BolÃ­var"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado Carabobo<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Carabobo" title="LocalizaciÃ³n Centros de Salud IVSS: Estado Carabobo"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado FalcÃ³n<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Falcon" title="LocalizaciÃ³n Centros de Salud IVSS: Estado FalcÃ³n"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado GuÃ¡rico<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Guarico" title="LocalizaciÃ³n Centros de Salud IVSS: Estado GuÃ¡rico"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado Lara<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Lara" title="LocalizaciÃ³n Centros de Salud IVSS: Estado Lara"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado MÃ©rida<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Merida" title="LocalizaciÃ³n Centros de Salud IVSS: Estado MÃ©rida"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado Monagas<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Monagas" title="LocalizaciÃ³n Centros de Salud IVSS: Estado Monagas"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado Nueva Esparta<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Nueva-Esparta" title="LocalizaciÃ³n Centros de Salud IVSS: Estado Nueva Esparta"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado Portuguesa<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Portuguesa" title="LocalizaciÃ³n Centros de Salud IVSS: Estado Portuguesa"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado TÃ¡chira<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Tachira" title="LocalizaciÃ³n Centros de Salud IVSS: Estado TÃ¡chira"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de  Salud IVSS: Estado Trujillo<a href="contenido/Localizacion-Centros-de--Salud-IVSS:-Estado-Trujillo" title="LocalizaciÃ³n Centros de  Salud IVSS: Estado Trujillo"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado Yaracuy<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Yaracuy" title="LocalizaciÃ³n Centros de Salud IVSS: Estado Yaracuy"></a></div><div class="centro_menu">LocalizaciÃ²n Centros de Salud IVSS : Estado Insular<a href="contenido/Localizacion-Centros-de-Salud-IVSS-:-Estado-Insular" title="LocalizaciÃ²n Centros de Salud IVSS : Estado Insular"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Vargas<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Vargas" title="LocalizaciÃ³n Centros de Salud IVSS: Vargas"></a></div><div class="centro_menu">LocalizaciÃ³n Centros de Salud IVSS: Estado Zulia<a href="contenido/Localizacion-Centros-de-Salud-IVSS:-Estado-Zulia" title="LocalizaciÃ³n Centros de Salud IVSS: Estado Zulia"></a></div></div></div><div class="centro_menu">Oficinas Administrativas<a href="contenido/Oficinas-Administrativas" title="Oficinas Administrativas"></a><div class="centro_menu_contenedor"><div class="centro_menu">LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Delta Amacuro<a href="contenido/Localizacion-Oficinas-Administrativas-IVSS:-Estado-Delta-Amacuro" title="LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Delta Amacuro"></a></div><div class="centro_menu">LocalizaciÃ³n Oficinas Administrativas  IVSS: Estado AnzoÃ¡tegui<a href="contenido/Localizacion-Oficinas-Administrativas--IVSS:-Estado-Anzoategui" title="LocalizaciÃ³n Oficinas Administrativas  IVSS: Estado AnzoÃ¡tegui"></a></div><div class="centro_menu">LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Apure<a href="contenido/Localizacion-Oficinas-Administrativas-IVSS:-Estado-Apure" title="LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Apure"></a></div><div class="centro_menu">LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Aragua<a href="contenido/Localizacion-Oficinas-Administrativas-IVSS:-Estado-Aragua" title="LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Aragua"></a></div><div class="centro_menu">LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Barinas<a href="contenido/Localizacion-Oficinas-Administrativas-IVSS:-Estado-Barinas" title="LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Barinas"></a></div><div class="centro_menu">LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Bolivar<a href="contenido/Localizacion-Oficinas-Administrativas-IVSS:-Estado-Bolivar" title="LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Bolivar"></a></div><div class="centro_menu">LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Carabobo<a href="contenido/Localizacion-Oficinas-Administrativas-IVSS:-Estado-Carabobo" title="LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Carabobo"></a></div><div class="centro_menu">LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Cojedes<a href="contenido/Localizacion-Oficinas-Administrativas-IVSS:-Estado-Cojedes" title="LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Cojedes"></a></div><div class="centro_menu">LocalizaciÃ³n Oficinas  Administrativas IVSS : Estado FalcÃ³n<a href="contenido/Localizacion-Oficinas--Administrativas-IVSS-:-Estado-Falcon" title="LocalizaciÃ³n Oficinas  Administrativas IVSS : Estado FalcÃ³n"></a></div><div class="centro_menu">LocalizaciÃ³n Oficinas Administrativas IVSS: Estado GuÃ¡rico<a href="contenido/Localizacion-Oficinas-Administrativas-IVSS:-Estado-Guarico" title="LocalizaciÃ³n Oficinas Administrativas IVSS: Estado GuÃ¡rico"></a></div><div class="centro_menu">LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Lara<a href="contenido/Localizacion-Oficinas-Administrativas-IVSS:-Estado-Lara" title="LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Lara"></a></div><div class="centro_menu">LocalizaciÃ³n Oficinas Administrativas IVSS: Estado MÃ©rida<a href="contenido/Localizacion-Oficinas-Administrativas-IVSS:-Estado-Merida" title="LocalizaciÃ³n Oficinas Administrativas IVSS: Estado MÃ©rida"></a></div><div class="centro_menu">LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Miranda<a href="contenido/Localizacion-Oficinas-Administrativas-IVSS:-Estado-Miranda" title="LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Miranda"></a></div><div class="centro_menu">LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Monagas<a href="contenido/Localizacion-Oficinas-Administrativas-IVSS:-Estado-Monagas" title="LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Monagas"></a></div><div class="centro_menu">LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Nueva Esparta<a href="contenido/Localizacion-Oficinas-Administrativas-IVSS:-Estado-Nueva-Esparta" title="LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Nueva Esparta"></a></div><div class="centro_menu">LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Portuguesa<a href="contenido/Localizacion-Oficinas-Administrativas-IVSS:-Estado-Portuguesa" title="LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Portuguesa"></a></div><div class="centro_menu">LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Sucre<a href="contenido/Localizacion-Oficinas-Administrativas-IVSS:-Estado-Sucre" title="LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Sucre"></a></div><div class="centro_menu">LocalizaciÃ³n Oficinas Administrativas IVSS: Estado TÃ¡chira<a href="contenido/Localizacion-Oficinas-Administrativas-IVSS:-Estado-Tachira" title="LocalizaciÃ³n Oficinas Administrativas IVSS: Estado TÃ¡chira"></a></div><div class="centro_menu">LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Trujillo<a href="contenido/Localizacion-Oficinas-Administrativas-IVSS:-Estado-Trujillo" title="LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Trujillo"></a></div><div class="centro_menu">LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Yaracuy<a href="contenido/Localizacion-Oficinas-Administrativas-IVSS:-Estado-Yaracuy" title="LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Yaracuy"></a></div><div class="centro_menu">LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Vargas<a href="contenido/Localizacion-Oficinas-Administrativas-IVSS:-Estado-Vargas" title="LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Vargas"></a></div><div class="centro_menu">LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Zulia<a href="contenido/Localizacion-Oficinas-Administrativas-IVSS:-Estado-Zulia" title="LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Zulia"></a></div><div class="centro_menu">LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Amazonas<a href="contenido/Localizacion-Oficinas-Administrativas-IVSS:-Estado-Amazonas" title="LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Amazonas"></a></div><div class="centro_menu">LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Distrito Capital<a href="contenido/Localizacion-Oficinas-Administrativas-IVSS:-Estado-Distrito-Capital" title="LocalizaciÃ³n Oficinas Administrativas IVSS: Estado Distrito Capital"></a></div></div></div><div class="centro_menu">Farmacias Alto Costo IVSS<a href="contenido/Farmacias-Alto-Costo-IVSS" title="Farmacias Alto Costo IVSS"></a><div class="centro_menu_contenedor"><div class="centro_menu">Farmacias de Alto Costo IVSS<a href="contenido/Farmacias-de-Alto-Costo-IVSS" title="Farmacias de Alto Costo IVSS"></a></div><div class="centro_menu"> LocalizaciÃ³n Farmacias IVSS  Estado Sucre<a href="contenido/-Localizacion-Farmacias-IVSS--Estado-Sucre" title=" LocalizaciÃ³n Farmacias IVSS  Estado Sucre"></a></div><div class="centro_menu">LocalizaciÃ³n Farmacias IVSS: Estado Miranda<a href="contenido/Localizacion-Farmacias-IVSS:-Estado-Miranda" title="LocalizaciÃ³n Farmacias IVSS: Estado Miranda"></a></div><div class="centro_menu">LocalizaciÃ³n Farmacias IVSS: Estado    AnzoÃ¡tegui<a href="contenido/Localizacion-Farmacias-IVSS:-Estado----Anzoategui" title="LocalizaciÃ³n Farmacias IVSS: Estado    AnzoÃ¡tegui"></a></div><div class="centro_menu">LocalizaciÃ³n Farmacias IVSS: Estado Apure<a href="contenido/Localizacion-Farmacias-IVSS:-Estado-Apure" title="LocalizaciÃ³n Farmacias IVSS: Estado Apure"></a></div><div class="centro_menu">LocalizaciÃ³n Farmacias IVSS: Estado Aragua<a href="contenido/Localizacion-Farmacias-IVSS:-Estado-Aragua" title="LocalizaciÃ³n Farmacias IVSS: Estado Aragua"></a></div><div class="centro_menu">LocalizaciÃ³n Farmacias IVSS: Estado Barinas<a href="contenido/Localizacion-Farmacias-IVSS:-Estado-Barinas" title="LocalizaciÃ³n Farmacias IVSS: Estado Barinas"></a></div><div class="centro_menu">LocalizaciÃ³n Farmacias IVSS: Estado BolÃ­var<a href="contenido/Localizacion-Farmacias-IVSS:-Estado-Bolivar" title="LocalizaciÃ³n Farmacias IVSS: Estado BolÃ­var"></a></div><div class="centro_menu">LocalizaciÃ³n Farmacias IVSS: Estado Carabobo<a href="contenido/Localizacion-Farmacias-IVSS:-Estado-Carabobo" title="LocalizaciÃ³n Farmacias IVSS: Estado Carabobo"></a></div><div class="centro_menu">LocalizaciÃ³n Farmacias IVSS: Estado Cojedes<a href="contenido/Localizacion-Farmacias-IVSS:-Estado-Cojedes" title="LocalizaciÃ³n Farmacias IVSS: Estado Cojedes"></a></div><div class="centro_menu">LocalizaciÃ³n Farmacias IVSS: Estado FalcÃ³n<a href="contenido/Localizacion-Farmacias-IVSS:-Estado-Falcon" title="LocalizaciÃ³n Farmacias IVSS: Estado FalcÃ³n"></a></div><div class="centro_menu">LocalizaciÃ³n Farmacias IVSS: Estado GuÃ¡rico<a href="contenido/Localizacion-Farmacias-IVSS:-Estado-Guarico" title="LocalizaciÃ³n Farmacias IVSS: Estado GuÃ¡rico"></a></div><div class="centro_menu">LocalizaciÃ³n Farmacias IVSS: Estado Lara<a href="contenido/Localizacion-Farmacias-IVSS:-Estado-Lara" title="LocalizaciÃ³n Farmacias IVSS: Estado Lara"></a></div><div class="centro_menu">LocalizaciÃ³n Farmacias  IVSS: Estado  MÃ©rida<a href="contenido/Localizacion-Farmacias--IVSS:-Estado--Merida" title="LocalizaciÃ³n Farmacias  IVSS: Estado  MÃ©rida"></a></div><div class="centro_menu">LocalizaciÃ³n Farmacias IVSS: Estado Nueva Esparta<a href="contenido/Localizacion-Farmacias-IVSS:-Estado-Nueva-Esparta" title="LocalizaciÃ³n Farmacias IVSS: Estado Nueva Esparta"></a></div><div class="centro_menu">LocalizaciÃ³n Farmacias IVSS: Estado Portuguesa<a href="contenido/Localizacion-Farmacias-IVSS:-Estado-Portuguesa" title="LocalizaciÃ³n Farmacias IVSS: Estado Portuguesa"></a></div><div class="centro_menu">LocalizaciÃ³n Farmacias IVSS: Estado TÃ¡chira<a href="contenido/Localizacion-Farmacias-IVSS:-Estado-Tachira" title="LocalizaciÃ³n Farmacias IVSS: Estado TÃ¡chira"></a></div><div class="centro_menu">LocalizaciÃ³n Farmacias IVSS: Estado Trujillo<a href="contenido/Localizacion-Farmacias-IVSS:-Estado-Trujillo" title="LocalizaciÃ³n Farmacias IVSS: Estado Trujillo"></a></div><div class="centro_menu">LocalizaciÃ³n Farmacias IVSS:  Estado Monagas<a href="contenido/Localizacion-Farmacias-IVSS:--Estado-Monagas" title="LocalizaciÃ³n Farmacias IVSS:  Estado Monagas"></a></div><div class="centro_menu">LocalizaciÃ³n Farmacias IVSS: Estado Yaracuy<a href="contenido/Localizacion-Farmacias-IVSS:-Estado-Yaracuy" title="LocalizaciÃ³n Farmacias IVSS: Estado Yaracuy"></a></div><div class="centro_menu">LocalizaciÃ³n Farmacias IVSS: Estado Vargas<a href="contenido/Localizacion-Farmacias-IVSS:-Estado-Vargas" title="LocalizaciÃ³n Farmacias IVSS: Estado Vargas"></a></div><div class="centro_menu">LocalizaciÃ³n Farmacias IVSS: Estado Zulia<a href="contenido/Localizacion-Farmacias-IVSS:-Estado-Zulia" title="LocalizaciÃ³n Farmacias IVSS: Estado Zulia"></a></div><div class="centro_menu">LocalizaciÃ³n Farmacias IVSS: Estado Yaracuy<a href="contenido/Localizacion-Farmacias-IVSS:-Estado-Yaracuy" title="LocalizaciÃ³n Farmacias IVSS: Estado Yaracuy"></a></div><div class="centro_menu">LocalizaciÃ³n Farmacias IVSS: Distrito Capital<a href="contenido/Localizacion-Farmacias-IVSS:-Distrito-Capital" title="LocalizaciÃ³n Farmacias IVSS: Distrito Capital"></a></div></div></div></div></div><div class="centro_menu">Historia del IVSS<a href="contenido/Historia-del-IVSS" title="Historia del IVSS"></a><div class="centro_menu_contenedor"><div class="centro_menu">MisiÃ³n, VisiÃ³n y Valores<a href="contenido/Mision,-Vision-y-Valores" title="MisiÃ³n, VisiÃ³n y Valores"></a></div><div class="centro_menu">Organigrama Estructural 2017<a href="http://administradordecontenido.ivss.int/imag/page/19/org_estructurales_ivss_2017.jpg"></a></div><div class="centro_menu">Objetivos del IVSS<a href="contenido/Objetivos-del-IVSS" title="Objetivos del IVSS"></a></div><div class="centro_menu">Atribuciones<a href="contenido/Atribuciones" title="Atribuciones"></a></div><div class="centro_menu">PolÃ­ticas y Estrategias<a href="contenido/Politicas-y-Estrategias" title="PolÃ­ticas y Estrategias"></a></div><div class="centro_menu">Antecedentes<a href="contenido/Antecedentes" title="Antecedentes"></a></div></div></div><div class="centro_menu"><a href="contenido/" title=""></a></div><div class="centro_menu">CATIVSS<a href="contenido/CATIVSS" title="CATIVSS"></a><div class="centro_menu_contenedor"><div class="centro_menu">Descargas<a href="contenido/Descargas" title="Descargas"></a></div></div></div><div class="centro_menu">Proveedores<a href="contenido/Proveedores" title="Proveedores"></a></div><div class="centro_menu">Biblioteca de Formas<a href="aplicacion/biblioteca/formas"></a></div><div class="centro_menu">Contrataciones<a href="aplicacion/contratacion"></a></div><div class="centro_menu">Marco Normativo<a href="aplicacion/biblioteca"></a><div class="centro_menu_contenedor"><div class="centro_menu">Ley Seguro Social<a href="contenido/Ley-Seguro-Social" title="Ley Seguro Social"></a><div class="centro_menu_contenedor"><div class="centro_menu">Articulo 6. Ley del Seguro Social Obligatorio<a href="contenido/Articulo-6.-Ley-del-Seguro-Social-Obligatorio" title="Articulo 6. Ley del Seguro Social Obligatorio"></a></div><div class="centro_menu">ArtÃ­culo 54. Reglamento General LSSO<a href="contenido/Articulo-54.-Reglamento-General-LSSO" title="ArtÃ­culo 54. Reglamento General LSSO"></a></div></div></div><div class="centro_menu">Decretos<a href="aplicacion/biblioteca/decreto"></a></div><div class="centro_menu">Leyes OrgÃ¡nicas<a href="aplicacion/biblioteca/leyes organicas"></a></div><div class="centro_menu">Leyes Especiales<a href="aplicacion/biblioteca/leyes especiales"></a></div><div class="centro_menu">Providencia<a href="aplicacion/biblioteca/providencia"></a></div><div class="centro_menu">Reglamentos<a href="aplicacion/biblioteca/reglamentos"></a></div></div></div><div class="centro_menu">Aplicaciones<a href="contenido/Aplicaciones" title="Aplicaciones"></a><div class="centro_menu_contenedor"><div class="centro_menu">Mapa del Sitio<a href="mapa"></a></div><div class="centro_menu">Revista IVSS<a href="aplicacion/revista"></a></div><div class="centro_menu">BoletÃ­n Informativo<a href="aplicacion/boletin"></a></div></div></div><div class="centro_menu">Sistemas en LÃ­nea<a href="contenido/Sistemas-en-Linea" title="Sistemas en LÃ­nea"></a></div><div class="centro_menu">Servicios al Funcionario<a href="contenido/Servicios-al-Funcionario" title="Servicios al Funcionario"></a></div><div class="centro_menu">EstadÃ­sticas de Salud<a href="contenido/Estadisticas-de-Salud" title="EstadÃ­sticas de Salud"></a><div class="centro_menu_contenedor"><div class="centro_menu">OrganizaciÃ³n Hospitalaria y Ambulatoria SegÃºn ClasificaciÃ³n <a href="contenido/Organizacion-Hospitalaria-y-Ambulatoria-Segun-Clasificacion" title="OrganizaciÃ³n Hospitalaria y Ambulatoria SegÃºn ClasificaciÃ³n "></a></div><div class="centro_menu">Camas Operativas <a href="contenido/Camas-Operativas" title="Camas Operativas "></a></div></div></div></div></div></div>
+
+<script type="text/javascript">
+$(document).ready(function(){ //console.log($('#centro_interna').offset().top);
+$('html, body').animate({scrollTop:$('#centro_interna').offset().top},1500);
+});
+</script>
+
+
+ 
+</div>
+
+<div id="pag_inferior"><style type="text/css">
+#inferior_institucional{position:relative; color:#BBB; box-shadow:inset 0px 10px 10px -10px #000; background:#002E58;}
+#inferior_institucional:before{content:""; position:absolute; width:100%; height:100%; left:0%; opacity:0.05; background:url(imag/var/ivss_logo.png) no-repeat center;}
+#inferior_institucional>div{position:relative; padding:10px;}
+</style>
+
+<div id="inferior_institucional" class="txt_blancom" align="center">
+<div><strong>LA SEGURIDAD SOCIAL ES TU DERECHO</strong></div>
+<div>Instituto Venezolano de los Seguros Sociales (IVSS) 2015</div>
+<!-- <div>Desarrollado por la DirecciÃ³n General de Informatica</div> -->
+<!-- <div>Desarrolladores (C.Gomez / F.Bonilla)</div> -->
+<!-- <div>Desarrollado por etprogroup.com</div> -->
+</div>
+</div>
+<div id="pag_superior">
+<style type="text/css">
+#superior_logo{position:relative; width:10%; height:100%; float:left; color:#001C67; text-align:center; font-weight:bold; overflow:hidden;}
+#superior_logo:before{content:""; position:absolute; width:100%; height:100%; top:0px; left:0px; background:url(imag/var/ivss_logo_rojo.png) left center/100% auto no-repeat;}
+#superior_logo:after{content:"INSTITUTO VENEZOLANO DE LOS SEGUROS SOCIALES"; position:absolute; width:100%; bottom:15px; left:0px; font-size:12px; display:none;}
+
+
+#superior_menu{position:relative; text-align:center; top:60px; float:right; box-shadow:inset 0px 0px 0px 1px #FFF; background:rgba(255,255,255,0.5); overflow:hidden;}
+#superior_menu>div{position:relative; width:auto; padding:20px 20px; float:left;}
+#superior_menu>div:hover{color:#FFF; background:#001B68; box-shadow:1px 1px 5px #555;}
+.menu_superior_zoom{display:none;}
+
+#superior_redes{position:relative; top:15px; float:right;}
+#superior_redes form{position:relative; height:100%;}
+#superior_redes input{position:relative; width:200px; height:100%; padding:0 5px; outline:none; border:none; box-shadow:inset 0px 0px 0px 1px #FFF; background:rgba(255,255,255,0.5);}
+#superior_redes>div{position:relative; width:33px; height:30px; margin:0 0 0 15px; float:left; box-shadow:1px 1px 5px #888;cursor:pointer;}
+#superior_redes>div:nth-child(1){width:auto; border:none; box-shadow:none;}
+#superior_redes>div:nth-child(2){background:#688DC9 url(imag/var/menu.png) -136px -6px; margin:0;}
+#superior_redes>div:nth-child(3){background:#4DC8DA url(imag/var/menu.png) -186px -6px;}
+#superior_redes>div:nth-child(4){background:#29E7D8 url(imag/var/menu.png) -236px -6px; display:none;}
+#superior_redes>div:nth-child(5){background:#56CCFF url(imag/var/menu.png) -354px -6px;}
+#superior_redes>div:nth-child(6){background:#399BDC url(imag/var/menu.png) -393px -6px;}
+
+
+
+/*
+@media screen and (min-width:701px) and (max-width:1000px){
+#superior_logo{width:100%; height:100px; float:none; text-align:left; box-shadow:none;}
+#superior_logo:before{background-position:left center; background-size:auto 90%;}
+#superior_logo:after{left:110px;}
+#superior_redes{display:none;}
+#superior_menu{top:0; float:none;}
+#superior_menu>div{width:12.5%; padding:20px 0;}}
+@media screen and (max-width:700px), screen and (max-device-width:480px){
+#superior_logo{width:100%; height:70px; float:none; text-align:left; box-shadow:none;}
+#superior_logo:before{background-position:left center; background-size:auto 90%;}
+#superior_logo:after{left:80px;}
+#superior_redes{display:none;}
+#superior_menu{top:0px; float:none; box-shadow:none; cursor:pointer;}
+#superior_menu:before{content:"â° MENÃ"; position:relative; margin:10px; left:0px; font-size:155%; text-align:left; display:block;}
+#superior_menu>div{width:100%; margin:0 0 0 50px; padding:10px 5px; float:none; text-align:left; display:none;}}
+@media screen and (max-device-width:480px){}
+*/
+
+@media screen and (min-width: 1001px){
+#superior_menu{overflow:visible !important;}
+#superior_menu>div{padding:20px 25px !important; font-size:12px; /*font-weight:bold;*/}
+.menu_superior_zoom{position:absolute; padding:20px 30px; top:0; left:0; color:#FFF; cursor:pointer; display:block; background:#001B68 url(imag/var/fondo_rojodimension%7B200x100%7D.jpg) no-repeat center/cover; /*background-blend-mode:soft-light;*/}}
+@media screen and (min-width:701px){
+#superior_menu>div{display:block !important;}}
+/*@media screen and (min-width:701px){}, not screen and (max-device-width:480px)*/
+@media screen and (min-width:701px) and (max-width:1000px){
+#pag_superior{height:auto;}
+#pag_inferior{top:100px;}
+#pag_banner{top:100px;}
+#pag_centro{top:100px;}
+#superior_logo{display:none;}
+#superior_redes{display:none;}
+#superior_menu{top:0; float:none;}
+#superior_menu>div{display:block !important;}
+#superior_menu>div{width:12.5%; padding:20px 0;}
+#superior_menu>div:first-child{color:transparent;}
+#superior_menu>div:first-child:hover{color:transparent; box-shadow:none; background:none;}
+#superior_menu>div:first-child:before{content:""; position:absolute; width:100%; height:80%; top:10%; left:0px; background:url(imag/var/ivss_logo_azul.png) center/contain no-repeat;}}
+@media screen and (max-width:700px), screen and (max-device-width:480px){
+#superior_logo{display:none;}
+#superior_redes{display:none;}
+#superior_menu{top:0px; float:none; box-shadow:none; cursor:pointer;}
+#superior_menu:before{content:"â° MENÃ";/*&#9776;*/ position:relative; margin:10px 0 10px 50px; left:0px; font-size:155%; text-align:left; display:block;  /*background: linear-gradient(transparent 10%,#555 10%,#555 30%,transparent 30%,transparent 40%,#555 40%,#555 60%,transparent 60%,transparent 70%,#555 70%,#555 90%,transparent 90%);*/}
+#superior_menu:after{content:""; position:absolute; left:8px; top:8px; width:100%; height:30px; background:url(imag/var/ivss_logo_azul.png) left/contain no-repeat;}
+#superior_menu>div{width:100%; margin:0 0 0 50px; padding:10px 5px; float:none; text-align:left; display:none;}}
+</style>
+
+
+<div class="pag_contenido">
+<div id="superior_logo" class="txt_grisg" title="IVSS"></div>
+
+<div id="superior_redes" class="txt_grism">
+<div><form id="fbuscar" onsubmit="menu_buscar(this); return false;"><input id="buscar" type="text" value="" placeholder="Buscar"/></form></div>
+<div></div>
+<div><a href="https://twitter.com/ivssoficial" title="@ivssoficial"></a></div>
+<div><a href="oficina-virtual" title="Oficina Virtual"></a></div>
+<div><a href="mapa" title="Mapa del Sitio"></a></div>
+<div class="zoom_texto" title="Ampliar Textos"></div>
+</div>
+
+<div id="superior_menu" class="txt_grism">
+<div>Inicio<a href="" title="Inicio"></a></div>
+<div>IVSS<a href="contenido/Historia-del-IVSS" title="ivss"></a></div>
+<div>Ciudadanos<a href="contenido/Ciudadano-(a)" title="Ciudadanos"></a></div>
+<div>Empleadores<a href="contenido/Empleador-(a)" title="Empleadores"></a></div>
+<div>Pensionados<a href="contenido/Pensionados-(as)" title="Pensionados"></a></div>
+<div>LocalizaciÃ³n<a href="contenido/LocalizaciÃ³n-GeogrÃ¡fica" title="Localizacion"></a></div>
+<!-- <div>Salud<a href="contenido/Salud-del-IVSS" title="Salud"></a></div>-->
+<div>Noticias<a href="noticia" title="Noticias"></a></div>
+</div>
+
+</div>
+
+<script type="text/javascript">
+$('body').on('mouseenter','#superior_menu>div',function(e){ centro_menu_superior(this,'entrar'); });
+$('body').on('mouseleave','#superior_menu>div',function(e){ centro_menu_superior(this,'salir'); });
+$('body').on('click tap touchend','#superior_menu',function(e){e.preventDefault(); if($(this).css('top')=='0px'){ menu_superior(this);} });
+$('body').on('click tap touchend','#superior_menu>div',function(e){ e.stopPropagation(); });
+$('body').on('click tap touchend','#superior_redes>div:nth-child(2)',function(e){ menu_buscar(this); });
+$('body').on('click tap touchend','.zoom_texto',function(e){ texto_zoom(this); });
+
+function menu_superior(elemento){
+var elemento_interno=$(elemento).find('>div');
+if(!elemento_interno.is(':visible')){ 
+$(elemento_interno).stop().fadeIn(); //.css({'display':'block'})
+}else{ //.css({'display':''});
+$(elemento_interno).stop().fadeOut(); }}
+
+
+function centro_menu_superior(elemento,accion){
+var menu_zoom=$(elemento).find('.menu_superior_zoom');
+var menu_item=$(elemento);
+var menu_item_top=menu_item.offset().top;
+var menu_item_left=menu_item.offset().left;
+var menu_item_texto=menu_item.text();
+var menu_padre=menu_item.parent();
+if(menu_zoom.length==0 && accion=='entrar'){
+menu_item.prepend('<div class="menu_superior_zoom">'+menu_item_texto);
+menu_item.find('.menu_superior_zoom').animate({'padding':'26px 36px', 'top':'-6px', 'left':'-6px'},200);
+}else{
+menu_item.find('.menu_superior_zoom').remove(); }}
+
+
+function menu_buscar(elemento){//elemento
+buscar=$('form#fbuscar').find('input#buscar').val();
+if(buscar!=''){ document.location.href='buscar/'+buscar; }}
+
+
+function texto_zoom(elemento){
+var font_size=$('.texto_zoom').find('div, p, span').css('font-size').replace('px','');
+console.log(font_size);
+font_size++;//.not('#superior_menu, #superior_menu>div, #centro_servicios>div>div')
+if(font_size>20){
+$('.texto_zoom').find('div, p, span').css({'font-size':''});}else{
+$('.texto_zoom').find('div, p, span').css({'font-size':font_size+'px'}); }}
+</script></div>
+<div id="pag_institucional"></div>
+</div>
+</body>
+</html>

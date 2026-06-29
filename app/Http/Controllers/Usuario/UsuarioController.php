@@ -24,6 +24,7 @@ class UsuarioController extends Controller
         $usuarios = User::with([
             'creador',
             'modificador',
+            'ultimoAcceso',
         ])->withWhereHas('roles', function ($q) use ($userAuth) {
             if (!$userAuth->isAdmin()) {
                 $q->whereNotIn('name', ['Admin']);
@@ -42,7 +43,13 @@ class UsuarioController extends Controller
         $activos = User::whereNull('bloqueado')->count();
         $sesionesActivas = UserSession::whereNotNull('user_id')->count();
 
-        return view('usuarios.listado', compact('userAuth', 'usuarios', 'activos', 'sesionesActivas'));
+        $rolesQuery = \Spatie\Permission\Models\Role::where('name', '<>', 'Patrono')->orderBy('name');
+        if (!$userAuth->isAdmin()) {
+            $rolesQuery->where('name', '<>', 'Admin');
+        }
+        $roles = $rolesQuery->get();
+
+        return view('usuarios.listado', compact('userAuth', 'usuarios', 'activos', 'sesionesActivas', 'roles'));
     }
 
     /**

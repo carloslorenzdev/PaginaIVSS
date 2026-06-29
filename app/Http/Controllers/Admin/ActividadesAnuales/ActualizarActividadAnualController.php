@@ -15,7 +15,10 @@ class ActualizarActividadAnualController extends Controller
             'descripcion' => 'nullable',
         ]);
 
-        $action->execute($id, $request->only(['titulo', 'descripcion', 'activa']));
+        $data = $request->only(['titulo', 'activa']);
+        $data['descripcion'] = clean($request->input('descripcion'));
+
+        $action->execute($id, $data);
 
         return back()->with('success', 'Actividad Anual actualizada correctamente.');
     }

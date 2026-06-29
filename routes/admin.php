@@ -125,9 +125,29 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 
     // ----------------------------------------------------------------
+    // DIRECTORIOS DE SALUD Y ADMINISTRATIVOS
+    // ----------------------------------------------------------------
+    Route::prefix('directorios')->name('directorios.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\DirectorioController::class, 'index'])->name('index');
+        Route::post('/', [\App\Http\Controllers\Admin\DirectorioController::class, 'store'])->name('store');
+        Route::put('/{directorio}', [\App\Http\Controllers\Admin\DirectorioController::class, 'update'])->name('update');
+        Route::delete('/{directorio}', [\App\Http\Controllers\Admin\DirectorioController::class, 'destroy'])->name('destroy');
+    });
+
+    // ----------------------------------------------------------------
     // RENDIMIENTO / LOGS
     // ----------------------------------------------------------------
     Route::get('/rendimiento', [\App\Http\Controllers\Admin\RendimientoController::class, 'index'])->name('rendimiento');
     Route::post('/rendimiento/optimizar', [\App\Http\Controllers\Admin\RendimientoController::class, 'optimizar'])->name('rendimiento.optimizar');
     Route::get('/logs', \App\Http\Controllers\Admin\LogsController::class)->name('logs');
+
+    // ----------------------------------------------------------------
+    // BACKUPS (RESPALDOS)
+    // ----------------------------------------------------------------
+    Route::prefix('backups')->name('backups.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\BackupController::class, 'index'])->name('index');
+        Route::post('/run', [\App\Http\Controllers\Admin\BackupController::class, 'run'])->name('run');
+        Route::get('/download/{file_name}', [\App\Http\Controllers\Admin\BackupController::class, 'download'])->name('download');
+        Route::delete('/delete/{file_name}', [\App\Http\Controllers\Admin\BackupController::class, 'delete'])->name('delete');
+    });
 });
