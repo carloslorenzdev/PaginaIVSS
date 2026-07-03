@@ -48,7 +48,7 @@
                         
                         {{-- BOTONES ACCIÓN (Hover) --}}
                         <div class="absolute top-3 right-3 opacity-0 group-hover/card:opacity-100 transition-opacity flex gap-2">
-                            <button type="button" onclick="toggleEdit({{ $carrusel->id }})" class="bg-gray-800/90 text-white w-9 h-9 rounded-full flex items-center justify-center hover:bg-black shadow-md focus:outline-none transition-colors" title="Editar detalles">
+                            <button type="button" class="btn-toggle-edit bg-gray-800/90 text-white w-9 h-9 rounded-full flex items-center justify-center hover:bg-black shadow-md focus:outline-none transition-colors" data-id="{{ $carrusel->id }}" title="Editar detalles">
                                 <i class="bx bx-pencil text-base"></i>
                             </button>
                             <form action="{{ route('admin.carrusel.eliminar', $carrusel->id) }}" method="POST">
@@ -115,7 +115,7 @@
                             </div>
                             
                             <div class="pt-2 flex justify-end gap-2 border-t border-gray-200 dark:border-neutral-700 mt-3">
-                                <button type="button" onclick="toggleEdit({{ $carrusel->id }})" class="py-1.5 px-3 inline-flex items-center gap-x-2 text-xs font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 transition-colors">
+                                <button type="button" class="btn-toggle-edit py-1.5 px-3 inline-flex items-center gap-x-2 text-xs font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 transition-colors" data-id="{{ $carrusel->id }}">
                                     Cancelar
                                 </button>
                                 <button type="submit" class="py-1.5 px-3 inline-flex items-center gap-x-2 text-xs font-semibold rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors">
@@ -156,19 +156,5 @@
 @endsection
 
 @push('page-scripts')
-    <script>
-        function toggleEdit(id) {
-            const display = document.getElementById('title-display-' + id);
-            const form = document.getElementById('form-edit-' + id);
-            if (form.classList.contains('hidden')) {
-                form.classList.remove('hidden');
-                display.classList.add('hidden');
-                // Foco al input titulo
-                setTimeout(() => form.querySelector('input[name="titulo"]').focus(), 50);
-            } else {
-                form.classList.add('hidden');
-                display.classList.remove('hidden');
-            }
-        }
-    </script>
+    <script src="{{ asset('js/admin/carrusel.js') }}" nonce="{{ app('csp-nonce') ?? '' }}"></script>
 @endpush

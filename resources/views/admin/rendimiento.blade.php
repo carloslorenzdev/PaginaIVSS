@@ -86,7 +86,7 @@
                 <p class="text-gray-500 text-sm mb-6">Utiliza estas herramientas para limpiar archivos temporales, vaciar la caché y optimizar el rendimiento general de la plataforma. Recomendado después de actualizaciones o subidas masivas de datos.</p>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-                    <button onclick="optimizar('all')" class="flex flex-col items-center justify-center p-4 rounded-xl border border-green-200 bg-green-50 hover:bg-green-100 transition-colors cursor-pointer group">
+                    <button class="btn-optimizar flex flex-col items-center justify-center p-4 rounded-xl border border-green-200 bg-green-50 hover:bg-green-100 transition-colors cursor-pointer group" data-type="all" data-url="{{ route('admin.rendimiento.optimizar') }}">
                         <div class="h-12 w-12 rounded-full bg-green-100 text-green-600 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
                             <i class="bx bx-bolt-circle text-2xl"></i>
                         </div>
@@ -94,7 +94,7 @@
                         <span class="text-xs text-green-600 mt-1 text-center">Limpiar todo</span>
                     </button>
 
-                    <button onclick="optimizar('cache')" class="flex flex-col items-center justify-center p-4 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-colors cursor-pointer group">
+                    <button class="btn-optimizar flex flex-col items-center justify-center p-4 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-colors cursor-pointer group" data-type="cache" data-url="{{ route('admin.rendimiento.optimizar') }}">
                         <div class="h-12 w-12 rounded-full bg-gray-100 text-gray-600 group-hover:bg-blue-100 group-hover:text-blue-600 flex items-center justify-center mb-3 transition-colors">
                             <i class="bx bx-data text-2xl"></i>
                         </div>
@@ -102,7 +102,7 @@
                         <span class="text-xs text-gray-500 mt-1 text-center">Limpiar caché de consultas</span>
                     </button>
 
-                    <button onclick="optimizar('views')" class="flex flex-col items-center justify-center p-4 rounded-xl border border-gray-200 hover:border-purple-300 hover:bg-purple-50 transition-colors cursor-pointer group">
+                    <button class="btn-optimizar flex flex-col items-center justify-center p-4 rounded-xl border border-gray-200 hover:border-purple-300 hover:bg-purple-50 transition-colors cursor-pointer group" data-type="views" data-url="{{ route('admin.rendimiento.optimizar') }}">
                         <div class="h-12 w-12 rounded-full bg-gray-100 text-gray-600 group-hover:bg-purple-100 group-hover:text-purple-600 flex items-center justify-center mb-3 transition-colors">
                             <i class="bx bx-layout text-2xl"></i>
                         </div>
@@ -110,7 +110,7 @@
                         <span class="text-xs text-gray-500 mt-1 text-center">Limpiar vistas compiladas</span>
                     </button>
 
-                    <button onclick="optimizar('routes')" class="flex flex-col items-center justify-center p-4 rounded-xl border border-gray-200 hover:border-orange-300 hover:bg-orange-50 transition-colors cursor-pointer group">
+                    <button class="btn-optimizar flex flex-col items-center justify-center p-4 rounded-xl border border-gray-200 hover:border-orange-300 hover:bg-orange-50 transition-colors cursor-pointer group" data-type="routes" data-url="{{ route('admin.rendimiento.optimizar') }}">
                         <div class="h-12 w-12 rounded-full bg-gray-100 text-gray-600 group-hover:bg-orange-100 group-hover:text-orange-600 flex items-center justify-center mb-3 transition-colors">
                             <i class="bx bx-directions text-2xl"></i>
                         </div>
@@ -124,38 +124,5 @@
 @endsection
 
 @push('page-scripts')
-<script>
-    function optimizar(type) {
-        if (!confirm('¿Estás seguro? Esta acción limpiará los archivos temporales correspondientes.')) {
-            return;
-        }
-
-        // Cambiar el cursor a espera y deshabilitar temporalmente clics
-        document.body.style.cursor = 'wait';
-
-        fetch('{{ route('admin.rendimiento.optimizar') }}', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            body: JSON.stringify({ type: type })
-        })
-        .then(response => response.json())
-        .then(data => {
-            document.body.style.cursor = 'default';
-            if (data.success) {
-                alert('¡Optimizado! ' + data.message);
-                window.location.reload();
-            } else {
-                alert('Error: ' + (data.message || 'Ocurrió un error inesperado.'));
-            }
-        })
-        .catch(error => {
-            document.body.style.cursor = 'default';
-            console.error('Error:', error);
-            alert('Error: Ocurrió un error al procesar la solicitud.');
-        });
-    }
-</script>
+    <script src="{{ asset('js/admin/rendimiento.js') }}" nonce="{{ app('csp-nonce') ?? '' }}"></script>
 @endpush

@@ -496,3 +496,10 @@ html {
 .news-card-highlight {
     border: 1px solid rgba(0, 0, 0, 0.05);
 }
+
+/* Modal Promocional Backdrop Blur */
+#modalPromocional {
+    background-color: rgba(0, 0, 0, 0.6) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+}

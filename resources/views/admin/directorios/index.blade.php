@@ -88,6 +88,7 @@
                         <button type="button" 
                             class="btn-edit text-gray-500 hover:text-blue-600 transition-colors bg-white hover:bg-blue-50 size-9 flex items-center justify-center rounded-lg border border-gray-200 shadow-sm dark:bg-neutral-900 dark:border-neutral-700 dark:hover:bg-blue-900/30"
                             data-id="{{ $item->id }}"
+                            data-update-url="{{ route('admin.directorios.index') }}/{{ $item->id }}"
                             data-estado="{{ $item->estado }}"
                             data-nombre="{{ $item->nombre }}"
                             data-direccion="{{ $item->direccion }}"
@@ -173,7 +174,7 @@
                 </div>
                 <div class="flex justify-end gap-3 border-t px-6 py-4 dark:border-neutral-700">
                     <button type="button" id="btn-cancelar" class="py-2 px-4 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 dark:bg-neutral-700 dark:border-neutral-600 dark:text-neutral-300 transition-all">Cancelar</button>
-                    <button type="submit" class="py-2 px-4 text-sm font-semibold rounded-lg bg-teal-600 text-white hover:bg-teal-700 transition-all inline-flex items-center gap-2">
+                    <button type="submit" data-store-url="{{ route('admin.directorios.store') }}" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-xl border border-transparent bg-teal-600 text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 transition-all shadow-sm">
                         <i class="bx bx-save"></i> Guardar
                     </button>
                 </div>
@@ -214,76 +215,7 @@
         </div>
     </div>
 
-    <script nonce="{{ app('csp-nonce') }}">
-        document.addEventListener('DOMContentLoaded', function() {
-            const btnNuevo = document.getElementById('btn-nuevo-registro');
-            if (btnNuevo) {
-                btnNuevo.addEventListener('click', function() {
-                    const modal = document.getElementById('modal-create');
-                    modal.classList.remove('hidden');
-                    modal.classList.add('flex');
-                    
-                    document.getElementById('form-directorio').reset();
-                    document.getElementById('form-method').value = 'POST';
-                    document.getElementById('form-directorio').action = "{{ route('admin.directorios.store') }}";
-                    document.getElementById('modal-title').innerText = 'Nuevo Registro';
-                });
-            }
-
-            const closeBtns = [document.getElementById('btn-close-modal'), document.getElementById('btn-cancelar')];
-            closeBtns.forEach(function(btn) {
-                if (btn) {
-                    btn.addEventListener('click', function() {
-                        const modal = document.getElementById('modal-create');
-                        modal.classList.add('hidden');
-                        modal.classList.remove('flex');
-                    });
-                }
-            });
-
-            const editBtns = document.querySelectorAll('.btn-edit');
-            editBtns.forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    const modal = document.getElementById('modal-create');
-                    modal.classList.remove('hidden');
-                    modal.classList.add('flex');
-
-                    document.getElementById('modal-title').innerText = 'Editar Registro';
-                    document.getElementById('form-method').value = 'PUT';
-                    document.getElementById('form-directorio').action = "{{ route('admin.directorios.index') }}/" + this.getAttribute('data-id');
-                    
-                    document.getElementById('input-estado').value = this.getAttribute('data-estado');
-                    document.getElementById('input-nombre').value = this.getAttribute('data-nombre');
-                    document.getElementById('input-direccion').value = this.getAttribute('data-direccion');
-                    document.getElementById('input-telefono').value = this.getAttribute('data-telefono');
-                });
-            });
-
-            // Lógica para el modal de eliminar
-            const deleteBtns = document.querySelectorAll('.btn-delete');
-            deleteBtns.forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    const modal = document.getElementById('modal-eliminar');
-                    modal.classList.remove('hidden');
-                    modal.classList.add('flex');
-                    
-                    document.getElementById('form-eliminar').action = this.getAttribute('data-url');
-                    document.getElementById('modal-eliminar-nombre').innerText = '"' + this.getAttribute('data-nombre') + '"';
-                });
-            });
-
-            const closeDeleteBtns = [document.getElementById('btn-cerrar-eliminar')];
-            closeDeleteBtns.forEach(function(btn) {
-                if (btn) {
-                    btn.addEventListener('click', function() {
-                        const modal = document.getElementById('modal-eliminar');
-                        modal.classList.add('hidden');
-                        modal.classList.remove('flex');
-                    });
-                }
-            });
-        });
-    </script>
+    <script src="{{ asset('js/admin/directorios.js') }}" nonce="{{ app('csp-nonce') ?? '' }}"></script>
     
     <style nonce="{{ app('csp-nonce') }}">
         @keyframes modalIn {

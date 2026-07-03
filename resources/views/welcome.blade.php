@@ -727,7 +727,7 @@
 
     <!-- Modal Emergente Promocional (Alerta Inicial) -->
     @if($alertaImg)
-    <div class="modal fade" id="modalPromocional" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="modalPromocional" tabindex="-1" aria-hidden="true" data-mostrar-alerta="{{ $alertaImg ? 'true' : 'false' }}">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content border-0 bg-transparent shadow-none" style="align-items: center;">
                 <div class="position-relative d-inline-block">
@@ -905,41 +905,5 @@
     </section>
 
     <script src="{{ asset('js/custom.js') }}" nonce="{{ app('csp-nonce') }}"></script>
-    <script nonce="{{ app('csp-nonce') }}">
-        document.addEventListener('DOMContentLoaded', function() {
-            @if($alertaImg)
-            // Mostrar la alerta emergente siempre al abrir la página
-            const modalPromocionalEl = document.getElementById('modalPromocional');
-            if (modalPromocionalEl) {
-                const modalPromocional = new bootstrap.Modal(modalPromocionalEl);
-                modalPromocional.show();
-            }
-            @endif
-
-            // Lógica para el modal dinámico del carrusel
-            const modalPromoDinamicoEl = document.getElementById('modalPromoDinamico');
-            if (modalPromoDinamicoEl) {
-                modalPromoDinamicoEl.addEventListener('show.bs.modal', function (event) {
-                    const button = event.relatedTarget;
-                    const ruta = button.getAttribute('data-ruta');
-                    const enlace = button.getAttribute('data-enlace');
-
-                    const imgConEnlace = document.getElementById('modalPromoDinamicoImgConEnlace');
-                    const imgSinEnlace = document.getElementById('modalPromoDinamicoImgSinEnlace');
-                    const linkTag = document.getElementById('modalPromoDinamicoLink');
-
-                    if (enlace && enlace.trim() !== '') {
-                        imgConEnlace.src = ruta;
-                        linkTag.href = enlace;
-                        linkTag.style.display = 'block';
-                        imgSinEnlace.style.display = 'none';
-                    } else {
-                        imgSinEnlace.src = ruta;
-                        imgSinEnlace.style.display = 'block';
-                        linkTag.style.display = 'none';
-                    }
-                });
-            }
-        });
-    </script>
+    <script src="{{ asset('js/publico/welcome.js') }}" nonce="{{ app('csp-nonce') }}"></script>
 @endsection

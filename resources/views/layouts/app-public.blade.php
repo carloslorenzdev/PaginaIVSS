@@ -150,14 +150,7 @@
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}" nonce="{{ app('csp-nonce') }}"></script>
     <script src="{{ asset('js/aos.js') }}" nonce="{{ app('csp-nonce') }}"></script>
     <script src="{{ asset('js/sweetalert2.min.js') }}" nonce="{{ app('csp-nonce') }}"></script>
-    <script nonce="{{ app('csp-nonce') }}">
-        document.addEventListener("turbo:load", function() {
-            AOS.init({ duration: 800, once: true });
-        });
-        document.addEventListener("DOMContentLoaded", function() {
-            AOS.init({ duration: 800, once: true });
-        });
-    </script>
+    <script src="{{ asset('js/publico/aos-init.js') }}" nonce="{{ app('csp-nonce') }}"></script>
     
     @include('partials.chatbot')
 </body>

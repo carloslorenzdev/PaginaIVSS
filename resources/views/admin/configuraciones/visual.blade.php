@@ -29,7 +29,7 @@
                     <form action="{{ route('admin.config.visual.membrete') }}" method="POST" enctype="multipart/form-data" id="formMembrete" class="space-y-4">
                         @csrf
                         <div>
-                            <input type="file" name="membrete_img" id="membrete_img" accept="image/*" required onchange="previewMembrete()"
+                            <input type="file" name="membrete_img" id="membrete_img" accept="image/*" required
                                 class="block w-full text-sm text-gray-500 dark:text-neutral-400
                                 file:me-3 file:py-2 file:px-4
                                 file:rounded-lg file:border-0
@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="flex flex-wrap gap-2 pt-2">
-                            <button type="button" onclick="previewMembreteReal()" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+                            <button type="button" id="btnPreviewMembreteReal" data-inicio-url="{{ route('inicio') }}" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
                                 <i class="bx bx-show text-lg"></i> Vista Previa Real
                             </button>
                             <x-input.button class="bg-red-600 hover:bg-red-700 focus:bg-red-700">
@@ -153,81 +153,5 @@
     </div>
 @endsection
 
-@push('page-scripts')
-<script>
-    const iframe = document.getElementById('livePreviewFrame');
-    const loader = document.getElementById('iframeLoader');
-    let currentPreviewType = '';
-
-    document.getElementById('closePreviewModal').addEventListener('click', function() {
-        iframe.src = "about:blank"; // Stop loading
-    });
-
-    function previewMembrete() {
-        const fileInput = document.getElementById('membrete_img');
-        const previewContainer = document.getElementById('membretePreviewContainer');
-        const previewImg = document.getElementById('membretePreviewImg');
-
-        if (fileInput.files && fileInput.files[0]) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = new Image();
-                img.onload = function() {
-                    if (img.width < 800 || img.height < 100) {
-                        alert(`Advertencia: La resolución de la imagen es baja (${img.width}x${img.height}). Se recomienda mínimo 800x100.`);
-                    }
-                    previewImg.src = e.target.result;
-                    previewContainer.classList.remove('hidden');
-                }
-                img.src = e.target.result;
-            }
-            reader.readAsDataURL(fileInput.files[0]);
-        } else {
-            previewContainer.classList.add('hidden');
-            previewImg.src = "";
-        }
-    }
-
-    function handleIframeLoad() {
-        if(iframe.src === "about:blank" || iframe.src === "") return;
-        
-        loader.style.display = 'none';
-        iframe.style.opacity = '1';
-        
-        if (currentPreviewType === 'membrete') {
-            const fileInput = document.getElementById('membrete_img');
-            if (fileInput.files && fileInput.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    try {
-                        const doc = iframe.contentDocument || iframe.contentWindow.document;
-                        const membreteImg = doc.querySelector('.membrete-strip img');
-                        if (membreteImg) {
-                            membreteImg.src = e.target.result;
-                        }
-                    } catch(err) {
-                        console.error("CORS o error accediendo al iframe", err);
-                    }
-                }
-                reader.readAsDataURL(fileInput.files[0]);
-            }
-        }
-    }
-
-    function previewMembreteReal() {
-        const fileInput = document.getElementById('membrete_img');
-        if (!fileInput.files || !fileInput.files[0]) {
-            alert('Por favor selecciona una imagen primero para ver la vista previa real.');
-            return;
-        }
-        
-        currentPreviewType = 'membrete';
-        const baseUrl = "{{ route('inicio') }}";
-        
-        loader.style.display = 'flex';
-        iframe.style.opacity = '0';
-        iframe.src = baseUrl;
-        document.getElementById('hiddenPreviewBtn').click();
-    }
-</script>
+    <script src="{{ asset('js/admin/visual.js') }}" nonce="{{ app('csp-nonce') ?? '' }}"></script>
 @endpush
