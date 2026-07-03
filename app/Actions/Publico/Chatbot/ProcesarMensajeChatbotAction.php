@@ -39,7 +39,7 @@ class ProcesarMensajeChatbotAction
             $farmacias = $query->take(3)->get();
             
             if ($farmacias->count() > 0) {
-                $html = "<b>Farmacias de Alto Costo encontradas en nuestra Base de Datos:</b><br><br>";
+                $html = "<b>Farmacias de Alto Costo encontradas en nuestro sistema:</b><br><br>";
                 foreach ($farmacias as $f) {
                     $html .= "🏥 <b>{$f->nombre}</b><br>";
                     $html .= "📍 {$f->direccion} ({$f->estado})<br>";
@@ -48,7 +48,7 @@ class ProcesarMensajeChatbotAction
                 }
                 return $html;
             } else {
-                return "Lo siento, no encontré farmacias de alto costo específicas para esa ubicación en nuestra base de datos interna. Puedes comunicarte al 0800-IVSS para mayor información.";
+                return "Lo siento, no encontré farmacias de alto costo específicas para esa ubicación en nuestros registros. Puedes comunicarte al 0800-IVSS para mayor información.";
             }
         }
 
@@ -72,7 +72,7 @@ class ProcesarMensajeChatbotAction
             $centros = $query->take(3)->get();
             
             if ($centros->count() > 0) {
-                $html = "<b>Centros de Salud encontrados en nuestra Base de Datos:</b><br><br>";
+                $html = "<b>Centros de Salud encontrados en nuestro sistema:</b><br><br>";
                 foreach ($centros as $c) {
                     $html .= "🏥 <b>{$c->nombre}</b><br>";
                     $html .= "📍 {$c->direccion} ({$c->estado})<br><br>";
@@ -110,14 +110,14 @@ class ProcesarMensajeChatbotAction
 
         // 8. Saludos / Agradecimientos
         if ($this->contieneAlguna($mensaje, ['hola', 'buenos dias', 'buenas tardes', 'saludo'])) {
-            return '¡Hola! Qué gusto saludarte. Soy el Asistente del IVSS. Puedo consultar nuestra base de datos de Farmacias, Hospitales, y guiarte por la página. ¿En qué trámite te puedo asesorar el día de hoy?';
+            return '¡Hola! Qué gusto saludarte. Soy el Asistente del IVSS. Puedo brindarte información sobre Farmacias, Hospitales, y guiarte por la página. ¿En qué trámite te puedo asesorar el día de hoy?';
         }
         if ($this->contieneAlguna($mensaje, ['gracias', 'excelente'])) {
             return '¡Con todo el gusto! Estamos para servirte.';
         }
 
         // 9. Fallback estricto
-        return 'Lo siento, soy un Asistente Local configurado exclusivamente para trámites y consultar la base de datos del IVSS. No cuento con IA externa ni conexión a Internet abierta para responder a esa solicitud. ¿Te puedo ayudar buscando alguna farmacia, centro de salud, trámite de RRHH o del Sistema Tiuna?';
+        return 'Lo siento, soy un Asistente del IVSS configurado exclusivamente para orientación de trámites y consultas institucionales. No cuento con IA externa ni conexión a Internet abierta para responder a esa solicitud. ¿Te puedo ayudar buscando alguna farmacia, centro de salud, trámite de RRHH o del Sistema Tiuna?';
     }
 
     private function contieneAlguna(string $texto, array $palabras): bool
