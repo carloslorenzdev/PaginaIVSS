@@ -1,8 +1,15 @@
+import '@hotwired/turbo';
 import 'preline';
 import './bootstrap';
 import { ToastAlert } from './toastify';
 
-window.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('turbo:load', function () {
+    // Destruir backdrops huerfanos (Preline y Bootstrap) que hayan quedado de otra página
+    document.querySelectorAll('[data-hs-overlay-backdrop-template], .modal-backdrop').forEach(el => el.remove());
+
+    if (window.HSStaticMethods && typeof window.HSStaticMethods.autoInit === 'function') {
+        window.HSStaticMethods.autoInit();
+    }
     const elementoToast = document.querySelector('#hs-new-toast');
     if (elementoToast) {
         elementoToast.remove();
@@ -33,4 +40,12 @@ window.addEventListener('DOMContentLoaded', function () {
         const observerCintillo = new IntersectionObserver(callbackIntersection, opcionesIntersection);
         observerCintillo.observe(cintillo);
     }
+});
+
+document.addEventListener('turbo:before-render', function () {
+    // Evitar que el backdrop viejo quede atascado entre vistas
+    document.querySelectorAll('[data-hs-overlay-backdrop-template], .modal-backdrop').forEach(el => el.remove());
+    document.body.classList.remove('overflow-hidden', 'modal-open');
+    document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
 });

@@ -25,6 +25,9 @@ Route::view('/quienes-somos', 'quienes_somos')->name('quienes_somos');
 Route::get('/noticias', ObtenerTodasLasNoticiasController::class)->name('noticias.index');
 Route::get('/noticia/{slug}', ObtenerNoticiaPorSlugController::class)->name('noticias.show');
 
+// CHATBOT LOCAL
+Route::post('/api/chat-local', [\App\Http\Controllers\Publico\ChatbotLocalController::class, 'chat']);
+
 // RUTA DE FALLBACK PARA IMÁGENES (por si falla el symlink de storage en Linux)
 Route::get('/storage/{path}', function ($path) {
     $rutaAbsoluta = storage_path('app/public/' . $path);

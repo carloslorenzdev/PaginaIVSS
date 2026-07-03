@@ -76,7 +76,7 @@
                 <!-- Columna Derecha: Trámites Prioritarios (35% aprox) -->
                 <div class="col-lg-4 h-100 d-flex flex-column gap-4" style="height: 500px !important;">
                     <div class="p-4 rounded-4 shadow-sm consultas-tiuna-panel flex-fill position-relative" style="background-image: url('{{ !empty($configuraciones['bg_consultas']) ? asset('storage/' . $configuraciones['bg_consultas']) : asset('img/imagen.png') }}'); background-size: cover; background-position: center; border-radius: 1rem;">
-                        <div class="position-absolute top-0 start-0 w-100 h-100 rounded-4" style="background: rgba(0,34,68,0.8);"></div>
+                        <div class="position-absolute top-0 start-0 w-100 h-100 rounded-4 bg-dark" style="opacity: 0.6;"></div>
                         <div class="position-relative z-10 h-100 d-flex flex-column justify-content-center">
                             <h4 class="fw-black mb-4 text-white"><i class="fas fa-search text-danger me-2"></i> CONSULTAS</h4>
                             <div class="list-group list-group-flush bg-transparent gap-2">
@@ -93,7 +93,7 @@
                     </div>
                     
                     <div class="p-4 rounded-4 shadow-sm consultas-tiuna-panel flex-fill position-relative" style="background-image: url('{{ !empty($configuraciones['bg_tiuna']) ? asset('storage/' . $configuraciones['bg_tiuna']) : asset('img/marcha-2.jpg') }}'); background-size: cover; background-position: center; border-radius: 1rem;">
-                        <div class="position-absolute top-0 start-0 w-100 h-100 rounded-4" style="background: rgba(0,34,68,0.85);"></div>
+                        <div class="position-absolute top-0 start-0 w-100 h-100 rounded-4 bg-dark" style="opacity: 0.6;"></div>
                         <div class="position-relative z-10 h-100 d-flex flex-column justify-content-center">
                             <h4 class="fw-black mb-3 text-white"><i class="fas fa-project-diagram text-danger me-2"></i> SISTEMA TIUNA</h4>
                             <p class="text-white-50 small mb-4">Plataforma de autoliquidación y gestión de trabajadores para empresas.</p>
@@ -354,7 +354,7 @@
                 <div class="col-lg-3 col-md-6" data-aos="fade-up">
                     <a href="{{ route('farmacias') }}" class="d-block text-decoration-none h-100 rounded-4 overflow-hidden position-relative card-hover-scale" style="min-height: 220px; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
                         <div class="position-absolute w-100 h-100 bg-image-zoom" style="background-image: url('{{ !empty($configuraciones['bg_farmacias']) ? asset('storage/' . $configuraciones['bg_farmacias']) : asset('img/medical-aesthetic-1.png') }}'); background-size: cover; background-position: center;"></div>
-                        <div class="position-absolute w-100 h-100 overlay-red"></div>
+                        <div class="position-absolute w-100 h-100 bg-dark" style="opacity: 0.6;"></div>
                         <div class="position-relative z-10 h-100 d-flex flex-column justify-content-center align-items-center text-white p-4 text-center">
                             <i class="fas fa-clinic-medical fs-1 mb-3 text-white"></i>
                             <h4 class="fw-black m-0 text-white" style="letter-spacing: 1px;">FARMACIAS DE ALTO COSTO</h4>
@@ -365,7 +365,7 @@
                 <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
                     <a href="{{ route('centros_salud') }}" class="d-block text-decoration-none h-100 rounded-4 overflow-hidden position-relative card-hover-scale" style="min-height: 220px; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
                         <div class="position-absolute w-100 h-100 bg-image-zoom" style="background-image: url('{{ !empty($configuraciones['bg_centros_salud']) ? asset('storage/' . $configuraciones['bg_centros_salud']) : asset('img/medical-aesthetic-2.png') }}'); background-size: cover; background-position: center;"></div>
-                        <div class="position-absolute w-100 h-100 overlay-red"></div>
+                        <div class="position-absolute w-100 h-100 bg-dark" style="opacity: 0.6;"></div>
                         <div class="position-relative z-10 h-100 d-flex flex-column justify-content-center align-items-center text-white p-4 text-center">
                             <i class="fas fa-hospital fs-1 mb-3 text-white"></i>
                             <h4 class="fw-black m-0 text-white" style="letter-spacing: 1px;">CENTROS DE SALUD</h4>
@@ -376,7 +376,7 @@
                 <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
                     <a href="{{ route('oficinas_administrativas') }}" class="d-block text-decoration-none h-100 rounded-4 overflow-hidden position-relative card-hover-scale" style="min-height: 220px; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
                         <div class="position-absolute w-100 h-100 bg-image-zoom" style="background-image: url('{{ !empty($configuraciones['bg_oficinas']) ? asset('storage/' . $configuraciones['bg_oficinas']) : asset('img/hero-innovation-bg.png') }}'); background-size: cover; background-position: center;"></div>
-                        <div class="position-absolute w-100 h-100 overlay-red"></div>
+                        <div class="position-absolute w-100 h-100 bg-dark" style="opacity: 0.6;"></div>
                         <div class="position-relative z-10 h-100 d-flex flex-column justify-content-center align-items-center text-white p-4 text-center">
                             <i class="fas fa-building fs-1 mb-3 text-white"></i>
                             <h4 class="fw-black m-0 text-white" style="letter-spacing: 1px;">OFICINAS ADMINISTRATIVAS</h4>
@@ -387,7 +387,7 @@
                 <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
                     <a href="#" data-bs-toggle="modal" data-bs-target="#modalServiciosFuncionario" class="d-block text-decoration-none h-100 rounded-4 overflow-hidden position-relative card-hover-scale" style="min-height: 220px; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
                         <div class="position-absolute w-100 h-100 bg-image-zoom" style="background-image: url('{{ !empty($configuraciones['bg_servicios_funcionario']) ? asset('storage/' . $configuraciones['bg_servicios_funcionario']) : asset('img/Verificacion-1.png') }}'); background-size: cover; background-position: center;"></div>
-                        <div class="position-absolute w-100 h-100 overlay-red"></div>
+                        <div class="position-absolute w-100 h-100 bg-dark" style="opacity: 0.6;"></div>
                         <div class="position-relative z-10 h-100 d-flex flex-column justify-content-center align-items-center text-white p-4 text-center">
                             <i class="fas fa-users-cog fs-1 mb-3 text-white"></i>
                             <h4 class="fw-black m-0 text-white" style="letter-spacing: 1px;">SERVICIOS AL<br>FUNCIONARIO</h4>

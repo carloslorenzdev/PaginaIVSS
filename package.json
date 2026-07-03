@@ -22,6 +22,7 @@
     },
     "dependencies": {
         "@fontsource/inter": "^5.2.8",
+        "@hotwired/turbo": "^8.0.23",
         "@tiptap/core": "^3.19.0",
         "@tiptap/extension-character-count": "^3.19.0",
         "@tiptap/extension-font-family": "^3.27.0",

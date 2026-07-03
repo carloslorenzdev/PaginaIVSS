@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'IVSS | Instituto Venezolano de los Seguros Sociales')</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="turbo-cache-control" content="no-cache">
     <link rel="icon" type="image/png" href="{{ asset('img/ivss-logo-rojo.png') }}">
     
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" nonce="{{ app('csp-nonce') }}">
@@ -97,8 +99,13 @@
     </main>
 
     <!-- Ultimate Footer -->
-    <footer class="py-5">
-        <div class="container">
+    <footer class="py-5 position-relative overflow-hidden">
+        <!-- Logo Watermark Fondo -->
+        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center" style="z-index: 0; opacity: 0.1; pointer-events: none; padding: 20px;">
+            <img src="{{ asset('img/ivss-logo-rojo.png') }}" alt="IVSS" style="max-height: 100%; object-fit: contain;">
+        </div>
+
+        <div class="container position-relative" style="z-index: 10;">
             <div class="row g-4">
                 <div class="col-lg-5">
                     <div class="d-flex align-items-center mb-4">
@@ -133,7 +140,10 @@
                 </div>
             </div>
             <hr class="my-5 opacity-5">
-            <p class="text-center small text-muted mb-0">© {{ date('Y') }} IVSS. Innovación y Justicia Social.</p>
+            <div class="text-center small text-muted mb-0">
+                <p class="mb-1"><span style="display:inline-block; transform: scaleX(-1);">&copy;</span> {{ date('Y') }} Instituto Venezolano de los Seguros Sociales | Todos los derechos reservados</p>
+                <p class="mb-0">Desarrollado por la Dirección General de Informática</p>
+            </div>
         </div>
     </footer>
 
@@ -141,9 +151,14 @@
     <script src="{{ asset('js/aos.js') }}" nonce="{{ app('csp-nonce') }}"></script>
     <script src="{{ asset('js/sweetalert2.min.js') }}" nonce="{{ app('csp-nonce') }}"></script>
     <script nonce="{{ app('csp-nonce') }}">
+        document.addEventListener("turbo:load", function() {
+            AOS.init({ duration: 800, once: true });
+        });
         document.addEventListener("DOMContentLoaded", function() {
             AOS.init({ duration: 800, once: true });
         });
     </script>
+    
+    @include('partials.chatbot')
 </body>
 </html>

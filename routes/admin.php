@@ -81,6 +81,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/modulo/{clave}', \App\Http\Controllers\Admin\Configuraciones\GestionarModuloController::class)->name('modulo');
         Route::post('/modulo/{clave}', \App\Http\Controllers\Admin\Configuraciones\GuardarModuloController::class)->name('modulo.guardar');
         Route::delete('/modulo/{clave}', \App\Http\Controllers\Admin\Configuraciones\EliminarModuloController::class)->name('modulo.eliminar');
+
     });
 
     // ----------------------------------------------------------------

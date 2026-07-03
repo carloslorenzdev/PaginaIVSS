@@ -8,8 +8,8 @@
     --ivss-bg-light: #E5E7EB;
     --ivss-bg-tint: #E5E7EB;
     --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
-    --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.1);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 body {
@@ -19,15 +19,20 @@ body {
     line-height: 1.6;
 }
 
-h1, h2, h3, h4, h5, .navbar-brand {
+h1,
+h2,
+h3,
+h4,
+h5,
+.navbar-brand {
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
 }
 
 /* --- Layout Components --- */
-.top-bar-ticker, 
-.membrete-strip, 
-.membrete-strip img, 
+.top-bar-ticker,
+.membrete-strip,
+.membrete-strip img,
 .navbar-ultimate {
     border: 0 !important;
     border-top: 0 !important;
@@ -79,7 +84,7 @@ h1, h2, h3, h4, h5, .navbar-brand {
     color: var(--ivss-red) !important;
     background: rgba(227, 24, 55, 0.05);
     transform: scale(1.1);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
 .nav-link:active {
@@ -92,7 +97,8 @@ h1, h2, h3, h4, h5, .navbar-brand {
 .hero-ultimate {
     position: relative;
     width: 100%;
-    background: var(--ivss-bg-light); /* Matching the new gray */
+    background: var(--ivss-bg-light);
+    /* Matching the new gray */
     padding: 40px 0;
 }
 
@@ -102,12 +108,12 @@ h1, h2, h3, h4, h5, .navbar-brand {
     height: 480px;
     border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 20px 40px -15px rgba(0,0,0,0.2);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.2);
     border: 4px solid white;
 }
 
-.hero-ultimate .carousel, 
-.hero-ultimate .carousel-inner, 
+.hero-ultimate .carousel,
+.hero-ultimate .carousel-inner,
 .hero-ultimate .carousel-item {
     height: 100%;
     width: 100%;
@@ -119,7 +125,8 @@ h1, h2, h3, h4, h5, .navbar-brand {
     object-fit: cover;
     object-position: center;
     opacity: 1 !important;
-    filter: brightness(1) contrast(1.05); /* Slightly enhancing contrast for sharpness */
+    filter: brightness(1) contrast(1.05);
+    /* Slightly enhancing contrast for sharpness */
 }
 
 .hero-caption-box {
@@ -185,7 +192,9 @@ h1, h2, h3, h4, h5, .navbar-brand {
     background: var(--ivss-bg-light) !important;
 }
 
-.bg-light { background-color: var(--ivss-bg-light) !important; }
+.bg-light {
+    background-color: var(--ivss-bg-light) !important;
+}
 
 .card-service-modern {
     background: white !important;
@@ -196,8 +205,8 @@ h1, h2, h3, h4, h5, .navbar-brand {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid rgba(0,0,0,0.03);
-    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
     transition: var(--transition);
     height: 100%;
     color: var(--ivss-dark) !important;
@@ -214,7 +223,7 @@ h1, h2, h3, h4, h5, .navbar-brand {
 
 .card-service-modern:hover {
     transform: translateY(-15px);
-    box-shadow: 0 30px 60px -12px rgba(0,0,0,0.15);
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.15);
     border-color: var(--ivss-red);
 }
 
@@ -234,7 +243,7 @@ h1, h2, h3, h4, h5, .navbar-brand {
     background-position: center !important;
     color: white !important;
     border: none !important;
-    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     overflow: hidden;
     z-index: 1;
 }
@@ -242,8 +251,12 @@ h1, h2, h3, h4, h5, .navbar-brand {
 .consultas-tiuna-panel::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(15, 23, 42, 0.85); /* Dark Slate Overlay */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.85);
+    /* Dark Slate Overlay */
     z-index: -1;
 }
 
@@ -254,7 +267,7 @@ h1, h2, h3, h4, h5, .navbar-brand {
 
 .consultas-tiuna-panel .list-group-item {
     background: transparent !important;
-    color: rgba(255,255,255,0.8) !important;
+    color: rgba(255, 255, 255, 0.8) !important;
     transition: all 0.3s ease;
     border-radius: 12px !important;
     margin-bottom: 5px;
@@ -262,7 +275,7 @@ h1, h2, h3, h4, h5, .navbar-brand {
 }
 
 .consultas-tiuna-panel .list-group-item:hover {
-    background: rgba(255,255,255,0.05) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
     color: white !important;
     transform: translateX(10px);
 }
@@ -272,10 +285,12 @@ h1, h2, h3, h4, h5, .navbar-brand {
     transform: scale(1.2);
 }
 
-.news-card-ultimate, .service-tile, .p-4.border.rounded-4.bg-light {
+.news-card-ultimate,
+.service-tile,
+.p-4.border.rounded-4.bg-light {
     background: white !important;
     border-radius: 20px;
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     transition: var(--transition);
 }
 
@@ -309,7 +324,10 @@ h1, h2, h3, h4, h5, .navbar-brand {
 
 .parallax-overlay {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: rgba(15, 23, 42, 0.85);
 }
 
@@ -327,7 +345,7 @@ h1, h2, h3, h4, h5, .navbar-brand {
     display: flex;
     align-items: center;
     gap: 15px;
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
     transition: var(--transition);
 }
 
@@ -353,7 +371,7 @@ h1, h2, h3, h4, h5, .navbar-brand {
     background: white;
     border-radius: 20px;
     overflow: hidden;
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
     transition: var(--transition);
 }
 
@@ -367,7 +385,9 @@ h1, h2, h3, h4, h5, .navbar-brand {
 }
 
 .news-thumb img {
-    width: 100%; height: 100%; object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     transition: var(--transition);
 }
 
@@ -375,35 +395,51 @@ h1, h2, h3, h4, h5, .navbar-brand {
     transform: scale(1.05);
 }
 
-footer { 
-    background: #1E293B !important; 
-    color: white !important; 
-    border-top: none !important; 
-    padding: 80px 0 40px; 
+footer {
+    background: #FFFFFF !important;
+    color: #0F172A !important;
+    border-top: 1px solid rgba(0,0,0,0.05) !important;
+    padding: 80px 0 40px;
 }
-footer h4, footer h6, footer p, footer a, footer span, footer div, footer .text-muted { 
-    color: #FFFFFF !important; 
-}
+
+footer h4,
+footer h6,
+footer p,
+footer a,
+footer span,
+footer div,
 footer .text-muted {
-    opacity: 0.85 !important;
+    color: #0F172A !important;
 }
-footer h4, footer h6 { 
+
+footer .text-muted {
+    opacity: 0.75 !important;
+}
+
+footer h4,
+footer h6 {
     font-weight: 800;
 }
-footer p, footer a { 
-    opacity: 0.9;
+
+footer p,
+footer a {
+    opacity: 0.85;
     text-decoration: none !important;
     transition: var(--transition);
 }
+
 footer a:hover {
-    color: #FF0000 !important;
+    color: #E31837 !important;
     opacity: 1 !important;
 }
-footer hr { 
-    border-color: rgba(255,255,255,0.3) !important; 
+
+footer hr {
+    border-color: rgba(0, 0, 0, 0.1) !important;
 }
-.text-center.small.text-muted, footer p.small {
-    color: #FFFFFF !important;
+
+.text-center.small.text-muted,
+footer p.small {
+    color: #0F172A !important;
     opacity: 0.7;
 }
 
@@ -414,8 +450,15 @@ footer hr {
 }
 
 @keyframes target-highlight {
-    0% { transform: scale(1.02); box-shadow: 0 0 20px rgba(227, 24, 55, 0.4); }
-    100% { transform: scale(1); box-shadow: var(--shadow-md); }
+    0% {
+        transform: scale(1.02);
+        box-shadow: 0 0 20px rgba(227, 24, 55, 0.4);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: var(--shadow-md);
+    }
 }
 
 html {
@@ -430,7 +473,7 @@ html {
 
 .news-card-modern:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
 }
 
 .news-thumb-container {
@@ -451,5 +494,5 @@ html {
 }
 
 .news-card-highlight {
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
