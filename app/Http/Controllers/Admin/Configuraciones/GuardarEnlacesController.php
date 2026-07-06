@@ -10,7 +10,7 @@ class GuardarEnlacesController extends Controller
 {
     public function __invoke(Request $request, GuardarEnlacesAction $action)
     {
-        if (!auth()->user()->isAdmin()) {
+        if (!auth()->user()->can('configuracion.enlaces')) {
             abort(403);
         }
 

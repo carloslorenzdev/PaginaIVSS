@@ -143,6 +143,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/logs', \App\Http\Controllers\Admin\LogsController::class)->name('logs');
 
     // ----------------------------------------------------------------
+    // BASE DE CONOCIMIENTO (CHATBOT)
+    // ----------------------------------------------------------------
+    Route::prefix('chatbot')->name('chatbot.')->group(function () {
+        Route::resource('conocimiento', \App\Http\Controllers\Admin\ChatbotConocimientoController::class)->except(['create', 'show', 'edit']);
+        Route::resource('preguntas-sin-respuesta', \App\Http\Controllers\Admin\ChatbotPreguntaSinRespuestaController::class)->only(['index', 'destroy']);
+    });
+
+    // ----------------------------------------------------------------
     // BACKUPS (RESPALDOS)
     // ----------------------------------------------------------------
     Route::prefix('backups')->name('backups.')->group(function () {

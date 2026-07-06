@@ -1,6 +1,6 @@
 import { CountUp } from "countup.js";
 
-window.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('turbo:load', function () {
 
     document.querySelectorAll('.countup').forEach((elemento) => {
         if (!elemento) {

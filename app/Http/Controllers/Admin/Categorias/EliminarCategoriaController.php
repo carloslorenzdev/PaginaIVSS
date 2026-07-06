@@ -9,7 +9,7 @@ class EliminarCategoriaController extends Controller
 {
     public function __invoke($id)
     {
-        if (!auth()->user()->hasAnyRole(['admin'])) {
+        if (!auth()->user()->can('categorias.eliminar')) {
             abort(403, 'No tienes permiso para eliminar categorias.');
         }
 

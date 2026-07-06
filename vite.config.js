@@ -43,6 +43,7 @@ export default defineConfig({
         }),
         tailwindcss(),
         legacy({
+            targets: ['> 0.2%', 'last 5 versions', 'not dead', 'Chrome >= 60', 'Firefox >= 60'],
             renderLegacyChunks: true,
             polyfillNames: ['es.promise', 'es.array.from']
         }),

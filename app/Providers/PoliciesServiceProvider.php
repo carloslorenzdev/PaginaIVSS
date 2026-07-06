@@ -4,8 +4,9 @@ namespace App\Providers;
 
 use App\Models\Solicitudes\Solicitud;
 use App\Models\User;
+use App\Policies\UserPolicy;
 use App\Policies\Solicitudes\SolicitudPolicy;
-use App\Policies\UsuarioPolicy;
+
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,7 +27,7 @@ class PoliciesServiceProvider extends ServiceProvider
     {
         Gate::guessPolicyNamesUsing(function (string $modelClass) {
             $policies = [
-                User::class => UsuarioPolicy::class,
+                User::class => UserPolicy::class,
                 Solicitud::class => SolicitudPolicy::class,
             ];
             if (array_key_exists($modelClass, $policies)) {

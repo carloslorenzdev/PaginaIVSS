@@ -50,12 +50,7 @@
         <x-card>
             @include('perfil/detalle/info')
         </x-card>
-        @includeWhen($user->entidad->isFuncionario(), 'perfil/detalle/funcionario', [
-            'entidad' => $user->entidad->entidadtable,
-        ])
-        @includeWhen($user->entidad->isPatrono(), 'perfil/detalle/empresa', [
-            'entidad' => $user->entidad->entidadtable,
-        ])
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-1 md:gap-7">
             <x-card>
                 @include('perfil/detalle/form-password')

@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('turbo:load', function () {
     const formModal = document.getElementById('formModal');
     const exampleModal = document.querySelector('div#modal-example');
 
@@ -11,14 +11,14 @@ window.addEventListener('DOMContentLoaded', function () {
         const spanTipo = exampleModal.querySelector('p.text-gray-500 span#tipo');
         const spanUsuario = exampleModal.querySelector('p.text-gray-500 span.font-bold');
         const botonSubmit = formModal.querySelector('button[type=submit]');
-        let metodo = 'POST';
+        let metodo = button.getAttribute('data-method') || 'POST';
 
         spanUsuario.textContent = usuario;
         titulo.textContent = tipo;
         spanTipo.textContent = tipo.toLowerCase();
         botonSubmit.textContent = `Sí, ${tipo.toLowerCase()}`;
 
-        if (tipo === 'Bloquear') {
+        if (tipo === 'Bloquear' || tipo === 'Eliminar') {
             spanIcono.className = spanIcono.className.replaceAll('yellow', 'red');
         } else {
             spanIcono.className = spanIcono.className.replaceAll('red', 'yellow');

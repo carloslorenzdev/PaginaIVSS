@@ -11,7 +11,7 @@ class GuardarCategoriaController extends Controller
 {
     public function __invoke(Request $request)
     {
-        if (!auth()->user()->hasAnyRole(['admin'])) {
+        if (!auth()->user()->can('categorias.crear')) {
             abort(403, 'No tienes permiso para guardar categorias.');
         }
 

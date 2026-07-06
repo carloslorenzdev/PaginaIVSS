@@ -237,3 +237,5 @@
 </style>
 @endpush
 
+
+<x-modal-confirmar />

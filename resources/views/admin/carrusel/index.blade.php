@@ -51,13 +51,9 @@
                             <button type="button" class="btn-toggle-edit bg-gray-800/90 text-white w-9 h-9 rounded-full flex items-center justify-center hover:bg-black shadow-md focus:outline-none transition-colors" data-id="{{ $carrusel->id }}" title="Editar detalles">
                                 <i class="bx bx-pencil text-base"></i>
                             </button>
-                            <form action="{{ route('admin.carrusel.eliminar', $carrusel->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="bg-red-600/90 text-white w-9 h-9 rounded-full flex items-center justify-center hover:bg-red-700 shadow-md focus:outline-none transition-colors" onclick="return confirm('¿Eliminar esta imagen del carrusel?')" title="Eliminar del carrusel">
-                                    <i class="bx bx-trash text-base"></i>
-                                </button>
-                            </form>
+                            <button type="button" class="btn-confirmar-accion bg-red-600/90 text-white w-9 h-9 rounded-full flex items-center justify-center hover:bg-red-700 shadow-md focus:outline-none transition-colors" data-action="{{ route('admin.carrusel.eliminar', $carrusel->id) }}" data-method="DELETE" data-mensaje="¿Eliminar esta imagen del carrusel?" title="Eliminar del carrusel">
+                                <i class="bx bx-trash text-base"></i>
+                            </button>
                         </div>
                     </div>
 
@@ -153,6 +149,8 @@
             </div>
         </div>
     </x-section>
+
+    <x-modal-confirmar />
 @endsection
 
 @push('page-scripts')

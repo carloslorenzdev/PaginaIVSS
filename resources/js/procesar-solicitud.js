@@ -1,6 +1,6 @@
 import { buildEditor } from "../libs/tiptap/tiptap-editor";
 
-window.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('turbo:load', function () {
     const checkAutorizado = document.querySelector('input#sw-autorizado');
     const camposAutorizado = document.querySelector('div#campos-autorizado');
     const botonSubmit = document.querySelector('button#btn-procesar-solicitud');

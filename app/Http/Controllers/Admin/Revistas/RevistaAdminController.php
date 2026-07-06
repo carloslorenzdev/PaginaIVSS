@@ -14,7 +14,7 @@ class RevistaAdminController extends Controller
 {
     public function index()
     {
-        if (!auth()->user()->hasAnyRole(['admin', 'redactor', 'aprobador'])) {
+        if (!auth()->user()->can('revistas.ver')) {
             abort(403, 'No tienes permiso para ver revistas.');
         }
 
@@ -24,7 +24,7 @@ class RevistaAdminController extends Controller
 
     public function crear()
     {
-        if (!auth()->user()->hasAnyRole(['admin', 'redactor'])) {
+        if (!auth()->user()->can('revistas.crear')) {
             abort(403, 'No tienes permiso para crear revistas.');
         }
 
@@ -33,7 +33,7 @@ class RevistaAdminController extends Controller
 
     public function guardar(Request $request, GuardarRevistaAction $guardarRevistaAction)
     {
-        if (!auth()->user()->hasAnyRole(['admin', 'redactor'])) {
+        if (!auth()->user()->can('revistas.crear')) {
             abort(403, 'No tienes permiso para guardar revistas.');
         }
 
@@ -52,7 +52,7 @@ class RevistaAdminController extends Controller
 
     public function ver(Revista $revista)
     {
-        if (!auth()->user()->hasAnyRole(['admin', 'redactor', 'aprobador'])) {
+        if (!auth()->user()->can('revistas.ver')) {
             abort(403, 'No tienes permiso para ver revistas.');
         }
 
@@ -61,7 +61,7 @@ class RevistaAdminController extends Controller
 
     public function actualizar(Request $request, Revista $revista, ActualizarRevistaAction $actualizarRevistaAction)
     {
-        if (!auth()->user()->hasAnyRole(['admin', 'redactor'])) {
+        if (!auth()->user()->can('revistas.editar')) {
             abort(403, 'No tienes permiso para editar revistas.');
         }
 
@@ -80,8 +80,8 @@ class RevistaAdminController extends Controller
 
     public function eliminar(Revista $revista, EliminarRevistaAction $eliminarRevistaAction)
     {
-        if (!auth()->user()->hasRole('admin')) {
-            abort(403, 'Solo el administrador puede eliminar revistas.');
+        if (!auth()->user()->can('revistas.eliminar')) {
+            abort(403, 'No tienes permiso para eliminar revistas.');
         }
 
         $eliminarRevistaAction->execute($revista);
@@ -91,7 +91,7 @@ class RevistaAdminController extends Controller
 
     public function togglePublicacion(Revista $revista, TogglePublicacionRevistaAction $togglePublicacionRevistaAction)
     {
-        if (!auth()->user()->hasAnyRole(['admin', 'aprobador'])) {
+        if (!auth()->user()->can('revistas.editar')) {
             abort(403, 'No tienes permiso para cambiar el estado de publicación.');
         }
 

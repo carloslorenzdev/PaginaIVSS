@@ -90,4 +90,32 @@ class SeguridadUsuarioController extends Controller
             ]
         ]);
     }
+
+    /**
+     * Eliminar usuario
+     */
+    public function eliminar(Request $request, User $usuario): RedirectResponse
+    {
+        $this->authorize('delete', $usuario);
+
+        $nombre = $usuario->usuario;
+        
+        // Append a timestamp to prevent unique constraint violations on re-creation
+        $usuario->usuario = $usuario->usuario . '_deleted_' . time();
+        $usuario->email = $usuario->email . '_deleted_' . time();
+        $usuario->save();
+        
+        $usuario->delete();
+
+        Log::channel('acciones')
+            ->warning('El usuario "' . $request->user()->usuario . '" ha ELIMINADO a "' . $nombre . '"');
+
+        return back()->withAlert([
+            'success',
+            [
+                'mensaje' => 'Usuario Eliminado',
+                'ayuda' => "$nombre ha sido eliminado del sistema"
+            ]
+        ]);
+    }
 }

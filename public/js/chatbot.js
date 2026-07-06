@@ -15,17 +15,17 @@ document.addEventListener('turbo:load', () => {
             <div class="ivss-chatbot-bubble shadow-sm p-3 rounded-3">
                 <p class="mb-2 fw-bold">¿Qué necesitas consultar?</p>
                 <div class="ivss-chatbot-quick-options d-flex flex-column gap-2 mt-2">
-                    <button class="btn btn-outline-danger btn-sm text-start ivss-btn-option" data-option="tiuna">
-                        <i class="fas fa-building me-2"></i> Sistema Tiuna
+                    <button class="btn btn-outline-danger btn-sm text-start ivss-btn-option" data-option="pension">
+                        <i class="fas fa-user-clock me-2"></i> Información pensión.
                     </button>
-                    <button class="btn btn-outline-danger btn-sm text-start ivss-btn-option" data-option="pensiones">
-                        <i class="fas fa-user-clock me-2"></i> Requisitos para Pensión
+                    <button class="btn btn-outline-danger btn-sm text-start ivss-btn-option" data-option="medicamentos">
+                        <i class="fas fa-pills me-2"></i> Medicamentos Alto Costo.
                     </button>
-                    <button class="btn btn-outline-danger btn-sm text-start ivss-btn-option" data-option="constancias">
-                        <i class="fas fa-file-invoice me-2"></i> Obtener Constancias
+                    <button class="btn btn-outline-danger btn-sm text-start ivss-btn-option" data-option="centro_salud_cercano">
+                        <i class="fas fa-hospital me-2"></i> Centro de Salud Cercano.
                     </button>
-                    <button class="btn btn-outline-danger btn-sm text-start ivss-btn-option" data-option="cuenta">
-                        <i class="fas fa-list-ol me-2"></i> Cuenta Individual
+                    <button class="btn btn-outline-danger btn-sm text-start ivss-btn-option" data-option="hemodialisis">
+                        <i class="fas fa-procedures me-2"></i> Hemodiálisis.
                     </button>
                 </div>
             </div>
@@ -58,9 +58,65 @@ document.addEventListener('turbo:load', () => {
         }
     });
 
+    function reenableButtons() {
+        const buttons = document.querySelectorAll('.ivss-btn-option');
+        buttons.forEach(btn => btn.style.pointerEvents = 'auto');
+    }
+
     function handleOptionSelection(optionKey, buttonText) {
+        // Prevent multiple clicks
+        const buttons = document.querySelectorAll('.ivss-btn-option');
+        buttons.forEach(btn => btn.style.pointerEvents = 'none');
+        
         appendUserMessage(buttonText);
-        enviarMensajeBackend(optionKey);
+        
+        if (optionKey === 'centro_salud_cercano') {
+            appendBotMessage("Determinando tu ubicación de forma automática...");
+            
+            let locationSent = false;
+
+            function intentarUbicacionPorIP() {
+                if (locationSent) return;
+                fetch('https://ipinfo.io/json')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (locationSent) return;
+                        locationSent = true;
+                        if (data.region) {
+                            enviarMensajeBackend("UBICACION_IP:" + data.region);
+                        } else {
+                            throw new Error('Sin región en la respuesta de IP');
+                        }
+                    })
+                    .catch(error => {
+                        appendBotMessage("El navegador bloqueó el permiso GPS por estar en un entorno local (Laragon) y la detección por IP también falló. Por favor escribe <b>'hospitales en' seguido de tu estado</b> (Ejemplo: hospitales en Miranda).");
+                        appendRestartButton();
+                        reenableButtons();
+                    });
+            }
+
+            // Intento 1: GPS del Navegador (Requiere HTTPS)
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        if (locationSent) return;
+                        locationSent = true;
+                        const lat = position.coords.latitude;
+                        const lon = position.coords.longitude;
+                        enviarMensajeBackend("UBICACION:" + lat + "," + lon);
+                    },
+                    (error) => {
+                        // Intento 2: Fallback a Geolocalización por IP
+                        intentarUbicacionPorIP();
+                    },
+                    { timeout: 10000, enableHighAccuracy: true }
+                );
+            } else {
+                intentarUbicacionPorIP();
+            }
+        } else {
+            enviarMensajeBackend(optionKey);
+        }
     }
 
     function appendUserMessage(text) {
@@ -154,11 +210,13 @@ document.addEventListener('turbo:load', () => {
             removeTypingIndicator();
             appendBotMessage(data.respuesta);
             appendRestartButton();
+            reenableButtons();
             
         } catch (error) {
             removeTypingIndicator();
             appendBotMessage("Lo siento, hubo un problema conectando con el servidor local del IVSS.");
             appendRestartButton();
+            reenableButtons();
         }
     }
 

@@ -19,6 +19,24 @@ class RoleSeeder extends Seeder
                 // Dashboard
                 'admin.panel',
 
+                // Boletines Informativos
+                'boletines.ver',
+                'boletines.crear',
+                'boletines.editar',
+                'boletines.eliminar',
+
+                // Revistas Digitales
+                'revistas.ver',
+                'revistas.crear',
+                'revistas.editar',
+                'revistas.eliminar',
+
+                // Banners y Alertas
+                'banners.ver',
+                'banners.crear',
+                'banners.editar',
+                'banners.eliminar',
+
                 // Noticias
                 'noticias.ver',
                 'noticias.crear',
@@ -67,6 +85,23 @@ class RoleSeeder extends Seeder
                 'categorias.crear',
                 'categorias.editar',
                 'categorias.eliminar',
+
+                // Directorios
+                'directorios.ver',
+                'directorios.crear',
+                'directorios.editar',
+                'directorios.eliminar',
+
+                // Chatbot Conocimiento
+                'chatbot_conocimiento.ver',
+                'chatbot_conocimiento.crear',
+                'chatbot_conocimiento.editar',
+                'chatbot_conocimiento.eliminar',
+
+                // Chatbot Preguntas
+                'chatbot_preguntas.ver',
+                'chatbot_preguntas.responder',
+                'chatbot_preguntas.eliminar',
             ];
 
             foreach ($permisos as $permiso) {

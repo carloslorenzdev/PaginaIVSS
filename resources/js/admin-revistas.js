@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('turbo:load', function() {
     const btnNuevo = document.getElementById('btn-nueva-revista');
     if (btnNuevo) {
         btnNuevo.addEventListener('click', function() {

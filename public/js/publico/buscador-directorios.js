@@ -28,82 +28,66 @@ document.addEventListener('turbo:load', function() {
         });
     }
 
-    // Modal logic for all directories
-    const botones = document.querySelectorAll('.btn-ver-oficina, .btn-ver-farmacia, .btn-ver-centro');
-    
-    // We check which modal exists
-    let modalEl = document.getElementById('modalOficinaInfo') || 
-                  document.getElementById('modalFarmaciaInfo') || 
-                  document.getElementById('modalCentroInfo');
-                  
-    let modal;
-    if (modalEl) {
-        try {
-            modal = new bootstrap.Modal(modalEl);
-        } catch (e) {
-            console.error('Bootstrap no está listo para el modal', e);
-        }
-    }
-    
-    botones.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const estado = this.getAttribute('data-estado');
-            
-            const estadoNombreEl = document.getElementById('modalEstadoNombre');
-            if(estadoNombreEl) estadoNombreEl.textContent = estado;
-            
-            const container = document.getElementById('oficinasListContainer') || 
-                              document.getElementById('farmaciasListContainer') || 
-                              document.getElementById('centrosListContainer');
-                              
-            if(!container) return;
-            container.innerHTML = ''; // Clear previous
+    // Modal logic for all directories (using event delegation for robustness)
+    document.addEventListener('click', function(e) {
+        const btn = e.target.closest('.btn-ver-oficina, .btn-ver-farmacia, .btn-ver-centro');
+        if (!btn) return;
 
-            if (directoryData[estado] && directoryData[estado].length > 0) {
-                const accordionHtml = document.createElement('div');
+        const estado = btn.getAttribute('data-estado');
+        if (!estado) return;
+        
+        const estadoNombreEl = document.getElementById('modalEstadoNombre');
+        if(estadoNombreEl) estadoNombreEl.textContent = estado;
+        
+        const container = document.getElementById('oficinasListContainer') || 
+                          document.getElementById('farmaciasListContainer') || 
+                          document.getElementById('centrosListContainer');
+                          
+        if(!container) return;
+        container.innerHTML = ''; // Clear previous
+
+        if (directoryData[estado] && directoryData[estado].length > 0) {
+            const accordionHtml = document.createElement('div');
+            
+            directoryData[estado].forEach((item, index) => {
+                const itemName = item.nombre || item.facility;
                 
-                directoryData[estado].forEach((item, index) => {
-                    const itemName = item.nombre || item.facility;
-                    
-                    const itemHtml = `
-                    <div class="border rounded-3 mb-3 shadow-sm bg-white overflow-hidden">
-                        <div class="p-3 bg-light text-primary d-flex justify-content-between align-items-center custom-accordion-header" style="cursor: pointer;">
-                            <span class="fw-bold"><i class="fas fa-building me-2"></i> ${itemName}</span>
-                            <i class="fas fa-chevron-down text-muted" style="transition: transform 0.3s;"></i>
-                        </div>
-                        <div class="custom-accordion-body" style="background-color: #fff;">
-                            <div class="d-flex align-items-start mb-2">
-                                <i class="fas fa-map-marker-alt text-danger mt-1 me-3"></i>
-                                <div>
-                                    <strong class="d-block text-dark">Dirección:</strong>
-                                    <span class="text-secondary">${item.direccion || item.address || 'Información no disponible'}</span>
-                                </div>
+                const itemHtml = `
+                <div class="border rounded-3 mb-3 shadow-sm bg-white overflow-hidden">
+                    <div class="p-3 bg-light text-primary d-flex justify-content-between align-items-center custom-accordion-header" style="cursor: pointer;">
+                        <span class="fw-bold"><i class="fas fa-building me-2"></i> ${itemName}</span>
+                        <i class="fas fa-chevron-down text-muted" style="transition: transform 0.3s;"></i>
+                    </div>
+                    <div class="custom-accordion-body" style="background-color: #fff;">
+                        <div class="d-flex align-items-start mb-2">
+                            <i class="fas fa-map-marker-alt text-danger mt-1 me-3"></i>
+                            <div>
+                                <strong class="d-block text-dark">Dirección:</strong>
+                                <span class="text-secondary">${item.direccion || item.address || 'Información no disponible'}</span>
                             </div>
-                            <div class="d-flex align-items-start">
-                                <i class="fas fa-phone-alt text-success mt-1 me-3"></i>
-                                <div>
-                                    <strong class="d-block text-dark">Teléfono:</strong>
-                                    <span class="text-secondary">${item.telefono || 'Información no disponible'}</span>
-                                </div>
+                        </div>
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-phone-alt text-success mt-1 me-3"></i>
+                            <div>
+                                <strong class="d-block text-dark">Teléfono:</strong>
+                                <span class="text-secondary">${item.telefono || 'Información no disponible'}</span>
                             </div>
                         </div>
                     </div>
-                    `;
-                    accordionHtml.innerHTML += itemHtml;
-                });
-                container.appendChild(accordionHtml);
-            } else {
-                container.innerHTML = `
-                    <div class="text-center p-4">
-                        <i class="fas fa-info-circle text-muted fa-3x mb-3 opacity-50"></i>
-                        <h5 class="fw-bold text-dark">Información no disponible</h5>
-                        <p class="text-muted mb-0">Esta información no se encuentra disponible en este momento.</p>
-                    </div>
+                </div>
                 `;
-            }
-
-            if(modal) modal.show();
-        });
+                accordionHtml.innerHTML += itemHtml;
+            });
+            container.appendChild(accordionHtml);
+        } else {
+            container.innerHTML = `
+                <div class="text-center p-4">
+                    <i class="fas fa-info-circle text-muted fa-3x mb-3 opacity-50"></i>
+                    <h5 class="fw-bold text-dark">Información no disponible</h5>
+                    <p class="text-muted mb-0">Esta información no se encuentra disponible en este momento.</p>
+                </div>
+            `;
+        }
     });
 
     // Event delegation for dynamically added accordions

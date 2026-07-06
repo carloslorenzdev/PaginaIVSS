@@ -415,4 +415,42 @@ class TwoFactorAuthService
         }
         return null;
     }
+
+    /**
+     * Guarda una cookie segura para recordar el dispositivo por 30 días
+     */
+    public static function rememberDevice(\App\Models\User $user)
+    {
+        $payload = [
+            'id' => $user->id,
+            'remember_token' => $user->getAuthIdentifier() // Una forma simple de verificar que la cookie pertenece a este usuario
+        ];
+        // Encriptar el payload en una cookie que dura 30 días (43200 minutos)
+        \Illuminate\Support\Facades\Cookie::queue('remember_2fa', json_encode($payload), 43200);
+    }
+
+    /**
+     * Verifica si el dispositivo actual tiene la cookie válida para saltar el 2FA
+     */
+    public static function isDeviceRemembered(\App\Models\User $user): bool
+    {
+        $cookie = request()->cookie('remember_2fa');
+        if (!$cookie) {
+            return false;
+        }
+
+        try {
+            // Decodificar JSON (Laravel ya desencripta automáticamente las cookies)
+            $payload = json_decode($cookie, true);
+            if (isset($payload['id']) && $payload['id'] === $user->id) {
+                // Restablecer las variables de sesión para que el middleware crea que ya se validó el 2FA
+                self::saveConfirmedAuth();
+                self::saveConfirmedOtp();
+                return true;
+            }
+        } catch (\Exception $e) {
+            return false;
+        }
+        return false;
+    }
 }

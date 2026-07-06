@@ -153,5 +153,6 @@
     </div>
 @endsection
 
+@push('scripts')
     <script src="{{ asset('js/admin/visual.js') }}" nonce="{{ app('csp-nonce') ?? '' }}"></script>
 @endpush

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([
     'prefix' => 'usuarios',
-    'middleware' => ['role:admin|director'],
+    'middleware' => ['permission:usuarios.ver'],
     'controller' => UsuarioController::class,
     'as' => 'usuarios.',
 ], function () {
@@ -39,6 +39,10 @@ Route::group([
         // RESTABLECER
         Route::post('restablecer', [SeguridadUsuarioController::class, 'restablecer'])
             ->name('restablecer');
+        // ELIMINAR
+        Route::delete('eliminar', [SeguridadUsuarioController::class, 'eliminar'])
+            ->withoutMiddleware('usuario.activo')
+            ->name('eliminar');
     });
     // DETALLE
     Route::get('{user:usuario}', 'detalle')->name('detalle');

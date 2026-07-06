@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
-class UsuarioPolicy
+class UserPolicy
 {
     use HandlesAuthorization;
 
@@ -15,7 +15,7 @@ class UsuarioPolicy
      */
     public function before(User $userAuth, string $ability): bool|null
     {
-        if ($userAuth->isAdmin() && !in_array($ability, ['banunban'])) {
+        if ($userAuth->isAdmin() && !in_array($ability, ['banunban', 'delete'])) {
             return true;
         }
         // Continual al metodo a validar
@@ -90,6 +90,12 @@ class UsuarioPolicy
      */
     public function delete(User $userAuth, User $model): bool
     {
+        if ($userAuth->id == $model->id) {
+            return false;
+        }
+        if ($userAuth->isAdmin()) {
+            return true;
+        }
         return false;
     }
 

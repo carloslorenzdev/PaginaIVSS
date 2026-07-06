@@ -16,11 +16,7 @@
         </form>
     </div>
 
-    @if(session('success'))
-        <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
-            <span class="font-medium">Éxito!</span> {{ session('success') }}
-        </div>
-    @endif
+
     @if(session('error'))
         <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
             <span class="font-medium">Error!</span> {{ session('error') }}
@@ -56,13 +52,9 @@
                                         <a href="{{ route('admin.backups.download', $backup['file_name']) }}" class="text-blue-600 hover:text-blue-800 dark:text-blue-500 dark:hover:text-blue-400" title="Descargar">
                                             <i class="bx bx-download text-xl"></i>
                                         </a>
-                                        <form action="{{ route('admin.backups.delete', $backup['file_name']) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este respaldo?');" class="inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="text-red-600 hover:text-red-800 dark:text-red-500 dark:hover:text-red-400" title="Eliminar">
-                                                <i class="bx bx-trash text-xl"></i>
-                                            </button>
-                                        </form>
+                                          <button type="button" class="btn-confirmar-accion text-red-600 hover:text-red-800 dark:text-red-500 dark:hover:text-red-400 inline" data-action="{{ route('admin.backups.delete', $backup['file_name']) }}" data-method="DELETE" data-mensaje="¿Estás seguro de eliminar este respaldo?" title="Eliminar">
+                                              <i class="bx bx-trash text-xl"></i>
+                                          </button>
                                     </div>
                                 </td>
                             </tr>
@@ -79,4 +71,5 @@
         </div>
     </div>
 </x-section>
+<x-modal-confirmar />
 @endsection

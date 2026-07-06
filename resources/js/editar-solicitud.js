@@ -1,7 +1,7 @@
 import { buildEditor } from "../libs/tiptap/tiptap-editor";
 import { ToastAlert } from "./toastify";
 
-window.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('turbo:load', function () {
     const botonSubmit = document.querySelector('button#btn-editar-solicitud');
     const editorObservacion = buildEditor('hs-editor-tiptap', 'Agrega el motivo de la actualización');
     botonSubmit.addEventListener('click', function (e) {

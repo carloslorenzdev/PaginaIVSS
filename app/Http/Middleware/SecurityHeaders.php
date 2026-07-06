@@ -24,7 +24,7 @@ class SecurityHeaders
             $response->header('X-XSS-Protection', '1; mode=block');
             $response->header('X-Content-Type-Options', 'nosniff');
             $response->header('Referrer-Policy', 'strict-origin-when-cross-origin');
-            $response->header('Permissions-Policy', 'geolocation=(), microphone=(), camera=()');
+            $response->header('Permissions-Policy', 'geolocation=(self), microphone=(), camera=()');
             
             // HSTS solo se debería aplicar si se está usando HTTPS en producción
             if (config('app.env') === 'production' && $request->isSecure()) {

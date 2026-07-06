@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('turbo:load', function() {
     // Manejo del modal de creación
     const btnNuevo = document.getElementById('btn-nuevo-usuario');
     if (btnNuevo) {
@@ -12,6 +12,10 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('form-usuario').action = "/usuarios/registrar";
             document.getElementById('modal-usuario-title').innerText = 'Nuevo Registro';
             document.getElementById('input-usuario').readOnly = false;
+            
+            document.getElementById('password-container').classList.remove('hidden');
+            document.getElementById('input-password').required = true;
+            document.getElementById('input-password-confirmation').required = true;
         });
     }
 
@@ -33,6 +37,10 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('input-usuario').value = usuario;
             document.getElementById('input-usuario').readOnly = true;
             document.getElementById('input-email').value = this.getAttribute('data-email');
+            
+            document.getElementById('password-container').classList.add('hidden');
+            document.getElementById('input-password').required = false;
+            document.getElementById('input-password-confirmation').required = false;
             
             const rol = this.getAttribute('data-rol');
             const radios = document.querySelectorAll('.input-rol');

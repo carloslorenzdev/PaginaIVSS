@@ -29,9 +29,7 @@
             <x-card class="p-5">
                 @include('usuarios/detalle/lista-2fa')
             </x-card>
-            <x-card class="p-5">
-                @include('usuarios/detalle/observaciones')
-            </x-card>
+
         </div>
     </x-section>
 @endsection

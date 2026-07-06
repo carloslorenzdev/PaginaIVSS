@@ -20,20 +20,7 @@
             </button>
         </div>
 
-        @if(session('success'))
-            <div class="bg-teal-50 border-t-2 border-teal-500 rounded-lg p-4 dark:bg-teal-800/30" role="alert">
-                <div class="flex">
-                    <div class="flex-shrink-0">
-                        <i class="bx bx-check-circle text-teal-400 mt-0.5"></i>
-                    </div>
-                    <div class="ms-3">
-                        <p class="text-sm text-teal-700 dark:text-teal-400">
-                            {{ session('success') }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        @endif
+
 
         @if($errors->any())
             <div class="bg-red-50 border-t-2 border-red-500 rounded-lg p-4 dark:bg-red-800/30" role="alert">

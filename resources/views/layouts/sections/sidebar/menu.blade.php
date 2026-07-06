@@ -11,6 +11,7 @@
 </li>
 
 {{-- NOTICIAS --}}
+@can('noticias.ver')
 <li>
     <x-nav.accordion id="noticias-acordion" active="{{ routeActive('admin.noticias.*') }}">
         <x-slot:heading>
@@ -23,37 +24,40 @@
                     Listado
                 </x-nav.link>
             </li>
+            @can('noticias.crear')
             <li>
                 <x-nav.link href="{{ route('admin.noticias.crear') }}" active="{{ routeActive('admin.noticias.crear') }}">
                     Nueva Noticia
                 </x-nav.link>
             </li>
+            @endcan
         </ul>
     </x-nav.accordion>
 </li>
+@endcan
 
 {{-- BOLETINES --}}
+@can('boletines.ver')
 <li>
-    @canany(['ver-panel'])
-        <x-nav.link href="{{ route('admin.boletines.index') }}" active="{{ routeActive('admin.boletines.*') }}">
-            <i class="bx bx-news bx-sm"></i>
-            Boletines Informativos
-        </x-nav.link>
-    @endcanany
+    <x-nav.link href="{{ route('admin.boletines.index') }}" active="{{ routeActive('admin.boletines.*') }}">
+        <i class="bx bx-news bx-sm"></i>
+        Boletines Informativos
+    </x-nav.link>
 </li>
+@endcan
 
 {{-- REVISTAS DIGITALES --}}
+@can('revistas.ver')
 <li>
-    @canany(['ver-panel'])
-        <x-nav.link href="{{ route('admin.revistas.index') }}" active="{{ routeActive('admin.revistas.*') }}">
-            <i class="bx bx-book-open bx-sm"></i>
-            Revistas Digitales
-        </x-nav.link>
-    @endcanany
+    <x-nav.link href="{{ route('admin.revistas.index') }}" active="{{ routeActive('admin.revistas.*') }}">
+        <i class="bx bx-book-open bx-sm"></i>
+        Revistas Digitales
+    </x-nav.link>
 </li>
+@endcan
 
 {{-- CATEGORÍAS --}}
-@hasrole('admin')
+@can('categorias.ver')
 <li>
     <x-nav.accordion id="categorias-acordion" active="{{ routeActive('admin.categorias.*') }}">
         <x-slot:heading>
@@ -66,33 +70,40 @@
                     Listado
                 </x-nav.link>
             </li>
+            @can('categorias.crear')
             <li>
                 <x-nav.link href="{{ route('admin.categorias.crear') }}" active="{{ routeActive('admin.categorias.crear') }}">
                     Nueva Categoría
                 </x-nav.link>
             </li>
+            @endcan
         </ul>
     </x-nav.accordion>
 </li>
-@endhasrole
+@endcan
 
 {{-- CARRUSEL --}}
+@can('carrusel.ver')
 <li>
     <x-nav.link href="{{ route('admin.carrusel.gestionar') }}" active="{{ routeActive('admin.carrusel.*') }}">
         <i class="bx bx-slideshow bx-sm"></i>
         Carrusel
     </x-nav.link>
 </li>
+@endcan
 
 {{-- BANNERS Y ALERTAS --}}
+@can('banners.ver')
 <li>
     <x-nav.link href="{{ route('admin.banners.index') }}" active="{{ routeActive('admin.banners.*') }}">
         <i class="bx bx-image-alt bx-sm"></i>
         Banners y Alertas
     </x-nav.link>
 </li>
+@endhasrole
 
 {{-- ACTIVIDADES ANUALES --}}
+@can('actividades.ver')
 <li>
     <x-nav.accordion id="actividades-acordion" active="{{ routeActive('admin.actividades.*') }}">
         <x-slot:heading>
@@ -105,17 +116,20 @@
                     Listado
                 </x-nav.link>
             </li>
+            @can('actividades.crear')
             <li>
                 <x-nav.link href="{{ route('admin.actividades.crear') }}" active="{{ routeActive('admin.actividades.crear') }}">
                     Nueva Actividad
                 </x-nav.link>
             </li>
+            @endcan
         </ul>
     </x-nav.accordion>
 </li>
+@endcan
 
 {{-- DIRECTORIOS --}}
-@hasrole('admin')
+@can('directorios.ver')
 <li>
     <x-nav.accordion id="directorios-acordion" active="{{ request()->routeIs('admin.directorios.*') }}">
         <x-slot:heading>
@@ -141,9 +155,36 @@
         </ul>
     </x-nav.accordion>
 </li>
-@endhasrole
+@endcan
 
-@hasrole('admin')
+@canany(['chatbot_conocimiento.ver', 'chatbot_preguntas.ver'])
+<li>
+    <x-nav.accordion id="chatbot-acordion" active="{{ request()->routeIs('admin.chatbot.*') }}">
+        <x-slot:heading>
+            <i class="bx bx-bot bx-sm"></i>
+            Chatbot Asistente
+        </x-slot:heading>
+        <ul class="ps-8 pt-1 space-y-1">
+            @can('chatbot_conocimiento.ver')
+            <li>
+                <x-nav.link href="{{ route('admin.chatbot.conocimiento.index') }}" active="{{ request()->routeIs('admin.chatbot.conocimiento.*') }}">
+                    Base de Conocimientos
+                </x-nav.link>
+            </li>
+            @endcan
+            @can('chatbot_preguntas.ver')
+            <li>
+                <x-nav.link href="{{ route('admin.chatbot.preguntas-sin-respuesta.index') }}" active="{{ request()->routeIs('admin.chatbot.preguntas-sin-respuesta.*') }}">
+                    Preguntas sin Respuesta
+                </x-nav.link>
+            </li>
+            @endcan
+        </ul>
+    </x-nav.accordion>
+</li>
+@endcanany
+
+@can('configuracion.ver')
 <li>
     <x-nav.accordion id="config-acordion" active="{{ routeActive('admin.config.*') }}">
         <x-slot:heading>
@@ -164,30 +205,41 @@
         </ul>
     </x-nav.accordion>
 </li>
-@endhasrole
+@endcan
 
 {{-- USUARIOS --}}
-@hasrole('admin')
+@can('usuarios.ver')
 <li>
-    <x-nav.accordion id="usuarios-acordion" active="{{ routeActive('usuarios.*') }}">
+    <x-nav.accordion id="usuarios-acordion" active="{{ routeActive(['usuarios.*', 'usuarios.roles.*', 'usuarios.control_acceso.*']) }}">
         <x-slot:heading>
             <x-iconos.users />
             Usuarios
         </x-slot:heading>
         <ul class="ps-8 pt-1 space-y-1">
             <li>
-                <x-nav.link href="{{ route('usuarios.listado') }}" active="{{ routeActive('usuarios.listado') }}">
+                <x-nav.link href="{{ route('usuarios.listado') }}" active="{{ routeActive('usuarios.listado') }}" data-turbo="false">
                     Listado
                 </x-nav.link>
             </li>
+            @hasrole('admin')
             <li>
-
+                <x-nav.link href="{{ route('usuarios.roles.index') }}" active="{{ routeActive('usuarios.roles.*') }}">
+                    Roles
+                </x-nav.link>
             </li>
+            <li>
+                <x-nav.link href="{{ route('usuarios.control_acceso.index') }}" active="{{ routeActive('usuarios.control_acceso.*') }}">
+                    Control de Acceso
+                </x-nav.link>
+            </li>
+            @endhasrole
         </ul>
     </x-nav.accordion>
 </li>
+@endcan
 
 {{-- SISTEMA --}}
+@canany(['sistema.rendimiento', 'sistema.logs', 'sistema.cache'])
 <li>
     <x-nav.accordion id="sistema-acordion" active="{{ routeActive('sistema.*') }}">
         <x-slot:heading>
@@ -195,30 +247,38 @@
             Sistema
         </x-slot:heading>
         <ul class="ps-8 pt-1 space-y-1">
+            @can('sistema.rendimiento')
             <li>
                 <x-nav.link href="{{ route('admin.rendimiento') }}" active="{{ routeActive('admin.rendimiento') }}">
                     Rendimiento
                 </x-nav.link>
             </li>
+            @endcan
+            @can('sistema.logs')
             <li>
                 <x-nav.link href="/log-errors">
                     Logs del Sistema
                 </x-nav.link>
             </li>
+            @endcan
+            @can('sistema.cache')
             <li>
                 <x-nav.link href="{{ route('sistema.cache.limpiar') }}" active="{{ routeActive('sistema.cache.limpiar') }}">
                     Limpiar Cache
                 </x-nav.link>
             </li>
+            @endcan
+            @hasrole('admin')
             <li>
                 <x-nav.link href="{{ route('admin.backups.index') }}" active="{{ routeActive('admin.backups.*') }}">
                     Respaldos
                 </x-nav.link>
             </li>
+            @endhasrole
         </ul>
     </x-nav.accordion>
 </li>
-@endhasrole
+@endcanany
 
 {{-- LOGOUT --}}
 <li>

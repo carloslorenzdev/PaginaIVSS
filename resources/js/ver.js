@@ -1,6 +1,6 @@
 import { ToastAlert } from './toastify';
 
-window.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('turbo:load', function () {
     const inputVeracidad = document.querySelector('input[name="veracidad"][type="checkbox"]');
     if (inputVeracidad) {
         const formVeracidad = inputVeracidad.closest('form');

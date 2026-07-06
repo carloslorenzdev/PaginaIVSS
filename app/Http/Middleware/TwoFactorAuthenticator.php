@@ -22,6 +22,9 @@ class TwoFactorAuthenticator
     public function handle(Request $request, Closure $next, string $tipo): Response
     {
         if (TwoFactorAuthService::isEnabled() && $request->user()->hasEnabled2fa()) {
+            if (TwoFactorAuthService::isDeviceRemembered($request->user())) {
+                return $next($request);
+            }
             // METODOS DISPONIBLES CON LOS QUE EL USUARIO TIENE ACTIVOS
             $metodosSeleccionables = TwoFactorAuthService::userSelectableMethods($request->user()->twoFactorAuthEnabled());
             if (count($metodosSeleccionables)) {

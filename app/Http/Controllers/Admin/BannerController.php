@@ -12,6 +12,10 @@ class BannerController extends Controller
 {
     public function index()
     {
+        if (!auth()->user()->can('banners.ver')) {
+            abort(403, 'No tienes permiso para ver Banners y Alertas.');
+        }
+
         $banners = Banner::latest()->get();
         
         $alertaImg = Configuracion::where('clave', 'alerta_emergente_img')->value('valor');
@@ -24,6 +28,10 @@ class BannerController extends Controller
     // --- ALERTA EMERGENTE ---
     public function updateAlerta(Request $request)
     {
+        if (!auth()->user()->can('banners.editar')) {
+            abort(403, 'No tienes permiso para editar Banners y Alertas.');
+        }
+
         $request->validate([
             'titulo' => 'required|string|max:255',
             'archivo' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
@@ -41,6 +49,10 @@ class BannerController extends Controller
 
     public function clearAlerta()
     {
+        if (!auth()->user()->can('banners.eliminar')) {
+            abort(403, 'No tienes permiso para eliminar Banners y Alertas.');
+        }
+
         Configuracion::updateOrCreate(['clave' => 'alerta_emergente_img'], ['valor' => null]);
         Configuracion::updateOrCreate(['clave' => 'alerta_emergente_url'], ['valor' => null]);
         Configuracion::updateOrCreate(['clave' => 'alerta_emergente_titulo'], ['valor' => null]);
@@ -51,6 +63,10 @@ class BannerController extends Controller
     // --- CARRUSEL DE PROMOCIONES ---
     public function store(Request $request)
     {
+        if (!auth()->user()->can('banners.crear')) {
+            abort(403, 'No tienes permiso para crear Banners y Alertas.');
+        }
+
         $request->validate([
             'titulo' => 'required|string|max:255',
             'archivo' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
@@ -70,6 +86,10 @@ class BannerController extends Controller
 
     public function destroy(Banner $banner)
     {
+        if (!auth()->user()->can('banners.eliminar')) {
+            abort(403, 'No tienes permiso para eliminar Banners y Alertas.');
+        }
+
         if ($banner->ruta_imagen && Storage::disk('public')->exists($banner->ruta_imagen)) {
             Storage::disk('public')->delete($banner->ruta_imagen);
         }

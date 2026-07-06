@@ -63,7 +63,7 @@
                             <i class="fas fa-map-marker-alt text-primary fa-2x"></i>
                         </div>
                         <h5 class="fw-bold text-dark mb-3 estado-nombre">{{ $estado }}</h5>
-                        <button class="btn btn-outline-primary rounded-pill w-100 fw-bold btn-ver-centro" data-estado="{{ $estado }}">
+                        <button class="btn btn-outline-primary rounded-pill w-100 fw-bold btn-ver-centro" data-estado="{{ $estado }}" data-bs-toggle="modal" data-bs-target="#modalCentroInfo">
                             Ver Centros
                         </button>
                     </div>

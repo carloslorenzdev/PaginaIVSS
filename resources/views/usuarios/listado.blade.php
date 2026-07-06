@@ -13,7 +13,7 @@
             </button>
         </div>
 
-        @hasrole('Admin|Director')
+        @hasrole('admin|director')
             @include('usuarios/listado/indicadores')
         @endhasrole
         
@@ -68,6 +68,16 @@
                             <x-input.label for="email" value="Correo Electrónico" />
                             <x-input type="email" id="input-email" name="email" placeholder="ejemplo@ivss.gob.ve" required />
                         </div>
+                        <div id="password-container" class="col-span-full grid grid-cols-1 sm:grid-cols-2 gap-4 hidden">
+                            <div>
+                                <x-input.label for="password" value="Contraseña" />
+                                <x-input type="password" id="input-password" name="password" placeholder="Min. 8 caracteres" />
+                            </div>
+                            <div>
+                                <x-input.label for="password_confirmation" value="Confirmar Contraseña" />
+                                <x-input type="password" id="input-password-confirmation" name="password_confirmation" placeholder="Repite la contraseña" />
+                            </div>
+                        </div>
                         
                         <div class="col-span-full mt-2">
                             <x-input.label value="Rol" />
@@ -98,7 +108,7 @@
 @endsection
 
 @push('page-scripts')
-    @hasrole('Admin|Director')
+    @hasrole('admin|director')
         @vite('resources/js/countup-indicadores.js')
     @endhasrole
     @vite('resources/js/admin-usuarios.js')

@@ -9,7 +9,7 @@ class ListarCategoriasController extends Controller
 {
     public function __invoke()
     {
-        if (!auth()->user()->hasAnyRole(['admin', 'redactor', 'aprobador'])) {
+        if (!auth()->user()->can('categorias.ver')) {
             abort(403, 'No tienes permiso para ver categorias.');
         }
 

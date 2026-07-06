@@ -1,6 +1,6 @@
 import { generaEtiquetaOption } from "./helpers";
 
-window.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('turbo:load', function () {
     const selectParroquia = document.querySelector('select.estado[name=parroquia]');
     // REDERIZA OFICINAS
     function renderizaOficinas(idParroquia) {

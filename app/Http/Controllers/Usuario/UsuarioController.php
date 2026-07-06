@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Usuario;
 
 use App\Http\Controllers\Controller;
-use App\Models\Observacion;
+
 use App\Models\SesionUsuario;
 use App\Models\User;
 use App\Models\UserSession;
@@ -25,9 +25,12 @@ class UsuarioController extends Controller
             'creador',
             'modificador',
             'ultimoAcceso',
-        ])->withWhereHas('roles', function ($q) use ($userAuth) {
+            'roles'
+        ])->where(function ($q) use ($userAuth) {
             if (!$userAuth->isAdmin()) {
-                $q->whereNotIn('name', ['Admin']);
+                $q->whereDoesntHave('roles', function ($qRole) {
+                    $qRole->where('name', 'admin');
+                });
             }
         });
 
@@ -43,9 +46,9 @@ class UsuarioController extends Controller
         $activos = User::whereNull('bloqueado')->count();
         $sesionesActivas = UserSession::whereNotNull('user_id')->count();
 
-        $rolesQuery = \Spatie\Permission\Models\Role::where('name', '<>', 'Patrono')->orderBy('name');
+        $rolesQuery = \Spatie\Permission\Models\Role::where('name', '<>', 'patrono')->orderBy('name');
         if (!$userAuth->isAdmin()) {
-            $rolesQuery->where('name', '<>', 'Admin');
+            $rolesQuery->where('name', '<>', 'admin');
         }
         $roles = $rolesQuery->get();
 
@@ -67,9 +70,7 @@ class UsuarioController extends Controller
         $user->loadMissing(['roles', 'creador', 'modificador']);
 
         $accesos = SesionUsuario::where('created_by', $user->id)->orderByDesc('created_at')->limit(5)->get();
-        $observaciones = Observacion::with(['creador'])->whereMorphedTo('observaciontable', $user)
-            ->orderByDesc('created_at')->limit(3)->get();
-        return view('usuarios.detalle', compact('user', 'accesos', 'observaciones'));
+        return view('usuarios.detalle', compact('user', 'accesos'));
     }
 
     /**

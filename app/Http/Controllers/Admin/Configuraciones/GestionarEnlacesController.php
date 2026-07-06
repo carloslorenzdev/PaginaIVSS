@@ -9,8 +9,8 @@ class GestionarEnlacesController extends Controller
 {
     public function __invoke()
     {
-        if (!auth()->user()->isAdmin()) {
-            abort(403, 'Acceso denegado: Solo el administrador puede gestionar los enlaces dinámicos.');
+        if (!auth()->user()->can('configuracion.enlaces')) {
+            abort(403, 'Acceso denegado: No tienes permiso para gestionar los enlaces dinámicos.');
         }
 
         $grupos = [

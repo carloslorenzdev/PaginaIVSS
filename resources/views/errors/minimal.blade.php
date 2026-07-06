@@ -34,10 +34,10 @@
                 </p>
             </div>
             <div class="mt-10 flex items-center justify-center gap-x-6">
-                <x-button.link href="{{ request()->is('admin*') ? route('admin.panel') : url('/') }}"
-                    class="rounded-md bg-red-700 font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">
-                    Volver al inicio
-                </x-button.link>
+                <button onclick="window.history.back()"
+                    class="inline-flex items-center rounded-md bg-red-700 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 transition-colors">
+                    <i class="bx bx-arrow-back mr-2 text-lg"></i> Volver atrás
+                </button>
             </div>
         </div>
     </main>

@@ -23,12 +23,9 @@
                 </div>
             </div>
 
-            <form action="{{ route('admin.banners.clearSlot', $slot_key) }}" method="POST" onsubmit="return confirm('¿Remover esta imagen? Dejará de mostrarse al público.');">
-                @csrf
-                <button type="submit" class="w-full py-2 px-3 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-red-100 text-red-800 hover:bg-red-200 focus:outline-none focus:bg-red-200 disabled:opacity-50 disabled:pointer-events-none dark:text-red-500 dark:bg-red-800/30 dark:hover:bg-red-800/20 dark:focus:bg-red-800/20">
-                    <i class="bx bx-trash"></i> Remover Imagen Actual
-                </button>
-            </form>
+            <button type="button" class="btn-confirmar-accion w-full py-2 px-3 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-red-100 text-red-800 hover:bg-red-200 focus:outline-none focus:bg-red-200 disabled:opacity-50 disabled:pointer-events-none dark:text-red-500 dark:bg-red-800/30 dark:hover:bg-red-800/20 dark:focus:bg-red-800/20" data-action="{{ route('admin.banners.clearSlot', $slot_key) }}" data-method="POST" data-mensaje="¿Remover esta imagen? Dejará de mostrarse al público.">
+                <i class="bx bx-trash"></i> Remover Imagen Actual
+            </button>
 
             <div class="my-4 flex items-center before:flex-1 before:border-t before:border-gray-200 before:me-6 after:flex-1 after:border-t after:border-gray-200 after:ms-6 dark:text-neutral-500 dark:before:border-neutral-600 dark:after:border-neutral-600">
                 <span class="text-sm text-gray-500 font-medium">Reemplazar</span>

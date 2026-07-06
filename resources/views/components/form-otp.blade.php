@@ -24,5 +24,6 @@
             placeholder="⚬" data-hs-pin-input-item="">
     </div>
     <x-input.error campo="otp" />
+    {{ $slot }}
     <x-input.button class="mt-3">{{ $boton }}</x-input.button>
 </form>

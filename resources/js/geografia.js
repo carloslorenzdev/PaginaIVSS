@@ -81,7 +81,7 @@ function renderizaTodoGrupoSelect(elementoParroquia) {
     elementoParroquia.value = elementoParroquia.dataset.id;
 }
 
-window.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('turbo:load', function () {
     const selecsEstadoMunParr = document.querySelectorAll('select.estado');
     if (selecsEstadoMunParr.length) {
         selecsEstadoMunParr.forEach((el) => {

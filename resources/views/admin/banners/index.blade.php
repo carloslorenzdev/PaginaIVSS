@@ -15,11 +15,7 @@
         </div>
     </div>
 
-    @if(session('success'))
-        <div class="bg-green-100 border border-green-200 text-sm text-green-800 rounded-lg p-4 dark:bg-green-800/10 dark:border-green-900 dark:text-green-500" role="alert">
-            <span class="font-bold">Éxito:</span> {{ session('success') }}
-        </div>
-    @endif
+
     @if(session('error'))
         <div class="bg-red-100 border border-red-200 text-sm text-red-800 rounded-lg p-4 dark:bg-red-800/10 dark:border-red-900 dark:text-red-500" role="alert">
             <span class="font-bold">Error:</span> {{ session('error') }}
@@ -63,12 +59,9 @@
                         </div>
                     </div>
 
-                    <form action="{{ route('admin.banners.clearAlerta') }}" method="POST" onsubmit="return confirm('¿Remover esta imagen? Dejará de mostrarse al público.');">
-                        @csrf
-                        <button type="submit" class="w-full py-2 px-3 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-red-100 text-red-800 hover:bg-red-200 focus:outline-none focus:bg-red-200 disabled:opacity-50 disabled:pointer-events-none">
-                            <i class="bx bx-trash"></i> Remover Imagen Actual
-                        </button>
-                    </form>
+                    <button type="button" class="btn-confirmar-accion w-full py-2 px-3 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-red-100 text-red-800 hover:bg-red-200 focus:outline-none focus:bg-red-200 disabled:opacity-50 disabled:pointer-events-none" data-action="{{ route('admin.banners.clearAlerta') }}" data-method="POST" data-mensaje="¿Remover esta imagen? Dejará de mostrarse al público.">
+                        <i class="bx bx-trash"></i> Remover Imagen Actual
+                    </button>
 
                     <div class="my-4 flex items-center before:flex-1 before:border-t before:border-gray-200 before:me-6 after:flex-1 after:border-t after:border-gray-200 after:ms-6 dark:text-neutral-500">
                         <span class="text-sm text-gray-500 font-medium">Reemplazar</span>
@@ -148,13 +141,9 @@
                                     <img src="{{ asset('storage/' . $banner->ruta_imagen) }}" alt="{{ $banner->titulo }}" class="w-full h-full object-cover">
                                     
                                     <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                        <form action="{{ route('admin.banners.destroy', $banner->id) }}" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar esta imagen del carrusel?');" class="m-0">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger py-1 px-2 inline-flex items-center gap-1 text-xs bg-red-600 text-white rounded hover:bg-red-700">
-                                                <i class="bx bx-trash"></i> Eliminar
-                                            </button>
-                                        </form>
+                                        <button type="button" class="btn-confirmar-accion btn btn-sm btn-danger py-1 px-2 inline-flex items-center gap-1 text-xs bg-red-600 text-white rounded hover:bg-red-700" data-action="{{ route('admin.banners.destroy', $banner->id) }}" data-method="DELETE" data-mensaje="¿Seguro que deseas eliminar esta imagen del carrusel?">
+                                            <i class="bx bx-trash"></i> Eliminar
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="p-3">
@@ -181,4 +170,6 @@
 
     </div>
 </div>
+
+<x-modal-confirmar />
 @endsection

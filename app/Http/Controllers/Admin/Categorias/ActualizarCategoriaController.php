@@ -11,7 +11,7 @@ class ActualizarCategoriaController extends Controller
 {
     public function __invoke(Request $request, $id)
     {
-        if (!auth()->user()->hasAnyRole(['admin'])) {
+        if (!auth()->user()->can('categorias.editar')) {
             abort(403, 'No tienes permiso para actualizar categorias.');
         }
 

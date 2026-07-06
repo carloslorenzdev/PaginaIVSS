@@ -17,7 +17,7 @@ function initEditorConfig() {
 }
 
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initEditorConfig);
+    document.addEventListener('turbo:load', initEditorConfig);
 } else {
     initEditorConfig();
 }

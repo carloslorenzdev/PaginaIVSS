@@ -117,13 +117,9 @@
                                 <div class="border border-gray-200 dark:border-neutral-700 rounded-lg overflow-hidden relative group bg-white dark:bg-neutral-800">
                                     
                                     {{-- Botón Eliminar --}}
-                                    <form action="{{ route('admin.actividades.eliminar-medio', [$actividad->id, $medio->id]) }}" method="POST" class="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity" onsubmit="return confirm('¿Eliminar este archivo permanentemente?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white size-8 rounded-full flex items-center justify-center shadow-md focus:outline-none" title="Eliminar Archivo">
-                                            <i class="bx bx-x text-lg"></i>
-                                        </button>
-                                    </form>
+                                      <button type="button" class="btn-confirmar-accion absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity bg-red-600 hover:bg-red-700 text-white size-8 rounded-full flex items-center justify-center shadow-md focus:outline-none" data-action="{{ route('admin.actividades.eliminar-medio', [$actividad->id, $medio->id]) }}" data-method="DELETE" data-mensaje="¿Eliminar este archivo permanentemente?" title="Eliminar Archivo">
+                                          <i class="bx bx-x text-lg"></i>
+                                      </button>
 
                                     {{-- Previsualización --}}
                                     <div class="h-40 bg-gray-100 dark:bg-neutral-900 flex items-center justify-center relative">
@@ -159,6 +155,8 @@
             </div>
         </div>
     </x-section>
+
+    <x-modal-confirmar />
 @endsection
 
 @push('page-scripts')

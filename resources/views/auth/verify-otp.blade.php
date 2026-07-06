@@ -32,12 +32,14 @@
                             'justify-between' => count($seleccionables) > 1,
                             'justify-start' => count($seleccionables) == 1,
                         ])>
-                            <x-button.link
-                                class="!inline-flex justify-center font-semibold text-red-600 rounded hover:text-red-700 focus:text-red-600 dark:text-neutral-200 dark:hover:text-red-500 dark:focus:text-red-500"
-                                href="{{ $previous }}">
-                                <i class="bx bx-left-arrow-alt m-0"></i>
-                                Regresar
-                            </x-button.link>
+                            <form method="POST" action="{{ route('logout') }}" class="inline-flex">
+                                @csrf
+                                <button type="submit"
+                                    class="!inline-flex items-center justify-center font-semibold text-red-600 rounded hover:text-red-700 focus:text-red-600 dark:text-neutral-200 dark:hover:text-red-500 dark:focus:text-red-500">
+                                    <i class="bx bx-left-arrow-alt m-0 text-xl mr-1"></i>
+                                    Regresar al Login
+                                </button>
+                            </form>
                             @if (count($seleccionables) > 1)
                                 <x-tooltip titulo="Seleccionar otro método de 2FA">
                                     <x-button.link
@@ -52,7 +54,16 @@
                             Esta es un área segura de la aplicación. Por favor ingresa el código enviado por la aplicación
                         </div>
                         <div class="overflow-x-auto">
-                            <x-form-otp class="px-2" ruta="{!! $ruta !!}" boton="Confirmar" />
+                            <x-form-otp class="px-2" ruta="{!! $ruta !!}" boton="Confirmar">
+                                <div class="mt-4 flex items-center px-2">
+                                    <input type="checkbox" id="remember_device" name="remember_device" value="1"
+                                        class="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-600 dark:border-neutral-600 dark:bg-neutral-800 dark:ring-offset-neutral-800 dark:focus:ring-red-500">
+                                    <label for="remember_device"
+                                        class="ml-2 block text-sm text-gray-700 dark:text-neutral-300">
+                                        Recordar este dispositivo por 30 días
+                                    </label>
+                                </div>
+                            </x-form-otp>
                         </div>
                         @if ($codigo)
                             <div class="flex justify-end items-center mt-3">

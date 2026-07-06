@@ -21,7 +21,7 @@ function renderizaActividadEconomica(valorTipoEmpresa, valorActividad = null) {
     selectActividad.disabled = false;
 }
 
-window.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('turbo:load', function () {
     const selectTipoEmpresa = document.querySelector('select[name="tipo_empresa"]');
     if (selectTipoEmpresa) {
         const selectActividad = document.querySelector('select[name="actividad_economica"]');

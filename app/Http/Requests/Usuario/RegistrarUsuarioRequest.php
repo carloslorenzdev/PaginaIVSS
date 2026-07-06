@@ -45,24 +45,29 @@ class RegistrarUsuarioRequest extends FormRequest
                 'required',
                 'email:rfc',
                 'max:255',
-                Rule::unique(User::class, 'email')
+                Rule::unique(User::class, 'email')->whereNull('deleted_at')
             ],
             'usuario' => [
                 'required',
                 'min:5',
                 'max:20',
                 'regex:/^[a-z]+[a-z0-9.]*$/i',
-                Rule::unique(User::class, 'usuario')
+                Rule::unique(User::class, 'usuario')->whereNull('deleted_at')
             ],
             'rol' => [
                 'required',
                 Rule::exists(Role::class, 'name')->where(function ($query) {
-                    $roles = ['Patrono'];
+                    $roles = ['patrono'];
                     if (!$this->user()->isAdmin()) {
-                        $roles[] = 'Admin';
+                        $roles[] = 'admin';
                     }
                     $query->whereNotIn('name', $roles);
                 })
+            ],
+            'password' => [
+                'required',
+                'confirmed',
+                \Illuminate\Validation\Rules\Password::defaults()
             ],
         ];
     }

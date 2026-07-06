@@ -23,16 +23,14 @@ class RegistrarUsuarioController extends Controller
         DB::transaction(function () use ($request) {
             $data = $request->validated();
             
-            // Generate a random temporary password
-            $tempPassword = Str::random(10);
-
             // USUARIO
             $user = User::create([
                 'nombre' => $data['nombre'],
                 'email' => $data['email'],
-                'password' => Hash::make($tempPassword),
+                'password' => Hash::make($data['password']),
                 'usuario' => $data['usuario'],
                 'created_by' => $request->user()->id,
+                'cambio_pass' => null, // Esto fuerza a que deba cambiarla
             ]);
 
             // ROL

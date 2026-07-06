@@ -37,5 +37,15 @@
                 Desloquear
             </x-modal.button>
         @endif
+
+        @can('usuarios.eliminar')
+            <div class="border-t border-gray-200 dark:border-neutral-700 my-1"></div>
+            <x-modal.button data-ruta="{{ route('usuarios.eliminar', $user) }}" data-usuario="{{ $user->usuario }}"
+                data-tipo="Eliminar" data-method="DELETE"
+                class="w-full text-red-600 hover:bg-red-50 focus:bg-red-50 dark:text-red-500 dark:hover:bg-red-900/30 dark:focus:bg-red-900/30">
+                <i class='bx bx-trash'></i>
+                Eliminar
+            </x-modal.button>
+        @endcan
     </div>
 </x-dropdown>

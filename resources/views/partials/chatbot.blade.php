@@ -68,17 +68,17 @@
                     <p class="mb-2 fw-bold">¿En qué puedo ayudarte hoy?</p>
                     
                     <div class="ivss-chatbot-quick-options d-flex flex-column gap-2 mt-3">
-                        <button class="btn btn-outline-danger btn-sm text-start ivss-btn-option" data-option="tiuna">
-                            <i class="fas fa-building me-2"></i> Trámites para Empleadores (Tiuna)
+                        <button class="btn btn-outline-danger btn-sm text-start ivss-btn-option" data-option="pension">
+                            <i class="fas fa-user-clock me-2"></i> Información pensión.
                         </button>
-                        <button class="btn btn-outline-danger btn-sm text-start ivss-btn-option" data-option="pensiones">
-                            <i class="fas fa-user-clock me-2"></i> Requisitos para Pensión
+                        <button class="btn btn-outline-danger btn-sm text-start ivss-btn-option" data-option="medicamentos">
+                            <i class="fas fa-pills me-2"></i> Medicamentos Alto Costo.
                         </button>
-                        <button class="btn btn-outline-danger btn-sm text-start ivss-btn-option" data-option="constancias">
-                            <i class="fas fa-file-invoice me-2"></i> Obtener Constancias
+                        <button class="btn btn-outline-danger btn-sm text-start ivss-btn-option" data-option="centro_salud_cercano">
+                            <i class="fas fa-hospital me-2"></i> Centro de Salud Cercano.
                         </button>
-                        <button class="btn btn-outline-danger btn-sm text-start ivss-btn-option" data-option="cuenta">
-                            <i class="fas fa-list-ol me-2"></i> Consulta de Cuenta Individual
+                        <button class="btn btn-outline-danger btn-sm text-start ivss-btn-option" data-option="hemodialisis">
+                            <i class="fas fa-procedures me-2"></i> Hemodiálisis.
                         </button>
                     </div>
                 </div>
@@ -97,4 +97,4 @@
     </div>
 </div>
 
-<script src="{{ asset('js/chatbot.js') }}"></script>
+<script src="{{ asset('js/chatbot.js') }}?v={{ time() }}"></script>

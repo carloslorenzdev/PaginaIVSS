@@ -24,7 +24,7 @@ class NewPasswordController extends Controller
     public function cambioPass(Request $request): View|RedirectResponse
     {
         if (!is_null($request->user()->cambio_pass)) {
-            return to_route('inicio');
+            return to_route('admin.panel');
         }
         return view('auth.change-pass');
     }
@@ -37,7 +37,7 @@ class NewPasswordController extends Controller
     public function changePass(Request $request): RedirectResponse
     {
         if (!is_null($request->user()->cambio_pass)) {
-            return to_route('inicio');
+            return to_route('admin.panel');
         }
 
         $request->validate([
@@ -53,7 +53,7 @@ class NewPasswordController extends Controller
 
         Log::channel('acciones')->info('Usuario "' . $user->usuario . '" ha actualizado su contraseña.');
 
-        return to_route('inicio')->withAlert(['success', 'Contraseña cambiada']);
+        return to_route('admin.panel')->withAlert(['success', 'Contraseña cambiada']);
     }
 
     /**

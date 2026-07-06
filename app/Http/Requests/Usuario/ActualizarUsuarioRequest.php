@@ -49,9 +49,9 @@ class ActualizarUsuarioRequest extends FormRequest
             'rol' => [
                 'required',
                 Rule::exists(Role::class, 'name')->where(function ($query) {
-                    $roles = ['Patrono'];
+                    $roles = ['patrono'];
                     if (!$this->user()->isAdmin()) {
-                        $roles[] = 'Admin';
+                        $roles[] = 'admin';
                     }
                     $query->whereNotIn('name', $roles);
                 })

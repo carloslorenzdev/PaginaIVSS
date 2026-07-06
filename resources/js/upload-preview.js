@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('turbo:load', function() {
     const fileInput = document.getElementById('dropzone-file');
     const previewContainer = document.getElementById('preview-container');
     const imagePreview = document.getElementById('image-preview');

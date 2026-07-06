@@ -14,7 +14,7 @@ class BoletinAdminController extends Controller
 {
     public function index()
     {
-        if (!auth()->user()->hasAnyRole(['admin', 'redactor', 'aprobador'])) {
+        if (!auth()->user()->can('boletines.ver')) {
             abort(403, 'No tienes permiso para ver boletines.');
         }
 
@@ -24,7 +24,7 @@ class BoletinAdminController extends Controller
 
     public function crear()
     {
-        if (!auth()->user()->hasAnyRole(['admin', 'redactor'])) {
+        if (!auth()->user()->can('boletines.crear')) {
             abort(403, 'No tienes permiso para crear boletines.');
         }
 
@@ -33,7 +33,7 @@ class BoletinAdminController extends Controller
 
     public function guardar(Request $request, GuardarBoletinAction $guardarBoletinAction)
     {
-        if (!auth()->user()->hasAnyRole(['admin', 'redactor'])) {
+        if (!auth()->user()->can('boletines.crear')) {
             abort(403, 'No tienes permiso para guardar boletines.');
         }
 
@@ -51,7 +51,7 @@ class BoletinAdminController extends Controller
 
     public function ver(Boletin $boletin)
     {
-        if (!auth()->user()->hasAnyRole(['admin', 'redactor', 'aprobador'])) {
+        if (!auth()->user()->can('boletines.ver')) {
             abort(403, 'No tienes permiso para ver boletines.');
         }
 
@@ -60,7 +60,7 @@ class BoletinAdminController extends Controller
 
     public function actualizar(Request $request, Boletin $boletin, ActualizarBoletinAction $actualizarBoletinAction)
     {
-        if (!auth()->user()->hasAnyRole(['admin', 'redactor'])) {
+        if (!auth()->user()->can('boletines.editar')) {
             abort(403, 'No tienes permiso para editar boletines.');
         }
 
@@ -78,8 +78,8 @@ class BoletinAdminController extends Controller
 
     public function eliminar(Boletin $boletin, EliminarBoletinAction $eliminarBoletinAction)
     {
-        if (!auth()->user()->hasRole('admin')) {
-            abort(403, 'Solo el administrador puede eliminar boletines.');
+        if (!auth()->user()->can('boletines.eliminar')) {
+            abort(403, 'No tienes permiso para eliminar boletines.');
         }
 
         $eliminarBoletinAction->execute($boletin);
@@ -89,7 +89,7 @@ class BoletinAdminController extends Controller
 
     public function togglePublicacion(Boletin $boletin, TogglePublicacionBoletinAction $togglePublicacionBoletinAction)
     {
-        if (!auth()->user()->hasAnyRole(['admin', 'aprobador'])) {
+        if (!auth()->user()->can('boletines.editar')) {
             abort(403, 'No tienes permiso para cambiar el estado de publicación.');
         }
 

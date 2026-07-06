@@ -173,7 +173,7 @@ function initVerNoticia() {
 }
 
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initVerNoticia);
+    document.addEventListener('turbo:load', initVerNoticia);
 } else {
     initVerNoticia();
 }

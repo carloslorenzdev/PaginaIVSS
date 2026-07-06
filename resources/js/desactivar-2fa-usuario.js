@@ -1,7 +1,7 @@
 import { buildEditor } from "../libs/tiptap/tiptap-editor";
 import { ToastAlert } from "./toastify";
 
-window.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('turbo:load', function () {
     const botonSubmit = document.querySelector('button#btn-desactivar-2fa');
     const editorObservacion = buildEditor('hs-editor-tiptap', 'Agrega el motivo');
     botonSubmit.addEventListener('click', function (e) {

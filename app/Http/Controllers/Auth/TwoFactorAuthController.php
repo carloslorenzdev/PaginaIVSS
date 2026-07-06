@@ -138,6 +138,10 @@ class TwoFactorAuthController extends Controller
         TwoFactorAuthService::saveConfirmed();
         TwoFactorAuthService::clearRateLimitedOtp($throttleKey);
 
+        if ($request->boolean('remember_device')) {
+            TwoFactorAuthService::rememberDevice($user);
+        }
+
         return redirect()->intended(TwoFactorAuthService::getRoute());
     }
 }

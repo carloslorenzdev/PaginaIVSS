@@ -18,105 +18,189 @@ class ProcesarMensajeChatbotAction
             $mensaje
         );
 
-        // 1. Detección de Farmacias / Centros de Salud en Base de Datos
-        if (str_contains($mensaje, 'farmacia') || str_contains($mensaje, 'alto costo') || str_contains($mensaje, 'medicamento')) {
-            $query = Directorio::farmacias();
+        // Ubicación Automática (Geolocalización por IP o GPS)
+        if (str_starts_with($mensaje, 'ubicacion_ip:')) {
+            $estadoStr = trim(str_replace('ubicacion_ip:', '', $mensaje));
             
+            $estadoNormalizado = $this->normalizarEstado($estadoStr);
+            $centros = Directorio::centrosSalud()->where('estado', 'LIKE', "%$estadoNormalizado%")->take(3)->get();
+            
+            if ($centros->count() > 0) {
+                $html = "<b>Según tu conexión de red, te encuentras en {$estadoNormalizado}. Centros de Salud cercanos:</b><br><br>";
+                foreach ($centros as $c) {
+                    $html .= "<i class=\"fas fa-hospital text-primary\"></i> <b>{$c->nombre}</b><br>";
+                    $html .= "<i class=\"fas fa-map-marker-alt text-danger\"></i> {$c->direccion}<br>";
+                    if ($c->telefono) $html .= "<i class=\"fas fa-phone-alt text-success\"></i> {$c->telefono}<br>";
+                    $html .= "<br>";
+                }
+                return $html;
+            } else {
+                return "Te conectas desde {$estadoNormalizado}, pero no encontré centros de salud en nuestros registros para ese estado.";
+            }
+        }
+        
+        if (str_starts_with($mensaje, 'ubicacion:')) {
+            $coords = explode(',', str_replace('ubicacion:', '', $mensaje));
+            if (count($coords) == 2) {
+                $lat = trim($coords[0]);
+                $lng = trim($coords[1]);
+                
+                try {
+                    $response = \Illuminate\Support\Facades\Http::withHeaders([
+                        'User-Agent' => 'IVSS-Chatbot/1.0'
+                    ])->timeout(5)->get("https://nominatim.openstreetmap.org/reverse?lat={$lat}&lon={$lng}&format=json");
+                    
+                    if ($response->successful()) {
+                        $data = $response->json();
+                        $state = $data['address']['state'] ?? null;
+                        
+                        if ($state) {
+                            $estadoNormalizado = $this->normalizarEstado($state);
+                            
+                            $centros = Directorio::centrosSalud()->where('estado', 'LIKE', "%$estadoNormalizado%")->take(3)->get();
+                            
+                            if ($centros->count() > 0) {
+                                $html = "<b>Centros de Salud cercanos a ti ({$estadoNormalizado}):</b><br><br>";
+                                foreach ($centros as $c) {
+                                    $html .= "<i class=\"fas fa-hospital text-primary\"></i> <b>{$c->nombre}</b><br>";
+                                    $html .= "<i class=\"fas fa-map-marker-alt text-danger\"></i> {$c->direccion}<br>";
+                                    if ($c->telefono) $html .= "<i class=\"fas fa-phone-alt text-success\"></i> {$c->telefono}<br>";
+                                    $html .= "<br>";
+                                }
+                                return $html;
+                            } else {
+                                return "Lo siento, no encontré centros de salud en nuestros registros para tu estado ({$estadoNormalizado}).";
+                            }
+                        }
+                    }
+                } catch (\Exception $e) {
+                    return "Hubo un problema de red intentando localizar tu ubicación exacta.";
+                }
+                
+                return "Obtuvimos tu ubicación, pero tuvimos problemas determinando tu estado exacto en nuestros registros.";
+            }
+        }
+
+        // 1. Detección de Farmacias (solo cuando se busca ubicación física)
+        if (str_contains($mensaje, 'farmacia')) {
             // Extraer posible ubicación
-            $estados = ['caracas', 'miranda', 'zulia', 'aragua', 'carabobo', 'lara', 'tachira', 'merida'];
+            $estados = ['amazonas', 'anzoategui', 'apure', 'aragua', 'barinas', 'bolivar', 'carabobo', 'cojedes', 'delta amacuro', 'falcon', 'guarico', 'lara', 'merida', 'miranda', 'monagas', 'nueva esparta', 'portuguesa', 'sucre', 'tachira', 'trujillo', 'vargas', 'yaracuy', 'zulia', 'caracas'];
             $estadoDetectado = null;
             foreach($estados as $estado) {
                 if(str_contains($mensaje, $estado)) {
                     $estadoDetectado = ucfirst($estado);
                     if ($estadoDetectado == 'Caracas') $estadoDetectado = 'Distrito Capital';
-                    $query->where(function($q) use ($estadoDetectado, $estado) {
-                        $q->where('estado', 'LIKE', "%$estadoDetectado%")
-                          ->orWhere('direccion', 'LIKE', "%$estado%");
-                    });
+                    break;
                 }
             }
 
-            $farmacias = $query->take(3)->get();
-            
-            if ($farmacias->count() > 0) {
-                $html = "<b>Farmacias de Alto Costo encontradas en nuestro sistema:</b><br><br>";
-                foreach ($farmacias as $f) {
-                    $html .= "🏥 <b>{$f->nombre}</b><br>";
-                    $html .= "📍 {$f->direccion} ({$f->estado})<br>";
-                    if ($f->telefono) $html .= "📞 {$f->telefono}<br>";
-                    $html .= "<br>";
+            // Si encontró un estado, buscamos en BD
+            if ($estadoDetectado) {
+                $farmacias = Directorio::farmacias()
+                    ->where(function($q) use ($estadoDetectado, $estado) {
+                        $q->where('estado', 'LIKE', "%$estadoDetectado%")
+                          ->orWhere('direccion', 'LIKE', "%$estado%");
+                    })->take(3)->get();
+                
+                if ($farmacias->count() > 0) {
+                    $html = "<b>Farmacias de Alto Costo encontradas en nuestro sistema:</b><br><br>";
+                    foreach ($farmacias as $f) {
+                        $html .= "<i class=\"fas fa-clinic-medical text-primary\"></i> <b>{$f->nombre}</b><br>";
+                        $html .= "<i class=\"fas fa-map-marker-alt text-danger\"></i> {$f->direccion} ({$f->estado})<br>";
+                        if ($f->telefono) $html .= "<i class=\"fas fa-phone-alt text-success\"></i> {$f->telefono}<br>";
+                        $html .= "<br>";
+                    }
+                    return $html;
+                } else {
+                    return "Lo siento, no encontré farmacias de alto costo específicas para esa ubicación en nuestros registros. Puedes comunicarte al 0800-IVSS para mayor información.";
                 }
-                return $html;
-            } else {
-                return "Lo siento, no encontré farmacias de alto costo específicas para esa ubicación en nuestros registros. Puedes comunicarte al 0800-IVSS para mayor información.";
             }
         }
 
         // 2. Detección de Centros de Salud en Base de Datos
-        if (str_contains($mensaje, 'hospital') || str_contains($mensaje, 'clinica') || str_contains($mensaje, 'ambulatorio') || str_contains($mensaje, 'centro de salud') || str_contains($mensaje, 'emergencia')) {
-            $query = Directorio::centrosSalud();
-            
+        if (str_contains($mensaje, 'hospital') || str_contains($mensaje, 'clinica') || str_contains($mensaje, 'ambulatorio') || str_contains($mensaje, 'centro de salud') || str_contains($mensaje, 'centros de salud') || str_contains($mensaje, 'emergencia') || str_contains($mensaje, 'hemodialisis') || str_contains($mensaje, 'dialisis')) {
             // Extraer posible ubicación
-            $estados = ['caracas', 'miranda', 'zulia', 'aragua', 'carabobo', 'lara', 'tachira', 'merida'];
+            $estados = ['amazonas', 'anzoategui', 'apure', 'aragua', 'barinas', 'bolivar', 'carabobo', 'cojedes', 'delta amacuro', 'falcon', 'guarico', 'lara', 'merida', 'miranda', 'monagas', 'nueva esparta', 'portuguesa', 'sucre', 'tachira', 'trujillo', 'vargas', 'yaracuy', 'zulia', 'caracas'];
+            $estadoDetectado = null;
             foreach($estados as $estado) {
                 if(str_contains($mensaje, $estado)) {
                     $estadoDetectado = ucfirst($estado);
                     if ($estadoDetectado == 'Caracas') $estadoDetectado = 'Distrito Capital';
-                    $query->where(function($q) use ($estadoDetectado, $estado) {
+                    break;
+                }
+            }
+
+            if ($estadoDetectado) {
+                $centros = Directorio::centrosSalud()
+                    ->where(function($q) use ($estadoDetectado, $estado) {
                         $q->where('estado', 'LIKE', "%$estadoDetectado%")
                           ->orWhere('direccion', 'LIKE', "%$estado%");
-                    });
+                    })->take(3)->get();
+                
+                if ($centros->count() > 0) {
+                    $html = "<b>Centros de Salud encontrados en nuestro sistema ($estadoDetectado):</b><br><br>";
+                    foreach ($centros as $c) {
+                        $html .= "<i class=\"fas fa-hospital text-primary\"></i> <b>{$c->nombre}</b><br>";
+                        $html .= "<i class=\"fas fa-map-marker-alt text-danger\"></i> {$c->direccion} ({$c->estado})<br><br>";
+                    }
+                    return $html;
+                } else {
+                    return "Lo siento, no tengo centros de salud registrados en el sistema para esa ubicación exacta.";
+                }
+            }
+        }
+
+        // 3. BASE DE CONOCIMIENTO DINÁMICA
+        $mensajeLimpio = $this->normalizarTexto($mensajeOriginal);
+        $conocimientos = \App\Models\ChatbotConocimiento::activos()->get();
+        
+        $mejorConocimiento = null;
+        $maxPuntaje = 0;
+
+        foreach ($conocimientos as $conocimiento) {
+            // Let's get the keywords cleanly:
+            $palabrasClaveOriginales = array_map('trim', explode(',', $conocimiento->palabras_clave));
+            $palabrasClave = [];
+            foreach ($palabrasClaveOriginales as $p) {
+                $pLimpia = $this->normalizarTexto($p);
+                if (!empty($pLimpia)) {
+                    $palabrasClave[] = $pLimpia;
                 }
             }
 
-            $centros = $query->take(3)->get();
+            // También añadimos la pregunta literal como palabra clave
+            $preguntaLimpia = $this->normalizarTexto($conocimiento->pregunta);
+            if (!empty($preguntaLimpia) && !in_array($preguntaLimpia, $palabrasClave)) {
+                $palabrasClave[] = $preguntaLimpia;
+            }
+
+            $puntaje = 0;
             
-            if ($centros->count() > 0) {
-                $html = "<b>Centros de Salud encontrados en nuestro sistema:</b><br><br>";
-                foreach ($centros as $c) {
-                    $html .= "🏥 <b>{$c->nombre}</b><br>";
-                    $html .= "📍 {$c->direccion} ({$c->estado})<br><br>";
+            foreach ($palabrasClave as $palabra) {
+                if (!empty($palabra) && str_contains($mensajeLimpio, $palabra)) {
+                    // Dar más peso a palabras más largas o específicas
+                    $puntaje += strlen($palabra);
                 }
-                return $html;
-            } else {
-                return "Lo siento, no tengo centros de salud registrados en el sistema para esa ubicación exacta.";
+            }
+            
+            if ($puntaje > $maxPuntaje) {
+                $maxPuntaje = $puntaje;
+                $mejorConocimiento = $conocimiento;
             }
         }
 
-        // 3. Sistema Tiuna
-        if ($this->contieneAlguna($mensaje, ['tiuna', 'empresa', 'patrono', 'registrar', 'nomina', 'trabajador', 'empleador'])) {
-            return '<b>Sistema Tiuna (Registro de Empresas y Empleadores):</b><br><br>El Sistema Tiuna es la plataforma oficial del IVSS para empleadores. A través de él puedes:<br>- Registrar una nueva empresa<br>- Afiliar nuevos trabajadores<br>- Pagar la factura mensual<br><br>Para continuar, dirígete a la sección <b>"Sistema Tiuna"</b> en el menú de la página principal.';
+        if ($mejorConocimiento && $maxPuntaje > 0) {
+            return $mejorConocimiento->respuesta;
         }
 
-        // 4. Pensiones
-        if ($this->contieneAlguna($mensaje, ['pension', 'vejez', 'jubilado', 'abuelo', 'tercera edad', 'requisitos'])) {
-            return '<b>Requisitos para Pensión de Vejez:</b><br><br>1. 60 años (hombres) o 55 años (mujeres).<br>2. Mínimo de 750 semanas cotizadas.<br>3. Presentar: cédula, constancia de trabajo y solvencia.<br><br>Para consultar tu estatus, busca la sección <b>"Pensionados"</b> en el menú de consultas.';
+        // 4. Fallback estricto - Guardar la pregunta sin respuesta
+        $existe = \App\Models\ChatbotPreguntaSinRespuesta::where('pregunta', $mensajeOriginal)->exists();
+        if (!$existe) {
+            \App\Models\ChatbotPreguntaSinRespuesta::create([
+                'pregunta' => $mensajeOriginal
+            ]);
         }
 
-        // 5. Constancias
-        if ($this->contieneAlguna($mensaje, ['constancia', 'recibo', 'comprobante', 'imprimir', 'descargar'])) {
-            return '<b>Constancias del IVSS:</b><br><br>Puedes generar y descargar constancias electrónicas gratuitas, como Constancia de Pensionado o Cuenta Individual, totalmente válidas legalmente.<br><br>Accede a la sección <b>"Constancias"</b> para generarlas.';
-        }
-
-        // 6. Cuenta Individual / Semanas
-        if ($this->contieneAlguna($mensaje, ['cuenta', 'individual', 'semana', 'cotizacion', 'cotizadas', 'historial'])) {
-            return '<b>Consulta de Cuenta Individual:</b><br><br>Aquí puedes revisar tu historial laboral, semanas cotizadas y salarios declarados. Solo necesitas tu cédula y fecha de nacimiento.<br><br>Dirígete a la sección <b>"Cuenta Individual"</b> para consultarla.';
-        }
-
-        // 7. RRHH / Recursos Humanos
-        if ($this->contieneAlguna($mensaje, ['rrhh', 'recurso', 'humanos', 'empleado publico', 'trabajador ivss'])) {
-            return '<b>Servicios al Funcionario (RRHH):</b><br><br>Si eres trabajador activo o jubilado directo del IVSS, puedes acceder a la sección de Recursos Humanos para gestionar tus solicitudes, recibos de pago y demás beneficios.<br><br>Dirígete al apartado de <b>"Servicios Complementarios"</b> y haz clic en <b>"Servicios al Funcionario"</b> para iniciar sesión en tu portal.';
-        }
-
-        // 8. Saludos / Agradecimientos
-        if ($this->contieneAlguna($mensaje, ['hola', 'buenos dias', 'buenas tardes', 'saludo'])) {
-            return '¡Hola! Qué gusto saludarte. Soy el Asistente del IVSS. Puedo brindarte información sobre Farmacias, Hospitales, y guiarte por la página. ¿En qué trámite te puedo asesorar el día de hoy?';
-        }
-        if ($this->contieneAlguna($mensaje, ['gracias', 'excelente'])) {
-            return '¡Con todo el gusto! Estamos para servirte.';
-        }
-
-        // 9. Fallback estricto
         return 'Lo siento, soy un Asistente del IVSS configurado exclusivamente para orientación de trámites y consultas institucionales. No cuento con IA externa ni conexión a Internet abierta para responder a esa solicitud. ¿Te puedo ayudar buscando alguna farmacia, centro de salud, trámite de RRHH o del Sistema Tiuna?';
     }
 
@@ -128,5 +212,44 @@ class ProcesarMensajeChatbotAction
             }
         }
         return false;
+    }
+
+    private function normalizarTexto(string $texto): string
+    {
+        $texto = strtolower(trim($texto));
+        // Quitar acentos
+        $texto = str_replace(
+            ['á', 'é', 'í', 'ó', 'ú', 'ä', 'ë', 'ï', 'ö', 'ü', 'ñ'],
+            ['a', 'e', 'i', 'o', 'u', 'a', 'e', 'i', 'o', 'u', 'n'],
+            $texto
+        );
+        // Quitar signos de puntuación comunes que puedan afectar el match exacto
+        $texto = str_replace(['?', '¿', '!', '¡', '.', ';', ':', ','], '', $texto);
+        
+        return trim($texto);
+    }
+
+    private function normalizarEstado(string $estado): string
+    {
+        $estado = strtolower($estado);
+        if (str_contains($estado, 'capital') || str_contains($estado, 'caracas') || str_contains($estado, 'federal')) {
+            return 'Distrito Capital';
+        }
+        
+        $estados = ['amazonas', 'anzoategui', 'apure', 'aragua', 'barinas', 'bolivar', 'carabobo', 'cojedes', 'delta amacuro', 'falcon', 'guarico', 'lara', 'merida', 'miranda', 'monagas', 'nueva esparta', 'portuguesa', 'sucre', 'tachira', 'trujillo', 'vargas', 'yaracuy', 'zulia'];
+        
+        $estadoSinAcentos = str_replace(
+            ['á', 'é', 'í', 'ó', 'ú', 'ä', 'ë', 'ï', 'ö', 'ü'],
+            ['a', 'e', 'i', 'o', 'u', 'a', 'e', 'i', 'o', 'u'],
+            $estado
+        );
+
+        foreach ($estados as $est) {
+            if (str_contains($estadoSinAcentos, $est)) {
+                return ucfirst($est);
+            }
+        }
+
+        return ucfirst($estado);
     }
 }

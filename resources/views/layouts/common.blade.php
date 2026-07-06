@@ -22,6 +22,9 @@
     @session('error')
         <x-toast :data="['danger', $value]" />
     @endsession
+    @if($errors->any())
+        <x-toast :data="['danger', $errors->first()]" />
+    @endif
     @yield('layoutContent')
     @include('layouts/sections/scripts')
 </body>

@@ -52,15 +52,14 @@
             {{-- PUBLICAR / DESPUBLICAR --}}
             @hasanyrole('admin|aprobador')
                 @if($noticia->publicado)
-                    <form action="{{ route('admin.noticias.publicar', $noticia->id) }}" method="POST" class="inline"
-                          onsubmit="return confirm('¿Deseas regresar esta noticia a borrador?')">
-                        @csrf
-                        <button type="submit"
-                            class="py-1.5 px-2.5 inline-flex items-center gap-x-1 text-xs font-medium rounded-lg border border-yellow-200 bg-yellow-50 text-yellow-700 hover:bg-yellow-100 dark:bg-yellow-900/20 dark:border-yellow-800 dark:text-yellow-400 transition-all"
-                            title="Despublicar">
-                            <i class="bx bx-hide"></i>
-                        </button>
-                    </form>
+                      <button type="button"
+                          class="btn-confirmar-accion py-1.5 px-2.5 inline-flex items-center gap-x-1 text-xs font-medium rounded-lg border border-yellow-200 bg-yellow-50 text-yellow-700 hover:bg-yellow-100 dark:bg-yellow-900/20 dark:border-yellow-800 dark:text-yellow-400 transition-all inline"
+                          data-action="{{ route('admin.noticias.publicar', $noticia->id) }}"
+                          data-method="POST"
+                          data-mensaje="¿Deseas regresar esta noticia a borrador?"
+                          title="Despublicar">
+                          <i class="bx bx-hide"></i>
+                      </button>
                 @else
                     <button type="button"
                         data-accion="aprobar"

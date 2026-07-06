@@ -61,13 +61,9 @@
                                                 <i class="bx bx-edit text-lg"></i>
                                             </a>
                                             
-                                            <form action="{{ route('admin.actividades.eliminar', $actividad->id) }}" method="POST" class="inline-block" onsubmit="return confirm('¿Estás seguro de eliminar esta actividad y todo su contenido multimedia?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent text-red-600 hover:text-red-800 disabled:opacity-50 disabled:pointer-events-none dark:text-red-500 dark:hover:text-red-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" title="Eliminar">
-                                                    <i class="bx bx-trash text-lg"></i>
-                                                </button>
-                                            </form>
+                                              <button type="button" class="btn-confirmar-accion inline-block inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent text-red-600 hover:text-red-800 disabled:opacity-50 disabled:pointer-events-none dark:text-red-500 dark:hover:text-red-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" data-action="{{ route('admin.actividades.eliminar', $actividad->id) }}" data-method="DELETE" data-mensaje="¿Estás seguro de eliminar esta actividad y todo su contenido multimedia?" title="Eliminar">
+                                                  <i class="bx bx-trash text-lg"></i>
+                                              </button>
                                         </div>
                                     </td>
                                 </tr>
@@ -96,4 +92,6 @@
             @endif
         </x-card>
     </x-section>
+
+    <x-modal-confirmar />
 @endsection

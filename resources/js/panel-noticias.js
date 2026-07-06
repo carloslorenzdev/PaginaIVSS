@@ -188,7 +188,7 @@ document.addEventListener('keydown', e => {
 });
 
 // Event listeners para reemplazar los onchange inline (por CSP)
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbo:load', () => {
     const cl = document.getElementById('panel-confirm-lectura');
     if (cl) cl.addEventListener('change', panelVerificarLectura);
 

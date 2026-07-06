@@ -50,8 +50,8 @@
         "> 0.2%",
         "last 5 versions",
         "not dead",
-        "Chrome >= 105",
-        "Firefox >= 105",
+        "Chrome >= 60",
+        "Firefox >= 60",
         "ie >= 11"
     ]
 }
