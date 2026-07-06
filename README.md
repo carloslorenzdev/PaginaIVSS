@@ -12,7 +12,7 @@ Este es el código fuente del portal web del Instituto Venezolano de los Seguros
 
 ## Instalación y Configuración
 
-1. Clonar o subir los archivos del proyecto al servidor web.
+1. Clonar el repositorio
 
 2. Instalar y configurar Redis (Requerido en Linux/Debian):
 ```bash
