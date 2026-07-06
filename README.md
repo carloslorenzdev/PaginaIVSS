@@ -1,15 +1,20 @@
-## Pagina IVSS
+## Página IVSS
+
+Este es el código fuente del portal web del Instituto Venezolano de los Seguros Sociales (IVSS).
 
 ## Requerimientos
 
-- PHP 8.4
-- Nodejs 22.15
-- Apache 2.4.62
-- Redis 7.4.4
+- PHP 8.2 o superior (Recomendado 8.4)
+- Node.js 20 o superior
+- Base de datos (PostgreSQL)
+- Servidor en caché (Redis)
+- Composer
 
-## Instalación
+## Instalación y Configuración
 
-1. Instalar y configurar Redis (Requerido en Debian)
+1. Clonar o subir los archivos del proyecto al servidor web.
+
+2. Instalar y configurar Redis (Requerido en Linux/Debian):
 ```bash
 sudo apt update
 sudo apt install redis-server php-redis
@@ -17,112 +22,71 @@ sudo systemctl enable redis-server
 sudo systemctl start redis-server
 ```
 
-2. Copiar archivo `.env.example` a `.env`
+3. Copiar el archivo de configuración de ejemplo:
 ```bash
 cp .env.example .env
 ```
 
-3. Agregar valores a variables de entorno
+4. Abrir el archivo `.env` y configurar las variables de entorno, prestando especial atención a la base de datos y a Redis:
 ```ini
-DB_CONNECTION=
-DB_HOST=
-DB_PORT=
-DB_DATABASE=
-DB_USERNAME=
+DB_CONNECTION=pgsql
+DB_HOST=localhost
+DB_PORT=5432
+DB_DATABASE=pagina_ivss
+DB_USERNAME=postgres
 DB_PASSWORD=
+
+# Configuración de Redis
+REDIS_CLIENT=phpredis
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+# Uso de Redis en el sistema
+CACHE_STORE=redis
+SESSION_DRIVER=redis
+QUEUE_CONNECTION=redis
 ```
 
-4. Instalar paquetes para *composer* y cachear aplicación
+5. Instalar las dependencias de PHP (Composer):
 ```bash
-# composer
-composer install --prefer-dist --no-dev -o
-
-# cache
-php artisan config:cache
-php artisan optimize
+composer install --optimize-autoloader --no-dev
 ```
 
-5. Instalar paquetes de *npm* y crear *build*
+6. Instalar las dependencias de Frontend (Node.js) y compilar los recursos (CSS/JS):
 ```bash
 npm ci
-
-# build
 npm run build
 ```
 
-6. Crear *key* y enlaces de almacenamiento para la aplicación
+7. Generar la clave única de la aplicación y crear los enlaces simbólicos de almacenamiento:
 ```bash
 php artisan key:generate
 php artisan storage:link
 ```
 
-7. Configurar permisos de directorios (Importante en Debian)
+8. Configurar permisos de directorios (Importante en servidores Linux/Debian):
 ```bash
 sudo chown -R www-data:www-data storage bootstrap/cache
 sudo chmod -R 775 storage bootstrap/cache
 ```
 
-8. Ejecutar migraciones con seeders
+9. Ejecutar las migraciones y seeders para estructurar y poblar la base de datos inicial:
 ```bash
 php artisan migrate --seed
+php artisan db:seed --class=UserSeeder
+php artisan db:seed --class=RoleSeeder
+php artisan db:seed --class=ChatbotConocimientoSeeder
+php artisan db:seed --class=DirectoriosSeeder
 ```
 
-9. Procesos en cola
+10. (Opcional - Recomendado en Producción) Optimizar la caché general del sistema:
 ```bash
-php artisan queue:work database --queue=telegram,telegram_activacion,telegram_otp,default --backoff=3 --max-time=3600 --sleep=3 --force
+php artisan optimize:clear
 ```
 
-```ini
-# .env
-# tiempo exipracion de un trabajo
-DB_QUEUE_RETRY_AFTER=300
-```
-- Backoff `--backoff`: tiempo (segundos) que debe esperar antes de REINTENTAR un trabajo que generó excepción.
-- MaxTime `--max-time`: tiempo (segundos) máximo de ejecución para luego reiniciarse.
-- Sleep `--sleep`: tiempo (segundos) de espera para ejecutar otro trabajo.
-- Force `--force`: ejecute trabajo aun estando en mantenimiento la aplicacion.
-
-10. Configuración Supervisord para procesos de colas
+## Ejecución en entorno local (Desarrollo)
+Si se desea correr el proyecto en una computadora local de forma rápida, utilizar el servidor de desarrollo de Laravel:
 ```bash
-# Instalacion
-sudo apt-get install supervisor
-
-# Crear archivo de configuracion en:
-cd /etc/supervisor/conf.d
-
-nano laravel-worker.conf
-```
-
-# Archivo de configuración
-```ini
-[program:laravel-worker]
-process_name=%(program_name)s_%(process_num)02d
-command=php /var/www/html/pagina_ivss/artisan queue:work database --queue=telegram,telegram_activacion,telegram_otp,default --backoff=3 --max-time=3600 --sleep=3 --force
-autostart=true
-autorestart=true
-stopasgroup=true
-killasgroup=true
-user=www-data
-numprocs=8
-redirect_stderr=true
-stdout_logfile=/var/www/html/pagina_ivss/storage/logs/supervisor_worker.log
-stopwaitsecs=3600
-logfile_maxbytes=50MB
-logfile_backups=20
-```
-
-# Iniciar supervisor
-```bash
-sudo supervisorctl reread
-sudo supervisorctl update
-sudo supervisorctl start "laravel-worker:*"
-```
-
-11. Configuración de Programación de Tareas
-```bash
-# PARA PRODUCCION (Agregar al crontab del servidor: sudo crontab -e)
-* * * * * cd /var/www/html/pagina_ivss && php artisan schedule:run >> /dev/null 2>&1
-
-# PARA DESARROLLO
-php artisan schedule:work
+php artisan serve
 ```
