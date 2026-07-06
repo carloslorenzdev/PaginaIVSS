@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('turbo:load', function() {
     const iframe = document.getElementById('livePreviewFrame');
     const loader = document.getElementById('iframeLoader');
     let currentPreviewType = '';

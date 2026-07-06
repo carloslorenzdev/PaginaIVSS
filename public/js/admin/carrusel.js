@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('turbo:load', function() {
     const toggleBtns = document.querySelectorAll('.btn-toggle-edit');
     
     toggleBtns.forEach(btn => {

@@ -124,5 +124,5 @@
 @endsection
 
 @push('page-scripts')
-    <script src="{{ asset('js/admin/rendimiento.js') }}" nonce="{{ app('csp-nonce') ?? '' }}"></script>
+    <script src="{{ asset('js/admin/rendimiento.js') }}?v={{ filemtime(public_path('js/admin/rendimiento.js')) }}" nonce="{{ app('csp-nonce') ?? '' }}"></script>
 @endpush

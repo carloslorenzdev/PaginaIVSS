@@ -15,6 +15,7 @@
             <x-titulo titulo="{{ $titulo }}" />
             
             <button id="btn-nuevo-registro"
+                data-store-url="{{ route('admin.directorios.store') }}"
                 class="inline-flex items-center gap-2 rounded-lg bg-teal-600 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-700 transition-colors">
                 <i class="bx bx-plus"></i> Nuevo Registro
             </button>

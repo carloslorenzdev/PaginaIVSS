@@ -138,6 +138,6 @@
 <script id="directorio-data" type="application/json">
     {!! json_encode($data) !!}
 </script>
-<script src="{{ asset('js/publico/buscador-directorios.js') }}" nonce="{{ app('csp-nonce') ?? '' }}"></script>
+<script src="{{ asset('js/publico/buscador-directorios.js') . '?v=' . filemtime(public_path('js/publico/buscador-directorios.js')) }}" nonce="{{ app('csp-nonce') ?? '' }}"></script>
 
 @endsection
