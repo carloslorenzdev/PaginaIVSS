@@ -1,4 +1,4 @@
-?@extends('layouts/app')
+@extends('layouts/app')
 
 @section('titulo', 'Preguntas sin Respuesta')
 
