@@ -1,4 +1,4 @@
-﻿@extends('layouts/app')
+?@extends('layouts/app')
 
 @section('titulo', 'Roles del Sistema')
 
@@ -61,7 +61,7 @@
                                 </p>
                             </div>
 
-                            {{-- ESTADÃSTICAS, ACCIONES --}}
+                            {{-- ESTADÍSTICAS, ACCIONES --}}
                             <div class="flex flex-wrap items-center gap-6 lg:gap-8">
                                 
                                 {{-- USUARIOS CON ESTE ROL --}}
@@ -132,7 +132,7 @@
                     <div>
                         <label class="block text-sm font-medium mb-1 text-gray-700 dark:text-neutral-300">Nombre del Rol <span class="text-red-500">*</span></label>
                         <input type="text" name="name" id="input-nombre" class="w-full py-2.5 px-3 block border-gray-200 rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400" required maxlength="255" placeholder="ej. editor, supervisor">
-                        <p class="text-xs text-gray-500 mt-1">Utilice minÃºsculas preferiblemente.</p>
+                        <p class="text-xs text-gray-500 mt-1">Utilice minúsculas preferiblemente.</p>
                     </div>
                 </div>
                 <div class="flex justify-end gap-3 border-t px-6 py-4 dark:border-neutral-700">
@@ -155,10 +155,10 @@
                 </div>
                 <div>
                     <h3 class="text-lg font-bold text-gray-900 dark:text-white">Eliminar Rol</h3>
-                    <p class="text-sm text-gray-500 dark:text-neutral-400">Esta acciÃ³n no se puede deshacer</p>
+                    <p class="text-sm text-gray-500 dark:text-neutral-400">Esta acción no se puede deshacer</p>
                 </div>
             </div>
-            <p class="text-sm text-gray-700 dark:text-neutral-300 mb-2">Â¿Confirmas que deseas eliminar permanentemente el rol:</p>
+            <p class="text-sm text-gray-700 dark:text-neutral-300 mb-2">¿Confirmas que deseas eliminar permanentemente el rol:</p>
             <p class="font-semibold text-gray-900 dark:text-white mb-5 italic" id="modal-eliminar-nombre"></p>
             
             <form id="form-eliminar" action="" method="POST">

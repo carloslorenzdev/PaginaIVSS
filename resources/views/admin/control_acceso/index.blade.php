@@ -1,4 +1,4 @@
-﻿@extends('layouts/app')
+?@extends('layouts/app')
 
 @section('titulo', 'Control de Acceso')
 
@@ -24,7 +24,7 @@
                 </div>
                 <div class="ml-3">
                     <p class="text-sm text-blue-700 dark:text-blue-400">
-                        Selecciona un rol de la lista para administrar quÃ© mÃ³dulos puede ver y quÃ© acciones puede realizar dentro del panel.
+                        Selecciona un rol de la lista para administrar qué módulos puede ver y qué acciones puede realizar dentro del panel.
                     </p>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                                 </div>
                             </div>
 
-                            {{-- ESTADÃSTICAS Y ACCIONES --}}
+                            {{-- ESTADÍSTICAS Y ACCIONES --}}
                             <div class="flex items-center gap-6">
                                 <div>
                                     <p class="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-neutral-500 mb-1">Permisos Actuales</p>
@@ -75,7 +75,7 @@
                     <div class="text-center py-10">
                         <i class="bx bx-shield-x text-5xl text-gray-300 mb-3"></i>
                         <p class="text-gray-500 font-medium">No hay roles disponibles para configurar.</p>
-                        <p class="text-sm text-gray-400">Cree roles primero en el mÃ³dulo de Roles.</p>
+                        <p class="text-sm text-gray-400">Cree roles primero en el módulo de Roles.</p>
                     </div>
                 @endforelse
             </div>

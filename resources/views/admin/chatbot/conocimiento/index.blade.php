@@ -118,8 +118,8 @@
                     
                     <div class="p-6 space-y-4">
                         <div>
-                            <label class="block text-sm font-medium mb-1 dark:text-white">Pregunta / TÃ­tulo</label>
-                            <input type="text" name="pregunta" id="input-pregunta" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400" required placeholder="Ej: Requisitos PensiÃ³n Vejez">
+                            <label class="block text-sm font-medium mb-1 dark:text-white">Pregunta / Título</label>
+                            <input type="text" name="pregunta" id="input-pregunta" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400" required placeholder="Ej: Requisitos Pensión Vejez">
                         </div>
                         
                         <div>
@@ -129,7 +129,7 @@
                         
                         <div>
                             <label class="block text-sm font-medium mb-1 dark:text-white">Respuesta</label>
-                            <textarea name="respuesta" id="input-respuesta" rows="5" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400" required placeholder="El mensaje que enviarÃ¡ el bot..."></textarea>
+                            <textarea name="respuesta" id="input-respuesta" rows="5" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400" required placeholder="El mensaje que enviará el bot..."></textarea>
                         </div>
 
                         <div class="flex items-center">
@@ -167,10 +167,10 @@
                 </div>
                 <div>
                     <h3 class="text-lg font-bold text-gray-900 dark:text-white">Eliminar Conocimiento</h3>
-                    <p class="text-sm text-gray-500 dark:text-neutral-400">Esta acciÃ³n no se puede deshacer</p>
+                    <p class="text-sm text-gray-500 dark:text-neutral-400">Esta acción no se puede deshacer</p>
                 </div>
             </div>
-            <p class="text-sm text-gray-700 dark:text-neutral-300 mb-2">Â¿Confirmas que deseas eliminar este registro del chatbot?</p>
+            <p class="text-sm text-gray-700 dark:text-neutral-300 mb-2">¿Confirmas que deseas eliminar este registro del chatbot?</p>
             
             <div class="flex gap-3 justify-end border-t pt-4 dark:border-neutral-700 mt-5">
                 <button type="button" id="btn-cerrar-eliminar"

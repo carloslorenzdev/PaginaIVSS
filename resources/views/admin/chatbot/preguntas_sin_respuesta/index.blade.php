@@ -1,4 +1,4 @@
-﻿@extends('layouts/app')
+?@extends('layouts/app')
 
 @section('titulo', 'Preguntas sin Respuesta')
 
@@ -17,7 +17,7 @@
                 </div>
                 <div class="ml-3">
                     <p class="text-sm text-blue-700 dark:text-blue-400">
-                        AquÃ­ aparecen los mensajes que los usuarios han enviado al Chatbot y el sistema no ha podido interpretar. Puedes agregarlos a la Base de Conocimiento para entrenar al bot.
+                        Aquí aparecen los mensajes que los usuarios han enviado al Chatbot y el sistema no ha podido interpretar. Puedes agregarlos a la Base de Conocimiento para entrenar al bot.
                     </p>
                 </div>
             </div>
@@ -65,7 +65,7 @@
             @empty
                 <div class="text-center py-10 bg-white border rounded-xl dark:bg-neutral-900 dark:border-neutral-700 text-gray-500 dark:text-neutral-400">
                     <i class="bx bx-check-shield text-5xl mb-3 text-teal-500/50"></i>
-                    <h3 class="text-lg font-bold text-gray-700 dark:text-neutral-300">Â¡Bandeja Limpia!</h3>
+                    <h3 class="text-lg font-bold text-gray-700 dark:text-neutral-300">¡Bandeja Limpia!</h3>
                     <p class="mt-2 text-sm">El Chatbot ha podido responder a todas las consultas de los usuarios recientes.</p>
                 </div>
             @endforelse
@@ -86,10 +86,10 @@
                 </div>
                 <div>
                     <h3 class="text-lg font-bold text-gray-900 dark:text-white">Ignorar y Eliminar</h3>
-                    <p class="text-sm text-gray-500 dark:text-neutral-400">Esta acciÃ³n no se puede deshacer</p>
+                    <p class="text-sm text-gray-500 dark:text-neutral-400">Esta acción no se puede deshacer</p>
                 </div>
             </div>
-            <p class="text-sm text-gray-700 dark:text-neutral-300 mb-2">Â¿Confirmas que deseas eliminar permanentemente este registro?</p>
+            <p class="text-sm text-gray-700 dark:text-neutral-300 mb-2">¿Confirmas que deseas eliminar permanentemente este registro?</p>
             
             <div class="flex gap-3 justify-end border-t pt-4 dark:border-neutral-700 mt-5">
                 <button type="button" id="btn-cerrar-eliminar"

@@ -1,4 +1,4 @@
-﻿<?php
+?<?php
 
 namespace Database\Seeders;
 
@@ -11,55 +11,55 @@ class ChatbotNuevasPalabrasSeeder extends Seeder
     {
         $datos = [
             [
-                'pregunta' => 'Requisitos PensiÃ³n Vejez Detallado',
-                'palabras_clave' => 'pension, vejez, requisitos, jubilacion, edad, aÃ±os, cumplir, solicitar',
-                'respuesta' => 'REQUISITOS PARA PENSIÃ“N DE VEJEZ (IVSS):
+                'pregunta' => 'Requisitos Pensión Vejez Detallado',
+                'palabras_clave' => 'pension, vejez, requisitos, jubilacion, edad, años, cumplir, solicitar',
+                'respuesta' => 'REQUISITOS PARA PENSI�?N DE VEJEZ (IVSS):
 
-1. Tener 60 aÃ±os o mÃ¡s (hombres) o 55 aÃ±os o mÃ¡s (mujeres).
-2. Haber cotizado un mÃ­nimo de 750 semanas (aproximadamente 14.5 aÃ±os).
+1. Tener 60 años o más (hombres) o 55 años o más (mujeres).
+2. Haber cotizado un mínimo de 750 semanas (aproximadamente 14.5 años).
 3. Estar cesante (no estar laborando activamente).
-4. Presentar: cÃ©dula de identidad laminada, constancia de trabajo, solvencia de cotizaciones.
+4. Presentar: cédula de identidad laminada, constancia de trabajo, solvencia de cotizaciones.
 
-Puedes iniciar el trÃ¡mite en cualquier oficina del IVSS presentando los recaudos. El proceso puede tomar entre 30 y 90 dÃ­as hÃ¡biles.',
+Puedes iniciar el trámite en cualquier oficina del IVSS presentando los recaudos. El proceso puede tomar entre 30 y 90 días hábiles.',
                 'activo' => true
             ],
             [
-                'pregunta' => 'Monto PensiÃ³n Vejez',
+                'pregunta' => 'Monto Pensión Vejez',
                 'palabras_clave' => 'pension, vejez, monto, cuanto, pago, bono, cantidad, bolivares',
-                'respuesta' => 'El monto de la pensiÃ³n de vejez del IVSS se calcula basado en el promedio de las cotizaciones de los Ãºltimos 5 aÃ±os (250 semanas).
+                'respuesta' => 'El monto de la pensión de vejez del IVSS se calcula basado en el promedio de las cotizaciones de los últimos 5 años (250 semanas).
 
-Actualmente, la pensiÃ³n mÃ­nima es equivalente al salario mÃ­nimo nacional. Para conocer tu monto estimado, debes solicitar una liquidaciÃ³n de cotizaciones en la oficina del IVSS.
+Actualmente, la pensión mínima es equivalente al salario mínimo nacional. Para conocer tu monto estimado, debes solicitar una liquidación de cotizaciones en la oficina del IVSS.
 
-Los montos se actualizan periÃ³dicamente segÃºn el decreto del Ejecutivo Nacional.',
+Los montos se actualizan periódicamente según el decreto del Ejecutivo Nacional.',
                 'activo' => true
             ],
             [
-                'pregunta' => 'Requisitos PensiÃ³n Invalidez',
+                'pregunta' => 'Requisitos Pensión Invalidez',
                 'palabras_clave' => 'pension, invalidez, discapacidad, incapacidad, enfermedad, requisitos',
-                'respuesta' => 'REQUISITOS PARA PENSIÃ“N POR INVALIDEZ:
+                'respuesta' => 'REQUISITOS PARA PENSI�?N POR INVALIDEZ:
 
-1. Tener una disminuciÃ³n de la capacidad fÃ­sica o mental igual o superior al 66%.
-2. Haber cotizado al menos 4 semanas en los Ãºltimos 2 aÃ±os.
-3. No estar recibiendo otra pensiÃ³n del IVSS.
+1. Tener una disminución de la capacidad física o mental igual o superior al 66%.
+2. Haber cotizado al menos 4 semanas en los últimos 2 años.
+3. No estar recibiendo otra pensión del IVSS.
 
-Documentos necesarios: cÃ©dula de identidad, informes mÃ©dicos originales, historia clÃ­nica, constancia de cotizaciones.
+Documentos necesarios: cédula de identidad, informes médicos originales, historia clínica, constancia de cotizaciones.
 
-La evaluaciÃ³n la realiza la ComisiÃ³n de EvaluaciÃ³n de Invalidez del IVSS.',
+La evaluación la realiza la Comisión de Evaluación de Invalidez del IVSS.',
                 'activo' => true
             ],
             [
-                'pregunta' => 'PensiÃ³n de Sobrevivencia',
+                'pregunta' => 'Pensión de Sobrevivencia',
                 'palabras_clave' => 'pension, sobrevivencia, viudez, viuda, viudo, muerte, fallecimiento, herederos',
-                'respuesta' => 'PENSIÃ“N DE SOBREVIVENCIA:
+                'respuesta' => 'PENSI�?N DE SOBREVIVENCIA:
 
 Pueden solicitarla:
-- El cÃ³nyuge o viudo(a) que haya vivido en comunidad con el fallecido.
-- Los hijos menores de 18 aÃ±os (o hasta 25 aÃ±os si estudian).
-- Los padres si dependÃ­an econÃ³micamente del fallecido.
+- El cónyuge o viudo(a) que haya vivido en comunidad con el fallecido.
+- Los hijos menores de 18 años (o hasta 25 años si estudian).
+- Los padres si dependían económicamente del fallecido.
 
-Requisitos: acta de defunciÃ³n, acta de matrimonio, partidas de nacimiento de los hijos, cÃ©dula de identidad del solicitante.
+Requisitos: acta de defunción, acta de matrimonio, partidas de nacimiento de los hijos, cédula de identidad del solicitante.
 
-El monto equivale al 60% de la pensiÃ³n que recibÃ­a o hubiera recibido el causante.',
+El monto equivale al 60% de la pensión que recibía o hubiera recibido el causante.',
                 'activo' => true
             ],
             [
@@ -67,31 +67,31 @@ El monto equivale al 60% de la pensiÃ³n que recibÃ­a o hubiera recibido el c
                 'palabras_clave' => 'incapacidad, parcial, accidente, trabajo, laboral, lesion, reposo',
                 'respuesta' => 'INCAPACIDAD PARCIAL:
 
-Si sufriste un accidente o enfermedad de origen laboral con secuelas permanentes pero que no te incapacitan totalmente, puedes optar a una indemnizaciÃ³n por incapacidad parcial.
+Si sufriste un accidente o enfermedad de origen laboral con secuelas permanentes pero que no te incapacitan totalmente, puedes optar a una indemnización por incapacidad parcial.
 
 Debes:
-1. Acudir a la medicatura del IVSS para evaluaciÃ³n.
-2. Presentar informe mÃ©dico detallado.
-3. Reporte de la inspectorÃ­a del trabajo.
+1. Acudir a la medicatura del IVSS para evaluación.
+2. Presentar informe médico detallado.
+3. Reporte de la inspectoría del trabajo.
 
-El monto se calcula segÃºn el porcentaje de discapacidad determinado por los mÃ©dicos del IVSS.',
+El monto se calcula según el porcentaje de discapacidad determinado por los médicos del IVSS.',
                 'activo' => true
             ],
             [
-                'pregunta' => 'Cobro de PensiÃ³n Bancos',
+                'pregunta' => 'Cobro de Pensión Bancos',
                 'palabras_clave' => 'cobro, pension, banco, tarjeta, debito, deposito, retiro, efectivo',
-                'respuesta' => 'COBRO DE PENSIÃ“N:
+                'respuesta' => 'COBRO DE PENSI�?N:
 
-La pensiÃ³n se deposita mensualmente en la cuenta bancaria que hayas registrado en el IVSS. Los bancos autorizados son:
+La pensión se deposita mensualmente en la cuenta bancaria que hayas registrado en el IVSS. Los bancos autorizados son:
 - Banco de Venezuela
 - Banco Mercantil
 - Banco Provincial
 - Banesco
-- Banco Nacional de CrÃ©dito
+- Banco Nacional de Crédito
 
-Si no tienes cuenta, puedes solicitar la Tarjeta de DÃ©bito del IVSS.
+Si no tienes cuenta, puedes solicitar la Tarjeta de Débito del IVSS.
 
-Las fechas de pago se publican en la pÃ¡gina web del IVSS y suelen ser la primera semana de cada mes.',
+Las fechas de pago se publican en la página web del IVSS y suelen ser la primera semana de cada mes.',
                 'activo' => true
             ],
             [
@@ -101,34 +101,34 @@ Las fechas de pago se publican en la pÃ¡gina web del IVSS y suelen ser la prim
 
 El IVSS suministra medicamentos de alto costo para tratamientos de:
 - VIH/SIDA
-- CÃ¡ncer (oncolÃ³gicos)
+- Cáncer (oncológicos)
 - Enfermedades renales
 - Hepatitis B y C
 - Artritis reumatoide
-- Esclerosis mÃºltiple
+- Esclerosis múltiple
 
 Para retirarlos:
-1. Acude a la farmacia del hospital IVSS mÃ¡s cercano con tu receta mÃ©dica.
-2. Presenta cÃ©dula de identidad y el informe mÃ©dico que justifique el tratamiento.
-3. El mÃ©dico del IVSS evaluarÃ¡ tu caso y autorizarÃ¡ la entrega.
+1. Acude a la farmacia del hospital IVSS más cercano con tu receta médica.
+2. Presenta cédula de identidad y el informe médico que justifique el tratamiento.
+3. El médico del IVSS evaluará tu caso y autorizará la entrega.
 
-Los retiros son mensuales. Debes llevar tu historial mÃ©dico actualizado.',
+Los retiros son mensuales. Debes llevar tu historial médico actualizado.',
                 'activo' => true
             ],
             [
-                'pregunta' => 'Horarios AtenciÃ³n',
+                'pregunta' => 'Horarios Atención',
                 'palabras_clave' => 'horario, atencion, oficina, abierto, horas, dias, horarios',
-                'respuesta' => 'HORARIOS DE ATENCIÃ“N DEL IVSS:
+                'respuesta' => 'HORARIOS DE ATENCI�?N DEL IVSS:
 
 Oficinas Administrativas:
 - Lunes a Viernes: 8:00 am a 4:00 pm
-- SÃ¡bados y Domingos: Cerrado
+- Sábados y Domingos: Cerrado
 
 Centros de Salud (Hospitales y Ambulatorios):
 - Emergencias: 24 horas
 - Consultas: Lunes a Viernes 7:00 am a 3:00 pm
 
-LÃ­nea TelefÃ³nica 0800-IVSS:
+Línea Telefónica 0800-IVSS:
 - Lunes a Viernes 8:00 am a 4:00 pm',
                 'activo' => true
             ],
@@ -137,7 +137,7 @@ LÃ­nea TelefÃ³nica 0800-IVSS:
                 'palabras_clave' => 'contacto, telefono, correo, email, whatsapp, comunicarse, atencion',
                 'respuesta' => 'CANALES DE CONTACTO DEL IVSS:
 
-TelÃ©fono: 0800-IVSS (0800-48777)
+Teléfono: 0800-IVSS (0800-48777)
 Sitio Web: https://www.ivss.gob.ve
 Correo: atencionciudadano@ivss.gob.ve
 
@@ -145,21 +145,21 @@ Redes Sociales:
 - Twitter/X: @ivssonline
 - Instagram: @ivss_oficial
 
-TambiÃ©n puedes acudir personalmente a cualquiera de nuestras oficinas a nivel nacional.',
+También puedes acudir personalmente a cualquiera de nuestras oficinas a nivel nacional.',
                 'activo' => true
             ],
             [
                 'pregunta' => 'Cambio de Datos',
                 'palabras_clave' => 'cambio, datos, actualizar, direccion, telefono, registro, actualizacion',
-                'respuesta' => 'ACTUALIZACIÃ“N DE DATOS:
+                'respuesta' => 'ACTUALIZACI�?N DE DATOS:
 
-Para actualizar tus datos en el IVSS (direcciÃ³n, telÃ©fono, correo electrÃ³nico):
+Para actualizar tus datos en el IVSS (dirección, teléfono, correo electrónico):
 
-1. Acude a la oficina del IVSS mÃ¡s cercana con tu cÃ©dula de identidad.
-2. Solicita el formulario de actualizaciÃ³n de datos.
+1. Acude a la oficina del IVSS más cercana con tu cédula de identidad.
+2. Solicita el formulario de actualización de datos.
 3. Completa y entrega el formulario en la misma oficina.
 
-TambiÃ©n puedes hacerlo a travÃ©s de la pÃ¡gina web www.ivss.gob.ve si estÃ¡s registrado en el sistema en lÃ­nea.',
+También puedes hacerlo a través de la página web www.ivss.gob.ve si estás registrado en el sistema en línea.',
                 'activo' => true
             ],
             [
@@ -169,10 +169,10 @@ TambiÃ©n puedes hacerlo a travÃ©s de la pÃ¡gina web www.ivss.gob.ve si est
 
 Puedes solicitar tu historial de cotizaciones o solvencia de semanas cotizadas:
 
-1. En lÃ­nea: A travÃ©s del portal www.ivss.gob.ve (secciÃ³n "Consulta de Cotizaciones").
-2. Presencial: En cualquier oficina del IVSS presentando tu cÃ©dula de identidad.
+1. En línea: A través del portal www.ivss.gob.ve (sección "Consulta de Cotizaciones").
+2. Presencial: En cualquier oficina del IVSS presentando tu cédula de identidad.
 
-El certificado es necesario para trÃ¡mites de pensiÃ³n, prestaciones sociales y otros beneficios.',
+El certificado es necesario para trámites de pensión, prestaciones sociales y otros beneficios.',
                 'activo' => true
             ],
             [
@@ -180,13 +180,13 @@ El certificado es necesario para trÃ¡mites de pensiÃ³n, prestaciones sociale
                 'palabras_clave' => 'prestaciones, sociales, liquidacion, antiguedad, fideicomiso',
                 'respuesta' => 'PRESTACIONES SOCIALES:
 
-Las prestaciones sociales son un derecho de todo trabajador segÃºn la LOTTT. El IVSS no las paga directamente:
+Las prestaciones sociales son un derecho de todo trabajador según la LOTTT. El IVSS no las paga directamente:
 
-- Son calculadas y pagadas por el empleador al finalizar la relaciÃ³n laboral.
-- Equivalen a 30 dÃ­as de salario por cada aÃ±o de servicio.
+- Son calculadas y pagadas por el empleador al finalizar la relación laboral.
+- Equivalen a 30 días de salario por cada año de servicio.
 - El fideicomiso se deposita en el banco que el trabajador elija.
 
-Para mÃ¡s informaciÃ³n, consulta con la InspectorÃ­a del Trabajo de tu localidad.',
+Para más información, consulta con la Inspectoría del Trabajo de tu localidad.',
                 'activo' => true
             ],
         ];
