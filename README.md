@@ -77,6 +77,7 @@ php artisan migrate --seed
 php artisan db:seed --class=UserSeeder
 php artisan db:seed --class=RoleSeeder
 php artisan db:seed --class=ChatbotConocimientoSeeder
+php artisan db:seed --class=ChatbotNuevasPalabrasSeeder
 php artisan db:seed --class=DirectoriosSeeder
 ```
 
