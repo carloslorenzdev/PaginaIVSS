@@ -190,7 +190,7 @@ class ProcesarMensajeChatbotAction
         }
 
         if ($mejorConocimiento && $maxPuntaje > 0) {
-            return $mejorConocimiento->respuesta;
+            return nl2br($mejorConocimiento->respuesta);
         }
 
         // 4. Fallback estricto - Guardar la pregunta sin respuesta

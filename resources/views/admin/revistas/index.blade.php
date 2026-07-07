@@ -1,4 +1,4 @@
-@extends('layouts/app')
+﻿@extends('layouts/app')
 
 @section('titulo', 'Revistas Digitales')
 
@@ -50,10 +50,10 @@
 
             <div class="space-y-4">
                 @forelse($revistas as $revista)
-                    <x-card class="p-4 hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-colors">
+                    <x-card class="p-4 searchable-item hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-colors">
                         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                             
-                            {{-- TÍTULO Y ARCHIVO --}}
+                            {{-- TÃTULO Y ARCHIVO --}}
                             <div class="flex-1 min-w-0">
                                 <p class="font-bold text-gray-900 dark:text-white text-base truncate">
                                     {{ $revista->titulo }}
@@ -80,15 +80,15 @@
                                     @endif
                                 </div>
 
-                                {{-- EDICIÓN --}}
+                                {{-- EDICIÃ“N --}}
                                 <div>
-                                    <p class="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-neutral-500 mb-1">Edición</p>
+                                    <p class="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-neutral-500 mb-1">EdiciÃ³n</p>
                                     <p class="text-sm font-medium text-gray-700 dark:text-neutral-300">{{ $revista->edicion ?? 'N/A' }}</p>
                                 </div>
 
                                 {{-- FECHA --}}
                                 <div>
-                                    <p class="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-neutral-500 mb-1">Publicación</p>
+                                    <p class="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-neutral-500 mb-1">PublicaciÃ³n</p>
                                     <p class="text-sm font-medium text-gray-700 dark:text-neutral-300">{{ $revista->fecha_publicacion->format('d/m/Y') }}</p>
                                 </div>
 
@@ -131,7 +131,7 @@
                             <i class="bx bx-book-open text-3xl text-gray-400"></i>
                         </div>
                         <h3 class="text-lg font-medium text-gray-900 dark:text-white">No hay revistas</h3>
-                        <p class="mt-1 text-gray-500 dark:text-neutral-400">Aún no se han registrado revistas digitales.</p>
+                        <p class="mt-1 text-gray-500 dark:text-neutral-400">AÃºn no se han registrado revistas digitales.</p>
                     </div>
                 @endforelse
             </div>
@@ -163,17 +163,17 @@
                 
                 <div class="space-y-4 p-6">
                     <div>
-                        <label class="block text-sm font-medium mb-1 text-gray-700 dark:text-neutral-300">Título de la Revista <span class="text-red-500">*</span></label>
+                        <label class="block text-sm font-medium mb-1 text-gray-700 dark:text-neutral-300">TÃ­tulo de la Revista <span class="text-red-500">*</span></label>
                         <input type="text" name="titulo" id="input-titulo" class="w-full py-2.5 px-3 block border-gray-200 rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400" required placeholder="Ej. Revista Institucional">
                     </div>
 
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-medium mb-1 text-gray-700 dark:text-neutral-300">Edición</label>
-                            <input type="text" name="edicion" id="input-edicion" class="w-full py-2.5 px-3 block border-gray-200 rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400" placeholder="Ej. Edición N° 15">
+                            <label class="block text-sm font-medium mb-1 text-gray-700 dark:text-neutral-300">EdiciÃ³n</label>
+                            <input type="text" name="edicion" id="input-edicion" class="w-full py-2.5 px-3 block border-gray-200 rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400" placeholder="Ej. EdiciÃ³n NÂ° 15">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium mb-1 text-gray-700 dark:text-neutral-300">Fecha de Publicación <span class="text-red-500">*</span></label>
+                            <label class="block text-sm font-medium mb-1 text-gray-700 dark:text-neutral-300">Fecha de PublicaciÃ³n <span class="text-red-500">*</span></label>
                             <input type="date" name="fecha_publicacion" id="input-fecha" class="w-full py-2.5 px-3 block border-gray-200 rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400" required value="{{ date('Y-m-d') }}">
                         </div>
                     </div>
@@ -181,14 +181,14 @@
                     <div>
                         <label class="block text-sm font-medium mb-1 text-gray-700 dark:text-neutral-300">Archivo PDF <span id="pdf-required-mark" class="text-red-500">*</span></label>
                         <input type="file" name="archivo_pdf" id="archivo_pdf" accept="application/pdf" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100" required>
-                        <p class="text-xs text-gray-500 mt-1" id="pdf-help-text">Solo formato PDF. Tamaño máximo 20MB.</p>
+                        <p class="text-xs text-gray-500 mt-1" id="pdf-help-text">Solo formato PDF. TamaÃ±o mÃ¡ximo 20MB.</p>
                     </div>
 
-                    <!-- Hidden input para la imagen extraída por JS -->
+                    <!-- Hidden input para la imagen extraÃ­da por JS -->
                     <input type="hidden" id="imagen_base64" name="imagen_base64" value="">
                 </div>
                 <div class="flex justify-end gap-3 border-t px-6 py-4 dark:border-neutral-700">
-                    <button type="button" id="btn-cancelar" class="py-2 px-4 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 dark:bg-neutral-700 dark:border-neutral-600 dark:text-neutral-300 transition-all">Cancelar</button>
+                    <button type="button" id="btn-cancelar" class="py-2 px-4 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-700 searchable-item hover:bg-gray-50 dark:bg-neutral-700 dark:border-neutral-600 dark:text-neutral-300 transition-all">Cancelar</button>
                     <button type="submit" id="btn_guardar" class="py-2 px-4 text-sm font-semibold rounded-lg bg-teal-600 text-white hover:bg-teal-700 transition-all inline-flex items-center gap-2">
                         <i class="bx bx-save"></i> <span id="btn_text">Guardar</span>
                     </button>
@@ -207,10 +207,10 @@
                 </div>
                 <div>
                     <h3 class="text-lg font-bold text-gray-900 dark:text-white">Eliminar Revista</h3>
-                    <p class="text-sm text-gray-500 dark:text-neutral-400">Esta acción no se puede deshacer</p>
+                    <p class="text-sm text-gray-500 dark:text-neutral-400">Esta acciÃ³n no se puede deshacer</p>
                 </div>
             </div>
-            <p class="text-sm text-gray-700 dark:text-neutral-300 mb-2">¿Confirmas que deseas eliminar permanentemente la revista:</p>
+            <p class="text-sm text-gray-700 dark:text-neutral-300 mb-2">Â¿Confirmas que deseas eliminar permanentemente la revista:</p>
             <p class="font-semibold text-gray-900 dark:text-white mb-5 italic" id="modal-eliminar-nombre"></p>
             
             <form id="form-eliminar" action="" method="POST">
@@ -218,7 +218,7 @@
                 @method('DELETE')
                 <div class="flex gap-3 justify-end border-t pt-4 dark:border-neutral-700">
                     <button type="button" id="btn-cerrar-eliminar"
-                        class="py-2 px-4 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 dark:bg-neutral-700 dark:border-neutral-600 dark:text-neutral-300 transition-all">
+                        class="py-2 px-4 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-700 searchable-item hover:bg-gray-50 dark:bg-neutral-700 dark:border-neutral-600 dark:text-neutral-300 transition-all">
                         Cancelar
                     </button>
                     <button type="submit"
@@ -245,3 +245,4 @@
         .animate-modal { animation: modalIn 0.2s ease-out forwards; }
     </style>
 @endsection
+

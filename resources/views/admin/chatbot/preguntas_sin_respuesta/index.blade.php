@@ -1,4 +1,4 @@
-@extends('layouts/app')
+﻿@extends('layouts/app')
 
 @section('titulo', 'Preguntas sin Respuesta')
 
@@ -17,7 +17,7 @@
                 </div>
                 <div class="ml-3">
                     <p class="text-sm text-blue-700 dark:text-blue-400">
-                        Aquí aparecen los mensajes que los usuarios han enviado al Chatbot y el sistema no ha podido interpretar. Puedes agregarlos a la Base de Conocimiento para entrenar al bot.
+                        AquÃ­ aparecen los mensajes que los usuarios han enviado al Chatbot y el sistema no ha podido interpretar. Puedes agregarlos a la Base de Conocimiento para entrenar al bot.
                     </p>
                 </div>
             </div>
@@ -26,7 +26,7 @@
         {{-- LISTADO EN TARJETAS --}}
         <div class="space-y-4">
             @forelse($preguntas as $item)
-                <x-card class="relative p-5 hover:bg-gray-50 dark:hover:bg-neutral-800/50 text-gray-800 dark:text-neutral-200 transition-colors">
+                <x-card class="relative p-5 searchable-item hover:bg-gray-50 dark:hover:bg-neutral-800/50 text-gray-800 dark:text-neutral-200 transition-colors">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pr-16">
                         <div class="col-span-2">
                             <p class="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-neutral-500 mb-1">
@@ -65,7 +65,7 @@
             @empty
                 <div class="text-center py-10 bg-white border rounded-xl dark:bg-neutral-900 dark:border-neutral-700 text-gray-500 dark:text-neutral-400">
                     <i class="bx bx-check-shield text-5xl mb-3 text-teal-500/50"></i>
-                    <h3 class="text-lg font-bold text-gray-700 dark:text-neutral-300">¡Bandeja Limpia!</h3>
+                    <h3 class="text-lg font-bold text-gray-700 dark:text-neutral-300">Â¡Bandeja Limpia!</h3>
                     <p class="mt-2 text-sm">El Chatbot ha podido responder a todas las consultas de los usuarios recientes.</p>
                 </div>
             @endforelse
@@ -86,14 +86,14 @@
                 </div>
                 <div>
                     <h3 class="text-lg font-bold text-gray-900 dark:text-white">Ignorar y Eliminar</h3>
-                    <p class="text-sm text-gray-500 dark:text-neutral-400">Esta acción no se puede deshacer</p>
+                    <p class="text-sm text-gray-500 dark:text-neutral-400">Esta acciÃ³n no se puede deshacer</p>
                 </div>
             </div>
-            <p class="text-sm text-gray-700 dark:text-neutral-300 mb-2">¿Confirmas que deseas eliminar permanentemente este registro?</p>
+            <p class="text-sm text-gray-700 dark:text-neutral-300 mb-2">Â¿Confirmas que deseas eliminar permanentemente este registro?</p>
             
             <div class="flex gap-3 justify-end border-t pt-4 dark:border-neutral-700 mt-5">
                 <button type="button" id="btn-cerrar-eliminar"
-                    class="py-2 px-4 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 dark:bg-neutral-700 dark:border-neutral-600 dark:text-neutral-300 transition-all">
+                    class="py-2 px-4 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-700 searchable-item hover:bg-gray-50 dark:bg-neutral-700 dark:border-neutral-600 dark:text-neutral-300 transition-all">
                     Cancelar
                 </button>
                 <button type="button" id="btn-confirmar-eliminar"
@@ -159,3 +159,4 @@
         })();
     </script>
 @endsection
+

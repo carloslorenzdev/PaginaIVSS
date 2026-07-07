@@ -9,7 +9,7 @@
     </div>
     <input type="text"
         class="py-2 ps-10 pe-16 block w-full bg-white border-gray-200 rounded-lg text-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder:text-neutral-400 dark:focus:ring-neutral-600"
-        placeholder="Buscar algo..." disabled>
+        placeholder="Buscar algo..." id="global-search-input">
     <div class="hidden absolute inset-y-0 end-0 flex items-center pointer-events-none z-20 pe-1">
         <button type="button"
             class="inline-flex shrink-0 justify-center items-center size-6 rounded-full text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 dark:text-neutral-500 dark:hover:text-blue-500 dark:focus:text-blue-500"
@@ -24,3 +24,27 @@
         </button>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchInput = document.getElementById('global-search-input');
+        
+        if (searchInput) {
+            searchInput.addEventListener('input', function () {
+                const query = this.value.toLowerCase();
+                
+                // Busca todas las tarjetas o filas que tengan la clase .searchable-item, exceptuando botones y enlaces sueltos
+                const items = document.querySelectorAll('.searchable-item:not(button):not(a)');
+                
+                items.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if (text.includes(query)) {
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        }
+    });
+</script>

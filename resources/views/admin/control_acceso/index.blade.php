@@ -1,4 +1,4 @@
-@extends('layouts/app')
+﻿@extends('layouts/app')
 
 @section('titulo', 'Control de Acceso')
 
@@ -24,7 +24,7 @@
                 </div>
                 <div class="ml-3">
                     <p class="text-sm text-blue-700 dark:text-blue-400">
-                        Selecciona un rol de la lista para administrar qué módulos puede ver y qué acciones puede realizar dentro del panel.
+                        Selecciona un rol de la lista para administrar quÃ© mÃ³dulos puede ver y quÃ© acciones puede realizar dentro del panel.
                     </p>
                 </div>
             </div>
@@ -34,7 +34,7 @@
         <x-card class="p-5">
             <div class="space-y-4">
                 @forelse($roles as $rol)
-                    <x-card class="p-4 hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-colors">
+                    <x-card class="p-4 searchable-item hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-colors">
                         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                             
                             {{-- NOMBRE --}}
@@ -52,7 +52,7 @@
                                 </div>
                             </div>
 
-                            {{-- ESTADÍSTICAS Y ACCIONES --}}
+                            {{-- ESTADÃSTICAS Y ACCIONES --}}
                             <div class="flex items-center gap-6">
                                 <div>
                                     <p class="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-neutral-500 mb-1">Permisos Actuales</p>
@@ -63,7 +63,7 @@
                                 
                                 <div class="border-l border-gray-200 dark:border-neutral-700 pl-6">
                                     <a href="{{ route('usuarios.control_acceso.edit', $rol) }}" 
-                                        class="inline-flex items-center gap-2 rounded-lg bg-white border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-colors dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-700 shadow-sm">
+                                        class="inline-flex items-center gap-2 rounded-lg bg-white border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 searchable-item hover:bg-gray-50 transition-colors dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-700 shadow-sm">
                                         <i class="bx bx-slider-alt"></i> Administrar Permisos
                                     </a>
                                 </div>
@@ -75,10 +75,11 @@
                     <div class="text-center py-10">
                         <i class="bx bx-shield-x text-5xl text-gray-300 mb-3"></i>
                         <p class="text-gray-500 font-medium">No hay roles disponibles para configurar.</p>
-                        <p class="text-sm text-gray-400">Cree roles primero en el módulo de Roles.</p>
+                        <p class="text-sm text-gray-400">Cree roles primero en el mÃ³dulo de Roles.</p>
                     </div>
                 @endforelse
             </div>
         </x-card>
     </x-section>
 @endsection
+

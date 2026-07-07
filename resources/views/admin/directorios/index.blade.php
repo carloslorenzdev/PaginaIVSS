@@ -1,4 +1,4 @@
-@extends('layouts/app')
+﻿@extends('layouts/app')
 
 @php
     $titulo = 'Directorios';
@@ -43,7 +43,7 @@
         {{-- LISTADO EN TARJETAS --}}
         <div class="space-y-4">
             @forelse($directorios as $item)
-                <x-card class="relative p-5 hover:bg-gray-50 dark:hover:bg-neutral-800/50 text-gray-800 dark:text-neutral-200 transition-colors">
+                <x-card class="relative p-5 searchable-item hover:bg-gray-50 dark:hover:bg-neutral-800/50 text-gray-800 dark:text-neutral-200 transition-colors">
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 pr-16">
                         
                         {{-- ESTADO Y NOMBRE --}}
@@ -58,15 +58,15 @@
                             </div>
                         </div>
 
-                        {{-- DIRECCIÓN --}}
+                        {{-- DIRECCIÃ“N --}}
                         <div class="md:col-span-1 lg:col-span-2">
-                            <p class="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-neutral-500">Dirección</p>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-neutral-500">DirecciÃ³n</p>
                             <p class="text-sm mt-1 text-gray-700 dark:text-neutral-300 leading-relaxed">{{ \Illuminate\Support\Str::limit($item->direccion, 100) }}</p>
                         </div>
 
-                        {{-- TELÉFONO --}}
+                        {{-- TELÃ‰FONO --}}
                         <div class="md:col-span-1 lg:col-span-1">
-                            <p class="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-neutral-500">Teléfono</p>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-neutral-500">TelÃ©fono</p>
                             <p class="text-sm mt-1 text-gray-700 dark:text-neutral-300 font-medium">{{ $item->telefono ?? 'N/A' }}</p>
                         </div>
                     </div>
@@ -136,7 +136,7 @@
                         <select name="estado" id="input-estado" class="w-full py-2.5 px-3 block border-gray-200 rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400" required>
                             <option value="">Seleccione un estado...</option>
                             @php
-                                $estadosList = ['Amazonas', 'Anzoátegui', 'Apure', 'Aragua', 'Barinas', 'Bolívar', 'Carabobo', 'Cojedes', 'Delta Amacuro', 'Distrito Capital', 'Falcón', 'Guárico', 'Lara', 'Mérida', 'Miranda', 'Monagas', 'Nueva Esparta', 'Portuguesa', 'Sucre', 'Táchira', 'Trujillo', 'Vargas', 'Yaracuy', 'Zulia'];
+                                $estadosList = ['Amazonas', 'AnzoÃ¡tegui', 'Apure', 'Aragua', 'Barinas', 'BolÃ­var', 'Carabobo', 'Cojedes', 'Delta Amacuro', 'Distrito Capital', 'FalcÃ³n', 'GuÃ¡rico', 'Lara', 'MÃ©rida', 'Miranda', 'Monagas', 'Nueva Esparta', 'Portuguesa', 'Sucre', 'TÃ¡chira', 'Trujillo', 'Vargas', 'Yaracuy', 'Zulia'];
                             @endphp
                             @foreach($estadosList as $est)
                                 <option value="{{ $est }}">{{ $est }}</option>
@@ -150,18 +150,18 @@
                     </div>
 
                     <div>
-                        <label class="block text-sm font-medium mb-1 text-gray-700 dark:text-neutral-300">Dirección <span class="text-red-500">*</span></label>
+                        <label class="block text-sm font-medium mb-1 text-gray-700 dark:text-neutral-300">DirecciÃ³n <span class="text-red-500">*</span></label>
                         <textarea name="direccion" id="input-direccion" rows="3" class="w-full py-2.5 px-3 block border-gray-200 rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400" required></textarea>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-medium mb-1 text-gray-700 dark:text-neutral-300">Teléfono</label>
+                        <label class="block text-sm font-medium mb-1 text-gray-700 dark:text-neutral-300">TelÃ©fono</label>
                         <input type="tel" name="telefono" id="input-telefono" pattern="[0-9\-\+\s\(\)]+" placeholder="Ej. (0212) 123-4567" class="w-full py-2.5 px-3 block border-gray-200 rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400">
-                        <p class="text-xs text-gray-500 mt-1">Solo números, espacios y guiones (-).</p>
+                        <p class="text-xs text-gray-500 mt-1">Solo nÃºmeros, espacios y guiones (-).</p>
                     </div>
                 </div>
                 <div class="flex justify-end gap-3 border-t px-6 py-4 dark:border-neutral-700">
-                    <button type="button" id="btn-cancelar" class="py-2 px-4 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 dark:bg-neutral-700 dark:border-neutral-600 dark:text-neutral-300 transition-all">Cancelar</button>
+                    <button type="button" id="btn-cancelar" class="py-2 px-4 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-700 searchable-item hover:bg-gray-50 dark:bg-neutral-700 dark:border-neutral-600 dark:text-neutral-300 transition-all">Cancelar</button>
                     <button type="submit" data-store-url="{{ route('admin.directorios.store') }}" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-xl border border-transparent bg-teal-600 text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 transition-all shadow-sm">
                         <i class="bx bx-save"></i> Guardar
                     </button>
@@ -180,10 +180,10 @@
                 </div>
                 <div>
                     <h3 class="text-lg font-bold text-gray-900 dark:text-white">Eliminar Registro</h3>
-                    <p class="text-sm text-gray-500 dark:text-neutral-400">Esta acción no se puede deshacer</p>
+                    <p class="text-sm text-gray-500 dark:text-neutral-400">Esta acciÃ³n no se puede deshacer</p>
                 </div>
             </div>
-            <p class="text-sm text-gray-700 dark:text-neutral-300 mb-2">¿Confirmas que deseas eliminar permanentemente el registro:</p>
+            <p class="text-sm text-gray-700 dark:text-neutral-300 mb-2">Â¿Confirmas que deseas eliminar permanentemente el registro:</p>
             <p class="font-semibold text-gray-900 dark:text-white mb-5 italic" id="modal-eliminar-nombre"></p>
             
             <form id="form-eliminar" action="" method="POST">
@@ -191,7 +191,7 @@
                 @method('DELETE')
                 <div class="flex gap-3 justify-end border-t pt-4 dark:border-neutral-700">
                     <button type="button" id="btn-cerrar-eliminar"
-                        class="py-2 px-4 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 dark:bg-neutral-700 dark:border-neutral-600 dark:text-neutral-300 transition-all">
+                        class="py-2 px-4 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-700 searchable-item hover:bg-gray-50 dark:bg-neutral-700 dark:border-neutral-600 dark:text-neutral-300 transition-all">
                         Cancelar
                     </button>
                     <button type="submit"
@@ -213,3 +213,4 @@
         .animate-modal { animation: modalIn 0.2s ease-out forwards; }
     </style>
 @endsection
+

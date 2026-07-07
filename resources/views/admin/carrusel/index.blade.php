@@ -1,4 +1,4 @@
-@extends('layouts/app')
+﻿@extends('layouts/app')
 
 @section('titulo', 'Gestionar Carrusel')
 
@@ -25,7 +25,7 @@
                     @csrf
                     <div class="flex-grow md:w-64">
                         <x-input.select name="intervalo" class="py-2.5">
-                            <option value="2000" {{ $intervalo == 2000 ? 'selected' : '' }}>2 Segundos (Rápido)</option>
+                            <option value="2000" {{ $intervalo == 2000 ? 'selected' : '' }}>2 Segundos (RÃ¡pido)</option>
                             <option value="3000" {{ $intervalo == 3000 ? 'selected' : '' }}>3 Segundos</option>
                             <option value="5000" {{ $intervalo == 5000 ? 'selected' : '' }}>5 Segundos (Normal)</option>
                             <option value="8000" {{ $intervalo == 8000 ? 'selected' : '' }}>8 Segundos (Lento)</option>
@@ -39,19 +39,19 @@
             </div>
         </x-card>
 
-        {{-- LISTADO DE IMÁGENES DEL CARRUSEL --}}
+        {{-- LISTADO DE IMÃGENES DEL CARRUSEL --}}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($carruseles as $carrusel)
                 <x-card class="overflow-hidden flex flex-col group/card border-2 border-transparent hover:border-red-500 transition-colors">
                     <div class="relative h-48 w-full bg-gray-100 dark:bg-neutral-800">
                         <img src="{{ asset('storage/' . $carrusel->imagen_ruta) }}" alt="Carrusel" class="w-full h-full object-cover">
                         
-                        {{-- BOTONES ACCIÓN (Hover) --}}
+                        {{-- BOTONES ACCIÃ“N (Hover) --}}
                         <div class="absolute top-3 right-3 opacity-0 group-hover/card:opacity-100 transition-opacity flex gap-2">
                             <button type="button" class="btn-toggle-edit bg-gray-800/90 text-white w-9 h-9 rounded-full flex items-center justify-center hover:bg-black shadow-md focus:outline-none transition-colors" data-id="{{ $carrusel->id }}" title="Editar detalles">
                                 <i class="bx bx-pencil text-base"></i>
                             </button>
-                            <button type="button" class="btn-confirmar-accion bg-red-600/90 text-white w-9 h-9 rounded-full flex items-center justify-center hover:bg-red-700 shadow-md focus:outline-none transition-colors" data-action="{{ route('admin.carrusel.eliminar', $carrusel->id) }}" data-method="DELETE" data-mensaje="¿Eliminar esta imagen del carrusel?" title="Eliminar del carrusel">
+                            <button type="button" class="btn-confirmar-accion bg-red-600/90 text-white w-9 h-9 rounded-full flex items-center justify-center hover:bg-red-700 shadow-md focus:outline-none transition-colors" data-action="{{ route('admin.carrusel.eliminar', $carrusel->id) }}" data-method="DELETE" data-mensaje="Â¿Eliminar esta imagen del carrusel?" title="Eliminar del carrusel">
                                 <i class="bx bx-trash text-base"></i>
                             </button>
                         </div>
@@ -67,7 +67,7 @@
                                 </span>
                             </div>
                             <h3 class="font-bold text-gray-800 dark:text-neutral-200 line-clamp-2">
-                                {{ $carrusel->titulo ?? 'Sin título' }}
+                                {{ $carrusel->titulo ?? 'Sin tÃ­tulo' }}
                             </h3>
                             <p class="text-xs text-gray-500 dark:text-neutral-500">
                                 <i class="bx bx-purchase-tag mr-1"></i> {{ $carrusel->etiquetas ?? 'Sin etiquetas' }}
@@ -79,14 +79,14 @@
                             @endif
                         </div>
 
-                        {{-- FORMULARIO EDICIÓN (Oculto) --}}
+                        {{-- FORMULARIO EDICIÃ“N (Oculto) --}}
                         <form action="{{ route('admin.carrusel.actualizar', $carrusel->id) }}" method="POST" id="form-edit-{{ $carrusel->id }}" class="hidden space-y-3">
                             @csrf
                             @method('PUT')
                             
                             <div>
-                                <label class="block text-xs font-medium text-gray-700 dark:text-neutral-300 mb-1">Título</label>
-                                <x-input type="text" name="titulo" value="{{ $carrusel->titulo }}" placeholder="Título de la noticia" class="py-1.5 px-3 text-sm" />
+                                <label class="block text-xs font-medium text-gray-700 dark:text-neutral-300 mb-1">TÃ­tulo</label>
+                                <x-input type="text" name="titulo" value="{{ $carrusel->titulo }}" placeholder="TÃ­tulo de la noticia" class="py-1.5 px-3 text-sm" />
                             </div>
                             
                             <div>
@@ -111,7 +111,7 @@
                             </div>
                             
                             <div class="pt-2 flex justify-end gap-2 border-t border-gray-200 dark:border-neutral-700 mt-3">
-                                <button type="button" class="btn-toggle-edit py-1.5 px-3 inline-flex items-center gap-x-2 text-xs font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 transition-colors" data-id="{{ $carrusel->id }}">
+                                <button type="button" class="btn-toggle-edit py-1.5 px-3 inline-flex items-center gap-x-2 text-xs font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm searchable-item hover:bg-gray-50 dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 transition-colors" data-id="{{ $carrusel->id }}">
                                     Cancelar
                                 </button>
                                 <button type="submit" class="py-1.5 px-3 inline-flex items-center gap-x-2 text-xs font-semibold rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors">
@@ -123,15 +123,15 @@
                 </x-card>
             @endforeach
             
-            {{-- TARJETA: AÑADIR NUEVA IMAGEN --}}
+            {{-- TARJETA: AÃ‘ADIR NUEVA IMAGEN --}}
             <div class="bg-gray-50/50 dark:bg-neutral-800/30 border-2 border-dashed border-gray-300 dark:border-neutral-700 rounded-xl flex flex-col items-center justify-center h-full min-h-[350px] cursor-pointer hover:bg-gray-100 dark:hover:bg-neutral-800 hover:border-red-400 transition-all group relative" onclick="document.getElementById('file-upload').click()">
                 <div class="text-center p-6">
                     <div class="bg-white dark:bg-neutral-900 size-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm group-hover:scale-110 transition-transform duration-300">
                         <i class="bx bx-plus text-3xl text-red-500 group-hover:text-red-600"></i>
                     </div>
-                    <p class="text-gray-700 dark:text-neutral-300 font-semibold text-lg">Añadir Imagen</p>
+                    <p class="text-gray-700 dark:text-neutral-300 font-semibold text-lg">AÃ±adir Imagen</p>
                     <p class="text-gray-400 dark:text-neutral-500 text-sm mt-2">Recomendado: 1920x600 px</p>
-                    <p class="text-gray-400 dark:text-neutral-500 text-xs mt-1">Soporta JPG, PNG, WEBP (Máx 5MB)</p>
+                    <p class="text-gray-400 dark:text-neutral-500 text-xs mt-1">Soporta JPG, PNG, WEBP (MÃ¡x 5MB)</p>
                 </div>
                 
                 <form action="{{ route('admin.carrusel.guardar') }}" method="POST" enctype="multipart/form-data" class="hidden" id="upload-form">
@@ -156,3 +156,4 @@
 @push('page-scripts')
     <script src="{{ asset('js/admin/carrusel.js') }}" nonce="{{ app('csp-nonce') ?? '' }}"></script>
 @endpush
+

@@ -1,4 +1,4 @@
-@extends('layouts/app')
+﻿@extends('layouts/app')
 
 @section('titulo', 'Actividades Anuales')
 
@@ -30,7 +30,7 @@
                         <thead class="bg-gray-50 dark:bg-neutral-800">
                             <tr>
                                 <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">ID</th>
-                                <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Título</th>
+                                <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">TÃ­tulo</th>
                                 <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Estado</th>
                                 <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Fecha Reg.</th>
                                 <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">Acciones</th>
@@ -38,7 +38,7 @@
                         </thead>
                         <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
                             @foreach($actividades as $actividad)
-                                <tr class="hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors">
+                                <tr class="searchable-item hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors">
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">
                                         {{ $actividad->id }}
                                     </td>
@@ -61,7 +61,7 @@
                                                 <i class="bx bx-edit text-lg"></i>
                                             </a>
                                             
-                                              <button type="button" class="btn-confirmar-accion inline-block inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent text-red-600 hover:text-red-800 disabled:opacity-50 disabled:pointer-events-none dark:text-red-500 dark:hover:text-red-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" data-action="{{ route('admin.actividades.eliminar', $actividad->id) }}" data-method="DELETE" data-mensaje="¿Estás seguro de eliminar esta actividad y todo su contenido multimedia?" title="Eliminar">
+                                              <button type="button" class="btn-confirmar-accion inline-block inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent text-red-600 hover:text-red-800 disabled:opacity-50 disabled:pointer-events-none dark:text-red-500 dark:hover:text-red-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" data-action="{{ route('admin.actividades.eliminar', $actividad->id) }}" data-method="DELETE" data-mensaje="Â¿EstÃ¡s seguro de eliminar esta actividad y todo su contenido multimedia?" title="Eliminar">
                                                   <i class="bx bx-trash text-lg"></i>
                                               </button>
                                         </div>
@@ -84,7 +84,7 @@
                         <i class="bx bx-calendar-x text-4xl text-gray-400 dark:text-neutral-500"></i>
                     </div>
                     <h3 class="text-lg font-bold text-gray-800 dark:text-neutral-200">No hay actividades registradas</h3>
-                    <p class="text-gray-500 dark:text-neutral-400 text-sm mt-1 mb-4">Crea una nueva actividad para destacarla en la página principal del IVSS.</p>
+                    <p class="text-gray-500 dark:text-neutral-400 text-sm mt-1 mb-4">Crea una nueva actividad para destacarla en la pÃ¡gina principal del IVSS.</p>
                     <x-button.link href="{{ route('admin.actividades.crear') }}" class="bg-red-600 hover:bg-red-700 text-white">
                         <i class="bx bx-plus mr-1"></i> Crear Actividad
                     </x-button.link>
@@ -95,3 +95,4 @@
 
     <x-modal-confirmar />
 @endsection
+

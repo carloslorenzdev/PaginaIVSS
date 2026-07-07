@@ -1,15 +1,15 @@
-@extends('layouts/app')
+﻿@extends('layouts/app')
 
-@section('titulo', 'Categorías')
+@section('titulo', 'CategorÃ­as')
 
 @section('content')
     <x-section class="space-y-4 p-4 sm:space-y-6 sm:p-6">
         <div class="flex items-center justify-between">
-            <x-titulo titulo="Categorías" />
+            <x-titulo titulo="CategorÃ­as" />
             
             <button id="btn-nueva-categoria" data-url="{{ route('admin.categorias.guardar') }}"
                 class="inline-flex items-center gap-2 rounded-lg bg-teal-600 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-700 transition-colors">
-                <i class="bx bx-plus"></i> Nueva Categoría
+                <i class="bx bx-plus"></i> Nueva CategorÃ­a
             </button>
         </div>
 
@@ -18,7 +18,7 @@
                 Panel
             </x-breadcrumb.item>
             <x-breadcrumb.current>
-                Categorías
+                CategorÃ­as
             </x-breadcrumb.current>
         </x-breadcrumb>
 
@@ -44,22 +44,22 @@
         <x-card class="p-5">
             <div class="flex justify-between items-center mb-4 border-b border-gray-200 dark:border-neutral-700 pb-3">
                 <x-card.title>
-                    <i class="bx bx-list-ul"></i> Listado de Categorías
+                    <i class="bx bx-list-ul"></i> Listado de CategorÃ­as
                 </x-card.title>
             </div>
 
             <div class="space-y-4">
                 @forelse($categorias as $cat)
-                    <x-card class="p-4 hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-colors">
+                    <x-card class="p-4 searchable-item hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-colors">
                         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                             
-                            {{-- NOMBRE Y DESCRIPCIÓN --}}
+                            {{-- NOMBRE Y DESCRIPCIÃ“N --}}
                             <div class="flex-1 min-w-0">
                                 <p class="font-bold text-gray-900 dark:text-white text-base truncate">
                                     {{ $cat->nombre }}
                                 </p>
                                 <p class="text-sm mt-1 text-gray-500 dark:text-neutral-400 truncate">
-                                    {{ $cat->descripcion ?: 'Sin descripción' }}
+                                    {{ $cat->descripcion ?: 'Sin descripciÃ³n' }}
                                 </p>
                             </div>
 
@@ -98,7 +98,7 @@
                                         data-descripcion="{{ $cat->descripcion }}"
                                         data-orden="{{ $cat->orden }}"
                                         data-activa="{{ $cat->activa }}"
-                                        title="Editar Categoría">
+                                        title="Editar CategorÃ­a">
                                         <i class="bx bx-edit text-lg"></i>
                                     </button>
                                     
@@ -106,7 +106,7 @@
                                         class="btn-delete text-gray-500 hover:text-red-600 transition-colors bg-white hover:bg-red-50 size-9 flex items-center justify-center rounded-lg border border-gray-200 shadow-sm dark:bg-neutral-900 dark:border-neutral-700 dark:hover:bg-red-900/30"
                                         data-url="{{ route('admin.categorias.eliminar', $cat->id) }}"
                                         data-nombre="{{ $cat->nombre }}"
-                                        title="Eliminar Categoría">
+                                        title="Eliminar CategorÃ­a">
                                         <i class="bx bx-trash text-lg"></i>
                                     </button>
                                 </div>
@@ -118,8 +118,8 @@
                         <div class="size-16 mx-auto bg-gray-100 dark:bg-neutral-800 rounded-full flex items-center justify-center mb-4">
                             <i class="bx bx-list-ul text-3xl text-gray-400"></i>
                         </div>
-                        <h3 class="text-lg font-medium text-gray-900 dark:text-white">No hay categorías</h3>
-                        <p class="mt-1 text-gray-500 dark:text-neutral-400">Aún no se han registrado categorías.</p>
+                        <h3 class="text-lg font-medium text-gray-900 dark:text-white">No hay categorÃ­as</h3>
+                        <p class="mt-1 text-gray-500 dark:text-neutral-400">AÃºn no se han registrado categorÃ­as.</p>
                     </div>
                 @endforelse
             </div>
@@ -135,7 +135,7 @@
                     <div class="size-10 rounded-full bg-teal-100 dark:bg-teal-900/30 flex items-center justify-center flex-shrink-0">
                         <i class="bx bx-list-ul text-xl text-teal-600 dark:text-teal-400"></i>
                     </div>
-                    <h3 id="modal-title" class="font-bold text-gray-900 dark:text-white">Nueva Categoría</h3>
+                    <h3 id="modal-title" class="font-bold text-gray-900 dark:text-white">Nueva CategorÃ­a</h3>
                 </div>
                 <button type="button" id="btn-close-modal" class="text-gray-400 hover:text-gray-600 dark:hover:text-neutral-200 transition-colors">
                     <i class="bx bx-x text-2xl"></i>
@@ -152,7 +152,7 @@
                     </div>
 
                     <div>
-                        <label class="block text-sm font-medium mb-1 text-gray-700 dark:text-neutral-300">Descripción</label>
+                        <label class="block text-sm font-medium mb-1 text-gray-700 dark:text-neutral-300">DescripciÃ³n</label>
                         <textarea name="descripcion" id="input-descripcion" rows="3" class="w-full py-2.5 px-3 block border-gray-200 rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400"></textarea>
                     </div>
 
@@ -171,7 +171,7 @@
                     </div>
                 </div>
                 <div class="flex justify-end gap-3 border-t px-6 py-4 dark:border-neutral-700">
-                    <button type="button" id="btn-cancelar" class="py-2 px-4 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 dark:bg-neutral-700 dark:border-neutral-600 dark:text-neutral-300 transition-all">Cancelar</button>
+                    <button type="button" id="btn-cancelar" class="py-2 px-4 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-700 searchable-item hover:bg-gray-50 dark:bg-neutral-700 dark:border-neutral-600 dark:text-neutral-300 transition-all">Cancelar</button>
                     <button type="submit" class="py-2 px-4 text-sm font-semibold rounded-lg bg-teal-600 text-white hover:bg-teal-700 transition-all inline-flex items-center gap-2">
                         <i class="bx bx-save"></i> Guardar
                     </button>
@@ -189,11 +189,11 @@
                     <i class="bx bx-trash text-2xl text-red-600 dark:text-red-400"></i>
                 </div>
                 <div>
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white">Eliminar Categoría</h3>
-                    <p class="text-sm text-gray-500 dark:text-neutral-400">Esta acción no se puede deshacer</p>
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white">Eliminar CategorÃ­a</h3>
+                    <p class="text-sm text-gray-500 dark:text-neutral-400">Esta acciÃ³n no se puede deshacer</p>
                 </div>
             </div>
-            <p class="text-sm text-gray-700 dark:text-neutral-300 mb-2">¿Confirmas que deseas eliminar permanentemente la categoría:</p>
+            <p class="text-sm text-gray-700 dark:text-neutral-300 mb-2">Â¿Confirmas que deseas eliminar permanentemente la categorÃ­a:</p>
             <p class="font-semibold text-gray-900 dark:text-white mb-5 italic" id="modal-eliminar-nombre"></p>
             
             <form id="form-eliminar" action="" method="POST">
@@ -201,7 +201,7 @@
                 @method('DELETE')
                 <div class="flex gap-3 justify-end border-t pt-4 dark:border-neutral-700">
                     <button type="button" id="btn-cerrar-eliminar"
-                        class="py-2 px-4 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 dark:bg-neutral-700 dark:border-neutral-600 dark:text-neutral-300 transition-all">
+                        class="py-2 px-4 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-700 searchable-item hover:bg-gray-50 dark:bg-neutral-700 dark:border-neutral-600 dark:text-neutral-300 transition-all">
                         Cancelar
                     </button>
                     <button type="submit"

@@ -1,4 +1,4 @@
-@extends('layouts/app')
+﻿@extends('layouts/app')
 
 @section('titulo', 'Roles del Sistema')
 
@@ -48,7 +48,7 @@
 
             <div class="space-y-4">
                 @foreach($roles as $rol)
-                    <x-card class="p-4 hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-colors">
+                    <x-card class="p-4 searchable-item hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-colors">
                         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                             
                             {{-- NOMBRE --}}
@@ -61,7 +61,7 @@
                                 </p>
                             </div>
 
-                            {{-- ESTADÍSTICAS, ACCIONES --}}
+                            {{-- ESTADÃSTICAS, ACCIONES --}}
                             <div class="flex flex-wrap items-center gap-6 lg:gap-8">
                                 
                                 {{-- USUARIOS CON ESTE ROL --}}
@@ -132,11 +132,11 @@
                     <div>
                         <label class="block text-sm font-medium mb-1 text-gray-700 dark:text-neutral-300">Nombre del Rol <span class="text-red-500">*</span></label>
                         <input type="text" name="name" id="input-nombre" class="w-full py-2.5 px-3 block border-gray-200 rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400" required maxlength="255" placeholder="ej. editor, supervisor">
-                        <p class="text-xs text-gray-500 mt-1">Utilice minúsculas preferiblemente.</p>
+                        <p class="text-xs text-gray-500 mt-1">Utilice minÃºsculas preferiblemente.</p>
                     </div>
                 </div>
                 <div class="flex justify-end gap-3 border-t px-6 py-4 dark:border-neutral-700">
-                    <button type="button" id="btn-cancelar" class="py-2 px-4 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 dark:bg-neutral-700 dark:border-neutral-600 dark:text-neutral-300 transition-all">Cancelar</button>
+                    <button type="button" id="btn-cancelar" class="py-2 px-4 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-700 searchable-item hover:bg-gray-50 dark:bg-neutral-700 dark:border-neutral-600 dark:text-neutral-300 transition-all">Cancelar</button>
                     <button type="submit" class="py-2 px-4 text-sm font-semibold rounded-lg bg-teal-600 text-white hover:bg-teal-700 transition-all inline-flex items-center gap-2">
                         <i class="bx bx-save"></i> Guardar
                     </button>
@@ -155,10 +155,10 @@
                 </div>
                 <div>
                     <h3 class="text-lg font-bold text-gray-900 dark:text-white">Eliminar Rol</h3>
-                    <p class="text-sm text-gray-500 dark:text-neutral-400">Esta acción no se puede deshacer</p>
+                    <p class="text-sm text-gray-500 dark:text-neutral-400">Esta acciÃ³n no se puede deshacer</p>
                 </div>
             </div>
-            <p class="text-sm text-gray-700 dark:text-neutral-300 mb-2">¿Confirmas que deseas eliminar permanentemente el rol:</p>
+            <p class="text-sm text-gray-700 dark:text-neutral-300 mb-2">Â¿Confirmas que deseas eliminar permanentemente el rol:</p>
             <p class="font-semibold text-gray-900 dark:text-white mb-5 italic" id="modal-eliminar-nombre"></p>
             
             <form id="form-eliminar" action="" method="POST">
@@ -166,7 +166,7 @@
                 @method('DELETE')
                 <div class="flex gap-3 justify-end border-t pt-4 dark:border-neutral-700">
                     <button type="button" id="btn-cerrar-eliminar"
-                        class="py-2 px-4 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 dark:bg-neutral-700 dark:border-neutral-600 dark:text-neutral-300 transition-all">
+                        class="py-2 px-4 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-700 searchable-item hover:bg-gray-50 dark:bg-neutral-700 dark:border-neutral-600 dark:text-neutral-300 transition-all">
                         Cancelar
                     </button>
                     <button type="submit"
@@ -261,3 +261,4 @@
         .animate-modal { animation: modalIn 0.2s ease-out forwards; }
     </style>
 @endsection
+

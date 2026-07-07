@@ -35,7 +35,7 @@
         {{-- LISTADO EN TARJETAS --}}
         <div class="space-y-4">
             @forelse($conocimientos as $item)
-                <x-card class="relative p-5 hover:bg-gray-50 dark:hover:bg-neutral-800/50 text-gray-800 dark:text-neutral-200 transition-colors {{ $item->activo ? '' : 'opacity-60' }}">
+                <x-card class="relative p-5 searchable-item hover:bg-gray-50 dark:hover:bg-neutral-800/50 text-gray-800 dark:text-neutral-200 transition-colors {{ $item->activo ? '' : 'opacity-60' }}">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pr-16">
                         
                         <div class="col-span-1">
@@ -55,9 +55,9 @@
                         </div>
 
                         <div class="col-span-1">
-                            <p class="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-neutral-500">Respuesta HTML</p>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-neutral-500">Respuesta</p>
                             <div class="text-sm mt-1 text-gray-700 dark:text-neutral-300 bg-gray-100 dark:bg-neutral-900 p-2 rounded max-h-32 overflow-y-auto">
-                                {{ $item->respuesta }}
+                                {!! nl2br($item->respuesta) !!}
                             </div>
                         </div>
 
@@ -118,8 +118,8 @@
                     
                     <div class="p-6 space-y-4">
                         <div>
-                            <label class="block text-sm font-medium mb-1 dark:text-white">Pregunta / Título</label>
-                            <input type="text" name="pregunta" id="input-pregunta" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400" required placeholder="Ej: Requisitos Pensión Vejez">
+                            <label class="block text-sm font-medium mb-1 dark:text-white">Pregunta / TÃ­tulo</label>
+                            <input type="text" name="pregunta" id="input-pregunta" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400" required placeholder="Ej: Requisitos PensiÃ³n Vejez">
                         </div>
                         
                         <div>
@@ -128,8 +128,8 @@
                         </div>
                         
                         <div>
-                            <label class="block text-sm font-medium mb-1 dark:text-white">Respuesta HTML</label>
-                            <textarea name="respuesta" id="input-respuesta" rows="5" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400" required placeholder="El mensaje que enviará el bot..."></textarea>
+                            <label class="block text-sm font-medium mb-1 dark:text-white">Respuesta</label>
+                            <textarea name="respuesta" id="input-respuesta" rows="5" class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400" required placeholder="El mensaje que enviarÃ¡ el bot..."></textarea>
                         </div>
 
                         <div class="flex items-center">
@@ -139,7 +139,7 @@
                     </div>
                     
                     <div class="flex items-center justify-end gap-x-2 border-t px-6 py-4 dark:border-neutral-700 bg-gray-50 dark:bg-neutral-800/50">
-                        <button type="button" id="btn-cancelar-modal" class="rounded-lg border px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800">
+                        <button type="button" id="btn-cancelar-modal" class="rounded-lg border px-4 py-2 text-sm font-medium text-gray-700 shadow-sm searchable-item hover:bg-gray-50 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800">
                             Cancelar
                         </button>
                         <button type="submit" class="rounded-lg bg-teal-600 px-4 py-2 text-sm font-medium text-white hover:bg-teal-700 shadow-sm">
@@ -167,14 +167,14 @@
                 </div>
                 <div>
                     <h3 class="text-lg font-bold text-gray-900 dark:text-white">Eliminar Conocimiento</h3>
-                    <p class="text-sm text-gray-500 dark:text-neutral-400">Esta acción no se puede deshacer</p>
+                    <p class="text-sm text-gray-500 dark:text-neutral-400">Esta acciÃ³n no se puede deshacer</p>
                 </div>
             </div>
-            <p class="text-sm text-gray-700 dark:text-neutral-300 mb-2">¿Confirmas que deseas eliminar este registro del chatbot?</p>
+            <p class="text-sm text-gray-700 dark:text-neutral-300 mb-2">Â¿Confirmas que deseas eliminar este registro del chatbot?</p>
             
             <div class="flex gap-3 justify-end border-t pt-4 dark:border-neutral-700 mt-5">
                 <button type="button" id="btn-cerrar-eliminar"
-                    class="py-2 px-4 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 dark:bg-neutral-700 dark:border-neutral-600 dark:text-neutral-300 transition-all">
+                    class="py-2 px-4 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-700 searchable-item hover:bg-gray-50 dark:bg-neutral-700 dark:border-neutral-600 dark:text-neutral-300 transition-all">
                     Cancelar
                 </button>
                 <button type="button" id="btn-confirmar-eliminar"
@@ -301,3 +301,4 @@
         })();
     </script>
 @endsection
+
