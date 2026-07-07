@@ -13,7 +13,7 @@ class ChatbotNuevasPalabrasSeeder extends Seeder
             [
                 'pregunta' => 'Requisitos Pensión Vejez Detallado',
                 'palabras_clave' => 'pension, vejez, requisitos, jubilacion, edad, años, cumplir, solicitar',
-                'respuesta' => 'REQUISITOS PARA PENSI�?N DE VEJEZ (IVSS):
+                'respuesta' => 'REQUISITOS PARA PENSIÓN DE VEJEZ (IVSS):
 
 1. Tener 60 años o más (hombres) o 55 años o más (mujeres).
 2. Haber cotizado un mínimo de 750 semanas (aproximadamente 14.5 años).
@@ -36,7 +36,7 @@ Los montos se actualizan periódicamente según el decreto del Ejecutivo Naciona
             [
                 'pregunta' => 'Requisitos Pensión Invalidez',
                 'palabras_clave' => 'pension, invalidez, discapacidad, incapacidad, enfermedad, requisitos',
-                'respuesta' => 'REQUISITOS PARA PENSI�?N POR INVALIDEZ:
+                'respuesta' => 'REQUISITOS PARA PENSIÓN POR INVALIDEZ:
 
 1. Tener una disminución de la capacidad física o mental igual o superior al 66%.
 2. Haber cotizado al menos 4 semanas en los últimos 2 años.
@@ -50,7 +50,7 @@ La evaluación la realiza la Comisión de Evaluación de Invalidez del IVSS.',
             [
                 'pregunta' => 'Pensión de Sobrevivencia',
                 'palabras_clave' => 'pension, sobrevivencia, viudez, viuda, viudo, muerte, fallecimiento, herederos',
-                'respuesta' => 'PENSI�?N DE SOBREVIVENCIA:
+                'respuesta' => 'PENSIÓN DE SOBREVIVENCIA:
 
 Pueden solicitarla:
 - El cónyuge o viudo(a) que haya vivido en comunidad con el fallecido.
@@ -80,7 +80,7 @@ El monto se calcula según el porcentaje de discapacidad determinado por los mé
             [
                 'pregunta' => 'Cobro de Pensión Bancos',
                 'palabras_clave' => 'cobro, pension, banco, tarjeta, debito, deposito, retiro, efectivo',
-                'respuesta' => 'COBRO DE PENSI�?N:
+                'respuesta' => 'COBRO DE PENSIÓN:
 
 La pensión se deposita mensualmente en la cuenta bancaria que hayas registrado en el IVSS. Los bancos autorizados son:
 - Banco de Venezuela
@@ -118,7 +118,7 @@ Los retiros son mensuales. Debes llevar tu historial médico actualizado.',
             [
                 'pregunta' => 'Horarios Atención',
                 'palabras_clave' => 'horario, atencion, oficina, abierto, horas, dias, horarios',
-                'respuesta' => 'HORARIOS DE ATENCI�?N DEL IVSS:
+                'respuesta' => 'HORARIOS DE ATENCIÓN DEL IVSS:
 
 Oficinas Administrativas:
 - Lunes a Viernes: 8:00 am a 4:00 pm
@@ -151,7 +151,7 @@ También puedes acudir personalmente a cualquiera de nuestras oficinas a nivel n
             [
                 'pregunta' => 'Cambio de Datos',
                 'palabras_clave' => 'cambio, datos, actualizar, direccion, telefono, registro, actualizacion',
-                'respuesta' => 'ACTUALIZACI�?N DE DATOS:
+                'respuesta' => 'ACTUALIZACIÓN DE DATOS:
 
 Para actualizar tus datos en el IVSS (dirección, teléfono, correo electrónico):
 
