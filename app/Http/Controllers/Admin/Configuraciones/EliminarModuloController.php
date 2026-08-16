@@ -9,6 +9,7 @@ class EliminarModuloController extends Controller
 {
     public function __invoke($clave, EliminarModuloAction $action)
     {
+        abort_if(!auth()->user()->can('configuracion.modulos'), 403, 'No tienes permiso para eliminar módulos.');
         $titulos = [
             'cuenta_individual', 'pensionados', 'tiuna', 'registro_tiuna', 'servicios_funcionario', 'locacion_geografica'
         ];

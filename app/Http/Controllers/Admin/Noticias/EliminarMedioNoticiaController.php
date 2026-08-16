@@ -10,7 +10,7 @@ class EliminarMedioNoticiaController extends Controller
 {
     public function __invoke(Request $request, $noticiaId, $medioId, EliminarMedioNoticiaAction $action)
     {
-        abort_if(!auth()->user()->hasAnyRole(['admin', 'redactor', 'aprobador']), 403, 'No tienes permiso para eliminar medios.');
+        abort_if(!auth()->user()->can('noticias.eliminar_medio'), 403, 'No tienes permiso para eliminar medios.');
 
         $action->execute($noticiaId, $medioId);
 

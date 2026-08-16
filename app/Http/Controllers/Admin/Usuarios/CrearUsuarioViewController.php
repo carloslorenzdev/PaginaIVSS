@@ -8,9 +8,7 @@ class CrearUsuarioViewController extends Controller
 {
     public function __invoke()
     {
-        if (!auth()->user()->isAdmin()) {
-            abort(403);
-        }
+        abort_if(!auth()->user()->can('usuarios.crear'), 403, 'Acceso denegado: No tienes permiso para crear usuarios.');
 
         return view('admin.usuarios.crear');
     }

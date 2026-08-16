@@ -9,6 +9,7 @@ class GestionarModuloController extends Controller
 {
     public function __invoke($clave)
     {
+        abort_if(!auth()->user()->can('configuracion.modulos'), 403, 'No tienes permiso para gestionar módulos.');
         $titulos = [
             'cuenta_individual' => 'Cuenta Individual',
             'pensionados' => 'Pensionados',

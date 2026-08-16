@@ -10,7 +10,7 @@ class GuardarNoticiaController extends Controller
 {
     public function __invoke(Request $request, CrearNoticiaAction $action)
     {
-        abort_if(!auth()->user()->hasAnyRole(['admin', 'redactor']), 403, 'No tienes permiso para guardar noticias.');
+        abort_if(!auth()->user()->can('noticias.crear'), 403, 'No tienes permiso para guardar noticias.');
 
         $request->validate([
             'titulo' => 'required|max:255',

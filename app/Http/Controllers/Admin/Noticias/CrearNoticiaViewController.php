@@ -9,7 +9,7 @@ class CrearNoticiaViewController extends Controller
 {
     public function __invoke()
     {
-        abort_if(!auth()->user()->hasAnyRole(['admin', 'redactor']), 403, 'No tienes permiso para crear noticias.');
+        abort_if(!auth()->user()->can('noticias.crear'), 403, 'No tienes permiso para crear noticias.');
 
         $categorias = Categoria::where('activa', true)->get();
         return view('admin.noticias.crear', compact('categorias'));

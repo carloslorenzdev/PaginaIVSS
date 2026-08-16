@@ -10,9 +10,7 @@ class EliminarUsuarioController extends Controller
 {
     public function __invoke($id, EliminarUsuarioAction $action)
     {
-        if (!auth()->user()->isAdmin()) {
-            abort(403);
-        }
+        abort_if(!auth()->user()->can('usuarios.eliminar'), 403, 'Acceso denegado: No tienes permiso para eliminar usuarios.');
 
         $usuario = User::findOrFail($id);
 

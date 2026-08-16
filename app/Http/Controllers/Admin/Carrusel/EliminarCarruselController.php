@@ -9,6 +9,7 @@ class EliminarCarruselController extends Controller
 {
     public function __invoke($id, EliminarCarruselAction $action)
     {
+        abort_if(!auth()->user()->can('carrusel.eliminar'), 403, 'No tienes permiso para eliminar carrusel.');
         $action->execute($id);
 
         return redirect()->back()->with('success', 'Imagen eliminada del carrusel exitosamente.');

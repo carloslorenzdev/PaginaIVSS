@@ -44,21 +44,27 @@ document.addEventListener('turbo:load', () => {
         toggleBtn.classList.remove('d-none');
     });
 
+    let isProcessingOption = false;
+
     // Handle button clicks
     messagesContainer.addEventListener('click', (e) => {
         const btn = e.target.closest('.ivss-btn-option');
         if (btn) {
+            if (isProcessingOption) return; // Prevenir doble clic estricto
+            
             const option = btn.getAttribute('data-option');
             
             if (option === 'restart') {
                 restartFlow();
             } else {
+                isProcessingOption = true;
                 handleOptionSelection(option, btn.innerText.trim());
             }
         }
     });
 
     function reenableButtons() {
+        isProcessingOption = false;
         const buttons = document.querySelectorAll('.ivss-btn-option');
         buttons.forEach(btn => btn.style.pointerEvents = 'auto');
     }
@@ -73,28 +79,9 @@ document.addEventListener('turbo:load', () => {
         if (optionKey === 'centro_salud_cercano') {
             appendBotMessage("Determinando tu ubicación de forma automática...");
             
+
+
             let locationSent = false;
-
-            function intentarUbicacionPorIP() {
-                if (locationSent) return;
-                fetch('https://ipinfo.io/json')
-                    .then(response => response.json())
-                    .then(data => {
-                        if (locationSent) return;
-                        locationSent = true;
-                        if (data.region) {
-                            enviarMensajeBackend("UBICACION_IP:" + data.region);
-                        } else {
-                            throw new Error('Sin región en la respuesta de IP');
-                        }
-                    })
-                    .catch(error => {
-                        appendBotMessage("El navegador bloqueó el permiso GPS por estar en un entorno local (Laragon) y la detección por IP también falló. Por favor escribe <b>'hospitales en' seguido de tu estado</b> (Ejemplo: hospitales en Miranda).");
-                        appendRestartButton();
-                        reenableButtons();
-                    });
-            }
-
             // Intento 1: GPS del Navegador (Requiere HTTPS)
             if ("geolocation" in navigator) {
                 navigator.geolocation.getCurrentPosition(
@@ -106,13 +93,30 @@ document.addEventListener('turbo:load', () => {
                         enviarMensajeBackend("UBICACION:" + lat + "," + lon);
                     },
                     (error) => {
-                        // Intento 2: Fallback a Geolocalización por IP
-                        intentarUbicacionPorIP();
-                    },
-                    { timeout: 10000, enableHighAccuracy: true }
+                        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+                        if (error.code === 1) {
+                            if (locationSent) return;
+                            appendBotMessage("No se pudo obtener tu ubicación o el permiso fue denegado. Por favor escribe <b>'hospitales en' seguido de tu estado</b> (Ejemplo: hospitales en Distrito Capital o hospitales en Miranda).");
+                            appendRestartButton();
+                            reenableButtons();
+                        } else {
+                            // Petición del usuario: No mostrar error en escritorio si falta GPS físico, esperar el éxito por Wi-Fi.
+                            if (!isMobile) return;
+
+                            setTimeout(() => {
+                                if (locationSent) return;
+                                appendBotMessage("No se pudo obtener tu ubicación o el permiso fue denegado. Por favor escribe <b>'hospitales en' seguido de tu estado</b>.");
+                                appendRestartButton();
+                                reenableButtons();
+                            }, 5000);
+                        }
+                    }
                 );
             } else {
-                intentarUbicacionPorIP();
+                appendBotMessage("Tu navegador no soporta geolocalización. Por favor escribe <b>'hospitales en' seguido de tu estado</b>.");
+                appendRestartButton();
+                reenableButtons();
             }
         } else {
             enviarMensajeBackend(optionKey);
@@ -176,6 +180,7 @@ document.addEventListener('turbo:load', () => {
     }
 
     function restartFlow() {
+        isProcessingOption = false;
         messagesContainer.innerHTML = '';
         messagesContainer.innerHTML = initialMenuHTML;
     }

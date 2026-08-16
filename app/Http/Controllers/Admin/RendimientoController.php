@@ -12,6 +12,7 @@ class RendimientoController extends Controller
 {
     public function index()
     {
+        abort_if(!auth()->user()->can('sistema.rendimiento'), 403, 'Acceso Denegado');
         $serverInfo = [
             'php_version' => PHP_VERSION,
             'laravel_version' => app()->version(),
@@ -56,6 +57,7 @@ class RendimientoController extends Controller
 
     public function optimizar(Request $request)
     {
+        abort_if(!auth()->user()->can('sistema.cache'), 403, 'Acceso Denegado');
         $type = $request->input('type', 'all');
         $output = '';
 

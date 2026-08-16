@@ -1,5 +1,5 @@
 document.addEventListener('turbo:load', function() {
-    // Buscador interactivo genérico
+    // Buscador interactivo generico
     const buscador = document.getElementById('buscadorEstados');
     const items = document.querySelectorAll('.estado-item');
 
@@ -28,76 +28,95 @@ document.addEventListener('turbo:load', function() {
         });
     }
 
-    // Modal logic for all directories (using event delegation for robustness)
-    document.addEventListener('click', function(e) {
-        const btn = e.target.closest('.btn-ver-oficina, .btn-ver-farmacia, .btn-ver-centro');
-        if (!btn) return;
+    // Usar window._directoryClickHandler para evitar listeners duplicados en turbo:load
+    if (!window._directoryClickHandler) {
+        window._directoryClickHandler = function(e) {
+            const btn = e.target.closest('.btn-ver-oficina, .btn-ver-farmacia, .btn-ver-centro');
+            if (!btn) return;
 
-        const estado = btn.getAttribute('data-estado');
-        if (!estado) return;
-        
-        const estadoNombreEl = document.getElementById('modalEstadoNombre');
-        if(estadoNombreEl) estadoNombreEl.textContent = estado;
-        
-        const container = document.getElementById('oficinasListContainer') || 
-                          document.getElementById('farmaciasListContainer') || 
-                          document.getElementById('centrosListContainer');
-                          
-        if(!container) return;
-        container.innerHTML = ''; // Clear previous
+            // Al hacer click, asegurarnos de usar la data más reciente de la vista actual
+            let currentDirectoryData = {};
+            const currentDataEl = document.getElementById('directorio-data');
+            if (currentDataEl) {
+                try {
+                    currentDirectoryData = JSON.parse(currentDataEl.textContent);
+                } catch (err) {}
+            }
 
-        if (directoryData[estado] && directoryData[estado].length > 0) {
-            const accordionHtml = document.createElement('div');
+            const estado = btn.getAttribute('data-estado');
+            if (!estado) return;
             
-            directoryData[estado].forEach((item, index) => {
-                const itemName = item.nombre || item.facility;
+            const estadoNombreEl = document.getElementById('modalEstadoNombre');
+            if(estadoNombreEl) estadoNombreEl.textContent = estado;
+            
+            const container = document.getElementById('oficinasListContainer') || 
+                              document.getElementById('farmaciasListContainer') || 
+                              document.getElementById('centrosListContainer');
+                              
+            if(!container) return;
+            container.innerHTML = ''; // Clear previous
+
+            // Buscar la llave que hace match sin acentos y en mayusculas/minusculas
+            const searchKey = estado.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            let matchedKey = estado;
+            
+            for (const key in currentDirectoryData) {
+                if (key.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") === searchKey) {
+                    matchedKey = key;
+                    break;
+                }
+            }
+
+            if (currentDirectoryData[matchedKey] && currentDirectoryData[matchedKey].length > 0) {
+                const accordionHtml = document.createElement('div');
                 
-                const itemHtml = `
-                <div class="border rounded-3 mb-3 shadow-sm bg-white overflow-hidden">
-                    <div class="p-3 bg-light text-primary d-flex justify-content-between align-items-center custom-accordion-header" style="cursor: pointer;">
-                        <span class="fw-bold"><i class="fas fa-building me-2"></i> ${itemName}</span>
-                        <i class="fas fa-chevron-down text-muted" style="transition: transform 0.3s;"></i>
-                    </div>
-                    <div class="custom-accordion-body" style="background-color: #fff;">
-                        <div class="d-flex align-items-start mb-2">
-                            <i class="fas fa-map-marker-alt text-danger mt-1 me-3"></i>
-                            <div>
-                                <strong class="d-block text-dark">Dirección:</strong>
-                                <span class="text-secondary">${item.direccion || item.address || 'Información no disponible'}</span>
+                currentDirectoryData[matchedKey].forEach((item, index) => {
+                    const itemName = item.nombre || item.facility;
+                    
+                    const itemHtml = `
+                    <div class="border rounded-3 mb-3 shadow-sm bg-white overflow-hidden">
+                        <div class="p-3 bg-light text-primary d-flex justify-content-between align-items-center custom-accordion-header" style="cursor: pointer;">
+                            <span class="fw-bold"><i class="fas fa-building me-2"></i> ${itemName}</span>
+                            <i class="fas fa-chevron-down text-muted" style="transition: transform 0.3s;"></i>
+                        </div>
+                        <div class="custom-accordion-body" style="background-color: #fff;">
+                            <div class="d-flex align-items-start mb-2">
+                                <i class="fas fa-map-marker-alt text-danger mt-1 me-3"></i>
+                                <div>
+                                    <strong class="d-block text-dark">Dirección:</strong>
+                                    <span class="text-secondary">${item.direccion || item.address || 'Información no disponible'}</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-phone-alt text-success mt-1 me-3"></i>
+                                <div>
+                                    <strong class="d-block text-dark">Teléfono:</strong>
+                                    <span class="text-secondary">${item.telefono || 'Información no disponible'}</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="d-flex align-items-start">
-                            <i class="fas fa-phone-alt text-success mt-1 me-3"></i>
-                            <div>
-                                <strong class="d-block text-dark">Teléfono:</strong>
-                                <span class="text-secondary">${item.telefono || 'Información no disponible'}</span>
-                            </div>
-                        </div>
                     </div>
-                </div>
+                    `;
+                    accordionHtml.innerHTML += itemHtml;
+                });
+                container.appendChild(accordionHtml);
+            } else {
+                container.innerHTML = `
+                    <div class="text-center p-4">
+                        <i class="fas fa-info-circle text-muted fa-3x mb-3 opacity-50"></i>
+                        <h5 class="fw-bold text-dark">Información no disponible</h5>
+                        <p class="text-muted mb-0">Esta información no se encuentra disponible en este momento.</p>
+                    </div>
                 `;
-                accordionHtml.innerHTML += itemHtml;
-            });
-            container.appendChild(accordionHtml);
-        } else {
-            container.innerHTML = `
-                <div class="text-center p-4">
-                    <i class="fas fa-info-circle text-muted fa-3x mb-3 opacity-50"></i>
-                    <h5 class="fw-bold text-dark">Información no disponible</h5>
-                    <p class="text-muted mb-0">Esta información no se encuentra disponible en este momento.</p>
-                </div>
-            `;
-        }
-    });
+            }
+        };
+        document.addEventListener('click', window._directoryClickHandler);
+    }
 
     // Event delegation for dynamically added accordions
-    const genericContainer = document.getElementById('oficinasListContainer') || 
-                             document.getElementById('farmaciasListContainer') || 
-                             document.getElementById('centrosListContainer');
-                             
-    if (genericContainer) {
-        genericContainer.removeEventListener('click', window._accordionClickHandler);
-        window._accordionClickHandler = function(e) {
+    if (!window._accordionInit) {
+        window._accordionInit = true;
+        document.addEventListener('click', function(e) {
             const header = e.target.closest('.custom-accordion-header');
             if (header) {
                 const body = header.nextElementSibling;
@@ -109,7 +128,6 @@ document.addEventListener('turbo:load', function() {
                     icon.classList.toggle('fa-flip-vertical');
                 }
             }
-        };
-        genericContainer.addEventListener('click', window._accordionClickHandler);
+        });
     }
 });

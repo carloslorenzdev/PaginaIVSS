@@ -11,6 +11,7 @@ class ListarActividadesAnualesController extends Controller
 {
     public function __invoke(Request $request, ObtenerActividadesAnualesAction $action)
     {
+        abort_if(!auth()->user()->can('actividades.ver'), 403, 'No tienes permiso para ver actividades.');
         try {
             $actividades = $action->execute($request->search);
             return view('admin.actividades.index', compact('actividades'));

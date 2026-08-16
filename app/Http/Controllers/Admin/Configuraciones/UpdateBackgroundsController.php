@@ -10,6 +10,7 @@ class UpdateBackgroundsController extends Controller
 {
     public function __invoke(Request $request, ActualizarBackgroundsAction $action)
     {
+        abort_if(!auth()->user()->can('configuracion.backgrounds'), 403, 'No tienes permiso para modificar los fondos.');
         if (env('WEB_EDITABLE', false) == false) {
             abort(404);
         }

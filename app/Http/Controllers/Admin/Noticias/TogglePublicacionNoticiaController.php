@@ -10,7 +10,7 @@ class TogglePublicacionNoticiaController extends Controller
 {
     public function __invoke(Request $request, $id, TogglePublicacionNoticiaAction $action)
     {
-        abort_if(!auth()->user()->hasAnyRole(['admin', 'aprobador']), 403, 'No tienes permiso para publicar o despublicar noticias.');
+        abort_if(!auth()->user()->can('noticias.publicar'), 403, 'No tienes permiso para publicar o despublicar noticias.');
 
         $noticia = $action->execute($id, $request->only(['fecha_programada', 'montar_carrusel']));
 

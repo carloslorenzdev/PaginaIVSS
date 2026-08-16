@@ -10,6 +10,7 @@ class GestionarCarruselController extends Controller
 {
     public function __invoke()
     {
+        abort_if(!auth()->user()->can('carrusel.ver'), 403, 'No tienes permiso para ver el carrusel.');
         $carruseles = Carrusel::orderBy('orden')->get();
         $configuracion = Configuracion::where('clave', 'carrusel_intervalo')->first();
         $intervalo = $configuracion ? $configuracion->valor : 5000;

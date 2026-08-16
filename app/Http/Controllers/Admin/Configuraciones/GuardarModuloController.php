@@ -10,6 +10,7 @@ class GuardarModuloController extends Controller
 {
     public function __invoke(Request $request, $clave, GuardarModuloAction $action)
     {
+        abort_if(!auth()->user()->can('configuracion.modulos'), 403, 'No tienes permiso para guardar módulos.');
         $request->validate([
             'archivo' => 'required|image|max:51200'
         ]);

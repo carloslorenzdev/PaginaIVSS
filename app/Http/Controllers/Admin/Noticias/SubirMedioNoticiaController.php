@@ -10,7 +10,7 @@ class SubirMedioNoticiaController extends Controller
 {
     public function __invoke(Request $request, $noticiaId, SubirMedioNoticiaAction $action)
     {
-        abort_if(!auth()->user()->hasAnyRole(['admin', 'redactor', 'aprobador']), 403, 'No tienes permiso para subir medios.');
+        abort_if(!auth()->user()->can('noticias.subir_medio'), 403, 'No tienes permiso para subir medios.');
 
         $request->validate([
             'archivo' => 'required|file|mimes:jpg,jpeg,png,gif,webp,mp4,mov,avi|max:51200',

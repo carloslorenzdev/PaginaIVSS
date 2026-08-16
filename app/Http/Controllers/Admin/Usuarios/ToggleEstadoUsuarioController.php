@@ -10,9 +10,7 @@ class ToggleEstadoUsuarioController extends Controller
 {
     public function __invoke($id, ToggleEstadoUsuarioAction $action)
     {
-        if (!auth()->user()->isAdmin()) {
-            abort(403);
-        }
+        abort_if(!auth()->user()->can('usuarios.toggle_estado'), 403, 'Acceso denegado: No tienes permiso para cambiar el estado de usuarios.');
 
         $usuario = User::findOrFail($id);
 

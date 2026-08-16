@@ -10,6 +10,7 @@ class UpdateMembreteController extends Controller
 {
     public function __invoke(Request $request, ActualizarMembreteAction $action)
     {
+        abort_if(!auth()->user()->can('configuracion.membrete'), 403, 'No tienes permiso para modificar el membrete.');
         if (env('WEB_EDITABLE', false) == false) {
             abort(404);
         }

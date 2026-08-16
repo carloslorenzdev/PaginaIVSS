@@ -10,6 +10,7 @@ class ListarNoticiasPanelController extends Controller
 {
     public function __invoke(Request $request, ObtenerNoticiasPanelAction $action)
     {
+        abort_if(!auth()->user()->can('admin.panel'), 403, 'No tienes permiso para ver el panel de administración.');
         $noticias = $action->execute($request->search);
 
         $publicadas    = \App\Models\Noticia::where('publicado', true)->count();

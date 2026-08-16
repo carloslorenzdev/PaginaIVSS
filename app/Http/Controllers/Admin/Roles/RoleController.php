@@ -10,12 +10,14 @@ class RoleController extends Controller
 {
     public function index()
     {
+        abort_if(!auth()->user()->isAdmin(), 403, 'Acceso denegado. Solo el administrador puede gestionar roles.');
         $roles = Role::where('name', '!=', 'super-admin')->orderBy('id')->get();
         return view('admin.roles.index', compact('roles'));
     }
 
     public function store(Request $request)
     {
+        abort_if(!auth()->user()->isAdmin(), 403, 'Acceso denegado. Solo el administrador puede gestionar roles.');
         $request->validate([
             'name' => 'required|string|max:255|unique:roles,name',
         ]);
@@ -27,6 +29,7 @@ class RoleController extends Controller
 
     public function update(Request $request, Role $role)
     {
+        abort_if(!auth()->user()->isAdmin(), 403, 'Acceso denegado. Solo el administrador puede gestionar roles.');
         if ($role->name === 'admin') {
             return back()->with('error', 'No puedes modificar el rol principal del sistema.');
         }
@@ -42,6 +45,7 @@ class RoleController extends Controller
 
     public function destroy(Role $role)
     {
+        abort_if(!auth()->user()->isAdmin(), 403, 'Acceso denegado. Solo el administrador puede gestionar roles.');
         if ($role->name === 'admin') {
             return back()->with('error', 'No puedes eliminar el rol principal del sistema.');
         }

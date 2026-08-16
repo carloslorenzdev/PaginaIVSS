@@ -9,7 +9,7 @@ class EliminarNoticiaController extends Controller
 {
     public function __invoke($id, EliminarNoticiaAction $action)
     {
-        abort_if(!auth()->user()->hasRole('admin'), 403, 'Solo el administrador puede eliminar noticias.');
+        abort_if(!auth()->user()->can('noticias.eliminar'), 403, 'No tienes permiso para eliminar noticias.');
 
         $action->execute($id);
 

@@ -10,6 +10,7 @@ class UpdateCarruselEstiloController extends Controller
 {
     public function __invoke(Request $request, ActualizarCarruselEstiloAction $action)
     {
+        abort_if(!auth()->user()->can('configuracion.editar'), 403, 'No tienes permiso para modificar la configuración visual.');
         if (env('WEB_EDITABLE', false) == false) {
             abort(404);
         }

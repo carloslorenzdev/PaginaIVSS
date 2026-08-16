@@ -10,6 +10,7 @@ class GuardarActividadAnualController extends Controller
 {
     public function __invoke(Request $request, CrearActividadAnualAction $action)
     {
+        abort_if(!auth()->user()->can('actividades.crear'), 403, 'No tienes permiso para crear actividades.');
         $request->validate([
             'titulo' => 'required|max:255',
             'descripcion' => 'nullable',

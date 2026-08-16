@@ -12,6 +12,7 @@ class BackupController extends Controller
 {
     public function index()
     {
+        abort_if(!auth()->user()->isAdmin(), 403, 'Acceso denegado. Solo el administrador puede gestionar backups.');
         $disk = Storage::disk(config('backup.backup.destination.disks')[0]);
         $files = $disk->allFiles(config('backup.backup.name'));
 
@@ -34,6 +35,7 @@ class BackupController extends Controller
 
     public function run()
     {
+        abort_if(!auth()->user()->isAdmin(), 403, 'Acceso denegado. Solo el administrador puede gestionar backups.');
         // Esto corre el comando de backup
         Artisan::call('backup:run', ['--only-db' => true]);
 
@@ -42,6 +44,7 @@ class BackupController extends Controller
 
     public function download($file_name)
     {
+        abort_if(!auth()->user()->isAdmin(), 403, 'Acceso denegado. Solo el administrador puede gestionar backups.');
         $file = config('backup.backup.name') . '/' . $file_name;
         $disk = Storage::disk(config('backup.backup.destination.disks')[0]);
 
@@ -54,6 +57,7 @@ class BackupController extends Controller
 
     public function delete($file_name)
     {
+        abort_if(!auth()->user()->isAdmin(), 403, 'Acceso denegado. Solo el administrador puede gestionar backups.');
         $file = config('backup.backup.name') . '/' . $file_name;
         $disk = Storage::disk(config('backup.backup.destination.disks')[0]);
 

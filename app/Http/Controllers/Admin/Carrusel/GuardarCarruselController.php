@@ -10,6 +10,7 @@ class GuardarCarruselController extends Controller
 {
     public function __invoke(Request $request, CrearCarruselAction $action)
     {
+        abort_if(!auth()->user()->can('carrusel.crear'), 403, 'No tienes permiso para crear carrusel.');
         $request->validate([
             'enlace' => 'nullable|string|max:255',
             'archivo' => 'required|image|mimes:jpg,jpeg,png,gif|max:10240',

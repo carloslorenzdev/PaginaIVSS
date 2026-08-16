@@ -10,9 +10,7 @@ class ListarUsuariosController extends Controller
 {
     public function __invoke(Request $request)
     {
-        if (!auth()->user()->isAdmin()) {
-            abort(403, 'Acceso denegado: Solo el administrador puede gestionar usuarios.');
-        }
+        abort_if(!auth()->user()->can('usuarios.ver'), 403, 'Acceso denegado: No tienes permiso para ver usuarios.');
 
         $query = User::query();
 

@@ -12,9 +12,7 @@ class ActualizarUsuarioController extends Controller
 {
     public function __invoke(Request $request, $id, ActualizarUsuarioAction $action)
     {
-        if (!auth()->user()->isAdmin()) {
-            abort(403);
-        }
+        abort_if(!auth()->user()->can('usuarios.editar'), 403, 'Acceso denegado: No tienes permiso para editar usuarios.');
 
         $usuario = User::findOrFail($id);
 

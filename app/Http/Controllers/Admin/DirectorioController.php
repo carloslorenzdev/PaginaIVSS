@@ -13,6 +13,7 @@ class DirectorioController extends Controller
      */
     public function index(Request $request)
     {
+        abort_if(!auth()->user()->can('directorios.ver'), 403, 'Acceso Denegado');
         $query = Directorio::query();
 
         if ($request->filled('tipo')) {
@@ -33,6 +34,7 @@ class DirectorioController extends Controller
      */
     public function store(Request $request)
     {
+        abort_if(!auth()->user()->can('directorios.crear'), 403, 'Acceso Denegado');
         $request->validate([
             'tipo' => 'required|in:farmacia,centro_salud,oficina_administrativa',
             'estado' => 'required|string|max:255',
@@ -52,6 +54,7 @@ class DirectorioController extends Controller
      */
     public function update(Request $request, Directorio $directorio)
     {
+        abort_if(!auth()->user()->can('directorios.editar'), 403, 'Acceso Denegado');
         $request->validate([
             'tipo' => 'required|in:farmacia,centro_salud,oficina_administrativa',
             'estado' => 'required|string|max:255',
@@ -71,6 +74,7 @@ class DirectorioController extends Controller
      */
     public function destroy(Directorio $directorio)
     {
+        abort_if(!auth()->user()->can('directorios.eliminar'), 403, 'Acceso Denegado');
         $tipo = $directorio->tipo;
         $directorio->delete();
 

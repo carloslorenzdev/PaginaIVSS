@@ -14,12 +14,14 @@ class ChatbotConocimientoController extends Controller
 {
     public function index()
     {
+        abort_if(!auth()->user()->can('chatbot_conocimiento.ver'), 403, 'Acceso Denegado');
         $conocimientos = ChatbotConocimiento::orderBy('id', 'desc')->paginate(15);
         return view('admin.chatbot.conocimiento.index', compact('conocimientos'));
     }
 
     public function store(Request $request, CrearConocimientoAction $action)
     {
+        abort_if(!auth()->user()->can('chatbot_conocimiento.crear'), 403, 'Acceso Denegado');
         $request->validate([
             'pregunta' => 'required|string|max:255',
             'palabras_clave' => 'required|string|max:255',
@@ -35,6 +37,7 @@ class ChatbotConocimientoController extends Controller
 
     public function update(Request $request, ChatbotConocimiento $conocimiento, ActualizarConocimientoAction $action)
     {
+        abort_if(!auth()->user()->can('chatbot_conocimiento.editar'), 403, 'Acceso Denegado');
         $request->validate([
             'pregunta' => 'required|string|max:255',
             'palabras_clave' => 'required|string|max:255',
@@ -50,6 +53,7 @@ class ChatbotConocimientoController extends Controller
 
     public function destroy(ChatbotConocimiento $conocimiento, EliminarConocimientoAction $action)
     {
+        abort_if(!auth()->user()->can('chatbot_conocimiento.eliminar'), 403, 'Acceso Denegado');
         $action->execute($conocimiento);
         return redirect()->route('admin.chatbot.conocimiento.index')
             ->with('success', 'Conocimiento eliminado exitosamente.');

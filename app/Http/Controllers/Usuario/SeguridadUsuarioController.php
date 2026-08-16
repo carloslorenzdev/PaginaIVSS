@@ -86,7 +86,7 @@ class SeguridadUsuarioController extends Controller
             'success',
             [
                 'mensaje' => 'Contraseña restablecida',
-                'ayuda' => "$usuario->usuario se reestableció su contraseña"
+                'ayuda' => "La nueva contraseña de $usuario->usuario es su mismo nombre de usuario."
             ]
         ]);
     }

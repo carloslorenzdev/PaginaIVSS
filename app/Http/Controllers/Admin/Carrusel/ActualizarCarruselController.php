@@ -10,6 +10,7 @@ class ActualizarCarruselController extends Controller
 {
     public function __invoke(Request $request, $id, ActualizarCarruselAction $action)
     {
+        abort_if(!auth()->user()->can('carrusel.editar'), 403, 'No tienes permiso para editar carrusel.');
         $request->validate([
             'enlace' => 'nullable|string|max:255',
             'titulo' => 'nullable|string|max:255',

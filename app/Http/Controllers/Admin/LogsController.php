@@ -9,6 +9,7 @@ class LogsController extends Controller
 {
     public function __invoke()
     {
+        abort_if(!auth()->user()->can('sistema.logs'), 403, 'No tienes permiso para ver los logs.');
         $logPath = storage_path('logs/laravel.log');
         $logs = [];
 

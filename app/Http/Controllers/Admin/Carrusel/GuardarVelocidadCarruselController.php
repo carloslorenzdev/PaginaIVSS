@@ -10,6 +10,7 @@ class GuardarVelocidadCarruselController extends Controller
 {
     public function __invoke(Request $request, GuardarVelocidadCarruselAction $action)
     {
+        abort_if(!auth()->user()->can('carrusel.editar'), 403, 'No tienes permiso para editar carrusel.');
         $request->validate([
             'intervalo' => 'required|integer|min:1000|max:20000',
         ]);

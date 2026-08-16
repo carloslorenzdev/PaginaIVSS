@@ -11,6 +11,7 @@ class ControlAccesoController extends Controller
 {
     public function index()
     {
+        abort_if(!auth()->user()->isAdmin(), 403, 'Acceso denegado. Solo el administrador puede gestionar el control de acceso.');
         // El rol 'admin' tiene todos los permisos, no lo mostramos para evitar que lo rompan
         $roles = Role::where('name', '!=', 'admin')->orderBy('id')->get();
         return view('admin.control_acceso.index', compact('roles'));
@@ -18,6 +19,7 @@ class ControlAccesoController extends Controller
 
     public function edit(Role $role)
     {
+        abort_if(!auth()->user()->isAdmin(), 403, 'Acceso denegado. Solo el administrador puede gestionar el control de acceso.');
         if ($role->name === 'admin') {
             return redirect()->route('usuarios.control_acceso.index')->with('error', 'El rol de Administrador no puede ser modificado.');
         }
@@ -35,6 +37,7 @@ class ControlAccesoController extends Controller
 
     public function update(Request $request, Role $role)
     {
+        abort_if(!auth()->user()->isAdmin(), 403, 'Acceso denegado. Solo el administrador puede gestionar el control de acceso.');
         if ($role->name === 'admin') {
             return redirect()->route('usuarios.control_acceso.index')->with('error', 'El rol de Administrador no puede ser modificado.');
         }
