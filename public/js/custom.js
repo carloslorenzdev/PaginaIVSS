@@ -51,7 +51,7 @@ async function submitConsultaPensionado(e) {
                 newWindow.document.close();
             } else {
                 Swal.fire({
-                    title: 'Resultado IVSS',
+                    title: 'Aviso',
                     text: data.message,
                     icon: data.message && data.message.toLowerCase().includes('no tiene') ? 'warning' : 'info',
                     confirmButtonText: 'Aceptar',
@@ -61,7 +61,7 @@ async function submitConsultaPensionado(e) {
         } else {
             Swal.fire({
                 title: 'Error',
-                text: data.message,
+                text: 'No disponible en este momento, intente de nuevo mas tarde.',
                 icon: 'error',
                 confirmButtonText: 'Aceptar',
                 confirmButtonColor: '#d33'
@@ -71,7 +71,7 @@ async function submitConsultaPensionado(e) {
         console.error(error);
         Swal.fire({
             title: 'Error',
-            text: error.message || 'Ocurrió un error inesperado al realizar la consulta.',
+            text: 'No disponible en este momento, intente de nuevo mas tarde.',
             icon: 'error',
             confirmButtonText: 'Aceptar',
             confirmButtonColor: '#d33'
@@ -135,9 +135,9 @@ async function submitCuentaIndividual(e) {
             newWindow.document.close();
         } else {
             Swal.fire({
-                title: 'Resultado IVSS',
-                text: data.message,
-                icon: data.message && data.message.toLowerCase().includes('no se encuentra') ? 'warning' : 'error',
+                title: 'Error',
+                text: 'No disponible en este momento, intente de nuevo mas tarde.',
+                icon: 'error',
                 confirmButtonText: 'Aceptar',
                 confirmButtonColor: '#d33'
             });
@@ -146,7 +146,7 @@ async function submitCuentaIndividual(e) {
         console.error(error);
         Swal.fire({
             title: 'Error',
-            text: error.message || 'Ocurrió un error inesperado al consultar la cuenta individual.',
+            text: 'No disponible en este momento, intente de nuevo mas tarde.',
             icon: 'error',
             confirmButtonText: 'Aceptar',
             confirmButtonColor: '#d33'

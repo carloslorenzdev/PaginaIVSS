@@ -14,7 +14,7 @@ class GuardarActividadAnualController extends Controller
         $request->validate([
             'titulo' => 'required|max:255',
             'descripcion' => 'nullable',
-            'archivo' => 'nullable|file|mimes:jpg,jpeg,png,gif,mp4,mov,avi|max:51200',
+            'archivo' => 'nullable|file|mimes:jpg,jpeg,png,webp,mp4,mov,avi|max:51200',
             'documento_adjunto' => 'nullable|file|mimes:pdf,doc,docx|max:51200'
         ]);
 

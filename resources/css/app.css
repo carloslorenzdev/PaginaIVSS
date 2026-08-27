@@ -38,3 +38,37 @@
     height: 0;
     pointer-events: none;
 }
+
+/* =========================================
+   PREMIUM UI UTILITIES (GLASSMORPHISM & HOVERS)
+   ========================================= */
+
+@layer utilities {
+    .glass {
+        @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-lg dark:bg-neutral-900/70 dark:border-white/10;
+    }
+    
+    .glass-card {
+        @apply bg-white/80 backdrop-blur-lg border border-gray-200/50 shadow-xl dark:bg-neutral-800/80 dark:border-neutral-700/50;
+    }
+
+    .hover-elevate {
+        @apply transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 dark:hover:shadow-blue-500/5;
+    }
+
+    .text-gradient {
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400;
+    }
+    
+    .text-gradient-danger {
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-orange-500 dark:from-red-400 dark:to-orange-400;
+    }
+    
+    .premium-border {
+        @apply border border-gray-200/60 dark:border-neutral-700/60;
+    }
+
+    .table-row-hover {
+        @apply transition-colors duration-200 hover:bg-blue-50/50 dark:hover:bg-neutral-800/50;
+    }
+}

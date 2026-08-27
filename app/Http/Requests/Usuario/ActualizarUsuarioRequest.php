@@ -15,7 +15,7 @@ class ActualizarUsuarioRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return auth()->check() && auth()->user()->can('usuarios.editar');
     }
 
     /**

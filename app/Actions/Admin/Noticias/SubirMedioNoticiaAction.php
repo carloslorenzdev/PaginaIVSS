@@ -12,7 +12,7 @@ class SubirMedioNoticiaAction
     {
         $noticia = Noticia::findOrFail($noticiaId);
         
-        $extension = $archivo->getClientOriginalExtension();
+        $extension = $archivo->extension();
         $nombreOriginal = $archivo->getClientOriginalName();
         $nombreOriginalStr = pathinfo($nombreOriginal, PATHINFO_FILENAME);
         $nombreArchivo = time() . '-' . Str::slug($nombreOriginalStr) . '.' . $extension;

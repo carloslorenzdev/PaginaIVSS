@@ -26,14 +26,14 @@
         <div>
             <p class="italic">{{ $user->usuario }}</p>
         </div>
-        @hasrole('Admin')
+        @can('usuarios.editar')
             <div>
                 <p class="text-neutral-500 mt-3 sm:m-0">Roles</p>
             </div>
             <div>
                 <p>{{ $user->roles->pluck('name')->join(', ', ' y ') }}</p>
             </div>
-        @endhasrole
+        @endcan
         <div>
             <p class="text-neutral-500 mt-3 sm:m-0">Cambio Contraseña</p>
         </div>
@@ -58,7 +58,7 @@
                 <p>{{ $user->fechaHumanos('created_at') }}</p>
             </x-tooltip>
         </div>
-        @hasrole('Admin')
+        @can('usuarios.ver')
             <div>
                 <p class="text-neutral-500 mt-3 sm:m-0">Últ. Actualización</p>
             </div>
@@ -79,6 +79,6 @@
             <div>
                 <p>{{ $user->modificador?->nombre ?: '-' }}</p>
             </div>
-        @endhasrole
+        @endcan
     </div>
 </div>

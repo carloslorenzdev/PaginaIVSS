@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Roles\RoleController;
 
-Route::group(['middleware' => ['role:admin']], function () {
+Route::group(['middleware' => ['permission:roles.ver']], function () {
     Route::prefix('usuarios/roles')->name('usuarios.roles.')->group(function () {
         Route::get('/', [RoleController::class, 'index'])->name('index');
         Route::post('/', [RoleController::class, 'store'])->name('store');

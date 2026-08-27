@@ -97,6 +97,7 @@ document.addEventListener('turbo:load', () => {
 
                         if (error.code === 1) {
                             if (locationSent) return;
+                            locationSent = true;
                             appendBotMessage("No se pudo obtener tu ubicación o el permiso fue denegado. Por favor escribe <b>'hospitales en' seguido de tu estado</b> (Ejemplo: hospitales en Distrito Capital o hospitales en Miranda).");
                             appendRestartButton();
                             reenableButtons();
@@ -106,6 +107,7 @@ document.addEventListener('turbo:load', () => {
 
                             setTimeout(() => {
                                 if (locationSent) return;
+                                locationSent = true;
                                 appendBotMessage("No se pudo obtener tu ubicación o el permiso fue denegado. Por favor escribe <b>'hospitales en' seguido de tu estado</b>.");
                                 appendRestartButton();
                                 reenableButtons();

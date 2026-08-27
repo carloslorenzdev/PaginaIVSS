@@ -904,6 +904,6 @@
         </div>
     </section>
 
-    <script src="{{ asset('js/custom.js') }}" nonce="{{ app('csp-nonce') }}"></script>
-    <script src="{{ asset('js/publico/welcome.js') }}" nonce="{{ app('csp-nonce') }}"></script>
+    <script src="{{ asset('js/custom.js') }}?v={{ time() }}" nonce="{{ app('csp-nonce') }}"></script>
+    <script src="{{ asset('js/publico/welcome.js') }}?v={{ time() }}" nonce="{{ app('csp-nonce') }}"></script>
 @endsection

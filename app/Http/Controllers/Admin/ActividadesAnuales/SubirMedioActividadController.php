@@ -12,7 +12,7 @@ class SubirMedioActividadController extends Controller
     {
         abort_if(!auth()->user()->can('actividades.subir_medio'), 403, 'No tienes permiso para subir medios.');
         $request->validate([
-            'archivo' => 'required|file|mimes:jpg,jpeg,png,gif,mp4,mov,avi,pdf,doc,docx|max:51200',
+            'archivo' => 'required|file|mimes:jpg,jpeg,png,webp,mp4,mov,avi,pdf,doc,docx|max:51200',
             'tipo_relacion' => 'required|in:principal,galeria,adjunto',
             'leyenda' => 'nullable|max:500',
         ]);

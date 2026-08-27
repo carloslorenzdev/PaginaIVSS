@@ -73,7 +73,7 @@
                         <a href="http://www.ivss.gov.ve/imag/page/379/forma_14_196.doc" target="_blank" class="text-decoration-none fw-bold text-dark" style="font-size: 1.1rem;">forma 14 196.doc</a>
                     </div>
                     <div class="text-center mt-5">
-                        <a href="{{ route('inicio') }}" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold">
+                        <a href="{{ route('inicio') }}" data-turbo="false" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold">
                             <i class="fas fa-arrow-left me-2"></i> Volver al Inicio
                         </a>
                     </div>

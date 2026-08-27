@@ -3,7 +3,6 @@
 use App\Console\Commands\ChownLogsCommand;
 use App\Jobs\Sistema\BloquearUsuariosFuncionariosTask;
 use App\Jobs\Sistema\CierraSesionesUsuarioTask;
-use App\Jobs\Sistema\EliminaArchivosAntiguosTask;
 use App\Jobs\Sistema\LimpiaCacheAutoloadTask;
 use App\Jobs\Telegram\Activacion2faTask;
 use App\Jobs\Telegram\VerificaServicioActivoTask;
@@ -14,7 +13,6 @@ Schedule::command(ChownLogsCommand::class)->environments(['production'])->everyF
 Schedule::job(LimpiaCacheAutoloadTask::class)->dailyAt('00:01');
 Schedule::job(CierraSesionesUsuarioTask::class)->dailyAt('00:05');
 Schedule::job(BloquearUsuariosFuncionariosTask::class)->dailyAt('00:10');
-Schedule::job(EliminaArchivosAntiguosTask::class)->dailyAt('01:00');
 // TELEGRAM
 Schedule::job(VerificaServicioActivoTask::class)->everyFiveMinutes();
 Schedule::job(Activacion2faTask::class)->everyTenSeconds();

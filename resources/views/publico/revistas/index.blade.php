@@ -70,8 +70,8 @@
                                 <h5 class="card-title fw-bold text-dark text-uppercase mb-1" style="font-size: 1.1rem; line-height: 1.3;">
                                     {{ $revista->titulo }}
                                 </h5>
-                                <p class="text-muted small mb-0">
-                                    <i class="far fa-calendar-alt me-1"></i> {{ $revista->fecha_publicacion->format('F Y') }}
+                                <p class="text-muted small mb-0" style="text-transform: capitalize;">
+                                    <i class="far fa-calendar-alt me-1"></i> {{ $revista->fecha_publicacion->locale('es')->translatedFormat('F Y') }}
                                 </p>
                             </div>
                         </div>

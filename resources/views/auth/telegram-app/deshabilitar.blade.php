@@ -94,12 +94,12 @@
                 <x-alerta titulo="Importante">
                     <x-alerta.mensaje>
                         Si desdeas forzar la deshabilitación de este método <strong>sin ingresar código</strong>,
-                        @hasrole('Patrono')
+                        @cannot('usuarios.editar')
                             debe dirigirse a la oficina administrativa y solicitar la desactivación.
                         @else
-                            solicita a un usuario con <strong>rol</strong> superior o al administrador para que realice
+                            solicita a un usuario con <strong>permisos de administración</strong> para que realice
                             la desactivación
-                        @endhasrole
+                        @endcannot
                     </x-alerta.mensaje>
                 </x-alerta>
             </div>

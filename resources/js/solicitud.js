@@ -8,15 +8,15 @@ function renderizaActividadEconomica(valorTipoEmpresa, valorActividad = null) {
     const selectActividad = document.querySelector('select[name="actividad_economica"]');
 
     selectActividad.disabled = true;
-    let html = generaEtiquetaOption('Seleccione Actividad Económica');
+    selectActividad.replaceChildren();
+    selectActividad.appendChild(new Option('Seleccione Actividad Económica', ''));
 
     if (actividadesEmpresa.length) {
         actividadesEmpresa.forEach(ac => {
-            html += generaEtiquetaOption(ac.desc_actividad, ac.id_actividad)
+            selectActividad.appendChild(new Option(ac.desc_actividad, ac.id_actividad));
         });
     }
 
-    selectActividad.innerHTML = html;
     selectActividad.value = valorActividad;
     selectActividad.disabled = false;
 }

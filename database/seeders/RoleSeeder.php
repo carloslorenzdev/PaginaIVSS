@@ -98,6 +98,12 @@ class RoleSeeder extends Seeder
                 'chatbot_conocimiento.editar',
                 'chatbot_conocimiento.eliminar',
 
+                // Roles y Permisos
+                'roles.ver',
+                'roles.crear',
+                'roles.editar',
+                'roles.eliminar',
+
                 // Chatbot Preguntas
                 'chatbot_preguntas.ver',
                 'chatbot_preguntas.responder',

@@ -35,11 +35,19 @@ class GuardarBoletinAction
                 $imagenBase64 = $data['imagen_base64'];
                 $imageParts = explode(";base64,", $imagenBase64);
                 if(count($imageParts) == 2) {
-                    $imageTypeAux = explode("image/", $imageParts[0]);
-                    $imageType = $imageTypeAux[1];
-                    $imageBase64 = base64_decode($imageParts[1]);
-                    $imageName = 'boletines/imagenes/' . Str::random(40) . '.' . $imageType;
-                    Storage::disk('public')->put($imageName, $imageBase64);
+                    $decodedImage = base64_decode($imageParts[1]);
+                    $finfo = new \finfo(FILEINFO_MIME_TYPE);
+                    $mimeType = $finfo->buffer($decodedImage);
+                    $allowedMimeTypes = [
+                        'image/jpeg' => 'jpg',
+                        'image/png' => 'png',
+                        'image/webp' => 'webp',
+                    ];
+                    if (array_key_exists($mimeType, $allowedMimeTypes)) {
+                        $extension = $allowedMimeTypes[$mimeType];
+                        $imageName = 'boletines/imagenes/' . Str::random(40) . '.' . $extension;
+                        Storage::disk('public')->put($imageName, $decodedImage);
+                    }
                 }
             } catch (\Throwable $e) {}
         } else {

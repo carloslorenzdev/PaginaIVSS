@@ -35,7 +35,7 @@
                             </div>
                             <div
                                 class="mt-2 space-y-2 text-sm max-h-40 overflow-y-auto text-gray-800 dark:text-neutral-200">
-                                {!! $item->observacion !!}
+                                {!! clean($item->observacion) !!}
                             </div>
                         </div>
                     </div>

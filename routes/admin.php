@@ -36,7 +36,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // ----------------------------------------------------------------
     Route::prefix('categorias')->name('categorias.')->group(function () {
         Route::get('/', \App\Http\Controllers\Admin\Categorias\ListarCategoriasController::class)->name('index');
-        Route::get('/crear', \App\Http\Controllers\Admin\Categorias\CrearCategoriaViewController::class)->name('crear');
         Route::post('/guardar', \App\Http\Controllers\Admin\Categorias\GuardarCategoriaController::class)->name('guardar');
         Route::get('/{id}/editar', \App\Http\Controllers\Admin\Categorias\EditarCategoriaViewController::class)->name('editar');
         Route::put('/{id}', \App\Http\Controllers\Admin\Categorias\ActualizarCategoriaController::class)->name('actualizar');

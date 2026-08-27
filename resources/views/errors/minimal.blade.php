@@ -17,11 +17,11 @@
                 class="mt-4 text-balance text-5xl font-semibold tracking-tight text-gray-800 dark:text-neutral-200 sm:text-7xl">
                 @yield('mensaje')
             </h1>
-            @hasrole('Admin')
+            @can('usuarios.editar')
                 <p class="mt-6 text-pretty text-lg font-medium text-gray-500 sm:text-xl/8">
                     {{ $exception->getMessage() }}
                 </p>
-            @endhasrole
+            @endcan
             <div class="flex justify-center items-center gap-x-3 mt-6">
                 @if (request()->hasHeader('X-Request-ID'))
                     <p class="text-sm text-gray-800 dark:text-neutral-200">

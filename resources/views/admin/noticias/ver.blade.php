@@ -26,9 +26,15 @@
                             <div class="flex items-center gap-2 flex-wrap">
                                 {{-- Badge de estado --}}
                                 @if($noticia->publicado)
-                                    <x-badge color="teal">
-                                        <i class="bx bx-check-circle mr-1"></i> Publicada
-                                    </x-badge>
+                                    @if($noticia->fecha_publicacion && $noticia->fecha_publicacion->isFuture())
+                                        <x-badge color="purple">
+                                            <i class="bx bx-calendar-event mr-1"></i> Programada ({{ $noticia->fecha_publicacion->diffForHumans() }})
+                                        </x-badge>
+                                    @else
+                                        <x-badge color="teal">
+                                            <i class="bx bx-check-circle mr-1"></i> Publicada
+                                        </x-badge>
+                                    @endif
                                 @else
                                     <x-badge color="yellow">
                                         <i class="bx bx-time mr-1"></i> Borrador
@@ -36,7 +42,7 @@
                                 @endif
 
                                 {{-- Botones de acción para aprobadores --}}
-                                @hasanyrole('admin|aprobador')
+                                @can('noticias.publicar')
                                     @if($noticia->publicado)
                                         <button type="button"
                                             data-ver-accion="despublicar"
@@ -50,26 +56,26 @@
                                             <i class="bx bx-check-shield"></i> Aprobar y publicar
                                         </button>
                                     @endif
-                                @endhasanyrole
+                                @endcan
 
                                 {{-- Botón eliminar (solo Admin) --}}
-                                @hasanyrole('admin')
+                                @can('noticias.eliminar')
                                     <button type="button"
                                         data-ver-accion="eliminar"
                                         class="py-1.5 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-red-200 bg-red-50 text-red-700 hover:bg-red-100 dark:bg-red-900/20 dark:border-red-800 dark:text-red-400 transition-all">
                                         <i class="bx bx-trash"></i> Eliminar
                                     </button>
-                                @endhasanyrole
+                                @endcan
                             </div>
                             
                             {{-- Botón Guardar Cambios --}}
-                            @hasanyrole('admin|redactor')
+                            @can('noticias.editar')
                             <div>
                                 <x-input.button type="submit" class="bg-red-600 hover:bg-red-700 focus:bg-red-700">
                                     <i class="bx bx-save mr-1"></i> Guardar Cambios
                                 </x-input.button>
                             </div>
-                            @endhasanyrole
+                            @endcan
                         </div>
 
                         @php
@@ -188,7 +194,7 @@
     {{-- ================================================================ --}}
     {{-- MODAL: ELIMINAR NOTICIA (solo Admin)                             --}}
     {{-- ================================================================ --}}
-    @hasanyrole('admin')
+    @can('noticias.eliminar')
     <div id="modal-eliminar" style="display:none;position:fixed;inset:0;z-index:70;align-items:center;justify-content:center;padding:1rem;">
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" data-ver-accion="cerrar-eliminar"></div>
         <div class="relative bg-white dark:bg-neutral-800 rounded-2xl shadow-2xl w-full max-w-md p-6 animate-modal">
@@ -223,13 +229,13 @@
             </form>
         </div>
     </div>
-    @endhasanyrole
+    @endcan
 
     {{-- ================================================================ --}}
     {{-- MODAL: DESPUBLICAR (Admin y Aprobador)                           --}}
     {{-- ================================================================ --}}
     @if($noticia->publicado)
-    @hasanyrole('admin|aprobador')
+    @can('noticias.publicar')
     <div id="modal-despublicar" style="display:none;position:fixed;inset:0;z-index:70;align-items:center;justify-content:center;padding:1rem;">
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" data-ver-accion="cerrar-despublicar"></div>
         <div class="relative bg-white dark:bg-neutral-800 rounded-2xl shadow-2xl w-full max-w-md p-6 animate-modal">
@@ -261,14 +267,14 @@
             </form>
         </div>
     </div>
-    @endhasanyrole
+    @endcan
     @endif
 
     {{-- ================================================================ --}}
     {{-- MODAL: APROBACIÓN MULTI-PASO (Admin y Aprobador, solo borrador) --}}
     {{-- ================================================================ --}}
     @if(!$noticia->publicado)
-    @hasanyrole('admin|aprobador')
+    @can('noticias.publicar')
     <div id="modal-aprobar" style="display:none;position:fixed;inset:0;z-index:70;align-items:center;justify-content:center;padding:1rem;">
         <div class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
         <div class="relative bg-white dark:bg-neutral-800 rounded-2xl shadow-2xl w-full max-w-lg animate-modal">
@@ -422,7 +428,7 @@
             </form>
         </div>
     </div>
-    @endhasanyrole
+    @endcan
     @endif
 
 @endsection

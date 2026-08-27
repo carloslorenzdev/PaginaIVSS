@@ -11,12 +11,12 @@ class TestSubirController extends Controller
     public function __invoke(Request $request)
     {
         $request->validate([
-            'archivo' => 'required|file|mimes:jpg,jpeg,png,gif,mp4,mov,avi|max:51200',
+            'archivo' => 'required|file|mimes:jpg,jpeg,png,webp,mp4,mov,avi|max:51200',
             'leyenda' => 'nullable|max:500',
         ]);
 
         $archivo = $request->file('archivo');
-        $extension = $archivo->getClientOriginalExtension();
+        $extension = $archivo->extension();
         $nombreOriginal = $archivo->getClientOriginalName();
         $nombreOriginalStr = pathinfo($nombreOriginal, PATHINFO_FILENAME);
         $nombreArchivo = time() . '-' . \Illuminate\Support\Str::slug($nombreOriginalStr) . '.' . $extension;

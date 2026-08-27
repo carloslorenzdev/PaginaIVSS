@@ -13,9 +13,9 @@
             </button>
         </div>
 
-        @hasrole('admin|director')
+        @can('usuarios.ver')
             @include('usuarios/listado/indicadores')
-        @endhasrole
+        @endcan
         
         <div class="grid grid-cols-1 gap-4">
             <div>
@@ -108,9 +108,9 @@
 @endsection
 
 @push('page-scripts')
-    @hasrole('admin|director')
+    @can('usuarios.ver')
         @vite('resources/js/countup-indicadores.js')
-    @endhasrole
+    @endcan
     @vite('resources/js/admin-usuarios.js')
 
     <style nonce="{{ app('csp-nonce') }}">

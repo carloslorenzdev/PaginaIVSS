@@ -3,8 +3,10 @@
 @section('titulo', 'Configuración Visual')
 
 @section('content')
-    <x-section class="space-y-4 p-4 sm:space-y-6 sm:p-6">
-        <x-titulo titulo="Configuración Visual del Sitio" />
+    <x-section class="space-y-4 p-5 sm:space-y-6 sm:p-8 bg-gray-50/30 dark:bg-neutral-900/30 rounded-2xl">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <x-titulo titulo="Configuración Visual del Sitio" class="text-gradient font-extrabold text-3xl" />
+        </div>
         <x-breadcrumb>
             <x-breadcrumb.item ruta="{{ route('admin.panel') }}" icono="bx bx-tachometer">
                 Panel
@@ -20,10 +22,13 @@
             <div class="space-y-6">
                 
                 {{-- 1. MEMBRETE --}}
-                <x-card class="p-5">
-                    <x-card.title class="mb-4">
-                        <i class="bx bx-image-alt"></i> 1. Cambiar Membrete (Banner Superior)
-                    </x-card.title>
+                <div class="bg-white dark:bg-neutral-900/50 border border-gray-100 dark:border-neutral-700/50 rounded-2xl p-6 shadow-sm">
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-3 mb-4">
+                        <div class="size-10 rounded-xl bg-red-100 dark:bg-red-900/30 flex items-center justify-center text-red-600 dark:text-red-400">
+                            <i class="bx bx-image-alt text-xl"></i>
+                        </div>
+                        1. Cambiar Membrete (Banner Superior)
+                    </h3>
                     <p class="text-sm text-gray-500 dark:text-neutral-400 mb-4">La imagen debe tener buena resolución para evitar distorsiones (Mínimo recomendado 800x100 píxeles). La vista previa se mostrará automáticamente al seleccionar la imagen.</p>
                     
                     <form action="{{ route('admin.config.visual.membrete') }}" method="POST" enctype="multipart/form-data" id="formMembrete" class="space-y-4">
@@ -44,25 +49,25 @@
                             <img id="membretePreviewImg" src="" alt="Vista Previa" class="max-w-full h-auto rounded shadow-sm">
                         </div>
 
-                        <div class="flex flex-wrap gap-2 pt-2">
-                            <button type="button" id="btnPreviewMembreteReal" data-inicio-url="{{ route('inicio') }}" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+                        <div class="flex flex-wrap gap-3 pt-3">
+                            <button type="button" id="btnPreviewMembreteReal" data-inicio-url="{{ route('inicio') }}" class="py-2.5 px-5 inline-flex items-center gap-x-2 text-sm font-bold rounded-xl border border-transparent bg-blue-600 text-white hover:bg-blue-700 transition-all shadow-md shadow-blue-500/30 hover:shadow-lg transform hover:-translate-y-0.5 disabled:opacity-50 disabled:pointer-events-none">
                                 <i class="bx bx-show text-lg"></i> Vista Previa Real
                             </button>
-                            <x-input.button class="bg-red-600 hover:bg-red-700 focus:bg-red-700">
-                                <i class="bx bx-save mr-1"></i> Guardar Membrete
-                            </x-input.button>
+                            <button type="submit" class="py-2.5 px-5 text-sm font-bold rounded-xl bg-gradient-to-r from-red-600 to-red-500 text-white shadow-md shadow-red-500/30 hover:shadow-lg hover:from-red-700 hover:to-red-600 transition-all inline-flex items-center gap-2 transform hover:-translate-y-0.5">
+                                <i class="bx bx-save text-lg"></i> Guardar Membrete
+                            </button>
                         </div>
                     </form>
                     
-                    <div class="mt-6 pt-6 border-t border-gray-200 dark:border-neutral-700">
-                        <p class="text-sm font-semibold text-gray-600 dark:text-neutral-300 mb-2">Membrete Actual en Uso:</p>
+                    <div class="mt-8 pt-6 border-t border-gray-100 dark:border-neutral-800">
+                        <p class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-neutral-500 mb-3">Membrete Actual en Uso</p>
                         @if(isset($configuraciones['membrete_img']))
-                            <img src="{{ asset('storage/' . $configuraciones['membrete_img']) }}" alt="Membrete Actual" class="max-w-full h-auto rounded shadow-sm opacity-80 hover:opacity-100 transition-opacity">
+                            <img src="{{ asset('storage/' . $configuraciones['membrete_img']) }}" alt="Membrete Actual" class="max-w-full h-auto rounded-xl shadow-sm border border-gray-100 dark:border-neutral-700 opacity-90 hover:opacity-100 transition-opacity">
                         @else
-                            <img src="{{ asset('imagenes/cintillo ivss_2026.png') }}" alt="Membrete por Defecto" class="max-w-full h-auto rounded shadow-sm opacity-80 bg-white">
+                            <img src="{{ asset('imagenes/cintillo ivss_2026.png') }}" alt="Membrete por Defecto" class="max-w-full h-auto rounded-xl shadow-sm border border-gray-100 dark:border-neutral-700 opacity-90 bg-white">
                         @endif
                     </div>
-                </x-card>
+                </div>
 
 
             </div>
@@ -70,16 +75,19 @@
             {{-- COLUMNA DERECHA --}}
             <div>
                 {{-- 3. IMÁGENES DE FONDO --}}
-                <x-card class="p-5 h-full">
-                    <x-card.title class="mb-4 border-b border-gray-200 dark:border-neutral-700 pb-3">
-                        <i class="bx bx-images"></i> 3. Imágenes de Fondo (Secciones)
-                    </x-card.title>
-                    <p class="text-sm text-gray-500 dark:text-neutral-400 mb-5">Personaliza las imágenes de fondo que acompañan a cada sección de la página web.</p>
+                <div class="bg-white dark:bg-neutral-900/50 border border-gray-100 dark:border-neutral-700/50 rounded-2xl p-6 shadow-sm h-full">
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-3 mb-4">
+                        <div class="size-10 rounded-xl bg-teal-100 dark:bg-teal-900/30 flex items-center justify-center text-teal-600 dark:text-teal-400">
+                            <i class="bx bx-images text-xl"></i>
+                        </div>
+                        3. Imágenes de Fondo (Secciones)
+                    </h3>
+                    <p class="text-sm font-medium text-gray-500 dark:text-neutral-400 mb-6">Personaliza las imágenes de fondo que acompañan a cada sección de la página web.</p>
                     
                     <form action="{{ route('admin.config.visual.backgrounds') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                         @csrf
                         
-                        <div class="space-y-5">
+                        <div class="space-y-4">
                             @php
                                 $bgs = [
                                     'bg_consultas' => 'Fondo Consultas',
@@ -92,18 +100,18 @@
                             @endphp
 
                             @foreach($bgs as $key => $label)
-                            <div class="bg-gray-50 dark:bg-neutral-800/50 p-4 rounded-lg border border-gray-200 dark:border-neutral-700">
-                                <x-input.label class="mb-2" value="{{ $label }}" />
-                                <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+                            <div class="bg-gray-50/50 dark:bg-neutral-800/30 p-4 rounded-xl border border-gray-100 dark:border-neutral-700/50 hover:border-teal-200 transition-colors">
+                                <label class="block text-sm font-bold mb-2 text-gray-700 dark:text-gray-300">{{ $label }}</label>
+                                <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
                                     <input type="file" name="{{ $key }}" accept="image/*" 
                                         class="block w-full text-sm text-gray-500 dark:text-neutral-400
-                                        file:me-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0
-                                        file:text-xs file:font-semibold file:bg-white file:text-gray-700
-                                        hover:file:bg-gray-100 border border-gray-200 dark:border-neutral-700 rounded-lg p-1 bg-white dark:bg-neutral-900">
+                                        file:me-3 file:py-2 file:px-3 file:rounded-lg file:border-0
+                                        file:text-xs file:font-bold file:bg-teal-50 file:text-teal-700 dark:file:bg-teal-900/30 dark:file:text-teal-400
+                                        hover:file:bg-teal-100 border border-gray-200 dark:border-neutral-700 rounded-xl p-1 bg-white dark:bg-neutral-900 shadow-sm cursor-pointer transition-colors">
                                     
                                     @if(!empty($configuraciones[$key]))
-                                        <div class="shrink-0 relative group">
-                                            <img src="{{ asset('storage/' . $configuraciones[$key]) }}" class="h-12 w-20 object-cover rounded shadow-sm border border-gray-200 dark:border-neutral-700">
+                                        <div class="shrink-0 relative group rounded-lg overflow-hidden border border-gray-200 dark:border-neutral-700 shadow-sm">
+                                            <img src="{{ asset('storage/' . $configuraciones[$key]) }}" class="h-14 w-24 object-cover transform group-hover:scale-110 transition-transform duration-300">
                                         </div>
                                     @endif
                                 </div>
@@ -111,13 +119,13 @@
                             @endforeach
                         </div>
                         
-                        <div class="pt-4 border-t border-gray-200 dark:border-neutral-700">
-                            <x-input.button class="w-full bg-red-600 hover:bg-red-700 focus:bg-red-700 justify-center">
-                                <i class="bx bx-save mr-1"></i> Guardar Fondos
-                            </x-input.button>
+                        <div class="pt-6 mt-6 border-t border-gray-100 dark:border-neutral-800">
+                            <button type="submit" class="w-full py-2.5 px-5 text-sm font-bold rounded-xl bg-gradient-to-r from-teal-600 to-teal-500 text-white shadow-md shadow-teal-500/30 hover:shadow-lg hover:from-teal-700 hover:to-teal-600 transition-all inline-flex items-center justify-center gap-2 transform hover:-translate-y-0.5">
+                                <i class="bx bx-save text-lg"></i> Guardar Fondos
+                            </button>
                         </div>
                     </form>
-                </x-card>
+                </div>
             </div>
         </div>
     </x-section>

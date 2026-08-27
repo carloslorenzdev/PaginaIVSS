@@ -9,16 +9,12 @@ window.addEventListener('turbo:load', function () {
             return false;
         }
         const oficinasParroquia = oficinas.filter(o => Number(o.id_parroquia) == Number(idParroquia))
-        let html = '';
+        selectOficina.replaceChildren();
         if (oficinasParroquia.length) {
             oficinasParroquia.forEach(o => {
-                html += generaEtiquetaOption(
-                    `(${o.oficina.abreviatura}) - ${o.oficina.nombre_oficina}`,
-                    o.id_oficina
-                );
+                selectOficina.appendChild(new Option(`(${o.oficina.abreviatura}) - ${o.oficina.nombre_oficina}`, o.id_oficina));
             });
         }
-        selectOficina.innerHTML = html;
         selectOficina.disabled = false;
     }
 

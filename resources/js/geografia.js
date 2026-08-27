@@ -24,15 +24,15 @@ function renderizaSelectParroquias(sufijo, idMunicipio = null, idEstado = null) 
 
     const municipios = listaMunicipios(idEstado);
     const parroquias = listaParroquias(idMunicipio, municipios);
-    let html = generaEtiquetaOption('Seleccione Parroquia');
+    selectParroquia.replaceChildren();
+    selectParroquia.appendChild(new Option('Seleccione Parroquia', ''));
 
     if (parroquias.length) {
         parroquias.forEach(p => {
-            html += generaEtiquetaOption(p.desc_parroquia, p.id_parroquia)
+            selectParroquia.appendChild(new Option(p.desc_parroquia, p.id_parroquia));
         });
     }
 
-    selectParroquia.innerHTML = html;
     selectParroquia.disabled = false;
 }
 
@@ -45,15 +45,15 @@ function renderizaSelectMunicipios(sufijo = null, idEstado = null) {
     }
 
     const municipios = listaMunicipios(idEstado);
-    let html = generaEtiquetaOption('Seleccione Municipio');
+    selectMunicipio.replaceChildren();
+    selectMunicipio.appendChild(new Option('Seleccione Municipio', ''));
 
     if (municipios.length) {
-        municipios.map(m => {
-            html += generaEtiquetaOption(m.nombre_municipio, m.id_municipio)
+        municipios.forEach(m => {
+            selectMunicipio.appendChild(new Option(m.nombre_municipio, m.id_municipio));
         });
     }
     console.log('renderizaMunicipos')
-    selectMunicipio.innerHTML = html;
     selectMunicipio.disabled = false;
 }
 

@@ -59,26 +59,10 @@
 {{-- CATEGORÍAS --}}
 @can('categorias.ver')
 <li>
-    <x-nav.accordion id="categorias-acordion" active="{{ routeActive('admin.categorias.*') }}">
-        <x-slot:heading>
-            <i class="bx bx-purchase-tag-alt bx-sm"></i>
-            Categorías
-        </x-slot:heading>
-        <ul class="ps-8 pt-1 space-y-1">
-            <li>
-                <x-nav.link href="{{ route('admin.categorias.index') }}" active="{{ routeActive('admin.categorias.index') }}">
-                    Listado
-                </x-nav.link>
-            </li>
-            @can('categorias.crear')
-            <li>
-                <x-nav.link href="{{ route('admin.categorias.crear') }}" active="{{ routeActive('admin.categorias.crear') }}">
-                    Nueva Categoría
-                </x-nav.link>
-            </li>
-            @endcan
-        </ul>
-    </x-nav.accordion>
+    <x-nav.link href="{{ route('admin.categorias.index') }}" active="{{ routeActive('admin.categorias.*') }}">
+        <i class="bx bx-purchase-tag-alt bx-sm"></i>
+        Categorías
+    </x-nav.link>
 </li>
 @endcan
 
@@ -221,18 +205,20 @@
                     Listado
                 </x-nav.link>
             </li>
-            @hasrole('admin')
+            @can('roles.ver')
             <li>
                 <x-nav.link href="{{ route('usuarios.roles.index') }}" active="{{ routeActive('usuarios.roles.*') }}">
                     Roles
                 </x-nav.link>
             </li>
+            @endcan
+            @can('control_acceso.ver')
             <li>
                 <x-nav.link href="{{ route('usuarios.control_acceso.index') }}" active="{{ routeActive('usuarios.control_acceso.*') }}">
                     Control de Acceso
                 </x-nav.link>
             </li>
-            @endhasrole
+            @endcan
         </ul>
     </x-nav.accordion>
 </li>
@@ -268,13 +254,13 @@
                 </x-nav.link>
             </li>
             @endcan
-            @hasrole('admin')
+            @can('admin.panel')
             <li>
                 <x-nav.link href="{{ route('admin.backups.index') }}" active="{{ routeActive('admin.backups.*') }}">
                     Respaldos
                 </x-nav.link>
             </li>
-            @endhasrole
+            @endcan
         </ul>
     </x-nav.accordion>
 </li>

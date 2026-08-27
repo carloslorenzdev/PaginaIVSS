@@ -73,7 +73,7 @@
         </div>
 
         <div class="text-center mt-5">
-            <a href="{{ route('inicio') }}" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold shadow-sm">
+            <a href="{{ route('inicio') }}" data-turbo="false" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold shadow-sm">
                 <i class="fas fa-arrow-left me-2"></i> Volver al Inicio
             </a>
         </div>
@@ -135,9 +135,9 @@
     }
 </style>
 
-<script id="directorio-data" type="application/json">
-    {!! json_encode($data) !!}
+<script>
+    window.currentDirectoryData = {!! json_encode($data) !!};
 </script>
-<script src="{{ asset('js/publico/buscador-directorios.js') }}?v={{ time() }}" nonce="{{ app('csp-nonce') ?? '' }}"></script>
+<script src="{{ asset('js/publico/buscador-directorios.js') . '?v=' . filemtime(public_path('js/publico/buscador-directorios.js')) }}" nonce="{{ app('csp-nonce') ?? '' }}"></script>
 
 @endsection

@@ -188,16 +188,14 @@ document.addEventListener('keydown', e => {
 });
 
 // Event listeners para reemplazar los onchange inline (por CSP)
-document.addEventListener('turbo:load', () => {
-    const cl = document.getElementById('panel-confirm-lectura');
-    if (cl) cl.addEventListener('change', panelVerificarLectura);
-
-    const radios = document.querySelectorAll('#panel-modal-aprobar input[name="tipo_fecha"]');
-    radios.forEach(r => r.addEventListener('change', panelToggleFecha));
-
-    const pi = document.getElementById('panel-input-fecha');
-    if (pi) pi.addEventListener('change', panelActualizarTextoCarrusel);
-
-    const cc = document.getElementById('panel-check-carrusel');
-    if (cc) cc.addEventListener('change', panelToggleCarrusel);
+document.addEventListener('change', function(e) {
+    if (e.target && e.target.id === 'panel-confirm-lectura') {
+        panelVerificarLectura();
+    } else if (e.target && e.target.name === 'tipo_fecha' && e.target.closest('#panel-modal-aprobar')) {
+        panelToggleFecha();
+    } else if (e.target && e.target.id === 'panel-input-fecha') {
+        panelActualizarTextoCarrusel();
+    } else if (e.target && e.target.id === 'panel-check-carrusel') {
+        panelToggleCarrusel();
+    }
 });

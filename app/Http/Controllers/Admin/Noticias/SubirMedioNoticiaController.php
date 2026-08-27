@@ -13,7 +13,7 @@ class SubirMedioNoticiaController extends Controller
         abort_if(!auth()->user()->can('noticias.subir_medio'), 403, 'No tienes permiso para subir medios.');
 
         $request->validate([
-            'archivo' => 'required|file|mimes:jpg,jpeg,png,gif,webp,mp4,mov,avi|max:51200',
+            'archivo' => 'required|file|mimes:jpg,jpeg,png,webp,mp4,mov,avi|max:51200',
             'tipo_relacion' => 'required|in:principal,galeria,adjunto',
             'leyenda' => 'nullable|max:500',
         ]);

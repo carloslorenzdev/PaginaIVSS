@@ -157,26 +157,18 @@ document.addEventListener('keydown', e => {
     }
 });
 
-// Actualizar eventos que antes eran onchange inline
-function initVerNoticia() {
-    const fi = document.getElementById('input-fecha-programada');
-    if (fi) fi.addEventListener('change', verToggleCarruselLabel);
-
-    const cl = document.getElementById('confirm-lectura');
-    if (cl) cl.addEventListener('change', verVerificarLectura);
-
-    const radios = document.querySelectorAll('#modal-aprobar input[name="tipo_fecha"]');
-    radios.forEach(r => r.addEventListener('change', verToggleFecha));
-
-    const cc = document.getElementById('check-carrusel');
-    if (cc) cc.addEventListener('change', verToggleCarruselLabel);
-}
-
-if (document.readyState === 'loading') {
-    document.addEventListener('turbo:load', initVerNoticia);
-} else {
-    initVerNoticia();
-}
+// Actualizar eventos que antes eran onchange inline usando delegation
+document.addEventListener('change', function(e) {
+    if (e.target && e.target.id === 'confirm-lectura') {
+        verVerificarLectura();
+    } else if (e.target && e.target.name === 'tipo_fecha' && e.target.closest('#modal-aprobar')) {
+        verToggleFecha();
+    } else if (e.target && e.target.id === 'input-fecha-programada') {
+        verToggleCarruselLabel();
+    } else if (e.target && e.target.id === 'check-carrusel') {
+        verToggleCarruselLabel();
+    }
+});
 
 // ================================================================
 // EVENT DELEGATION — Botones con data-ver-accion (reemplaza onclick inline)

@@ -56,8 +56,9 @@ class ConsultarPensionadoAction
                 $html = $baseTag . "\n" . $html;
             }
 
-            // Remover el alert fastidioso que a veces tira IVSS al imprimir "Consulta procesada..." o scripts que cierran ventanas
             $html = preg_replace('/<script[^>]*>.*?quitarFrame.*?<\/script>/is', '', $html);
+
+            $html = clean($html);
 
             return ['success' => true, 'isHtml' => true, 'html' => $html];
 

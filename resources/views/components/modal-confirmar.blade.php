@@ -7,11 +7,11 @@
                     <i class="bx bx-trash text-2xl text-red-600 dark:text-red-400"></i>
                 </div>
                 <div>
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white" id="modal-confirmar-titulo">Confirmar Acción</h3>
-                    <p class="text-sm text-gray-500 dark:text-neutral-400">Esta acción no se puede deshacer</p>
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white" id="modal-confirmar-titulo">Confirmar AcciÃ³n</h3>
+                    <p class="text-sm text-gray-500 dark:text-neutral-400">Esta acciÃ³n no se puede deshacer</p>
                 </div>
             </div>
-            <p class="text-sm text-gray-700 dark:text-neutral-300 mb-5" id="modal-confirmar-mensaje">¿Estás seguro?</p>
+            <p class="text-sm text-gray-700 dark:text-neutral-300 mb-5" id="modal-confirmar-mensaje">Â¿EstÃ¡s seguro?</p>
             
             <form id="form-confirmar" action="" method="POST">
                 @csrf
@@ -29,37 +29,7 @@
             </form>
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const modalConfirmar = document.getElementById('modal-confirmar');
-            const btnCerrar = document.getElementById('btn-cerrar-confirmar');
-            const backdrop = document.getElementById('modal-confirmar-backdrop');
-            
-            function closeModal() {
-                modalConfirmar.classList.add('hidden');
-                modalConfirmar.classList.remove('flex');
-            }
-            
-            if(btnCerrar) btnCerrar.addEventListener('click', closeModal);
-            if(backdrop) backdrop.addEventListener('click', closeModal);
-            
-            document.querySelectorAll('.btn-confirmar-accion').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const action = this.dataset.action;
-                    const mensaje = this.dataset.mensaje;
-                    const method = this.dataset.method || 'POST';
-                    
-                    document.getElementById('form-confirmar').action = action;
-                    document.getElementById('modal-confirmar-mensaje').textContent = mensaje;
-                    document.getElementById('modal-confirmar-method').value = method;
-                    
-                    modalConfirmar.classList.remove('hidden');
-                    modalConfirmar.classList.add('flex');
-                });
-            });
-        });
-    </script>
+    @vite('resources/js/modal-confirmar.js')
     <style nonce="{{ app('csp-nonce') }}">
         @keyframes modalIn {
             from { opacity: 0; transform: scale(0.95) translateY(10px); }
