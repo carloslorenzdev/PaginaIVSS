@@ -89,7 +89,7 @@ class DirectoriosSeeder extends Seeder
             "Trujillo" => [
                 [ "nombre" => "CENTRO DE SALUD DR. PEDRO EMILIO CARRILLO", "direccion" => "Av. San Miguel, Valera", "telefono" => "(0271) 221.11.22" ]
             ],
-            "Vargas" => [
+            "La Guaira" => [
                 [ "nombre" => "AMBULATORIO JOSÉ MARÍA VARGAS", "direccion" => "Sector El Baño, Pariata, Maiquetía", "telefono" => "(0212) 331.11.22" ]
             ],
             "Yaracuy" => [
@@ -190,7 +190,7 @@ class DirectoriosSeeder extends Seeder
             "Trujillo" => [
                 [ "nombre" => "OFICINA ADMINISTRATIVA VALERA", "direccion" => "Av. Bolívar, Edif. IVSS, Valera", "telefono" => "(0271) 225.11.22" ]
             ],
-            "Vargas" => [
+            "La Guaira" => [
                 [ "nombre" => "OFICINA ADMINISTRATIVA LA GUAIRA", "direccion" => "Av. Soublette, Edif. IVSS, Maiquetía", "telefono" => "(0212) 331.11.22" ]
             ],
             "Yaracuy" => [

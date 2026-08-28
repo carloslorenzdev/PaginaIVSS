@@ -11,9 +11,10 @@
                 const btnCancelar = document.getElementById('btn-cancelar-modal');
                 const formDelete = document.getElementById('form-delete');
                 
-                const urlStore = "{{ route('admin.chatbot.conocimiento.store') }}";
-                
                 if (!modal || !form || !btnNuevo) return; // Prevent errors if DOM missing
+                
+                // Extraer la url de store desde el action original del formulario (ya que vite no parsea blade)
+                const urlStore = form.getAttribute('action');
 
                 function openModal() {
                     modal.classList.remove('hidden');

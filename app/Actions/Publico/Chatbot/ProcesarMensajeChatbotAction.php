@@ -84,7 +84,7 @@ class ProcesarMensajeChatbotAction
         // 1. Detección de Farmacias (solo cuando se busca ubicación física)
         if (str_contains($mensaje, 'farmacia')) {
             // Extraer posible ubicación
-            $estados = ['amazonas', 'anzoategui', 'apure', 'aragua', 'barinas', 'bolivar', 'carabobo', 'cojedes', 'delta amacuro', 'falcon', 'guarico', 'lara', 'merida', 'miranda', 'monagas', 'nueva esparta', 'portuguesa', 'sucre', 'tachira', 'trujillo', 'vargas', 'yaracuy', 'zulia', 'caracas'];
+            $estados = ['amazonas', 'anzoategui', 'apure', 'aragua', 'barinas', 'bolivar', 'carabobo', 'cojedes', 'delta amacuro', 'falcon', 'guarico', 'lara', 'merida', 'miranda', 'monagas', 'nueva esparta', 'portuguesa', 'sucre', 'tachira', 'trujillo', 'la guaira', 'yaracuy', 'zulia', 'caracas'];
             $estadoDetectado = null;
             foreach($estados as $estado) {
                 if(str_contains($mensaje, $estado)) {
@@ -120,7 +120,7 @@ class ProcesarMensajeChatbotAction
         // 2. Detección de Centros de Salud en Base de Datos
         if (str_contains($mensaje, 'hospital') || str_contains($mensaje, 'clinica') || str_contains($mensaje, 'ambulatorio') || str_contains($mensaje, 'centro de salud') || str_contains($mensaje, 'centros de salud') || str_contains($mensaje, 'emergencia') || str_contains($mensaje, 'hemodialisis') || str_contains($mensaje, 'dialisis')) {
             // Extraer posible ubicación
-            $estados = ['amazonas', 'anzoategui', 'apure', 'aragua', 'barinas', 'bolivar', 'carabobo', 'cojedes', 'delta amacuro', 'falcon', 'guarico', 'lara', 'merida', 'miranda', 'monagas', 'nueva esparta', 'portuguesa', 'sucre', 'tachira', 'trujillo', 'vargas', 'yaracuy', 'zulia', 'caracas'];
+            $estados = ['amazonas', 'anzoategui', 'apure', 'aragua', 'barinas', 'bolivar', 'carabobo', 'cojedes', 'delta amacuro', 'falcon', 'guarico', 'lara', 'merida', 'miranda', 'monagas', 'nueva esparta', 'portuguesa', 'sucre', 'tachira', 'trujillo', 'la guaira', 'yaracuy', 'zulia', 'caracas'];
             $estadoDetectado = null;
             foreach($estados as $estado) {
                 if(str_contains($mensaje, $estado)) {
@@ -236,7 +236,7 @@ class ProcesarMensajeChatbotAction
             return 'Distrito Capital';
         }
         
-        $estados = ['amazonas', 'anzoategui', 'apure', 'aragua', 'barinas', 'bolivar', 'carabobo', 'cojedes', 'delta amacuro', 'falcon', 'guarico', 'lara', 'merida', 'miranda', 'monagas', 'nueva esparta', 'portuguesa', 'sucre', 'tachira', 'trujillo', 'vargas', 'yaracuy', 'zulia'];
+        $estados = ['amazonas', 'anzoategui', 'apure', 'aragua', 'barinas', 'bolivar', 'carabobo', 'cojedes', 'delta amacuro', 'falcon', 'guarico', 'lara', 'merida', 'miranda', 'monagas', 'nueva esparta', 'portuguesa', 'sucre', 'tachira', 'trujillo', 'la guaira', 'yaracuy', 'zulia'];
         
         $estadoSinAcentos = str_replace(
             ['á', 'é', 'í', 'ó', 'ú', 'ä', 'ë', 'ï', 'ö', 'ü'],

@@ -1,7 +1,7 @@
-document.addEventListener('turbo:load', () => {
+﻿document.addEventListener('turbo:load', () => {
     const widgetContainer = document.getElementById('ivss-chatbot-widget');
     if (!widgetContainer || widgetContainer.hasAttribute('data-initialized')) {
-        return; // Ya está inicializado o no existe
+        return; // Ya estÃ¡ inicializado o no existe
     }
     widgetContainer.setAttribute('data-initialized', 'true');
 
@@ -13,10 +13,10 @@ document.addEventListener('turbo:load', () => {
     const initialMenuHTML = `
         <div class="ivss-chatbot-msg bot-msg mb-3">
             <div class="ivss-chatbot-bubble shadow-sm p-3 rounded-3">
-                <p class="mb-2 fw-bold">¿Qué necesitas consultar?</p>
+                <p class="mb-2 fw-bold">Â¿QuÃ© necesitas consultar?</p>
                 <div class="ivss-chatbot-quick-options d-flex flex-column gap-2 mt-2">
                     <button class="btn btn-outline-danger btn-sm text-start ivss-btn-option" data-option="pension">
-                        <i class="fas fa-user-clock me-2"></i> Información pensión.
+                        <i class="fas fa-user-clock me-2"></i> InformaciÃ³n pensiÃ³n.
                     </button>
                     <button class="btn btn-outline-danger btn-sm text-start ivss-btn-option" data-option="medicamentos">
                         <i class="fas fa-pills me-2"></i> Medicamentos Alto Costo.
@@ -25,7 +25,7 @@ document.addEventListener('turbo:load', () => {
                         <i class="fas fa-hospital me-2"></i> Centro de Salud Cercano.
                     </button>
                     <button class="btn btn-outline-danger btn-sm text-start ivss-btn-option" data-option="hemodialisis">
-                        <i class="fas fa-procedures me-2"></i> Hemodiálisis.
+                        <i class="fas fa-procedures me-2"></i> HemodiÃ¡lisis.
                     </button>
                 </div>
             </div>
@@ -77,7 +77,7 @@ document.addEventListener('turbo:load', () => {
         appendUserMessage(buttonText);
         
         if (optionKey === 'centro_salud_cercano') {
-            appendBotMessage("Determinando tu ubicación de forma automática...");
+            appendBotMessage("Determinando tu ubicaciÃ³n de forma automÃ¡tica...");
             
 
 
@@ -98,17 +98,17 @@ document.addEventListener('turbo:load', () => {
                         if (error.code === 1) {
                             if (locationSent) return;
                             locationSent = true;
-                            appendBotMessage("No se pudo obtener tu ubicación o el permiso fue denegado. Por favor escribe <b>'hospitales en' seguido de tu estado</b> (Ejemplo: hospitales en Distrito Capital o hospitales en Miranda).");
+                            appendBotMessage("No se pudo obtener tu ubicaciÃ³n o el permiso fue denegado. Por favor escribe <b>'centros de salud en' seguido de tu estado</b> (Ejemplo: centros de salud en Distrito Capital o centros de salud en Miranda).");
                             appendRestartButton();
                             reenableButtons();
                         } else {
-                            // Petición del usuario: No mostrar error en escritorio si falta GPS físico, esperar el éxito por Wi-Fi.
+                            // PeticiÃ³n del usuario: No mostrar error en escritorio si falta GPS fÃ­sico, esperar el Ã©xito por Wi-Fi.
                             if (!isMobile) return;
 
                             setTimeout(() => {
                                 if (locationSent) return;
                                 locationSent = true;
-                                appendBotMessage("No se pudo obtener tu ubicación o el permiso fue denegado. Por favor escribe <b>'hospitales en' seguido de tu estado</b>.");
+                                appendBotMessage("No se pudo obtener tu ubicaciÃ³n o el permiso fue denegado. Por favor escribe <b>'centros de salud en' seguido de tu estado</b>.");
                                 appendRestartButton();
                                 reenableButtons();
                             }, 5000);
@@ -116,7 +116,7 @@ document.addEventListener('turbo:load', () => {
                     }
                 );
             } else {
-                appendBotMessage("Tu navegador no soporta geolocalización. Por favor escribe <b>'hospitales en' seguido de tu estado</b>.");
+                appendBotMessage("Tu navegador no soporta geolocalizaciÃ³n. Por favor escribe <b>'centros de salud en' seguido de tu estado</b>.");
                 appendRestartButton();
                 reenableButtons();
             }
