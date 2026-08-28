@@ -17,9 +17,10 @@ class ActualizarCarruselController extends Controller
             'etiquetas' => 'nullable|string|max:255',
             'fecha_publicacion' => 'nullable|date',
             'autor' => 'nullable|string|max:255',
+            'orden' => 'nullable|integer|min:1',
         ]);
 
-        $action->execute($id, $request->only(['enlace', 'titulo', 'etiquetas', 'fecha_publicacion', 'autor']));
+        $action->execute($id, $request->only(['enlace', 'titulo', 'etiquetas', 'fecha_publicacion', 'autor', 'orden']));
 
         return back()->with('success', 'Enlace e información actualizados correctamente');
     }

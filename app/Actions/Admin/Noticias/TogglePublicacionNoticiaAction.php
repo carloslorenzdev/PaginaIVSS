@@ -29,11 +29,13 @@ class TogglePublicacionNoticiaAction
             if (!empty($data['montar_carrusel'])) {
                 $imagenPrincipal = $noticia->medios->where('pivot.tipo_relacion', 'principal')->first() ?? $noticia->medios->first();
                 if ($imagenPrincipal) {
+                    Carrusel::increment('orden');
+                    
                     Carrusel::create([
                         'noticia_id' => $noticia->id,
                         'imagen_ruta' => $imagenPrincipal->ruta,
                         'enlace' => $noticia->enlace_externo ?: route('noticias.show', $noticia->slug),
-                        'orden' => Carrusel::max('orden') + 1,
+                        'orden' => 1,
                         'titulo' => $noticia->titulo,
                         'etiquetas' => $noticia->categorias->first() ? $noticia->categorias->first()->nombre : 'Noticias',
                         'fecha_publicacion' => $noticia->fecha_publicacion,

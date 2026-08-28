@@ -16,6 +16,7 @@ class ActualizarCarruselAction
             'etiquetas' => $data['etiquetas'] ?? null,
             'fecha_publicacion' => $data['fecha_publicacion'] ?? null,
             'autor' => $data['autor'] ?? null,
+            'orden' => $data['orden'] ?? $carrusel->orden,
         ]);
 
         return $carrusel;
