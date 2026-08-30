@@ -113,7 +113,7 @@
                 </x-button>
             </x-tooltip>
         </div>
-        <div class="h-40 overflow-auto" data-hs-editor-field="">{{ $slot }}</div>
+        <div class="h-[400px] overflow-auto" data-hs-editor-field="">{{ $slot }}</div>
     </x-card>
     <div class="text-xs text-right text-gray-500 dark:text-neutral-400" data-hs-editor-limit=""></div>
 </div>

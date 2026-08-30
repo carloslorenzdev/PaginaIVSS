@@ -117,7 +117,7 @@ function buildEditor(idElemento, placeholder = 'Escribe algo...') {
         content,
         editorProps: {
             attributes: {
-                class: 'relative min-h-40 text-sm text-gray-800 dark:text-neutral-200 p-3'
+                class: 'relative min-h-[400px] text-sm text-gray-800 dark:text-neutral-200 p-3 outline-none'
             },
             limit,
         },
