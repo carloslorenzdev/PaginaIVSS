@@ -117,7 +117,7 @@ function buildEditor(idElemento, placeholder = 'Escribe algo...') {
         content,
         editorProps: {
             attributes: {
-                class: 'relative min-h-[400px] text-sm text-gray-800 dark:text-neutral-200 p-3 outline-none'
+                class: 'relative min-h-[400px] text-sm text-gray-800 dark:text-neutral-200 p-3 outline-none prose prose-sm max-w-none dark:prose-invert'
             },
             limit,
         },
@@ -141,7 +141,6 @@ function buildEditor(idElemento, placeholder = 'Escribe algo...') {
             }),
             Paragraph.configure({
                 HTMLAttributes: {
-                    class: 'mb-3',
                 }
             }),
             Bold.configure({
