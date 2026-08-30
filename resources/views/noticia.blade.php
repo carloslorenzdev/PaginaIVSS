@@ -4,7 +4,7 @@
 
 @section('content')
 <!-- Contenedor principal con fondo gris claro para dar contraste y resaltar la noticia -->
-<div class="bg-light py-5">
+<div class="bg-light py-5" style="background-image: url('{{ asset('imagenes/fondo-ivss.png') }}'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh;">
     <div class="container mt-4">
         
         <!-- Breadcrumbs -->
