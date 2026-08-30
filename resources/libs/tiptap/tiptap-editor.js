@@ -13,6 +13,7 @@ import StarterKit from '@tiptap/starter-kit';
 import TextAlign from '@tiptap/extension-text-align';
 import { TextStyle } from '@tiptap/extension-text-style';
 import { FontFamily } from '@tiptap/extension-font-family';
+import Image from '@tiptap/extension-image';
 
 // Custom Extension for Font Size
 const FontSize = Extension.create({
@@ -185,7 +186,12 @@ function buildEditor(idElemento, placeholder = 'Escribe algo...') {
             TextStyle,
             FontFamily,
             FontSize,
-            LineHeight
+            LineHeight,
+            Image.configure({
+                HTMLAttributes: {
+                    class: 'rounded-lg max-w-full my-4 shadow-sm',
+                },
+            }),
         ]
     });
     
@@ -224,6 +230,39 @@ function buildEditor(idElemento, placeholder = 'Escribe algo...') {
         {
             id: `#${idElemento} [data-hs-editor-blockquote]`,
             fn: () => editor.chain().focus().toggleBlockquote().run()
+        },
+        {
+            id: `#${idElemento} [data-hs-editor-image]`,
+            fn: () => {
+                const fileInput = document.querySelector(`#${idElemento} #hs-editor-image-input`);
+                if(fileInput) {
+                    fileInput.click();
+                    fileInput.onchange = async (e) => {
+                        const file = e.target.files[0];
+                        if(file) {
+                            const formData = new FormData();
+                            formData.append('image', file);
+                            formData.append('_token', document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '');
+                            try {
+                                const response = await fetch('/admin/noticias/upload-editor-image', {
+                                    method: 'POST',
+                                    body: formData
+                                });
+                                const result = await response.json();
+                                if(result.success) {
+                                    editor.chain().focus().setImage({ src: result.file.url }).run();
+                                } else {
+                                    alert('Error al subir la imagen');
+                                }
+                            } catch (error) {
+                                console.error('Error uploading image', error);
+                                alert('Error al subir la imagen');
+                            }
+                            fileInput.value = ''; // reset
+                        }
+                    };
+                }
+            }
         },
         {
             id: `#${idElemento} [data-hs-editor-code]`,

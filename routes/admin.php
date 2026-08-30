@@ -22,6 +22,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // ----------------------------------------------------------------
     Route::prefix('noticias')->name('noticias.')->group(function () {
         Route::get('/crear', \App\Http\Controllers\Admin\Noticias\CrearNoticiaViewController::class)->name('crear');
+        Route::post('/upload-editor-image', \App\Http\Controllers\Admin\Noticias\UploadEditorImageController::class)->name('upload-editor-image');
         Route::post('/guardar', \App\Http\Controllers\Admin\Noticias\GuardarNoticiaController::class)->name('guardar');
         Route::post('/{id}/publicar', \App\Http\Controllers\Admin\Noticias\TogglePublicacionNoticiaController::class)->name('publicar');
         Route::get('/{id}', \App\Http\Controllers\Admin\Noticias\VerNoticiaPanelController::class)->name('ver');

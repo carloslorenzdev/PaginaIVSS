@@ -78,6 +78,14 @@
                 </x-button>
             </x-tooltip>
             
+            <x-tooltip titulo="Insertar Imagen">
+                <x-button data-hs-editor-image=""
+                    class="size-8 justify-center rounded-full text-gray-800 hover:bg-gray-100 focus:bg-gray-100 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700">
+                    <i class="bx bx-image-add"></i>
+                </x-button>
+                <input type="file" id="hs-editor-image-input" accept="image/*" class="hidden">
+            </x-tooltip>
+
             <div class="h-6 w-px bg-gray-200 mx-1 dark:bg-neutral-700"></div>
 
             <x-tooltip titulo="Alinear a la Izquierda">
