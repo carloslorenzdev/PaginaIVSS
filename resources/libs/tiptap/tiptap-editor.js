@@ -234,12 +234,17 @@ function buildEditor(idElemento, placeholder = 'Escribe algo...') {
         {
             id: `#${idElemento} [data-hs-editor-image]`,
             fn: () => {
+                const button = document.querySelector(`#${idElemento} [data-hs-editor-image]`);
                 const fileInput = document.querySelector(`#${idElemento} #hs-editor-image-input`);
-                if(fileInput) {
+                if(fileInput && button) {
                     fileInput.click();
                     fileInput.onchange = async (e) => {
                         const file = e.target.files[0];
                         if(file) {
+                            const originalHtml = button.innerHTML;
+                            button.innerHTML = '<i class="bx bx-loader-alt bx-spin"></i>';
+                            button.disabled = true;
+
                             const formData = new FormData();
                             formData.append('image', file);
                             formData.append('_token', document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '');
@@ -257,8 +262,11 @@ function buildEditor(idElemento, placeholder = 'Escribe algo...') {
                             } catch (error) {
                                 console.error('Error uploading image', error);
                                 alert('Error al subir la imagen');
+                            } finally {
+                                button.innerHTML = originalHtml;
+                                button.disabled = false;
+                                fileInput.value = ''; // reset
                             }
-                            fileInput.value = ''; // reset
                         }
                     };
                 }
