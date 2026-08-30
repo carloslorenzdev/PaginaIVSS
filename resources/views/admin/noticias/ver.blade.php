@@ -167,19 +167,19 @@
 
                             {{-- CATEGORÍAS --}}
                             <div>
-                                <x-input.label for="categorias" value="Categorías *" />
+                                <x-input.label value="Categorías *" />
                                 @php
                                     $noticiaCats = $noticia->categorias->pluck('id')->toArray();
                                 @endphp
-                                <select name="categorias[]" id="categorias" required multiple size="4"
-                                    class="w-full py-3 px-4 block border-gray-200 rounded-lg text-sm focus:border-red-500 focus:ring-red-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-2 p-4 border border-gray-200 rounded-xl bg-gray-50/50 dark:bg-neutral-900/50 dark:border-neutral-700">
                                     @foreach($categorias as $categoria)
-                                        <option value="{{ $categoria->id }}" {{ in_array($categoria->id, old('categorias', $noticiaCats)) ? 'selected' : '' }}>
-                                            {{ $categoria->nombre }}
-                                        </option>
+                                        <label class="flex p-3 w-full bg-white border border-gray-200 rounded-lg text-sm focus-within:border-red-500 focus-within:ring-1 focus-within:ring-red-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 cursor-pointer hover:bg-red-50 hover:border-red-200 transition-colors shadow-sm">
+                                            <input type="checkbox" name="categorias[]" value="{{ $categoria->id }}" class="shrink-0 mt-0.5 border-gray-300 rounded text-red-600 focus:ring-red-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-red-500 dark:checked:border-red-500 dark:focus:ring-offset-gray-800 cursor-pointer"
+                                            @if(in_array($categoria->id, old('categorias', $noticiaCats))) checked @endif>
+                                            <span class="text-sm text-gray-700 ms-3 dark:text-neutral-300 font-medium select-none">{{ $categoria->nombre }}</span>
+                                        </label>
                                     @endforeach
-                                </select>
-                                <p class="text-xs text-gray-500 mt-1">Presiona Ctrl (Windows) o Cmd (Mac) para seleccionar varias categorías.</p>
+                                </div>
                                 <x-input.error campo="categorias" />
                             </div>
                         </div>
