@@ -104,29 +104,36 @@
                             <div class="d-flex align-items-center flex-wrap justify-content-center gap-2">
                                 @php
                                     $redesNoticia = \App\Models\Configuracion::whereIn('clave', ['url_instagram', 'url_twitter', 'url_youtube', 'url_tiktok', 'url_facebook', 'url_telegram', 'url_threads'])->pluck('valor', 'clave');
+                                    $getSocialLink = function($key) use ($redesNoticia) {
+                                        $url = trim($redesNoticia[$key] ?? '');
+                                        if(empty($url) || $url === '#') {
+                                            return 'href="javascript:void(0)" onclick="Swal.fire({icon: \'info\', title: \'Próximamente\', text: \'Esta red social no está disponible en este momento.\', confirmButtonColor: \'#dc3545\'})"';
+                                        }
+                                        return 'href="' . $url . '" target="_blank"';
+                                    };
                                 @endphp
                                 
                                 <span class="text-muted small me-1 d-none d-sm-inline fw-semibold">Síguenos:</span>
                                 
-                                <a href="{{ $redesNoticia['url_instagram'] ?? '#' }}" target="_blank" class="btn btn-light text-danger btn-sm rounded-circle d-flex align-items-center justify-content-center border" style="width: 38px; height: 38px; font-size: 1.1rem;" title="Instagram">
+                                <a {!! $getSocialLink('url_instagram') !!} class="btn btn-light text-danger btn-sm rounded-circle d-flex align-items-center justify-content-center border" style="width: 38px; height: 38px; font-size: 1.1rem;" title="Instagram">
                                     <i class="fab fa-instagram"></i>
                                 </a>
-                                <a href="{{ $redesNoticia['url_twitter'] ?? '#' }}" target="_blank" class="btn btn-light text-dark btn-sm rounded-circle d-flex align-items-center justify-content-center border" style="width: 38px; height: 38px; font-size: 1.1rem;" title="X (Twitter)">
+                                <a {!! $getSocialLink('url_twitter') !!} class="btn btn-light text-dark btn-sm rounded-circle d-flex align-items-center justify-content-center border" style="width: 38px; height: 38px; font-size: 1.1rem;" title="X (Twitter)">
                                     <i class="fa-brands fa-x-twitter"></i>
                                 </a>
-                                <a href="{{ $redesNoticia['url_youtube'] ?? '#' }}" target="_blank" class="btn btn-light text-danger btn-sm rounded-circle d-flex align-items-center justify-content-center border" style="width: 38px; height: 38px; font-size: 1.1rem;" title="YouTube">
+                                <a {!! $getSocialLink('url_youtube') !!} class="btn btn-light text-danger btn-sm rounded-circle d-flex align-items-center justify-content-center border" style="width: 38px; height: 38px; font-size: 1.1rem;" title="YouTube">
                                     <i class="fab fa-youtube"></i>
                                 </a>
-                                <a href="{{ $redesNoticia['url_tiktok'] ?? '#' }}" target="_blank" class="btn btn-light text-dark btn-sm rounded-circle d-flex align-items-center justify-content-center border" style="width: 38px; height: 38px; font-size: 1.1rem;" title="TikTok">
+                                <a {!! $getSocialLink('url_tiktok') !!} class="btn btn-light text-dark btn-sm rounded-circle d-flex align-items-center justify-content-center border" style="width: 38px; height: 38px; font-size: 1.1rem;" title="TikTok">
                                     <i class="fab fa-tiktok"></i>
                                 </a>
-                                <a href="{{ $redesNoticia['url_telegram'] ?? '#' }}" target="_blank" class="btn btn-light text-primary btn-sm rounded-circle d-flex align-items-center justify-content-center border" style="width: 38px; height: 38px; font-size: 1.1rem;" title="Telegram">
+                                <a {!! $getSocialLink('url_telegram') !!} class="btn btn-light text-primary btn-sm rounded-circle d-flex align-items-center justify-content-center border" style="width: 38px; height: 38px; font-size: 1.1rem;" title="Telegram">
                                     <i class="fab fa-telegram"></i>
                                 </a>
-                                <a href="{{ $redesNoticia['url_facebook'] ?? '#' }}" target="_blank" class="btn btn-light text-primary btn-sm rounded-circle d-flex align-items-center justify-content-center border" style="width: 38px; height: 38px; font-size: 1.1rem;" title="Facebook">
+                                <a {!! $getSocialLink('url_facebook') !!} class="btn btn-light text-primary btn-sm rounded-circle d-flex align-items-center justify-content-center border" style="width: 38px; height: 38px; font-size: 1.1rem;" title="Facebook">
                                     <i class="fab fa-facebook-f"></i>
                                 </a>
-                                <a href="{{ $redesNoticia['url_threads'] ?? '#' }}" target="_blank" class="btn btn-light text-dark btn-sm rounded-circle d-flex align-items-center justify-content-center border" style="width: 38px; height: 38px; font-size: 1.1rem;" title="Threads">
+                                <a {!! $getSocialLink('url_threads') !!} class="btn btn-light text-dark btn-sm rounded-circle d-flex align-items-center justify-content-center border" style="width: 38px; height: 38px; font-size: 1.1rem;" title="Threads">
                                     <i class="fa-brands fa-threads"></i>
                                 </a>
 
