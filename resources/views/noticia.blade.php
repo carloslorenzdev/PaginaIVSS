@@ -101,15 +101,37 @@
                                 <small><i class="fas fa-calendar-alt me-1"></i> Publicado el {{ $noticia->fecha_publicacion->format('d/m/Y') }} a las {{ $noticia->fecha_publicacion->format('h:i A') }}</small>
                             </div>
 
-                            <div class="d-flex gap-2">
-                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->url()) }}" target="_blank" class="btn btn-primary btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; font-size: 1.2rem;">
+                            <div class="d-flex align-items-center flex-wrap justify-content-center gap-2">
+                                @php
+                                    $redesNoticia = \App\Models\Configuracion::whereIn('clave', ['url_instagram', 'url_twitter', 'url_youtube', 'url_tiktok', 'url_facebook', 'url_telegram', 'url_threads'])->pluck('valor', 'clave');
+                                @endphp
+                                
+                                <span class="text-muted small me-1 d-none d-sm-inline fw-semibold">Síguenos:</span>
+                                
+                                <a href="{{ $redesNoticia['url_instagram'] ?? '#' }}" target="_blank" class="btn btn-light text-danger btn-sm rounded-circle d-flex align-items-center justify-content-center border" style="width: 38px; height: 38px; font-size: 1.1rem;" title="Instagram">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="{{ $redesNoticia['url_twitter'] ?? '#' }}" target="_blank" class="btn btn-light text-dark btn-sm rounded-circle d-flex align-items-center justify-content-center border" style="width: 38px; height: 38px; font-size: 1.1rem;" title="X (Twitter)">
+                                    <i class="fa-brands fa-x-twitter"></i>
+                                </a>
+                                <a href="{{ $redesNoticia['url_youtube'] ?? '#' }}" target="_blank" class="btn btn-light text-danger btn-sm rounded-circle d-flex align-items-center justify-content-center border" style="width: 38px; height: 38px; font-size: 1.1rem;" title="YouTube">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <a href="{{ $redesNoticia['url_tiktok'] ?? '#' }}" target="_blank" class="btn btn-light text-dark btn-sm rounded-circle d-flex align-items-center justify-content-center border" style="width: 38px; height: 38px; font-size: 1.1rem;" title="TikTok">
+                                    <i class="fab fa-tiktok"></i>
+                                </a>
+                                <a href="{{ $redesNoticia['url_telegram'] ?? '#' }}" target="_blank" class="btn btn-light text-primary btn-sm rounded-circle d-flex align-items-center justify-content-center border" style="width: 38px; height: 38px; font-size: 1.1rem;" title="Telegram">
+                                    <i class="fab fa-telegram"></i>
+                                </a>
+                                <a href="{{ $redesNoticia['url_facebook'] ?? '#' }}" target="_blank" class="btn btn-light text-primary btn-sm rounded-circle d-flex align-items-center justify-content-center border" style="width: 38px; height: 38px; font-size: 1.1rem;" title="Facebook">
                                     <i class="fab fa-facebook-f"></i>
                                 </a>
-                                <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->url()) }}&text={{ urlencode($noticia->titulo) }}" target="_blank" class="btn btn-info text-white btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; font-size: 1.2rem;">
-                                    <i class="fab fa-twitter"></i>
+                                <a href="{{ $redesNoticia['url_threads'] ?? '#' }}" target="_blank" class="btn btn-light text-dark btn-sm rounded-circle d-flex align-items-center justify-content-center border" style="width: 38px; height: 38px; font-size: 1.1rem;" title="Threads">
+                                    <i class="fa-brands fa-threads"></i>
                                 </a>
-                                <a href="{{ route('noticias.index') }}" class="btn btn-danger btn-sm ms-3 rounded-pill px-4 d-flex align-items-center fw-semibold">
-                                    <i class="fas fa-list me-2"></i> Ver más noticias
+
+                                <a href="{{ route('noticias.index') }}" class="btn btn-danger btn-sm ms-2 rounded-pill px-4 d-flex align-items-center fw-semibold">
+                                    <i class="fas fa-list me-2"></i> Ver más
                                 </a>
                             </div>
                         </div>
@@ -127,7 +149,8 @@
         max-width: 100%;
         height: auto;
         border-radius: 0.5rem;
-        margin: 1rem 0;
+        margin: 1rem auto;
+        display: block;
     }
     .contenido-html p {
         margin-bottom: 1.5rem;
