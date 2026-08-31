@@ -104,6 +104,10 @@ class RoleSeeder extends Seeder
                 'roles.editar',
                 'roles.eliminar',
 
+                // Control de Acceso
+                'control_acceso.ver',
+                'control_acceso.editar',
+
                 // Chatbot Preguntas
                 'chatbot_preguntas.ver',
                 'chatbot_preguntas.responder',
