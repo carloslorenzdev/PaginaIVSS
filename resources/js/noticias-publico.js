@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', function () {
+(function() {
+    function initModule() {
             const buscador = document.getElementById('buscador-noticias');
             const contenedor = document.getElementById('contenedor-noticias');
             let timeout = null;
@@ -19,4 +20,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     .catch(error => console.error('Error al buscar noticias:', error));
                 }, 400);
             });
-        });
+            }
+
+    if (document.readyState !== 'loading') {
+        initModule();
+    } else {
+        document.addEventListener('DOMContentLoaded', initModule);
+    }
+    document.addEventListener('turbo:load', initModule);
+})();

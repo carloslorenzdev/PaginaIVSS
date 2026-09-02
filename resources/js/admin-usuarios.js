@@ -1,4 +1,5 @@
-document.addEventListener('turbo:load', function() {
+(function() {
+    function initModule() {
     // Manejo del modal de creación
     const btnNuevo = document.getElementById('btn-nuevo-usuario');
     if (btnNuevo) {
@@ -67,4 +68,13 @@ document.addEventListener('turbo:load', function() {
             });
         }
     });
-});
+    }
+
+    if (document.readyState !== 'loading') {
+        initModule();
+    } else {
+        document.addEventListener('DOMContentLoaded', initModule);
+    }
+    document.addEventListener('turbo:load', initModule);
+})();
+

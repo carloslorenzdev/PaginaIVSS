@@ -1,4 +1,5 @@
-document.addEventListener('turbo:load', function() {
+(function() {
+    function initModule() {
     const btnNuevo = document.getElementById('btn-nuevo-boletin');
     if (btnNuevo) {
         btnNuevo.addEventListener('click', function() {
@@ -72,4 +73,13 @@ document.addEventListener('turbo:load', function() {
             });
         }
     });
-});
+    }
+
+    if (document.readyState !== 'loading') {
+        initModule();
+    } else {
+        document.addEventListener('DOMContentLoaded', initModule);
+    }
+    document.addEventListener('turbo:load', initModule);
+})();
+

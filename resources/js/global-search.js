@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', function () {
+(function() {
+    function initModule() {
         const searchInput = document.getElementById('global-search-input');
         
         if (searchInput) {
@@ -18,4 +19,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             });
         }
-    });
+        }
+
+    if (document.readyState !== 'loading') {
+        initModule();
+    } else {
+        document.addEventListener('DOMContentLoaded', initModule);
+    }
+    document.addEventListener('turbo:load', initModule);
+})();

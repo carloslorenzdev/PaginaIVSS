@@ -1,6 +1,7 @@
 import { ToastAlert } from './toastify.js';
 
-document.addEventListener('turbo:load', function() {
+(function() {
+    function initModule() {
     // Checkbox global para grupo
     const groupCheckboxes = document.querySelectorAll('.check-grupo');
     
@@ -62,4 +63,12 @@ document.addEventListener('turbo:load', function() {
             ToastAlert(['warning', { mensaje: 'Permisos Revocados', ayuda: 'Se han retirado todos los permisos del rol. Su acceso será nulo.' }]);
         });
     }
-});
+    }
+
+    if (document.readyState !== 'loading') {
+        initModule();
+    } else {
+        document.addEventListener('DOMContentLoaded', initModule);
+    }
+    document.addEventListener('turbo:load', initModule);
+})();

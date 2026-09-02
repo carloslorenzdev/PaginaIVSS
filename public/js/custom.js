@@ -244,7 +244,8 @@ async function submitOrdenPago(e) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+(function() {
+    function initModule() {
     const formPensionado = document.getElementById('formConsultaPensionado');
     if(formPensionado) formPensionado.addEventListener('submit', submitConsultaPensionado);
 
@@ -267,4 +268,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-});
+    }
+
+    if (document.readyState !== 'loading') {
+        initModule();
+    } else {
+        document.addEventListener('DOMContentLoaded', initModule);
+    }
+    document.addEventListener('turbo:load', initModule);
+})();
+

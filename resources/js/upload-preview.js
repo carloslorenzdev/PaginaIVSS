@@ -1,6 +1,7 @@
 import { ToastAlert } from './toastify.js';
 
-document.addEventListener('turbo:load', function() {
+(function() {
+    function initModule() {
     const fileInput = document.getElementById('dropzone-file');
     const previewContainer = document.getElementById('preview-container');
     const imagePreview = document.getElementById('image-preview');
@@ -115,4 +116,13 @@ document.addEventListener('turbo:load', function() {
             if(fileInput) fileInput.click();
         });
     }
-});
+    }
+
+    if (document.readyState !== 'loading') {
+        initModule();
+    } else {
+        document.addEventListener('DOMContentLoaded', initModule);
+    }
+    document.addEventListener('turbo:load', initModule);
+})();
+
