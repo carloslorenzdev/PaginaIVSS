@@ -3,8 +3,8 @@
 @section('title', 'Archivo de Noticias - Prensa IVSS')
 
 @section('content')
-<div class="bg-light" style="background-image: url('{{ asset('imagenes/fondo-ivss.png') }}'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh;">
-    <div class="container py-5 mt-4">
+<div class="py-5" style="background: linear-gradient(rgba(243, 244, 246, 0.85), rgba(243, 244, 246, 0.85)), url('{{ asset('imagenes/fondo-ivss.png') }}'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh;">
+    <div class="container mt-4">
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-5 border-bottom pb-3 gap-3">
             <h2 class="fw-bold text-dark m-0">
                 <i class="fas fa-newspaper text-danger mr-2"></i> ARCHIVO DE NOTICIAS

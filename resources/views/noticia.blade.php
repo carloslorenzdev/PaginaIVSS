@@ -4,7 +4,7 @@
 
 @section('content')
 <!-- Contenedor principal con fondo gris claro para dar contraste y resaltar la noticia -->
-<div class="bg-light py-5" style="background-image: url('{{ asset('imagenes/fondo-ivss.png') }}'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh;">
+<div class="py-5" style="background: linear-gradient(rgba(243, 244, 246, 0.85), rgba(243, 244, 246, 0.85)), url('{{ asset('imagenes/fondo-ivss.png') }}'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh;">
     <div class="container mt-4">
         
         <!-- Breadcrumbs -->
@@ -19,7 +19,7 @@
         <!-- Tarjeta del artículo -->
         <div class="row justify-content-center">
             <div class="col-lg-10 col-xl-9">
-                <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white">
+                <div class="card border shadow-lg rounded-4 overflow-hidden bg-white" style="box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important; border-color: rgba(0,0,0,0.08) !important;">
                     <div class="card-body p-4 p-md-5">
                         
                         <h1 class="fw-bold text-dark mb-4" style="font-size: 2.2rem; line-height: 1.4; color: #1f2937;">
