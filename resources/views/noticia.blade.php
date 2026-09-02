@@ -4,7 +4,7 @@
 
 @section('content')
 <!-- Contenedor principal con fondo gris claro para dar contraste y resaltar la noticia -->
-<div class="py-5" style="background: linear-gradient(rgba(243, 244, 246, 0.85), rgba(243, 244, 246, 0.85)), url('{{ asset('imagenes/fondo-ivss.png') }}'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh;">
+<div class="py-5" style="background-image: linear-gradient(rgba(243, 244, 246, 0.85), rgba(243, 244, 246, 0.85)), url('{{ asset('imagenes/fondo-ivss.png') }}'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh;">
     <div class="container mt-4">
         
         <!-- Breadcrumbs -->
