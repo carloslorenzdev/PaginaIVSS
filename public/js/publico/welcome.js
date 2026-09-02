@@ -2,7 +2,8 @@
     function initModule() {
     // Alerta inicial (promocional)
     const modalPromocionalEl = document.getElementById('modalPromocional');
-    if (modalPromocionalEl && modalPromocionalEl.getAttribute('data-mostrar-alerta') === 'true') {
+    if (modalPromocionalEl && modalPromocionalEl.getAttribute('data-mostrar-alerta') === 'true' && !modalPromocionalEl.dataset.alertaMostrada) {
+        modalPromocionalEl.dataset.alertaMostrada = 'true';
         const modalPromocional = new bootstrap.Modal(modalPromocionalEl);
         
         modalPromocional.show();

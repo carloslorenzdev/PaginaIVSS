@@ -5,6 +5,9 @@ import { ToastAlert } from './toastify';
 
 (function() {
     function initModule() {
+    if (document.body && document.body.dataset.appInitialized) return;
+    if (document.body) document.body.dataset.appInitialized = 'true';
+    
     // Destruir backdrops huerfanos (Preline y Bootstrap) que hayan quedado de otra página
     document.querySelectorAll('[data-hs-overlay-backdrop-template], .modal-backdrop').forEach(el => el.remove());
 
