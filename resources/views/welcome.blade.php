@@ -10,7 +10,7 @@
     
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" nonce="{{ app('csp-nonce') }}">
     
-    <section id="hero" class="hero-ultimate {{ $carouselStyle == 'cinematic' ? 'carousel-cinematic-style' : '' }} py-4">
+    <section id="hero" class="hero-ultimate {{ $carouselStyle == 'cinematic' ? 'carousel-cinematic-style' : '' }} py-4" style="background-image: linear-gradient(rgba(243, 244, 246, 0.85), rgba(243, 244, 246, 0.85)), url('{{ asset('imagenes/fondo-ivss.png') }}') !important; background-size: cover !important; background-position: center !important; background-attachment: fixed !important;">
         <div class="container">
             <div class="row g-4 h-100">
                 <!-- Columna Izquierda: Carrusel (65% aprox) -->
@@ -109,7 +109,7 @@
     </section>
 
     <!-- Section 2: Core Service Hub (Modernized Circles) -->
-    <section id="servicios" class="service-hub-section">
+    <section id="servicios" class="service-hub-section" style="background-image: linear-gradient(rgba(243, 244, 246, 0.85), rgba(243, 244, 246, 0.85)), url('{{ asset('imagenes/fondo-ivss.png') }}') !important; background-size: cover !important; background-position: center !important; background-attachment: fixed !important;">
         <div class="container">
             <div class="row g-4 justify-content-center">
                 <div class="col-lg-3 col-md-6" data-aos="fade-up">
@@ -480,7 +480,7 @@
     </section>
 
     <!-- Section 4: Grid Services (Legacy Transformation) -->
-    <section class="py-5 bg-light">
+    <section class="py-5" style="background-image: linear-gradient(rgba(243, 244, 246, 0.85), rgba(243, 244, 246, 0.85)), url('{{ asset('imagenes/fondo-ivss.png') }}') !important; background-size: cover !important; background-position: center !important; background-attachment: fixed !important;">
         <div class="container py-5">
             <div class="text-center mb-5" data-aos="fade-up">
                 <h6 class="text-danger fw-bold text-uppercase" style="letter-spacing: 2px;">Gestión IVSS</h6>
@@ -666,7 +666,7 @@
     @endphp
 
     @if($promociones->count() > 0)
-    <section class="py-5" style="background-color: #f8f9fa;">
+    <section class="py-5" style="background-image: linear-gradient(rgba(243, 244, 246, 0.85), rgba(243, 244, 246, 0.85)), url('{{ asset('imagenes/fondo-ivss.png') }}') !important; background-size: cover !important; background-position: center !important; background-attachment: fixed !important;">
         <div class="container py-4">
             
             <!-- Contenedor con overflow horizontal (scroll simple estilo carrusel) -->
@@ -868,7 +868,7 @@
     </section>
 
     <!-- Section 6: News Feed -->
-    <section id="noticias" class="py-5 bg-light">
+    <section id="noticias" class="py-5" style="background-image: linear-gradient(rgba(243, 244, 246, 0.85), rgba(243, 244, 246, 0.85)), url('{{ asset('imagenes/fondo-ivss.png') }}') !important; background-size: cover !important; background-position: center !important; background-attachment: fixed !important;">
         <div class="container py-5">
             <div class="d-flex justify-content-between align-items-end mb-5">
                 <div data-aos="fade-right">
