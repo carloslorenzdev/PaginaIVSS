@@ -15,7 +15,7 @@
             <div class="row g-4 h-100">
                 <!-- Columna Izquierda: Carrusel (65% aprox) -->
                 <div class="col-lg-8 h-100">
-                    <div class="hero-container-boxed {{ $carouselStyle == '3d' ? 'carousel-3d-style' : '' }} h-100 shadow-sm" style="border-radius: 1rem; overflow: hidden; height: 500px !important;">
+                    <div class="hero-container-boxed {{ $carouselStyle == '3d' ? 'carousel-3d-style' : '' }} h-100 shadow-lg border" style="border-radius: 1rem; overflow: hidden; height: 500px !important; box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important; border-color: rgba(0,0,0,0.08) !important;">
                         <div id="heroCarousel" class="carousel slide h-100 {{ $carouselStyle == '3d' ? 'carousel-fade' : '' }}" data-bs-ride="carousel" data-bs-interval="{{ $carouselInterval }}">
                             <div class="carousel-inner h-100">
                                 @forelse($carruseles as $index => $carrusel)
@@ -75,7 +75,7 @@
                 
                 <!-- Columna Derecha: Trámites Prioritarios (35% aprox) -->
                 <div class="col-lg-4 h-100 d-flex flex-column gap-4" style="height: 500px !important;">
-                    <div class="p-4 rounded-4 shadow-sm consultas-tiuna-panel flex-fill position-relative" style="background-image: url('{{ !empty($configuraciones['bg_consultas']) ? asset('storage/' . $configuraciones['bg_consultas']) : asset('img/imagen.png') }}'); background-size: cover; background-position: center; border-radius: 1rem;">
+                    <div class="p-4 rounded-4 shadow-lg border border-secondary consultas-tiuna-panel flex-fill position-relative" style="background-image: url('{{ !empty($configuraciones['bg_consultas']) ? asset('storage/' . $configuraciones['bg_consultas']) : asset('img/imagen.png') }}'); background-size: cover; background-position: center; border-radius: 1rem; box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important;">
                         <div class="position-absolute top-0 start-0 w-100 h-100 rounded-4 bg-dark" style="opacity: 0.6;"></div>
                         <div class="position-relative z-10 h-100 d-flex flex-column justify-content-center">
                             <h4 class="fw-black mb-4 text-white"><i class="fas fa-search text-danger me-2"></i> CONSULTAS</h4>
@@ -92,7 +92,7 @@
                         </div>
                     </div>
                     
-                    <div class="p-4 rounded-4 shadow-sm consultas-tiuna-panel flex-fill position-relative" style="background-image: url('{{ !empty($configuraciones['bg_tiuna']) ? asset('storage/' . $configuraciones['bg_tiuna']) : asset('img/marcha-2.jpg') }}'); background-size: cover; background-position: center; border-radius: 1rem;">
+                    <div class="p-4 rounded-4 shadow-lg border border-secondary consultas-tiuna-panel flex-fill position-relative" style="background-image: url('{{ !empty($configuraciones['bg_tiuna']) ? asset('storage/' . $configuraciones['bg_tiuna']) : asset('img/marcha-2.jpg') }}'); background-size: cover; background-position: center; border-radius: 1rem; box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important;">
                         <div class="position-absolute top-0 start-0 w-100 h-100 rounded-4 bg-dark" style="opacity: 0.6;"></div>
                         <div class="position-relative z-10 h-100 d-flex flex-column justify-content-center">
                             <h4 class="fw-black mb-3 text-white"><i class="fas fa-project-diagram text-danger me-2"></i> SISTEMA TIUNA</h4>
@@ -113,7 +113,7 @@
         <div class="container">
             <div class="row g-4 justify-content-center">
                 <div class="col-lg-3 col-md-6" data-aos="fade-up">
-                    <div class="bg-white shadow-sm rounded-4 p-4 text-center border-0 h-100 d-flex flex-column align-items-center transition-hover">
+                    <div class="bg-white shadow-lg border rounded-4 p-4 text-center h-100 d-flex flex-column align-items-center transition-hover" style="box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important; border-color: rgba(0,0,0,0.08) !important;">
                         <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center mb-3 shadow-sm" style="width: 80px; height: 80px; font-size: 2rem;">
                             <i class="fas fa-desktop"></i>
                         </div>
@@ -123,7 +123,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="bg-white shadow-sm rounded-4 p-4 text-center border-0 h-100 d-flex flex-column align-items-center transition-hover">
+                    <div class="bg-white shadow-lg border rounded-4 p-4 text-center h-100 d-flex flex-column align-items-center transition-hover" style="box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important; border-color: rgba(0,0,0,0.08) !important;">
                         <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center mb-3 shadow-sm" style="width: 80px; height: 80px; font-size: 2rem;">
                             <i class="fas fa-user-circle"></i>
                         </div>
@@ -133,7 +133,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="bg-white shadow-sm rounded-4 p-4 text-center border-0 h-100 d-flex flex-column align-items-center transition-hover">
+                    <div class="bg-white shadow-lg border rounded-4 p-4 text-center h-100 d-flex flex-column align-items-center transition-hover" style="box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important; border-color: rgba(0,0,0,0.08) !important;">
                         <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center mb-3 shadow-sm" style="width: 80px; height: 80px; font-size: 2rem;">
                             <i class="fas fa-users"></i>
                         </div>
@@ -143,7 +143,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="bg-white shadow-sm rounded-4 p-4 text-center border-0 h-100 d-flex flex-column align-items-center transition-hover">
+                    <div class="bg-white shadow-lg border rounded-4 p-4 text-center h-100 d-flex flex-column align-items-center transition-hover" style="box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important; border-color: rgba(0,0,0,0.08) !important;">
                         <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center mb-3 shadow-sm" style="width: 80px; height: 80px; font-size: 2rem;">
                             <i class="fas fa-building"></i>
                         </div>
@@ -499,7 +499,8 @@
                     padding: 1.5rem;
                     display: flex;
                     align-items: center;
-                    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+                    box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important;
+                    border: 1px solid rgba(0,0,0,0.08) !important;
                     transition: transform 0.3s ease, box-shadow 0.3s ease;
                 }
                 .service-tile:hover {
@@ -680,8 +681,8 @@
             <div class="d-flex overflow-auto gap-4 pb-4 carrusel-promociones" style="scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch;">
                 @foreach($promociones as $promo)
                 <div class="flex-shrink-0" style="width: 85%; max-width: 300px; scroll-snap-align: start;" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
-                    <div class="rounded-4 overflow-hidden shadow-sm hover-shadow transition-all position-relative" 
-                         style="border: 2px solid #e0e0e0; cursor: pointer;" 
+                    <div class="rounded-4 overflow-hidden shadow-lg border hover-shadow transition-all position-relative" 
+                         style="border-color: rgba(0,0,0,0.08) !important; box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important; cursor: pointer;" 
                          data-bs-toggle="modal" 
                          data-bs-target="#modalPromoDinamico"
                          data-ruta="{{ asset('storage/' . $promo->ruta_imagen) }}" 
@@ -884,7 +885,7 @@
                         $imagen = $noticia->medios->first() ? asset('storage/' . $noticia->medios->first()->ruta) : asset('img/imagen.jpg');
                     @endphp
                     <div class="col-md-4" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
-                        <div class="news-card-ultimate h-100">
+                        <div class="news-card-ultimate h-100 shadow-lg border" style="box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important; border-color: rgba(0,0,0,0.08) !important;">
                             <div class="news-thumb"><img src="{{ $imagen }}" alt="News"></div>
                             <div class="p-4">
                                 <div class="mb-2">
