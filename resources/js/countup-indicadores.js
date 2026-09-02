@@ -1,6 +1,7 @@
 import { CountUp } from "countup.js";
 
-window.addEventListener('turbo:load', function () {
+(function() {
+    function initModule() {
 
     document.querySelectorAll('.countup').forEach((elemento) => {
         if (!elemento) {
@@ -43,4 +44,13 @@ window.addEventListener('turbo:load', function () {
             }
         }
     });
-});
+    }
+
+    if (document.readyState !== 'loading') {
+        initModule();
+    } else {
+        document.addEventListener('DOMContentLoaded', initModule);
+    }
+    document.addEventListener('turbo:load', initModule);
+})();
+

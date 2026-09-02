@@ -1,4 +1,5 @@
-document.addEventListener('turbo:load', function() {
+(function() {
+    function initModule() {
     // Alerta inicial (promocional)
     const modalPromocionalEl = document.getElementById('modalPromocional');
     if (modalPromocionalEl && modalPromocionalEl.getAttribute('data-mostrar-alerta') === 'true') {
@@ -35,4 +36,12 @@ document.addEventListener('turbo:load', function() {
             }
         });
     }
-});
+    }
+
+    if (document.readyState !== 'loading') {
+        initModule();
+    } else {
+        document.addEventListener('DOMContentLoaded', initModule);
+    }
+    document.addEventListener('turbo:load', initModule);
+})();

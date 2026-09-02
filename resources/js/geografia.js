@@ -81,7 +81,8 @@ function renderizaTodoGrupoSelect(elementoParroquia) {
     elementoParroquia.value = elementoParroquia.dataset.id;
 }
 
-window.addEventListener('turbo:load', function () {
+(function() {
+    function initModule() {
     const selecsEstadoMunParr = document.querySelectorAll('select.estado');
     if (selecsEstadoMunParr.length) {
         selecsEstadoMunParr.forEach((el) => {
@@ -112,4 +113,13 @@ window.addEventListener('turbo:load', function () {
             }
         })
     }
-});
+    }
+
+    if (document.readyState !== 'loading') {
+        initModule();
+    } else {
+        document.addEventListener('DOMContentLoaded', initModule);
+    }
+    document.addEventListener('turbo:load', initModule);
+})();
+

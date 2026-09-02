@@ -1,4 +1,5 @@
-document.addEventListener('turbo:load', function() {
+(function() {
+    function initModule() {
     const iframe = document.getElementById('livePreviewFrame');
     const loader = document.getElementById('iframeLoader');
     let currentPreviewType = '';
@@ -88,4 +89,12 @@ document.addEventListener('turbo:load', function() {
             document.getElementById('hiddenPreviewBtn').click();
         });
     }
-});
+    }
+
+    if (document.readyState !== 'loading') {
+        initModule();
+    } else {
+        document.addEventListener('DOMContentLoaded', initModule);
+    }
+    document.addEventListener('turbo:load', initModule);
+})();

@@ -1,4 +1,5 @@
-window.addEventListener('turbo:load', function () {
+(function() {
+    function initModule() {
     const formModal = document.getElementById('formModal');
     const exampleModal = document.querySelector('div#modal-example');
 
@@ -32,5 +33,14 @@ window.addEventListener('turbo:load', function () {
     document.querySelectorAll('button#modal-example').forEach((btn) => {
         btn.addEventListener('click', handleModal);
     });
-});
+    }
+
+    if (document.readyState !== 'loading') {
+        initModule();
+    } else {
+        document.addEventListener('DOMContentLoaded', initModule);
+    }
+    document.addEventListener('turbo:load', initModule);
+})();
+
 

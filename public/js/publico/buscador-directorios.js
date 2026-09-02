@@ -1,4 +1,5 @@
-document.addEventListener('turbo:load', function() {
+(function() {
+    function initModule() {
     // Buscador interactivo generico
     const buscador = document.getElementById('buscadorEstados');
     const items = document.querySelectorAll('.estado-item');
@@ -17,7 +18,8 @@ document.addEventListener('turbo:load', function() {
         }
     }
 
-    if(buscador) {
+    if(buscador && !buscador.dataset.listenerAdded) {
+        buscador.dataset.listenerAdded = 'true';
         buscador.addEventListener('keyup', function(e) {
             const term = e.target.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             
@@ -145,4 +147,12 @@ document.addEventListener('turbo:load', function() {
             }
         });
     }
-});
+    }
+
+    if (document.readyState !== 'loading') {
+        initModule();
+    } else {
+        document.addEventListener('DOMContentLoaded', initModule);
+    }
+    document.addEventListener('turbo:load', initModule);
+})();

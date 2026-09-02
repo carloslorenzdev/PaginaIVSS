@@ -21,7 +21,8 @@ function renderizaActividadEconomica(valorTipoEmpresa, valorActividad = null) {
     selectActividad.disabled = false;
 }
 
-window.addEventListener('turbo:load', function () {
+(function() {
+    function initModule() {
     const selectTipoEmpresa = document.querySelector('select[name="tipo_empresa"]');
     if (selectTipoEmpresa) {
         const selectActividad = document.querySelector('select[name="actividad_economica"]');
@@ -33,4 +34,13 @@ window.addEventListener('turbo:load', function () {
             renderizaActividadEconomica(e.target.value);
         });
     }
-});
+    }
+
+    if (document.readyState !== 'loading') {
+        initModule();
+    } else {
+        document.addEventListener('DOMContentLoaded', initModule);
+    }
+    document.addEventListener('turbo:load', initModule);
+})();
+

@@ -1,6 +1,7 @@
 import { buildEditor } from "../libs/tiptap/tiptap-editor";
 
-window.addEventListener('turbo:load', function () {
+(function() {
+    function initModule() {
     const checkAutorizado = document.querySelector('input#sw-autorizado');
     const camposAutorizado = document.querySelector('div#campos-autorizado');
     const botonSubmit = document.querySelector('button#btn-procesar-solicitud');
@@ -30,4 +31,13 @@ window.addEventListener('turbo:load', function () {
         input.value = editorObservacion.storage.characterCount.characters() ? content : null;
         form.submit();
     });
-});
+    }
+
+    if (document.readyState !== 'loading') {
+        initModule();
+    } else {
+        document.addEventListener('DOMContentLoaded', initModule);
+    }
+    document.addEventListener('turbo:load', initModule);
+})();
+

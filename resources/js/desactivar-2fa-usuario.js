@@ -1,7 +1,8 @@
 import { buildEditor } from "../libs/tiptap/tiptap-editor";
 import { ToastAlert } from "./toastify";
 
-window.addEventListener('turbo:load', function () {
+(function() {
+    function initModule() {
     const botonSubmit = document.querySelector('button#btn-desactivar-2fa');
     const editorObservacion = buildEditor('hs-editor-tiptap', 'Agrega el motivo');
     botonSubmit.addEventListener('click', function (e) {
@@ -17,4 +18,13 @@ window.addEventListener('turbo:load', function () {
             ToastAlert(['danger', 'Mínimo 10 caracteres']);
         }
     });
-});
+    }
+
+    if (document.readyState !== 'loading') {
+        initModule();
+    } else {
+        document.addEventListener('DOMContentLoaded', initModule);
+    }
+    document.addEventListener('turbo:load', initModule);
+})();
+

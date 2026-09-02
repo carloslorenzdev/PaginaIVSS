@@ -1,6 +1,7 @@
 import { generaEtiquetaOption } from "./helpers";
 
-window.addEventListener('turbo:load', function () {
+(function() {
+    function initModule() {
     const selectParroquia = document.querySelector('select.estado[name=parroquia]');
     // REDERIZA OFICINAS
     function renderizaOficinas(idParroquia) {
@@ -26,4 +27,13 @@ window.addEventListener('turbo:load', function () {
             renderizaOficinas(selectParroquia.dataset.id);
         }
     }
-});
+    }
+
+    if (document.readyState !== 'loading') {
+        initModule();
+    } else {
+        document.addEventListener('DOMContentLoaded', initModule);
+    }
+    document.addEventListener('turbo:load', initModule);
+})();
+

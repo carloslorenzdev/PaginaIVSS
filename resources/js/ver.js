@@ -1,6 +1,7 @@
 import { ToastAlert } from './toastify';
 
-window.addEventListener('turbo:load', function () {
+(function() {
+    function initModule() {
     const inputVeracidad = document.querySelector('input[name="veracidad"][type="checkbox"]');
     if (inputVeracidad) {
         const formVeracidad = inputVeracidad.closest('form');
@@ -22,4 +23,13 @@ window.addEventListener('turbo:load', function () {
             }
         });
     }
-});
+    }
+
+    if (document.readyState !== 'loading') {
+        initModule();
+    } else {
+        document.addEventListener('DOMContentLoaded', initModule);
+    }
+    document.addEventListener('turbo:load', initModule);
+})();
+
