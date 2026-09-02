@@ -1,4 +1,4 @@
-﻿document.addEventListener('turbo:load', () => {
+document.addEventListener('turbo:load', () => {
     const widgetContainer = document.getElementById('ivss-chatbot-widget');
     if (!widgetContainer || widgetContainer.hasAttribute('data-initialized')) {
         return; // Ya estÃ¡ inicializado o no existe
@@ -77,7 +77,7 @@
         appendUserMessage(buttonText);
         
         if (optionKey === 'centro_salud_cercano') {
-            appendBotMessage("Determinando tu ubicaciÃ³n de forma automÃ¡tica...");
+            appendBotMessage("Determinando tu ubicación de forma automática...");
             
 
 
@@ -98,17 +98,17 @@
                         if (error.code === 1) {
                             if (locationSent) return;
                             locationSent = true;
-                            appendBotMessage("No se pudo obtener tu ubicaciÃ³n o el permiso fue denegado. Por favor escribe <b>'centros de salud en' seguido de tu estado</b> (Ejemplo: centros de salud en Distrito Capital o centros de salud en Miranda).");
+                            appendBotMessage("No se pudo obtener tu ubicación o el permiso fue denegado. Por favor escribe <b>'centros de salud en' seguido de tu estado</b> (Ejemplo: centros de salud en Distrito Capital o centros de salud en Miranda).");
                             appendRestartButton();
                             reenableButtons();
                         } else {
-                            // PeticiÃ³n del usuario: No mostrar error en escritorio si falta GPS fÃ­sico, esperar el Ã©xito por Wi-Fi.
+                            // Petición del usuario: No mostrar error en escritorio si falta GPS físico, esperar el éxito por Wi-Fi.
                             if (!isMobile) return;
 
                             setTimeout(() => {
                                 if (locationSent) return;
                                 locationSent = true;
-                                appendBotMessage("No se pudo obtener tu ubicaciÃ³n o el permiso fue denegado. Por favor escribe <b>'centros de salud en' seguido de tu estado</b>.");
+                                appendBotMessage("No se pudo obtener tu ubicación o el permiso fue denegado. Por favor escribe <b>'centros de salud en' seguido de tu estado</b>.");
                                 appendRestartButton();
                                 reenableButtons();
                             }, 5000);
