@@ -13,10 +13,10 @@ document.addEventListener('turbo:load', () => {
     const initialMenuHTML = `
         <div class="ivss-chatbot-msg bot-msg mb-3">
             <div class="ivss-chatbot-bubble shadow-sm p-3 rounded-3">
-                <p class="mb-2 fw-bold">Â¿QuÃ© necesitas consultar?</p>
+                <p class="mb-2 fw-bold">¿Qué necesitas consultar?</p>
                 <div class="ivss-chatbot-quick-options d-flex flex-column gap-2 mt-2">
                     <button class="btn btn-outline-danger btn-sm text-start ivss-btn-option" data-option="pension">
-                        <i class="fas fa-user-clock me-2"></i> InformaciÃ³n pensiÃ³n.
+                        <i class="fas fa-user-clock me-2"></i> Información pensión.
                     </button>
                     <button class="btn btn-outline-danger btn-sm text-start ivss-btn-option" data-option="medicamentos">
                         <i class="fas fa-pills me-2"></i> Medicamentos Alto Costo.
@@ -25,7 +25,7 @@ document.addEventListener('turbo:load', () => {
                         <i class="fas fa-hospital me-2"></i> Centro de Salud Cercano.
                     </button>
                     <button class="btn btn-outline-danger btn-sm text-start ivss-btn-option" data-option="hemodialisis">
-                        <i class="fas fa-procedures me-2"></i> HemodiÃ¡lisis.
+                        <i class="fas fa-procedures me-2"></i> Hemodiálisis.
                     </button>
                 </div>
             </div>
