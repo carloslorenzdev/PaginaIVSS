@@ -237,7 +237,7 @@ class TelegramService
     public static function enviaCodigoOtp(ModelsUser $user)
     {
         $limite = 60 * config('telegram.lifetime', 5);
-        $codigo = mt_rand(111111, 999999);
+        $codigo = random_int(111111, 999999);
         Cache::remember(self::TWO_FACTOR_CODE_OTP . $user->id . '_' . $codigo, $limite, function () use ($user) {
             return $user->id;
         });

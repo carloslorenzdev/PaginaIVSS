@@ -44,11 +44,22 @@ class GuardarEnlacesController extends Controller
         ];
 
         $claves = [];
+        $rules = [];
         foreach ($grupos as $grupo) {
             $claves = array_merge($claves, $grupo);
         }
 
-        $action->execute($request->all(), $claves);
+        foreach ($claves as $clave) {
+            $rules[$clave] = ['nullable', 'string', 'max:500', function ($attribute, $value, $fail) {
+                if ($value && $value !== '#' && !preg_match('~^(https?://|mailto:|tel:|/)~i', $value)) {
+                    $fail("El enlace en '{$attribute}' debe ser una URL segura (iniciando con http://, https:// o /).");
+                }
+            }];
+        }
+
+        $validated = $request->validate($rules);
+
+        $action->execute($validated, $claves);
 
         return redirect()->back()->with('success', 'Enlaces actualizados exitosamente.');
     }

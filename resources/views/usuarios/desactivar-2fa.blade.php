@@ -49,7 +49,7 @@
                         <x-input.label for="observacion" value="Observación" />
                         <x-input type="hidden" id="observacion" name="observacion" />
                         <x-editor id="hs-editor-tiptap">
-                            {!! old('observacion') !!}
+                            {!! clean(old('observacion')) !!}
                         </x-editor>
                         <x-input.error campo="observacion" />
                     </div>

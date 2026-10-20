@@ -104,7 +104,7 @@
                                     <p class="text-muted mb-4" style="font-size: 1.1rem; color: #6c757d !important; opacity: 1 !important;">La Prestación Dineraria por Pérdida Involuntaria del Empleo tiene como objetivo asegurarle al trabajador (a) que ha perdido involuntariamente su empleo y que son cotizantes al Régimen Prestacional de Empleo, una prestación dineraria durante un lapso de tiempo determinado.</p>
                                     <p class="text-muted mb-4" style="font-size: 1.1rem; color: #6c757d !important; opacity: 1 !important;">Si desea ver toda la información detallada (deberes, requisitos, lugares de solicitud y bases legales), haga clic en el siguiente enlace.</p>
                                     <div class="text-center">
-                                        <a href="{{ route('ciudadano.perdida') ?? '#' }}" class="btn btn-success rounded-pill px-4 fw-bold">Ir a Información Completa de PIE</a>
+                                        <a href="{{ route('ciudadano.perdida') ?? '#' }}" wire:navigate class="btn btn-success rounded-pill px-4 fw-bold">Ir a Información Completa de PIE</a>
                                     </div>
                                 </div>
                             </div>
@@ -122,7 +122,7 @@
                                     <p class="text-muted mb-4" style="font-size: 1.1rem; color: #6c757d !important; opacity: 1 !important;">La continuación Facultativa y los Trabajadores No Dependientes permiten al asegurado continuar cotizando al Seguro Social para garantizar su pensión y beneficios, incluso sin estar vinculado laboralmente a una empresa u organización.</p>
                                     <p class="text-muted mb-4" style="font-size: 1.1rem; color: #6c757d !important; opacity: 1 !important;">Si desea consultar los requisitos y descargar las formas necesarias, haga clic en el siguiente enlace.</p>
                                     <div class="text-center">
-                                        <a href="{{ route('ciudadano.continuidad') ?? '#' }}" class="btn btn-success rounded-pill px-4 fw-bold">Ir a Continuación Facultativa</a>
+                                        <a href="{{ route('ciudadano.continuidad') ?? '#' }}" wire:navigate class="btn btn-success rounded-pill px-4 fw-bold">Ir a Continuación Facultativa</a>
                                     </div>
                                 </div>
                             </div>
@@ -169,7 +169,7 @@
                     </div>
 
                     <div class="text-center mt-5">
-                        <a href="{{ route('inicio') }}" data-turbo="false" class="btn btn-outline-success rounded-pill px-4 py-2 fw-bold">
+                        <a href="{{ route('inicio') }}" wire:navigate class="btn btn-outline-success rounded-pill px-4 py-2 fw-bold">
                             <i class="fas fa-arrow-left me-2"></i> Volver al Inicio
                         </a>
                     </div>

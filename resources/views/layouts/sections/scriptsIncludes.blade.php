@@ -1,5 +1,5 @@
 @vite(['resources/js/theme.js'])
 @vite(['resources/js/toastify.js'])
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{{ asset('js/sweetalert2.min.js') }}"></script>
 
 @stack('scripts-includes')

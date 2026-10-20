@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'IVSS | Instituto Venezolano de los Seguros Sociales')</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="turbo-cache-control" content="no-cache">
     <link rel="icon" type="image/png" href="{{ asset('img/ivss-logo-rojo.png') }}">
     
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" nonce="{{ app('csp-nonce') }}">
@@ -14,6 +13,14 @@
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" nonce="{{ app('csp-nonce') }}">
     <link rel="stylesheet" href="{{ asset('css/modern-style.css') }}" nonce="{{ app('csp-nonce') }}">
     
+    @php
+        $alertaPopupImg = \App\Models\Configuracion::where('clave', 'alerta_emergente_img')->value('valor');
+    @endphp
+    @if((request()->is('/') || request()->routeIs('inicio')) && $alertaPopupImg)
+        <link rel="preload" as="image" href="{{ asset('storage/' . $alertaPopupImg) }}" fetchpriority="high">
+    @endif
+
+    @livewireStyles
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
@@ -63,7 +70,7 @@
                         if(empty($url) || $url === '#') {
                             return 'href="javascript:void(0)" onclick="Swal.fire({icon: \'info\', title: \'Próximamente\', text: \'Esta red social no está disponible en este momento.\', confirmButtonColor: \'#dc3545\'})"';
                         }
-                        return 'href="' . $url . '" target="_blank"';
+                        return 'href="' . e($url) . '" target="_blank" rel="noopener noreferrer"';
                     };
                 @endphp
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row gap-3">
@@ -91,17 +98,18 @@
                 </ul>
                 <!-- Main Links on the right -->
                 <ul class="navbar-nav ms-auto font-medium">
-                    <li class="nav-item"><a class="nav-link fw-semibold" href="/" data-turbo="false">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link fw-semibold" href="{{ route('quienes_somos') }}">¿Quiénes Somos?</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="/" wire:navigate>Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="{{ route('quienes_somos') }}" wire:navigate>¿Quiénes Somos?</a></li>
                     <li class="nav-item"><a class="nav-link fw-semibold" href="/#servicios">Servicios</a></li>
                     <!--<li class="nav-item"><a class="nav-link fw-semibold" href="/#consultas">Consultas</a></li> -->
-                    <li class="nav-item"><a class="nav-link fw-semibold" href="/noticias">Noticias</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="/noticias" wire:navigate>Noticias</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <main>
+        {{ $slot ?? '' }}
         @yield('content')
     </main>
 
@@ -124,8 +132,8 @@
                 <div class="col-lg-3 col-md-6">
                     <h6 class="fw-bold mb-4">ENLACES</h6>
                     <ul class="list-unstyled small">
-                        <li class="mb-2"><a href="{{ route('quienes_somos') }}" class="text-muted text-decoration-none">Sobre nosotros</a></li>
-                        <li class="mb-2"><a href="{{ route('marco_normativo') }}" class="text-muted text-decoration-none">Gaceta Oficial</a></li>
+                        <li class="mb-2"><a href="{{ route('quienes_somos') }}" wire:navigate class="text-muted text-decoration-none">Sobre nosotros</a></li>
+                        <li class="mb-2"><a href="{{ route('marco_normativo') }}" wire:navigate class="text-muted text-decoration-none">Gaceta Oficial</a></li>
                         <li class="mb-2"><a href="/#servicios" class="text-muted text-decoration-none">Atención al Ciudadano</a></li>
                     </ul>
                 </div>
@@ -138,7 +146,7 @@
                             if(empty($url) || $url === '#') {
                                 return 'href="javascript:void(0)" onclick="Swal.fire({icon: \'info\', title: \'Próximamente\', text: \'Esta red social no está disponible en este momento.\', confirmButtonColor: \'#dc3545\'})"';
                             }
-                            return 'href="' . $url . '" target="_blank"';
+                            return 'href="' . e($url) . '" target="_blank" rel="noopener noreferrer"';
                         };
                     @endphp
                     <div class="d-flex gap-3 mb-4 flex-wrap">
@@ -166,6 +174,120 @@
     <script src="{{ asset('js/sweetalert2.min.js') }}" nonce="{{ app('csp-nonce') }}"></script>
     <script src="{{ asset('js/publico/aos-init.js') }}" nonce="{{ app('csp-nonce') }}"></script>
     
+    <script nonce="{{ app('csp-nonce') }}">
+        // Listeners globales para eventos despachados por Livewire
+        document.addEventListener('livewire:init', () => {
+            Livewire.on('swal', (event) => {
+                const data = Array.isArray(event) ? event[0] : event;
+                Swal.fire({
+                    icon: data.icon || 'info',
+                    title: data.title || '',
+                    text: data.text || '',
+                    confirmButtonColor: data.icon === 'error' ? '#d33' : '#3f6087',
+                    confirmButtonText: 'Aceptar'
+                });
+            });
+
+            Livewire.on('abrir-ventana-html', (event) => {
+                const data = Array.isArray(event) ? event[0] : event;
+                const newWindow = window.open('', '_blank');
+                if (newWindow) {
+                    newWindow.document.open();
+                    newWindow.document.write(data.html);
+                    newWindow.document.close();
+                } else {
+                    Swal.fire({
+                        title: 'Popups Bloqueados',
+                        text: 'Por favor, habilite las ventanas emergentes (pop-ups) en su navegador para poder ver la planilla.',
+                        icon: 'warning',
+                        confirmButtonText: 'Entendido'
+                    });
+                }
+            });
+
+            Livewire.on('cerrar-modal', (event) => {
+                const data = Array.isArray(event) ? event[0] : event;
+                const modalEl = document.getElementById(data.id);
+                if (modalEl && window.bootstrap) {
+                    const modal = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
+                    modal.hide();
+                }
+            });
+        });
+
+        // Limpieza de modales Bootstrap en navegaciones SPA con wire:navigate
+        document.addEventListener('livewire:navigating', () => {
+            document.querySelectorAll('.modal.show').forEach(el => {
+                if (window.bootstrap) {
+                    const modal = bootstrap.Modal.getInstance(el);
+                    if (modal) modal.hide();
+                }
+            });
+            document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+            document.body.classList.remove('modal-open');
+            document.body.style.overflow = '';
+            document.body.style.paddingRight = '';
+        });
+
+        document.addEventListener('livewire:navigated', () => {
+            // Posicionamiento de scroll inteligente (respetando hashes como #servicios)
+            const hash = window.location.hash;
+            if (hash) {
+                const targetEl = document.querySelector(hash);
+                if (targetEl) {
+                    targetEl.scrollIntoView({ behavior: 'smooth' });
+                }
+            } else {
+                window.scrollTo({ top: 0, behavior: 'instant' });
+            }
+
+            // Reiniciar carruseles Bootstrap si existen en la página
+            if (window.bootstrap) {
+                document.querySelectorAll('[data-bs-ride="carousel"]').forEach(el => {
+                    bootstrap.Carousel.getOrCreateInstance(el);
+                });
+            }
+
+            // Mostrar Alerta Emergente (Popup Inicial)
+            checkModalPromocional();
+        });
+
+        function checkModalPromocional() {
+            const modalEl = document.getElementById('modalPromocional');
+            if (!modalEl || modalEl.dataset.alertaMostrada || !window.bootstrap) return;
+
+            const imgEl = modalEl.querySelector('img');
+            const abrir = () => {
+                if (modalEl.dataset.alertaAbierta) return;
+                modalEl.dataset.alertaAbierta = 'true';
+                modalEl.dataset.alertaMostrada = 'true';
+                requestAnimationFrame(() => {
+                    const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+                    modal.show();
+                });
+            };
+
+            if (imgEl) {
+                if (imgEl.complete && imgEl.naturalHeight !== 0) {
+                    abrir();
+                } else {
+                    imgEl.addEventListener('load', abrir, { once: true });
+                    // Timeout de respaldo por si la red tarda
+                    setTimeout(abrir, 1500);
+                }
+            } else {
+                abrir();
+            }
+        }
+
+        if (document.readyState !== 'loading') {
+            checkModalPromocional();
+        } else {
+            document.addEventListener('DOMContentLoaded', checkModalPromocional);
+        }
+    </script>
+    
     @include('partials.chatbot')
+    @livewireScripts
 </body>
 </html>

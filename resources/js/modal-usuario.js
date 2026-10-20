@@ -1,4 +1,4 @@
-(function() {
+﻿(function() {
     function initModule() {
     const formModal = document.getElementById('formModal');
     const exampleModal = document.querySelector('div#modal-example');
@@ -40,7 +40,7 @@
     } else {
         document.addEventListener('DOMContentLoaded', initModule);
     }
-    document.addEventListener('turbo:load', initModule);
+    document.addEventListener('livewire:navigated', initModule);
 })();
 
 

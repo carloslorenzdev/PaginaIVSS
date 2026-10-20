@@ -1,4 +1,4 @@
-(function() {
+﻿(function() {
     function initModule() {
         const searchInput = document.getElementById('global-search-input');
         
@@ -26,5 +26,5 @@
     } else {
         document.addEventListener('DOMContentLoaded', initModule);
     }
-    document.addEventListener('turbo:load', initModule);
+    document.addEventListener('livewire:navigated', initModule);
 })();

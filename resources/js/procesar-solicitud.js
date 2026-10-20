@@ -1,4 +1,4 @@
-import { buildEditor } from "../libs/tiptap/tiptap-editor";
+﻿import { buildEditor } from "../libs/tiptap/tiptap-editor";
 
 (function() {
     function initModule() {
@@ -38,6 +38,6 @@ import { buildEditor } from "../libs/tiptap/tiptap-editor";
     } else {
         document.addEventListener('DOMContentLoaded', initModule);
     }
-    document.addEventListener('turbo:load', initModule);
+    document.addEventListener('livewire:navigated', initModule);
 })();
 

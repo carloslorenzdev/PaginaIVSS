@@ -209,11 +209,11 @@
         </p>
 
         <div class="d-flex flex-column text-start">
-              <a href="{{ route('ciudadano.informacion') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-info-circle me-2"></i> Información General</a>
-              <a href="{{ route('ciudadano.beneficio') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-heartbeat me-2"></i> Beneficio Médico Integral</a>
-              <a href="{{ route('ciudadano.continuidad') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-route me-2"></i> Continuidad Facultativa</a>
-              <a href="{{ route('ciudadano.perdida') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-user-injured me-2"></i> ¿Perdiste tu empleo?</a>
-              <a href="{{ route('ciudadano.tramites') }}" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0"><i class="fas fa-file-signature me-2"></i> Trámites</a>
+              <a href="{{ route('ciudadano.informacion') }}" wire:navigate class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-info-circle me-2"></i> Información General</a>
+              <a href="{{ route('ciudadano.beneficio') }}" wire:navigate class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-heartbeat me-2"></i> Beneficio Médico Integral</a>
+              <a href="{{ route('ciudadano.continuidad') }}" wire:navigate class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-route me-2"></i> Continuidad Facultativa</a>
+              <a href="{{ route('ciudadano.perdida') }}" wire:navigate class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-user-injured me-2"></i> ¿Perdiste tu empleo?</a>
+              <a href="{{ route('ciudadano.tramites') }}" wire:navigate class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0"><i class="fas fa-file-signature me-2"></i> Trámites</a>
         </div>
       </div>
     </div>
@@ -240,10 +240,10 @@
         </p>
 
         <div class="d-flex flex-column text-start">
-              <a href="{{ route('pensionado.informacion') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-info-circle me-2"></i> Información General</a>
-              <a href="{{ route('pensionado.tipos_pensiones') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-list-ul me-2"></i> Tipos de Pensiones</a>
-              <a href="{{ route('pensionado.pensionados_exterior') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-globe-americas me-2"></i> Pensionados en el Exterior</a>
-              <a href="{{ route('pensionado.tramites') }}" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0"><i class="fas fa-file-signature me-2"></i> Trámites</a>
+              <a href="{{ route('pensionado.informacion') }}" wire:navigate class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-info-circle me-2"></i> Información General</a>
+              <a href="{{ route('pensionado.tipos_pensiones') }}" wire:navigate class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-list-ul me-2"></i> Tipos de Pensiones</a>
+              <a href="{{ route('pensionado.pensionados_exterior') }}" wire:navigate class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-globe-americas me-2"></i> Pensionados en el Exterior</a>
+              <a href="{{ route('pensionado.tramites') }}" wire:navigate class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0"><i class="fas fa-file-signature me-2"></i> Trámites</a>
         </div>
       </div>
     </div>
@@ -270,11 +270,11 @@
         </p>
 
         <div class="d-flex flex-column text-start">
-              <a href="{{ route('empleador.informacion') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-info-circle me-2"></i> Información General</a>
-              <a href="{{ route('empleador.quien_es') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-question-circle me-2"></i> ¿Quién es el Empleador(a)?</a>
-              <a href="{{ route('empleador.tipos_empresas') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-industry me-2"></i> Tipos de Empresas</a>
-              <a href="{{ route('empleador.sistema_autoliquidacion') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-laptop-house me-2"></i> Sistema Autoliquidación</a>
-              <a href="{{ route('empleador.tramites') }}" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0"><i class="fas fa-folder-open me-2"></i> Trámites</a>
+              <a href="{{ route('empleador.informacion') }}" wire:navigate class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-info-circle me-2"></i> Información General</a>
+              <a href="{{ route('empleador.quien_es') }}" wire:navigate class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-question-circle me-2"></i> ¿Quién es el Empleador(a)?</a>
+              <a href="{{ route('empleador.tipos_empresas') }}" wire:navigate class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-industry me-2"></i> Tipos de Empresas</a>
+              <a href="{{ route('empleador.sistema_autoliquidacion') }}" wire:navigate class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-laptop-house me-2"></i> Sistema Autoliquidación</a>
+              <a href="{{ route('empleador.tramites') }}" wire:navigate class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0"><i class="fas fa-folder-open me-2"></i> Trámites</a>
         </div>
       </div>
     </div>
@@ -352,7 +352,7 @@
             <div class="row g-4 justify-content-center">
                 <!-- Farmacias de Alto Costo -->
                 <div class="col-lg-3 col-md-6" data-aos="fade-up">
-                    <a href="{{ route('farmacias') }}" class="d-block text-decoration-none h-100 rounded-4 overflow-hidden position-relative card-hover-scale" style="min-height: 220px; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
+                    <a href="{{ route('farmacias') }}" wire:navigate class="d-block text-decoration-none h-100 rounded-4 overflow-hidden position-relative card-hover-scale" style="min-height: 220px; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
                         <div class="position-absolute w-100 h-100 bg-image-zoom" style="background-image: url('{{ !empty($configuraciones['bg_farmacias']) ? asset('storage/' . $configuraciones['bg_farmacias']) : asset('img/medical-aesthetic-1.png') }}'); background-size: cover; background-position: center;"></div>
                         <div class="position-absolute w-100 h-100 bg-dark" style="opacity: 0.6;"></div>
                         <div class="position-relative z-10 h-100 d-flex flex-column justify-content-center align-items-center text-white p-4 text-center">
@@ -363,7 +363,7 @@
                 </div>
                 <!-- Centros de Salud -->
                 <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <a href="{{ route('centros_salud') }}" class="d-block text-decoration-none h-100 rounded-4 overflow-hidden position-relative card-hover-scale" style="min-height: 220px; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
+                    <a href="{{ route('centros_salud') }}" wire:navigate class="d-block text-decoration-none h-100 rounded-4 overflow-hidden position-relative card-hover-scale" style="min-height: 220px; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
                         <div class="position-absolute w-100 h-100 bg-image-zoom" style="background-image: url('{{ !empty($configuraciones['bg_centros_salud']) ? asset('storage/' . $configuraciones['bg_centros_salud']) : asset('img/medical-aesthetic-2.png') }}'); background-size: cover; background-position: center;"></div>
                         <div class="position-absolute w-100 h-100 bg-dark" style="opacity: 0.6;"></div>
                         <div class="position-relative z-10 h-100 d-flex flex-column justify-content-center align-items-center text-white p-4 text-center">
@@ -374,7 +374,7 @@
                 </div>
                 <!-- Oficinas Administrativas -->
                 <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <a href="{{ route('oficinas_administrativas') }}" class="d-block text-decoration-none h-100 rounded-4 overflow-hidden position-relative card-hover-scale" style="min-height: 220px; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
+                    <a href="{{ route('oficinas_administrativas') }}" wire:navigate class="d-block text-decoration-none h-100 rounded-4 overflow-hidden position-relative card-hover-scale" style="min-height: 220px; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
                         <div class="position-absolute w-100 h-100 bg-image-zoom" style="background-image: url('{{ !empty($configuraciones['bg_oficinas']) ? asset('storage/' . $configuraciones['bg_oficinas']) : asset('img/hero-innovation-bg.png') }}'); background-size: cover; background-position: center;"></div>
                         <div class="position-absolute w-100 h-100 bg-dark" style="opacity: 0.6;"></div>
                         <div class="position-relative z-10 h-100 d-flex flex-column justify-content-center align-items-center text-white p-4 text-center">
@@ -534,7 +534,7 @@
                       <div class="tile-icon text-white" style="background-color: #32CD32;"><i class="fas fa-gavel"></i></div>
                       <div>
                           <h6 class="fw-bold mb-1">Marco Normativo</h6>
-                          <a href="{{ route('marco_normativo') }}" class="text-muted small text-decoration-none fw-bold">Leer más <i class="fas fa-chevron-right ms-1"></i></a>
+                          <a href="{{ route('marco_normativo') }}" wire:navigate class="text-muted small text-decoration-none fw-bold">Leer más <i class="fas fa-chevron-right ms-1"></i></a>
                       </div>
                   </div>
                   <!-- Biblioteca de Formas -->
@@ -542,7 +542,7 @@
                       <div class="tile-icon bg-info text-white"><i class="fas fa-book-open"></i></div>
                       <div>
                           <h6 class="fw-bold mb-1">Biblioteca de Formas</h6>
-                          <a href="{{ route('biblioteca_formas') }}" class="text-muted small text-decoration-none fw-bold">Leer más <i class="fas fa-chevron-right ms-1"></i></a>
+                          <a href="{{ route('biblioteca_formas') }}" wire:navigate class="text-muted small text-decoration-none fw-bold">Leer más <i class="fas fa-chevron-right ms-1"></i></a>
                       </div>
                   </div>
                   <!-- Contrataciones Públicas -->
@@ -550,7 +550,7 @@
                       <div class="tile-icon bg-primary text-white"><i class="fas fa-file-contract"></i></div>
                       <div>
                           <h6 class="fw-bold mb-1">Contrataciones Públicas</h6>
-                          <a href="{{ route('contrataciones_publicas') }}" class="text-muted small text-decoration-none fw-bold">Leer más <i class="fas fa-chevron-right ms-1"></i></a>
+                          <a href="{{ route('contrataciones_publicas') }}" wire:navigate class="text-muted small text-decoration-none fw-bold">Leer más <i class="fas fa-chevron-right ms-1"></i></a>
                       </div>
                   </div>
                   <!-- RRHH -->
@@ -566,7 +566,7 @@
                       <div class="tile-icon bg-success text-white"><i class="fas fa-newspaper"></i></div>
                       <div>
                           <h6 class="fw-bold mb-1">Boletín Informativo</h6>
-                          <a href="{{ route('boletin_informativo') }}" class="text-muted small text-decoration-none fw-bold">Leer más <i class="fas fa-chevron-right ms-1"></i></a>
+                          <a href="{{ route('boletin_informativo') }}" wire:navigate class="text-muted small text-decoration-none fw-bold">Leer más <i class="fas fa-chevron-right ms-1"></i></a>
                       </div>
                   </div>
                   <!-- Revista -->
@@ -574,7 +574,7 @@
                       <div class="tile-icon bg-warning text-white"><i class="fas fa-bookmark"></i></div>
                       <div>
                           <h6 class="fw-bold mb-1">Revista Digital</h6>
-                          <a href="{{ route('revista_digital') }}" class="text-muted small text-decoration-none fw-bold" >Leer más <i class="fas fa-chevron-right ms-1"></i></a>
+                          <a href="{{ route('revista_digital') }}" wire:navigate class="text-muted small text-decoration-none fw-bold" >Leer más <i class="fas fa-chevron-right ms-1"></i></a>
                       </div>
                   </div>
                   <!-- Verificaciones -->
@@ -876,7 +876,7 @@
                     <h6 class="text-danger fw-bold">SALA DE PRENSA</h6>
                     <h2 class="fw-black">Últimas Noticias</h2>
                 </div>
-                <a href="{{ route('noticias.index') }}" class="btn-ultimate btn-ultimate-red">VER TODAS</a>
+                <a href="{{ route('noticias.index') }}" wire:navigate class="btn-ultimate btn-ultimate-red">VER TODAS</a>
             </div>
             
             <div class="row g-4">
@@ -896,7 +896,7 @@
                                 </div>
                                 <h6 class="fw-bold mb-3">{{ Str::limit($noticia->titulo, 60) }}</h6>
                                 <p class="text-muted small mb-4">{{ Str::limit(strip_tags($noticia->contenido), 100) }}</p>
-                                <a href="{{ route('noticias.show', $noticia->slug) }}" class="text-danger fw-bold text-decoration-none small">LEER ARTÍCULO <i class="fas fa-arrow-right ms-1"></i></a>
+                                <a href="{{ route('noticias.show', $noticia->slug) }}" wire:navigate class="text-danger fw-bold text-decoration-none small">LEER ARTÍCULO <i class="fas fa-arrow-right ms-1"></i></a>
                             </div>
                         </div>
                     </div>
@@ -904,7 +904,4 @@
             </div>
         </div>
     </section>
-
-    <script src="{{ asset('js/custom.js') }}?v={{ time() }}" nonce="{{ app('csp-nonce') }}"></script>
-    <script src="{{ asset('js/publico/welcome.js') }}?v={{ time() }}" nonce="{{ app('csp-nonce') }}"></script>
 @endsection

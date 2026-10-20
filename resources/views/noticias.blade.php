@@ -5,27 +5,7 @@
 @section('content')
 <div class="py-5" style="background-image: linear-gradient(rgba(243, 244, 246, 0.85), rgba(243, 244, 246, 0.85)), url('{{ asset('imagenes/fondo-ivss.png') }}'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh;">
     <div class="container mt-4">
-        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-5 border-bottom pb-3 gap-3">
-            <h2 class="fw-bold text-dark m-0">
-                <i class="fas fa-newspaper text-danger mr-2"></i> ARCHIVO DE NOTICIAS
-            </h2>
-            
-            <div class="d-flex align-items-center gap-3">
-                <div class="position-relative">
-                    <i class="fas fa-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
-                    <input type="text" id="buscador-noticias" class="form-control rounded-pill ps-5 border-0 shadow-sm" placeholder="Buscar noticia..." style="min-width: 300px; background: #F3F4F6; color: #1E293B; height: 45px; border: 1px solid rgba(0,0,0,0.05);">
-                </div>
-                <a href="/" class="btn-ultimate btn-ultimate-red">
-                    <i class="fas fa-arrow-left"></i> VOLVER
-                </a>
-            </div>
-        </div>
-
-        <div id="contenedor-noticias">
-            @include('partials.noticias-lista')
-        </div>
-
-        @vite('resources/js/noticias-publico.js')
+        <livewire:noticias-search />
     </div>
 </div>
 @endsection

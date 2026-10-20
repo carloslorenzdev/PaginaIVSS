@@ -56,7 +56,7 @@
                                 @endif
                                 <!-- Overlay en Hover -->
                                 <div class="position-absolute w-100 h-100 bg-dark bg-opacity-50 d-flex align-items-center justify-content-center opacity-0 hover-overlay transition-all">
-                                    <a href="{{ route('revista_digital.show', $revista) }}" class="btn btn-outline-light rounded-pill px-4 py-2 fw-bold">
+                                    <a href="{{ route('revista_digital.show', $revista) }}" wire:navigate class="btn btn-outline-light rounded-pill px-4 py-2 fw-bold">
                                         <i class="fas fa-book-reader me-2"></i> Leer Ahora
                                     </a>
                                 </div>

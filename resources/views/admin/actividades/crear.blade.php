@@ -44,7 +44,7 @@
                     <x-input type="hidden" id="descripcion" name="descripcion" />
                     <div class="rounded-xl overflow-hidden border border-gray-200 dark:border-neutral-700">
                         <x-editor id="hs-editor-tiptap">
-                            {!! old('descripcion') !!}
+                            {!! clean(old('descripcion')) !!}
                         </x-editor>
                     </div>
                     <p class="text-xs text-gray-500 dark:text-neutral-500 mt-2"><i class="bx bx-info-circle"></i> Puedes incluir enlaces y detalles extensos de la actividad.</p>

@@ -124,7 +124,7 @@
                         <div id="collapseDonde" class="accordion-collapse collapse" aria-labelledby="headingDonde" data-bs-parent="#accordionPerdidaEmpleo" style="visibility: visible !important; opacity: 1 !important;">
                             <div class="accordion-body bg-light rounded-bottom-4" style="opacity: 1 !important; visibility: visible !important;">
                                 <p class="text-muted mb-0" style="font-size: 1.1rem; line-height: 1.8; color: #6c757d !important; opacity: 1 !important;">
-                                    La Solicitud podrá ser tramitada en cualquiera de los cuarenta y ocho (48) Departamentos de Atención al Trabajador Cesante a Nivel Nacional, ubicados en las <a href="http://ivss.gob.ve/contenido/Oficinas-administrativas" target="_blank" class="text-danger fw-bold text-decoration-none">Oficinas Administrativas</a> del Instituto Venezolano de los Seguros Sociales IVSS.
+                                    La Solicitud podrá ser tramitada en cualquiera de los cuarenta y ocho (48) Departamentos de Atención al Trabajador Cesante a Nivel Nacional, ubicados en las <a href="{{ route('oficinas_administrativas') }}" wire:navigate class="text-danger fw-bold text-decoration-none">Oficinas Administrativas</a> del Instituto Venezolano de los Seguros Sociales IVSS.
                                 </p>
                             </div>
                         </div>
@@ -167,7 +167,7 @@
                 </div>
 
                 <div class="text-center mt-5">
-                    <a href="{{ route('inicio') }}" data-turbo="false" class="btn btn-outline-danger rounded-pill px-4 py-2 fw-bold">
+                    <a href="{{ route('inicio') }}" wire:navigate class="btn btn-outline-danger rounded-pill px-4 py-2 fw-bold">
                         <i class="fas fa-arrow-left me-2"></i> Volver al Inicio
                     </a>
                 </div>

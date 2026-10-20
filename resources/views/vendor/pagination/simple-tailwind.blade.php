@@ -1,31 +1,31 @@
 @if ($paginator->hasPages())
-    <nav role="navigation" aria-label="Pagination" class="flex items-center justify-between gap-x-1">
-        @if ($paginator->onFirstPage())
-            <x-button disabled
-                class="rounded-lg text-gray-800 hover:bg-gray-100 focus:bg-gray-100 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10">
-                <i class="bx bx-chevron-left"></i>
-                Anterior
-            </x-button>
-        @else
-            <x-button.link href="{{ $paginator->previousPageUrl() }}" aria-label="Previous"
-                class="rounded-lg text-blue-500 hover:text-blue-800 hover:bg-blue-100 dark:bg-blue-900 dark:hover:bg-blue-700 dark:text-neutral-100 dark:hover:text-white dark:focus:text-white">
-                <i class="bx bx-chevron-left"></i>
-                Anterior
-            </x-button.link>
-        @endif
+    <nav role="navigation" aria-label="Paginación" class="flex flex-col items-center justify-center gap-2 py-4 w-full">
+        <div class="inline-flex items-center gap-1.5 p-1.5 rounded-2xl bg-white dark:bg-neutral-800 border border-gray-100 dark:border-neutral-700/80 shadow-sm backdrop-blur-sm">
+            @if ($paginator->onFirstPage())
+                <span aria-disabled="true" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold text-gray-400 dark:text-neutral-600 cursor-not-allowed select-none opacity-50">
+                    <i class="bx bx-chevron-left text-base"></i>
+                    <span>Anterior</span>
+                </span>
+            @else
+                <a href="{{ $paginator->previousPageUrl() }}" rel="prev"
+                   class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-gray-700 dark:text-neutral-300 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-50/80 dark:hover:bg-neutral-700/60 transition-all select-none">
+                    <i class="bx bx-chevron-left text-base"></i>
+                    <span>Anterior</span>
+                </a>
+            @endif
 
-        @if ($paginator->hasMorePages())
-            <x-button.link href="{{ $paginator->nextPageUrl() }}" aria-label="Next"
-                class="rounded-lg text-blue-500 hover:text-blue-800 hover:bg-blue-100 dark:bg-blue-900 dark:hover:bg-blue-700 dark:text-neutral-100 dark:hover:text-white dark:focus:text-white">
-                Siguiente
-                <i class="bx bx-chevron-right"></i>
-            </x-button.link>
-        @else
-            <x-button disabled
-                class="rounded-lg text-gray-800 hover:bg-gray-100 focus:bg-gray-100 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10">
-                Siguiente
-                <i class="bx bx-chevron-right"></i>
-            </x-button>
-        @endif
+            @if ($paginator->hasMorePages())
+                <a href="{{ $paginator->nextPageUrl() }}" rel="next"
+                   class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-gray-700 dark:text-neutral-300 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-50/80 dark:hover:bg-neutral-700/60 transition-all select-none">
+                    <span>Siguiente</span>
+                    <i class="bx bx-chevron-right text-base"></i>
+                </a>
+            @else
+                <span aria-disabled="true" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold text-gray-400 dark:text-neutral-600 cursor-not-allowed select-none opacity-50">
+                    <span>Siguiente</span>
+                    <i class="bx bx-chevron-right text-base"></i>
+                </span>
+            @endif
+        </div>
     </nav>
 @endif

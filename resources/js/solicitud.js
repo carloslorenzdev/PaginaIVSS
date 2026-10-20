@@ -1,4 +1,4 @@
-import { generaEtiquetaOption } from "./helpers";
+﻿import { generaEtiquetaOption } from "./helpers";
 
 function renderizaActividadEconomica(valorTipoEmpresa, valorActividad = null) {
     const actividadesEmpresa = actividadesEconomicas.filter(ac => {
@@ -41,6 +41,6 @@ function renderizaActividadEconomica(valorTipoEmpresa, valorActividad = null) {
     } else {
         document.addEventListener('DOMContentLoaded', initModule);
     }
-    document.addEventListener('turbo:load', initModule);
+    document.addEventListener('livewire:navigated', initModule);
 })();
 

@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->name('admin.')->group(function () {
 
-    // DASHBOARD / PANEL
-    Route::get('/panel', \App\Http\Controllers\Admin\Noticias\ListarNoticiasPanelController::class)->name('panel');
+    // DASHBOARD / PANEL PRINCIPAL (Livewire 4 Page Component)
+    Route::get('/panel', \App\Livewire\Admin\PanelNoticias::class)->name('panel');
 
     // ----------------------------------------------------------------
     // NOTICIAS
@@ -33,10 +33,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 
     // ----------------------------------------------------------------
-    // CATEGORÍAS
+    // CATEGORÍAS (Livewire 4 Page Component)
     // ----------------------------------------------------------------
     Route::prefix('categorias')->name('categorias.')->group(function () {
-        Route::get('/', \App\Http\Controllers\Admin\Categorias\ListarCategoriasController::class)->name('index');
+        Route::get('/', \App\Livewire\Admin\CategoriasManager::class)->name('index');
         Route::post('/guardar', \App\Http\Controllers\Admin\Categorias\GuardarCategoriaController::class)->name('guardar');
         Route::get('/{id}/editar', \App\Http\Controllers\Admin\Categorias\EditarCategoriaViewController::class)->name('editar');
         Route::put('/{id}', \App\Http\Controllers\Admin\Categorias\ActualizarCategoriaController::class)->name('actualizar');
@@ -44,10 +44,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 
     // ----------------------------------------------------------------
-    // CARRUSEL
+    // CARRUSEL (Livewire 4 Page Component)
     // ----------------------------------------------------------------
     Route::prefix('carrusel')->name('carrusel.')->group(function () {
-        Route::get('/', \App\Http\Controllers\Admin\Carrusel\GestionarCarruselController::class)->name('gestionar');
+        Route::get('/', \App\Livewire\Admin\CarruselManager::class)->name('gestionar');
         Route::post('/', \App\Http\Controllers\Admin\Carrusel\GuardarCarruselController::class)->name('guardar');
         Route::post('/velocidad', \App\Http\Controllers\Admin\Carrusel\GuardarVelocidadCarruselController::class)->name('velocidad');
         Route::put('/{id}', \App\Http\Controllers\Admin\Carrusel\ActualizarCarruselController::class)->name('actualizar');
@@ -81,14 +81,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/modulo/{clave}', \App\Http\Controllers\Admin\Configuraciones\GestionarModuloController::class)->name('modulo');
         Route::post('/modulo/{clave}', \App\Http\Controllers\Admin\Configuraciones\GuardarModuloController::class)->name('modulo.guardar');
         Route::delete('/modulo/{clave}', \App\Http\Controllers\Admin\Configuraciones\EliminarModuloController::class)->name('modulo.eliminar');
-
     });
 
     // ----------------------------------------------------------------
-    // BOLETINES INFORMATIVOS
+    // BOLETINES INFORMATIVOS (Livewire 4 Page Component)
     // ----------------------------------------------------------------
     Route::prefix('boletines')->name('boletines.')->group(function () {
-        Route::get('/', [\App\Http\Controllers\Admin\Boletines\BoletinAdminController::class, 'index'])->name('index');
+        Route::get('/', \App\Livewire\Admin\BoletinesManager::class)->name('index');
         Route::get('/crear', [\App\Http\Controllers\Admin\Boletines\BoletinAdminController::class, 'crear'])->name('crear');
         Route::post('/guardar', [\App\Http\Controllers\Admin\Boletines\BoletinAdminController::class, 'guardar'])->name('guardar');
         Route::get('/{boletin}', [\App\Http\Controllers\Admin\Boletines\BoletinAdminController::class, 'ver'])->name('ver');
@@ -98,10 +97,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 
     // ----------------------------------------------------------------
-    // REVISTAS DIGITALES
+    // REVISTAS DIGITALES (Livewire 4 Page Component)
     // ----------------------------------------------------------------
     Route::prefix('revistas')->name('revistas.')->group(function () {
-        Route::get('/', [\App\Http\Controllers\Admin\Revistas\RevistaAdminController::class, 'index'])->name('index');
+        Route::get('/', \App\Livewire\Admin\RevistasManager::class)->name('index');
         Route::get('/crear', [\App\Http\Controllers\Admin\Revistas\RevistaAdminController::class, 'crear'])->name('crear');
         Route::post('/guardar', [\App\Http\Controllers\Admin\Revistas\RevistaAdminController::class, 'guardar'])->name('guardar');
         Route::get('/{revista}', [\App\Http\Controllers\Admin\Revistas\RevistaAdminController::class, 'ver'])->name('ver');
@@ -111,10 +110,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 
     // ----------------------------------------------------------------
-    // BANNERS Y ALERTAS
+    // BANNERS Y ALERTAS (Livewire 4 Page Component)
     // ----------------------------------------------------------------
     Route::prefix('banners')->name('banners.')->group(function () {
-        Route::get('/', [\App\Http\Controllers\Admin\BannerController::class, 'index'])->name('index');
+        Route::get('/', \App\Livewire\Admin\BannersManager::class)->name('index');
         
         // Alerta
         Route::post('/alerta', [\App\Http\Controllers\Admin\BannerController::class, 'updateAlerta'])->name('updateAlerta');
@@ -126,10 +125,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 
     // ----------------------------------------------------------------
-    // DIRECTORIOS DE SALUD Y ADMINISTRATIVOS
+    // DIRECTORIOS DE SALUD Y ADMINISTRATIVOS (Livewire 4 Page Component)
     // ----------------------------------------------------------------
     Route::prefix('directorios')->name('directorios.')->group(function () {
-        Route::get('/', [\App\Http\Controllers\Admin\DirectorioController::class, 'index'])->name('index');
+        Route::get('/', \App\Livewire\Admin\DirectoriosManager::class)->name('index');
         Route::post('/', [\App\Http\Controllers\Admin\DirectorioController::class, 'store'])->name('store');
         Route::put('/{directorio}', [\App\Http\Controllers\Admin\DirectorioController::class, 'update'])->name('update');
         Route::delete('/{directorio}', [\App\Http\Controllers\Admin\DirectorioController::class, 'destroy'])->name('destroy');
@@ -143,11 +142,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/logs', \App\Http\Controllers\Admin\LogsController::class)->name('logs');
 
     // ----------------------------------------------------------------
-    // BASE DE CONOCIMIENTO (CHATBOT)
+    // BASE DE CONOCIMIENTO (CHATBOT) (Livewire 4 Page Components)
     // ----------------------------------------------------------------
     Route::prefix('chatbot')->name('chatbot.')->group(function () {
-        Route::resource('conocimiento', \App\Http\Controllers\Admin\ChatbotConocimientoController::class)->except(['create', 'show', 'edit']);
-        Route::resource('preguntas-sin-respuesta', \App\Http\Controllers\Admin\ChatbotPreguntaSinRespuestaController::class)->only(['index', 'destroy']);
+        Route::get('/conocimiento', \App\Livewire\Admin\ChatbotConocimientoManager::class)->name('conocimiento.index');
+        Route::resource('conocimiento', \App\Http\Controllers\Admin\ChatbotConocimientoController::class)->except(['index', 'create', 'show', 'edit']);
+        Route::get('/preguntas-sin-respuesta', \App\Livewire\Admin\PreguntasSinRespuestaManager::class)->name('preguntas-sin-respuesta.index');
+        Route::delete('/preguntas-sin-respuesta/{pregunta}', [\App\Http\Controllers\Admin\ChatbotPreguntaSinRespuestaController::class, 'destroy'])->name('preguntas-sin-respuesta.destroy');
     });
 
     // ----------------------------------------------------------------

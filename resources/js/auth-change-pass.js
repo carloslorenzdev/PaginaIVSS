@@ -1,4 +1,4 @@
-(function() {
+﻿(function() {
     function initModule() {
             Swal.fire({
                 title: 'Alerta de Seguridad',
@@ -15,5 +15,5 @@
     } else {
         document.addEventListener('DOMContentLoaded', initModule);
     }
-    document.addEventListener('turbo:load', initModule);
+    document.addEventListener('livewire:navigated', initModule);
 })();

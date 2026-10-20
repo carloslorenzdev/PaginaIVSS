@@ -1,4 +1,4 @@
-import { ToastAlert } from './toastify';
+﻿import { ToastAlert } from './toastify';
 
 (function() {
     function initModule() {
@@ -30,6 +30,6 @@ import { ToastAlert } from './toastify';
     } else {
         document.addEventListener('DOMContentLoaded', initModule);
     }
-    document.addEventListener('turbo:load', initModule);
+    document.addEventListener('livewire:navigated', initModule);
 })();
 

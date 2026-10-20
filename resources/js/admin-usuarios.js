@@ -58,16 +58,31 @@
     });
 
     // Cerrar modal
-    const closeBtns = [document.getElementById('btn-close-modal-usuario'), document.getElementById('btn-cancelar-usuario')];
+    function cerrarModalUsuario() {
+        const modal = document.getElementById('modal-usuario');
+        if (modal) {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    }
+
+    const closeBtns = [
+        document.getElementById('btn-close-modal-usuario'),
+        document.getElementById('btn-cancelar-usuario'),
+        document.getElementById('modal-usuario-backdrop')
+    ];
     closeBtns.forEach(function(btn) {
         if (btn) {
-            btn.addEventListener('click', function() {
-                const modal = document.getElementById('modal-usuario');
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-            });
+            btn.addEventListener('click', cerrarModalUsuario);
         }
     });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            cerrarModalUsuario();
+        }
+    });
+
     }
 
     if (document.readyState !== 'loading') {
@@ -75,6 +90,6 @@
     } else {
         document.addEventListener('DOMContentLoaded', initModule);
     }
-    document.addEventListener('turbo:load', initModule);
+    document.addEventListener('livewire:navigated', initModule);
 })();
 

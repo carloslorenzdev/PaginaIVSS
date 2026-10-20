@@ -1,4 +1,4 @@
-import { buildEditor } from "../libs/tiptap/tiptap-editor";
+﻿import { buildEditor } from "../libs/tiptap/tiptap-editor";
 
 function initEditorConfig() {
     if (document.getElementById('hs-editor-tiptap')) {
@@ -17,7 +17,7 @@ function initEditorConfig() {
 }
 
 if (document.readyState === 'loading') {
-    document.addEventListener('turbo:load', initEditorConfig);
+    document.addEventListener('livewire:navigated', initEditorConfig);
 } else {
     initEditorConfig();
 }

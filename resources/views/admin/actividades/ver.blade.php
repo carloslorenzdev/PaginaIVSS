@@ -49,7 +49,7 @@
                             <x-input type="hidden" id="descripcion" name="descripcion" />
                             <div class="rounded-xl overflow-hidden border border-gray-200 dark:border-neutral-700">
                                 <x-editor id="hs-editor-tiptap" class="min-h-[200px]">
-                                    {!! old('descripcion', $actividad->descripcion) !!}
+                                    {!! clean(old('descripcion', $actividad->descripcion)) !!}
                                 </x-editor>
                             </div>
                         </div>

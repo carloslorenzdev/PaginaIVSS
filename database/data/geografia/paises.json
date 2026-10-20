@@ -1,0 +1,1594 @@
+[
+    {
+        "idpais": 1,
+        "pais": "VENEZUELA",
+        "capital": "CARACAS",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 2,
+        "pais": "ANGOLA",
+        "capital": "LUANDA",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 3,
+        "pais": "ARGELIA",
+        "capital": "ARGEL",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 4,
+        "pais": "BENIN",
+        "capital": "PORTO-NOVO",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 5,
+        "pais": "BOTSUANA",
+        "capital": "GABERONES",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 6,
+        "pais": "BURKINA FASO",
+        "capital": "UAGADUGU",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 7,
+        "pais": "BURUNDI",
+        "capital": "BUYUMBURA",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 8,
+        "pais": "CABO VERDE",
+        "capital": "PRAIA",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 9,
+        "pais": "CAMERUN",
+        "capital": "YAUNDE",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 10,
+        "pais": "CHAD",
+        "capital": "YAMENA",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 11,
+        "pais": "COMORAS",
+        "capital": "MORONI",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 12,
+        "pais": "COSTA DE MARFIL",
+        "capital": "YAMUSUKRO ABIYAN",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 13,
+        "pais": "EGIPTO",
+        "capital": "EL CAIRO",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 14,
+        "pais": "ERITREA",
+        "capital": "ASMARA",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 15,
+        "pais": "ETIOPIA",
+        "capital": "ADIS ABEBA",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 16,
+        "pais": "GABON",
+        "capital": "LIBREVILLE",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 17,
+        "pais": "GAMBIA",
+        "capital": "BANJUL",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 18,
+        "pais": "GHANA",
+        "capital": "ACCRA",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 19,
+        "pais": "GUINEA",
+        "capital": "CONAKRY",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 20,
+        "pais": "GUINEA ECUATORIAL",
+        "capital": "MALABO",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 21,
+        "pais": "GUINEA-BISSAU",
+        "capital": "BISSAU",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 22,
+        "pais": "KENIA",
+        "capital": "NAIROBI",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 23,
+        "pais": "LESOTO",
+        "capital": "MASERU",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 24,
+        "pais": "LIBERIA",
+        "capital": "MONROVIA",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 25,
+        "pais": "LIBIA",
+        "capital": "TRIPOLI",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 26,
+        "pais": "MADAGASCAR",
+        "capital": "ANTANANARIVO",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 27,
+        "pais": "MALAUI",
+        "capital": "LILONGE",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 28,
+        "pais": "MALI",
+        "capital": "BAMAKO",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 29,
+        "pais": "MARRUECOS",
+        "capital": "RABAT",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 30,
+        "pais": "MAURICIO",
+        "capital": "PORT LOUIS",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 31,
+        "pais": "MAURITANIA",
+        "capital": "NUAKCHOT",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 32,
+        "pais": "MOZAMBIQUE",
+        "capital": "MAPUTO",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 33,
+        "pais": "NAMIBIA",
+        "capital": "WINDHOEK",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 34,
+        "pais": "NIGER",
+        "capital": "NIAMEY",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 35,
+        "pais": "NIGERIA",
+        "capital": "ABUYA",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 36,
+        "pais": "REPUBLICA CENTROAFRICANA",
+        "capital": "BANGUI",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 37,
+        "pais": "REPUBLICA DEL CONGO",
+        "capital": "BRAZZAVILLE",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 38,
+        "pais": "REPUBLICA DEMOCRATICA DEL CONGO",
+        "capital": "KINSHASA",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 39,
+        "pais": "REPUBLICA SAHARAUI",
+        "capital": "EL AAIUN",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 40,
+        "pais": "RUANDA",
+        "capital": "KIGALI",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 41,
+        "pais": "SANTO TOME Y PRINCIPE",
+        "capital": "SANTO TOME",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 42,
+        "pais": "SENEGAL",
+        "capital": "DAKAR",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 43,
+        "pais": "SEYCHELLES",
+        "capital": "VICTORIA",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 44,
+        "pais": "SIERRA LEONA",
+        "capital": "FREETOWN",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 45,
+        "pais": "SOMALIA",
+        "capital": "MOGADISCIO",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 46,
+        "pais": "SUAZILANDIA",
+        "capital": "MBABANE",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 47,
+        "pais": "SUDAFRICA",
+        "capital": "CIUDAD DEL CABO",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 48,
+        "pais": "SUDAN DEL NORTE",
+        "capital": "JARTUM",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 49,
+        "pais": "SUDAN DEL SUR",
+        "capital": "YUBA",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 50,
+        "pais": "TANZANIA",
+        "capital": "DODOMA",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 51,
+        "pais": "TOGO",
+        "capital": "LOME",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 52,
+        "pais": "TUNEZ",
+        "capital": "TUNEZ",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 53,
+        "pais": "UGANDA",
+        "capital": "KAMPALA",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 54,
+        "pais": "YIBUTI",
+        "capital": "YIBUTI",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 55,
+        "pais": "ZAMBIA",
+        "capital": "LUSAKA",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 56,
+        "pais": "ZIMBABUE",
+        "capital": "HARARE",
+        "idcontinentefk": 2,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 57,
+        "pais": "ANTIGUA Y BARBUDA",
+        "capital": "SAINT JOHNS",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 58,
+        "pais": "ARGENTINA",
+        "capital": "BUENOS AIRES",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 59,
+        "pais": "BAHAMAS",
+        "capital": "NASSAU",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 60,
+        "pais": "BARBADOS",
+        "capital": "BRIDGETOWN",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 61,
+        "pais": "BELICE",
+        "capital": "BELMOPAN",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 62,
+        "pais": "BOLIVIA",
+        "capital": "LA PAZ",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 63,
+        "pais": "BRASIL",
+        "capital": "BRASILIA",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 64,
+        "pais": "CANADA",
+        "capital": "OTTAWA",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 65,
+        "pais": "CHILE",
+        "capital": "SANTIAGO DE CHILE",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 66,
+        "pais": "COLOMBIA",
+        "capital": "BOGOTA",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 67,
+        "pais": "COSTA RICA",
+        "capital": "SAN JOSE",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 68,
+        "pais": "CUBA",
+        "capital": "LA HABANA",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 69,
+        "pais": "DOMINICA",
+        "capital": "ROSEAU",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 70,
+        "pais": "ECUADOR",
+        "capital": "QUITO",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 71,
+        "pais": "EL SALVADOR",
+        "capital": "SAN SALVADOR",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 72,
+        "pais": "ESTADOS UNIDOS",
+        "capital": "WASHINGTON D. C.",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 73,
+        "pais": "GRANADA",
+        "capital": "SAINT GEORGES",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 74,
+        "pais": "GUATEMALA",
+        "capital": "CIUDAD DE GUATEMALA",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 75,
+        "pais": "GUYANA",
+        "capital": "GEORGETOWN",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 76,
+        "pais": "HAITI",
+        "capital": "PUERTO PRINCIPE",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 77,
+        "pais": "HONDURAS",
+        "capital": "TEGUCIGALPA",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 78,
+        "pais": "JAMAICA",
+        "capital": "KINGSTON",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 79,
+        "pais": "MEXICO",
+        "capital": "MEXICO D. F.",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 80,
+        "pais": "NICARAGUA",
+        "capital": "MANAGUA",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 81,
+        "pais": "PANAMA",
+        "capital": "CIUDAD DE PANAMA",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 82,
+        "pais": "PARAGUAY",
+        "capital": "ASUNCION",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 83,
+        "pais": "PERU",
+        "capital": "LIMA",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 84,
+        "pais": "PUERTO RICO",
+        "capital": "SAN JUAN",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 85,
+        "pais": "REPUBLICA DOMINICANA",
+        "capital": "SANTO DOMINGO",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 86,
+        "pais": "SAN CRISTOBAL Y NIEVES",
+        "capital": "BASSETERRE",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 87,
+        "pais": "SAN VICENTE Y LAS GRANADINAS",
+        "capital": "KINGSTOWN",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 88,
+        "pais": "SANTA LUCIA",
+        "capital": "CASTRIES",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 89,
+        "pais": "SURINAM",
+        "capital": "PARAMARIBO",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 90,
+        "pais": "TRINIDAD Y TOBAGO",
+        "capital": "PUERTO ESPAA",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 91,
+        "pais": "URUGUAY",
+        "capital": "MONTEVIDEO",
+        "idcontinentefk": 1,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 92,
+        "pais": "AFGANISTAN",
+        "capital": "KABUL",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 93,
+        "pais": "ARABIA SAUDITA",
+        "capital": "RIAD",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 94,
+        "pais": "BANGLADES",
+        "capital": "DACA",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 95,
+        "pais": "BAREIN",
+        "capital": "MANAMA",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 96,
+        "pais": "BRUNEI",
+        "capital": "BANDAR SERI BEGAWAN",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 97,
+        "pais": "BUTAN",
+        "capital": "TIMBU",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 98,
+        "pais": "CAMBOYA",
+        "capital": "PNON PEHN",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 99,
+        "pais": "CATAR",
+        "capital": "DOHA",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 100,
+        "pais": "CHINA",
+        "capital": "PEKIN",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 101,
+        "pais": "CHIPRE",
+        "capital": "NICOSIA",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 102,
+        "pais": "COREA DEL NORTE",
+        "capital": "PYONGYANG",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 103,
+        "pais": "COREA DEL SUR",
+        "capital": "SEUL",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 104,
+        "pais": "EMIRATOS ARABES UNIDOS",
+        "capital": "ABU DABI",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 105,
+        "pais": "FILIPINAS",
+        "capital": "MANILA",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 106,
+        "pais": "INDIA",
+        "capital": "NUEVA DELHI",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 107,
+        "pais": "INDONESIA",
+        "capital": "YAKARTA",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 108,
+        "pais": "IRAN",
+        "capital": "TEHERAN",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 109,
+        "pais": "IRAQ",
+        "capital": "BAGDAD",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 110,
+        "pais": "ISRAEL",
+        "capital": "JERUSALEN",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 111,
+        "pais": "JAPON",
+        "capital": "TOKIO",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 112,
+        "pais": "JORDANIA",
+        "capital": "AMMAN",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 113,
+        "pais": "KAZAJISTAN",
+        "capital": "ASTANA",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 114,
+        "pais": "KIRGUISTAN",
+        "capital": "BISKEK",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 115,
+        "pais": "KUWAIT",
+        "capital": "CIUDAD DE KUWAIT",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 116,
+        "pais": "LAOS",
+        "capital": "VIENTIAN",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 117,
+        "pais": "LIBANO",
+        "capital": "BEIRUT",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 118,
+        "pais": "MAL3",
+        "capital": "KUALA LUMPUR",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 119,
+        "pais": "MALDIVAS",
+        "capital": "MALE",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 120,
+        "pais": "MONGOLIA",
+        "capital": "ULAN BATOR",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 121,
+        "pais": "MYANMAR (BIRMANIA)",
+        "capital": "NAYPYIDAW",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 122,
+        "pais": "NEPAL",
+        "capital": "KATMANDU",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 123,
+        "pais": "OMAN",
+        "capital": "MASCATE",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 124,
+        "pais": "PAKISTAN",
+        "capital": "ISLAMABAD",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 125,
+        "pais": "PALESTINA",
+        "capital": "RAMALA",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 126,
+        "pais": "SINGAPUR",
+        "capital": "SINGAPUR",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 127,
+        "pais": "SIRIA",
+        "capital": "DAMASCO",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 128,
+        "pais": "SRI LANKA",
+        "capital": "COLOMBO",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 129,
+        "pais": "TAILANDIA",
+        "capital": "BANGKOK",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 130,
+        "pais": "TAIWAN",
+        "capital": "TAIPEH",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 131,
+        "pais": "TAYIKISTAN",
+        "capital": "DUSAMBE",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 132,
+        "pais": "TIMOR ORIENTAL",
+        "capital": "DILI",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 133,
+        "pais": "TURKMENISTAN",
+        "capital": "ASJABAD",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 134,
+        "pais": "TURQUIA",
+        "capital": "ANKARA",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 135,
+        "pais": "UZBEKISTAN",
+        "capital": "TASHKENT",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 136,
+        "pais": "VIETNAM",
+        "capital": "HANOI",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 137,
+        "pais": "YEMEN",
+        "capital": "SANA",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 138,
+        "pais": "ALBANIA",
+        "capital": "TIRANA",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 139,
+        "pais": "ALEMANIA",
+        "capital": "BERLIN",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 140,
+        "pais": "ANDORRA",
+        "capital": "ANDORRA LA VIEJA",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 141,
+        "pais": "ARMENIA",
+        "capital": "EREVAN",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 142,
+        "pais": "AUSTRIA",
+        "capital": "VIENA",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 143,
+        "pais": "AZERBAIYAN",
+        "capital": "BAKU",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 144,
+        "pais": "BELGICA",
+        "capital": "BRUSELAS",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 145,
+        "pais": "BIELORRUSIA",
+        "capital": "MINSK",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 146,
+        "pais": "BOSNIA Y HERZEGOVINA",
+        "capital": "SARAJEVO",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 147,
+        "pais": "BULGARIA",
+        "capital": "SOFIA",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 148,
+        "pais": "CROACIA",
+        "capital": "ZAGREB",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 149,
+        "pais": "DINAMARCA",
+        "capital": "COPENHAGUE",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 150,
+        "pais": "ESLOVAQUIA",
+        "capital": "BRATISLAVA",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 151,
+        "pais": "ESLOVENIA",
+        "capital": "LUBLIJANA",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 152,
+        "pais": "ESPAA",
+        "capital": "MADRID",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 153,
+        "pais": "ESTONIA",
+        "capital": "TALLIN",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 154,
+        "pais": "FINLANDIA",
+        "capital": "HELSINKI",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 155,
+        "pais": "FRANCIA",
+        "capital": "PARIS",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 156,
+        "pais": "GEORGIA",
+        "capital": "TIFLIS",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 157,
+        "pais": "GRECIA",
+        "capital": "ATENAS",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 158,
+        "pais": "HUNGRIA",
+        "capital": "BUDAPEST",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 159,
+        "pais": "IRLANDA",
+        "capital": "DUBLIN",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 160,
+        "pais": "ISLANDIA",
+        "capital": "REIKIAVIK",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 161,
+        "pais": "ITALIA",
+        "capital": "ROMA",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 162,
+        "pais": "LETONIA",
+        "capital": "RIGA",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 163,
+        "pais": "LIECHTENSTEIN",
+        "capital": "VADUZ",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 164,
+        "pais": "LITUANIA",
+        "capital": "VILNA",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 165,
+        "pais": "LUXEMBURGO",
+        "capital": "LUXEMBURGO",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 166,
+        "pais": "MALTA",
+        "capital": "LA VALETA",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 167,
+        "pais": "MOLDAVIA",
+        "capital": "CHISINAU",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 168,
+        "pais": "MONACO",
+        "capital": "MONACO",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 169,
+        "pais": "MONTENEGRO",
+        "capital": "PODGORICA",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 170,
+        "pais": "NORUEGA",
+        "capital": "OSLO",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 171,
+        "pais": "PAISES BAJOS",
+        "capital": "AMSTERDAM",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 172,
+        "pais": "POLONIA",
+        "capital": "VARSOVIA",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 173,
+        "pais": "PORTUGAL",
+        "capital": "LISBOA",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 174,
+        "pais": "REINO UNIDO",
+        "capital": "LONDRES",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 175,
+        "pais": "REPUBLICA CHECA",
+        "capital": "PRAGA",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 176,
+        "pais": "REPUBLICA DE MACEDONIA",
+        "capital": "SKOPJE",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 177,
+        "pais": "RUMANIA",
+        "capital": "BUCAREST",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 178,
+        "pais": "RUSIA",
+        "capital": "MOSCU",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 179,
+        "pais": "SAN MARINO",
+        "capital": "CIUDAD DE SAN MARINO",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 180,
+        "pais": "SERBIA",
+        "capital": "BELGRADO",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 181,
+        "pais": "SUECIA",
+        "capital": "ESTOCOLMO",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 182,
+        "pais": "SUIZA",
+        "capital": "BERNA",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 183,
+        "pais": "UCRANIA",
+        "capital": "KIEV",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 184,
+        "pais": "VATICANO",
+        "capital": "CIUDAD DEL VATICANO",
+        "idcontinentefk": 4,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 185,
+        "pais": "AUSTRALIA",
+        "capital": "CANBERRA",
+        "idcontinentefk": 5,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 186,
+        "pais": "FIYI",
+        "capital": "SUVA",
+        "idcontinentefk": 5,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 187,
+        "pais": "ISLAS MARSHALL",
+        "capital": "MAJURO",
+        "idcontinentefk": 5,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 188,
+        "pais": "ISLAS SALOMON",
+        "capital": "HONIARA",
+        "idcontinentefk": 5,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 189,
+        "pais": "KIRIBATI",
+        "capital": "TARAWA",
+        "idcontinentefk": 5,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 190,
+        "pais": "MICRONESIA",
+        "capital": "PALIKIR",
+        "idcontinentefk": 5,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 191,
+        "pais": "NAURU",
+        "capital": "YAREN",
+        "idcontinentefk": 5,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 192,
+        "pais": "NUEVA ZELANDA",
+        "capital": "WELLINGTON",
+        "idcontinentefk": 5,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 193,
+        "pais": "PALAOS",
+        "capital": "MELEKEOK",
+        "idcontinentefk": 5,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 194,
+        "pais": "PAPUA NUEVA GUINEA",
+        "capital": "PORT MORESBY",
+        "idcontinentefk": 5,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 195,
+        "pais": "SAMOA",
+        "capital": "APIA",
+        "idcontinentefk": 5,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 196,
+        "pais": "TONGA",
+        "capital": "NUKUALOFA",
+        "idcontinentefk": 5,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 197,
+        "pais": "TUVALU",
+        "capital": "FUNAFUTI",
+        "idcontinentefk": 5,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 198,
+        "pais": "VANUATU",
+        "capital": "PORT VILA",
+        "idcontinentefk": 5,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idpais": 199,
+        "pais": "MALASIA",
+        "capital": "TERRITORIO FEDERAL DE KUALA LUMPUR",
+        "idcontinentefk": 3,
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    }
+]

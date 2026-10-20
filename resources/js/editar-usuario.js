@@ -1,4 +1,4 @@
-import { buildEditor } from "../libs/tiptap/tiptap-editor";
+﻿import { buildEditor } from "../libs/tiptap/tiptap-editor";
 import { ToastAlert } from "./toastify";
 
 (function() {
@@ -25,6 +25,6 @@ import { ToastAlert } from "./toastify";
     } else {
         document.addEventListener('DOMContentLoaded', initModule);
     }
-    document.addEventListener('turbo:load', initModule);
+    document.addEventListener('livewire:navigated', initModule);
 })();
 

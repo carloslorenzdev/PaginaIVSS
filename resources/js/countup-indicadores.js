@@ -1,4 +1,4 @@
-import { CountUp } from "countup.js";
+﻿import { CountUp } from "countup.js";
 
 (function() {
     function initModule() {
@@ -51,6 +51,6 @@ import { CountUp } from "countup.js";
     } else {
         document.addEventListener('DOMContentLoaded', initModule);
     }
-    document.addEventListener('turbo:load', initModule);
+    document.addEventListener('livewire:navigated', initModule);
 })();
 

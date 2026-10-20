@@ -10,7 +10,7 @@
         
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div>
-                <a href="{{ route('revista_digital') }}" class="btn btn-outline-secondary rounded-pill fw-bold">
+                <a href="{{ route('revista_digital') }}" wire:navigate class="btn btn-outline-secondary rounded-pill fw-bold">
                     <i class="fas fa-arrow-left me-2"></i> Volver a Revistas
                 </a>
             </div>

@@ -8,6 +8,7 @@
     @include('layouts/sections/sidebar/sidebar')
     <div class="w-full lg:ps-[260px]">
         <main class="min-h-[calc(100vh-177px)]">
+            {{ $slot ?? '' }}
             @yield('content')
         </main>
         @include('layouts/sections/footer')

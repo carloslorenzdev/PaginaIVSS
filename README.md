@@ -79,6 +79,7 @@ php artisan db:seed --class=RoleSeeder
 php artisan db:seed --class=ChatbotConocimientoSeeder
 php artisan db:seed --class=ChatbotNuevasPalabrasSeeder
 php artisan db:seed --class=DirectoriosSeeder
+php artisan db:seed --class=GeografiaSeeder
 ```
 
 10. (Opcional - Recomendado en Producción) Optimizar la caché general del sistema:

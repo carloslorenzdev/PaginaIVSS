@@ -1,0 +1,236 @@
+[
+    {
+        "idestado": 1,
+        "idpaisfk": 1,
+        "estado": "AMAZONAS",
+        "nomenclatura": "AM",
+        "capital": "Puerto Ayacucho",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idestado": 2,
+        "idpaisfk": 1,
+        "estado": "APURE",
+        "nomenclatura": "AP",
+        "capital": "San Fernando de Apure",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idestado": 3,
+        "idpaisfk": 1,
+        "estado": "ARAGUA",
+        "nomenclatura": "AR",
+        "capital": "Maracay",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idestado": 4,
+        "idpaisfk": 1,
+        "estado": "ANZOATEGUI",
+        "nomenclatura": "AZ",
+        "capital": "Barcelona",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idestado": 5,
+        "idpaisfk": 1,
+        "estado": "BARINAS",
+        "nomenclatura": "BA",
+        "capital": "Barinas",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idestado": 6,
+        "idpaisfk": 1,
+        "estado": "BOLIVAR",
+        "nomenclatura": "BO",
+        "capital": "Caracas",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idestado": 7,
+        "idpaisfk": 1,
+        "estado": "CARABOBO",
+        "nomenclatura": "CB",
+        "capital": "Valencia",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idestado": 8,
+        "idpaisfk": 1,
+        "estado": "COJEDES",
+        "nomenclatura": "CJ",
+        "capital": "San Carlos",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idestado": 9,
+        "idpaisfk": 1,
+        "estado": "DELTA AMACURO",
+        "nomenclatura": "DA",
+        "capital": "Tucupita",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idestado": 10,
+        "idpaisfk": 1,
+        "estado": "DISTRITO CAPITAL",
+        "nomenclatura": "DC",
+        "capital": "Caracas",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idestado": 11,
+        "idpaisfk": 1,
+        "estado": "DTO CAP LOS LLANOS",
+        "nomenclatura": "DF",
+        "capital": "Caracas",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idestado": 12,
+        "idpaisfk": 1,
+        "estado": "TERRITORIO INSULAR FRANCISCO DE MIRANDA",
+        "nomenclatura": "DP",
+        "capital": "El Gran Roque",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idestado": 13,
+        "idpaisfk": 1,
+        "estado": "FALCON",
+        "nomenclatura": "FC",
+        "capital": "Coro",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idestado": 14,
+        "idpaisfk": 1,
+        "estado": "GUARICO",
+        "nomenclatura": "GR",
+        "capital": "San Juan de los Morros",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idestado": 15,
+        "idpaisfk": 1,
+        "estado": "LARA",
+        "nomenclatura": "LR",
+        "capital": "Barquisimeto",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idestado": 16,
+        "idpaisfk": 1,
+        "estado": "MERIDA",
+        "nomenclatura": "MD",
+        "capital": "Merida",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idestado": 17,
+        "idpaisfk": 1,
+        "estado": "MONAGAS",
+        "nomenclatura": "MN",
+        "capital": "Maturin",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idestado": 18,
+        "idpaisfk": 1,
+        "estado": "MIRANDA",
+        "nomenclatura": "MR",
+        "capital": "Los Teques",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idestado": 19,
+        "idpaisfk": 1,
+        "estado": "NUEVA ESPARTA",
+        "nomenclatura": "NE",
+        "capital": "La Asuncion",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idestado": 20,
+        "idpaisfk": 1,
+        "estado": "PORTUGUESA",
+        "nomenclatura": "PT",
+        "capital": "Guanare",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idestado": 21,
+        "idpaisfk": 1,
+        "estado": "SUCRE",
+        "nomenclatura": "SC",
+        "capital": "CumanÃ¡",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idestado": 22,
+        "idpaisfk": 1,
+        "estado": "TACHIRA",
+        "nomenclatura": "TC",
+        "capital": "San CristÃ³bal",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idestado": 23,
+        "idpaisfk": 1,
+        "estado": "TRUJILLO",
+        "nomenclatura": "TR",
+        "capital": "Trujillo",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idestado": 24,
+        "idpaisfk": 1,
+        "estado": "LA GUAIRA",
+        "nomenclatura": "VA",
+        "capital": "La Guaira",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idestado": 25,
+        "idpaisfk": 1,
+        "estado": "YARACUY",
+        "nomenclatura": "YC",
+        "capital": "San Felipe",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idestado": 26,
+        "idpaisfk": 1,
+        "estado": "ZULIA",
+        "nomenclatura": "ZU",
+        "capital": "Maracaibo",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    }
+]

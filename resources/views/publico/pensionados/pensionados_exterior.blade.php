@@ -87,10 +87,10 @@
                     </div>
 
                     <div class="d-flex flex-column gap-3 mt-5">
-                        <a href="{{ route('pensionado.contacto') }}" class="btn btn-light border py-3 text-start fw-bold text-primary rounded-3">
+                        <a href="{{ route('pensionado.contacto') }}" wire:navigate class="btn btn-light border py-3 text-start fw-bold text-primary rounded-3">
                             Contacto
                         </a>
-                        <a href="{{ route('pensionado.formularios') }}" class="btn btn-light border py-3 text-start fw-bold text-primary rounded-3">
+                        <a href="{{ route('pensionado.formularios') }}" wire:navigate class="btn btn-light border py-3 text-start fw-bold text-primary rounded-3">
                             Información complementaria y formularios
                         </a>
                     </div>

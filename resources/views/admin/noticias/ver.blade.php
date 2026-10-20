@@ -148,7 +148,7 @@
                                 <x-input.label for="contenido" value="Cuerpo de la Noticia" />
                                 <x-input type="hidden" id="contenido" name="contenido" value="{{ old('contenido', $noticia->contenido) }}" />
                                 <x-editor id="hs-editor-tiptap">
-                                    {!! old('contenido', $noticia->contenido) !!}
+                                    {!! clean(old('contenido', $noticia->contenido)) !!}
                                 </x-editor>
                                 <x-input.error campo="contenido" />
                             </div>

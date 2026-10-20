@@ -84,7 +84,7 @@
         Banners y Alertas
     </x-nav.link>
 </li>
-@endhasrole
+@endcan
 
 {{-- ACTIVIDADES ANUALES --}}
 @can('actividades.ver')
@@ -201,7 +201,7 @@
         </x-slot:heading>
         <ul class="ps-8 pt-1 space-y-1">
             <li>
-                <x-nav.link href="{{ route('usuarios.listado') }}" active="{{ routeActive('usuarios.listado') }}" data-turbo="false">
+                <x-nav.link href="{{ route('usuarios.listado') }}" active="{{ routeActive('usuarios.listado') }}" wire:navigate>
                     Listado
                 </x-nav.link>
             </li>

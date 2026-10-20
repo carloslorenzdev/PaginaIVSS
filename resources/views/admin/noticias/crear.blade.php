@@ -86,7 +86,7 @@
                     <x-input type="hidden" id="contenido" name="contenido" />
                     {{-- Usando el editor Tiptap incluido en Tiuna --}}
                     <x-editor id="hs-editor-tiptap">
-                        {!! old('contenido') !!}
+                        {!! clean(old('contenido')) !!}
                     </x-editor>
                     <x-input.error campo="contenido" />
                 </div>

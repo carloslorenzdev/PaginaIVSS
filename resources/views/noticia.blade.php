@@ -10,8 +10,8 @@
         <!-- Breadcrumbs -->
         <nav aria-label="breadcrumb" class="mb-4">
             <ol class="breadcrumb" style="font-size: 0.9rem;">
-                <li class="breadcrumb-item"><a href="/" class="text-decoration-none text-danger"><i class="fas fa-home"></i> Inicio</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('noticias.index') }}" class="text-decoration-none text-danger">Noticias</a></li>
+                <li class="breadcrumb-item"><a href="/" wire:navigate class="text-decoration-none text-danger"><i class="fas fa-home"></i> Inicio</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('noticias.index') }}" wire:navigate class="text-decoration-none text-danger">Noticias</a></li>
                 <li class="breadcrumb-item active text-muted" aria-current="page">Lectura</li>
             </ol>
         </nav>
@@ -46,7 +46,7 @@
 
 
                             <div class="contenido-html">
-                                {!! $noticia->contenido !!}
+                                {!! clean($noticia->contenido) !!}
                             </div>
                         </div>
 
@@ -109,7 +109,7 @@
                                         if(empty($url) || $url === '#') {
                                             return 'href="javascript:void(0)" onclick="Swal.fire({icon: \'info\', title: \'Próximamente\', text: \'Esta red social no está disponible en este momento.\', confirmButtonColor: \'#dc3545\'})"';
                                         }
-                                        return 'href="' . $url . '" target="_blank"';
+                                        return 'href="' . e($url) . '" target="_blank" rel="noopener noreferrer"';
                                     };
                                 @endphp
                                 
@@ -137,7 +137,7 @@
                                     <i class="fa-brands fa-threads"></i>
                                 </a>
 
-                                <a href="{{ route('noticias.index') }}" class="btn btn-danger btn-sm ms-2 rounded-pill px-4 d-flex align-items-center fw-semibold">
+                                <a href="{{ route('noticias.index') }}" wire:navigate class="btn btn-danger btn-sm ms-2 rounded-pill px-4 d-flex align-items-center fw-semibold">
                                     <i class="fas fa-list me-2"></i> Ver más
                                 </a>
                             </div>

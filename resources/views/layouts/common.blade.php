@@ -7,10 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('imagenes/favicon-16x16.png') }}">
-    <title>@yield('titulo') | Panel Admin</title>
+    <title>{{ !empty($title) ? $title : '' }}@hasSection('titulo')@yield('titulo')@endif | Panel Admin</title>
     @cspMetaTag
     @include('layouts/sections/styles')
     @include('layouts/sections/scriptsIncludes')
+    @livewireStyles
+    <style nonce="{{ app('csp-nonce') }}">[x-cloak] { display: none !important; }</style>
 </head>
 
     <body class="min-h-screen bg-gray-100 dark:bg-neutral-900">
@@ -28,6 +30,7 @@
     @endif
     @yield('layoutContent')
     @include('layouts/sections/scripts')
+    @livewireScripts
 </body>
 
 </html>

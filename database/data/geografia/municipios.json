@@ -1,0 +1,2361 @@
+[
+    {
+        "idmunicipio": 1,
+        "idestadofk": 10,
+        "municipio": "LIBERTADOR",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 2,
+        "idestadofk": 1,
+        "municipio": "ALTO ORINOCO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 3,
+        "idestadofk": 1,
+        "municipio": "SAN FERNANDO DE ATABAPO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 4,
+        "idestadofk": 1,
+        "municipio": "ATURES",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 5,
+        "idestadofk": 1,
+        "municipio": "AUTANA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 6,
+        "idestadofk": 1,
+        "municipio": "GUAINIA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 7,
+        "idestadofk": 1,
+        "municipio": "MANAPIARE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 8,
+        "idestadofk": 1,
+        "municipio": "SAN CARLOS DE RIO NEGRO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 9,
+        "idestadofk": 4,
+        "municipio": "ANACO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 10,
+        "idestadofk": 4,
+        "municipio": "ARAGUA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 11,
+        "idestadofk": 4,
+        "municipio": "SAN JUAN DE CAPISTRANO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 12,
+        "idestadofk": 4,
+        "municipio": "SIMON BOLIVAR",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 13,
+        "idestadofk": 4,
+        "municipio": "MANUEL EZEQUIEL BRUZUAL",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 14,
+        "idestadofk": 4,
+        "municipio": "JUAN MANUEL CAJIGAL",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 15,
+        "idestadofk": 4,
+        "municipio": "FRANCISCO DEL CARMEN CARVAJAL",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 16,
+        "idestadofk": 4,
+        "municipio": "PEDRO MARIA FREITES",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 17,
+        "idestadofk": 4,
+        "municipio": "GENERAL SIR ARTHUR MC GREGOR",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 18,
+        "idestadofk": 4,
+        "municipio": "SAN JOSE DE GUANIPA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 19,
+        "idestadofk": 4,
+        "municipio": "GUANTA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 20,
+        "idestadofk": 4,
+        "municipio": "INDEPENDENCIA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 21,
+        "idestadofk": 4,
+        "municipio": "LIBERTAD",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 22,
+        "idestadofk": 4,
+        "municipio": "LIC. DIEGO BAUTISTA URBANEJA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 23,
+        "idestadofk": 4,
+        "municipio": "FRANCISCO DE MIRANDA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 24,
+        "idestadofk": 4,
+        "municipio": "JOSE GREGORIO MONAGAS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 25,
+        "idestadofk": 4,
+        "municipio": "FERNANDO DE PEÃ‘ALVER",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 26,
+        "idestadofk": 4,
+        "municipio": "PIRITU",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 27,
+        "idestadofk": 4,
+        "municipio": "SANTA ANA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 28,
+        "idestadofk": 4,
+        "municipio": "SIMON RODRIGUEZ",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 29,
+        "idestadofk": 4,
+        "municipio": "JUAN ANTONIO SOTILLO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 30,
+        "idestadofk": 2,
+        "municipio": "ACHAGUAS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 31,
+        "idestadofk": 2,
+        "municipio": "BIRUACA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 32,
+        "idestadofk": 2,
+        "municipio": "MUÃ‘OZ",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 33,
+        "idestadofk": 2,
+        "municipio": "PAEZ",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 34,
+        "idestadofk": 2,
+        "municipio": "PEDRO CAMEJO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 35,
+        "idestadofk": 2,
+        "municipio": "ROMULO GALLEGOS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 36,
+        "idestadofk": 2,
+        "municipio": "SAN FERNANDO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 37,
+        "idestadofk": 3,
+        "municipio": "BOLIVAR",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 38,
+        "idestadofk": 3,
+        "municipio": "CAMATAGUA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 39,
+        "idestadofk": 3,
+        "municipio": "GIRARDOT",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 40,
+        "idestadofk": 3,
+        "municipio": "JOSE ANGEL LAMAS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 41,
+        "idestadofk": 3,
+        "municipio": "JOSE FELIX RIBAS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 42,
+        "idestadofk": 3,
+        "municipio": "JOSE RAFAEL REVENGA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 43,
+        "idestadofk": 3,
+        "municipio": "LIBERTADOR",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 44,
+        "idestadofk": 3,
+        "municipio": "MARIO BRICEÃ‘O IRAGORRY",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 45,
+        "idestadofk": 3,
+        "municipio": "SAN CASIMIRO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 46,
+        "idestadofk": 3,
+        "municipio": "SAN SEBASTIAN",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 47,
+        "idestadofk": 3,
+        "municipio": "SANTIAGO MARIÃ‘O",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 48,
+        "idestadofk": 3,
+        "municipio": "SANTOS MICHELENA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 49,
+        "idestadofk": 3,
+        "municipio": "SUCRE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 50,
+        "idestadofk": 3,
+        "municipio": "TOVAR",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 51,
+        "idestadofk": 3,
+        "municipio": "URDANETA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 52,
+        "idestadofk": 3,
+        "municipio": "ZAMORA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 53,
+        "idestadofk": 3,
+        "municipio": "OCUMARE DE LA COSTA DE ORO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 54,
+        "idestadofk": 3,
+        "municipio": "FRANCISCO LINARES ALCANTARA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 55,
+        "idestadofk": 5,
+        "municipio": "ALBERTO ARVELO TORREALBA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 56,
+        "idestadofk": 5,
+        "municipio": "ANTONIO JOSE DE SUCRE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 57,
+        "idestadofk": 5,
+        "municipio": "ARISMENDI",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 58,
+        "idestadofk": 5,
+        "municipio": "BARINAS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 59,
+        "idestadofk": 5,
+        "municipio": "BOLIVAR",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 60,
+        "idestadofk": 5,
+        "municipio": "CRUZ PAREDES",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 61,
+        "idestadofk": 5,
+        "municipio": "EZEQUIEL ZAMORA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 62,
+        "idestadofk": 5,
+        "municipio": "OBISPOS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 63,
+        "idestadofk": 5,
+        "municipio": "PEDRAZA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 64,
+        "idestadofk": 5,
+        "municipio": "ROJAS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 65,
+        "idestadofk": 5,
+        "municipio": "SOSA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 66,
+        "idestadofk": 6,
+        "municipio": "CARONI",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 67,
+        "idestadofk": 6,
+        "municipio": "CEDEÃ‘O",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 68,
+        "idestadofk": 6,
+        "municipio": "EL CALLAO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 69,
+        "idestadofk": 6,
+        "municipio": "GRAN SABANA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 70,
+        "idestadofk": 6,
+        "municipio": "HERES",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 71,
+        "idestadofk": 6,
+        "municipio": "PIAR",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 72,
+        "idestadofk": 6,
+        "municipio": "RAUL LEONI",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 73,
+        "idestadofk": 6,
+        "municipio": "ROSCIO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 74,
+        "idestadofk": 6,
+        "municipio": "SIFONTES",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 75,
+        "idestadofk": 6,
+        "municipio": "SUCRE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 76,
+        "idestadofk": 6,
+        "municipio": "PADRE PEDRO CHIEN",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 77,
+        "idestadofk": 7,
+        "municipio": "BEJUMA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 78,
+        "idestadofk": 7,
+        "municipio": "CARLOS ARVELO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 79,
+        "idestadofk": 7,
+        "municipio": "DIEGO IBARRA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 80,
+        "idestadofk": 7,
+        "municipio": "GUACARA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 81,
+        "idestadofk": 7,
+        "municipio": "JUAN JOSE MORA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 82,
+        "idestadofk": 7,
+        "municipio": "LIBERTADOR",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 83,
+        "idestadofk": 7,
+        "municipio": "LOS GUAYOS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 84,
+        "idestadofk": 7,
+        "municipio": "MIRANDA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 85,
+        "idestadofk": 7,
+        "municipio": "MONTALBAN",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 86,
+        "idestadofk": 7,
+        "municipio": "NAGUANAGUA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 87,
+        "idestadofk": 7,
+        "municipio": "PUERTO CABELLO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 88,
+        "idestadofk": 7,
+        "municipio": "SAN DIEGO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 89,
+        "idestadofk": 7,
+        "municipio": "SAN JOAQUIN",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 90,
+        "idestadofk": 7,
+        "municipio": "VALENCIA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 91,
+        "idestadofk": 8,
+        "municipio": "ANZOATEGUI",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 92,
+        "idestadofk": 8,
+        "municipio": "FALCON",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 93,
+        "idestadofk": 8,
+        "municipio": "GIRARDOT",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 94,
+        "idestadofk": 8,
+        "municipio": "LIMA BLANCO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 95,
+        "idestadofk": 8,
+        "municipio": "PAO DE SAN JUAN BAUTISTA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 96,
+        "idestadofk": 8,
+        "municipio": "RICAURTE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 97,
+        "idestadofk": 8,
+        "municipio": "ROMULO GALLEGOS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 98,
+        "idestadofk": 8,
+        "municipio": "SAN CARLOS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 99,
+        "idestadofk": 8,
+        "municipio": "TINACO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 100,
+        "idestadofk": 9,
+        "municipio": "ANTONIO DIAZ",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 101,
+        "idestadofk": 9,
+        "municipio": "CASACOIMA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 102,
+        "idestadofk": 9,
+        "municipio": "PEDERNALES",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 103,
+        "idestadofk": 9,
+        "municipio": "TUCUPITA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 104,
+        "idestadofk": 13,
+        "municipio": "ACOSTA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 105,
+        "idestadofk": 13,
+        "municipio": "BOLIVAR",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 106,
+        "idestadofk": 13,
+        "municipio": "BUCHIVACOA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 107,
+        "idestadofk": 13,
+        "municipio": "CACIQUE MANAURE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 108,
+        "idestadofk": 13,
+        "municipio": "CARIRUBANA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 109,
+        "idestadofk": 13,
+        "municipio": "COLINA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 110,
+        "idestadofk": 13,
+        "municipio": "DABAJURO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 111,
+        "idestadofk": 13,
+        "municipio": "DEMOCRACIA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 112,
+        "idestadofk": 13,
+        "municipio": "FALCON",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 113,
+        "idestadofk": 13,
+        "municipio": "FEDERACION",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 114,
+        "idestadofk": 13,
+        "municipio": "JACURA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 115,
+        "idestadofk": 13,
+        "municipio": "LOS TAQUES",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 116,
+        "idestadofk": 13,
+        "municipio": "MAUROA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 117,
+        "idestadofk": 13,
+        "municipio": "MIRANDA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 118,
+        "idestadofk": 13,
+        "municipio": "MONSEÃ‘OR ITURRIZA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 119,
+        "idestadofk": 13,
+        "municipio": "PALMA SOLA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 120,
+        "idestadofk": 13,
+        "municipio": "PETIT",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 121,
+        "idestadofk": 13,
+        "municipio": "PIRITU",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 122,
+        "idestadofk": 13,
+        "municipio": "SAN FRANCISCO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 123,
+        "idestadofk": 13,
+        "municipio": "SILVA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 124,
+        "idestadofk": 13,
+        "municipio": "SUCRE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 125,
+        "idestadofk": 13,
+        "municipio": "TOCOPERO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 126,
+        "idestadofk": 13,
+        "municipio": "UNION",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 127,
+        "idestadofk": 13,
+        "municipio": "URUMACO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 128,
+        "idestadofk": 13,
+        "municipio": "ZAMORA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 129,
+        "idestadofk": 14,
+        "municipio": "ESTEROS DE CAMAGUÃN",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 130,
+        "idestadofk": 14,
+        "municipio": "CHAGUARAMAS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 131,
+        "idestadofk": 14,
+        "municipio": "EL SOCORRO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 132,
+        "idestadofk": 14,
+        "municipio": "SAN GERONIMO DE GAYABAL",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 133,
+        "idestadofk": 14,
+        "municipio": "LEONARDO INFANTE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 134,
+        "idestadofk": 14,
+        "municipio": "LAS MERCADES",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 135,
+        "idestadofk": 14,
+        "municipio": "JULIAN MELLADO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 136,
+        "idestadofk": 14,
+        "municipio": "FRANCISCO DE MIRANDA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 137,
+        "idestadofk": 14,
+        "municipio": "JOSE TADEO MONAGAS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 138,
+        "idestadofk": 14,
+        "municipio": "ORTIZ",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 139,
+        "idestadofk": 14,
+        "municipio": "JOSE FELIX RIBAS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 140,
+        "idestadofk": 14,
+        "municipio": "JUAN GERMAN ROSCIO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 141,
+        "idestadofk": 14,
+        "municipio": "SAN JOSE DE GUARIBE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 142,
+        "idestadofk": 14,
+        "municipio": "SANTA MARIA DE IPIRE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 143,
+        "idestadofk": 14,
+        "municipio": "PEDRO ZARAZA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 144,
+        "idestadofk": 15,
+        "municipio": "ANDRES ELOY BLANCO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 145,
+        "idestadofk": 15,
+        "municipio": "CRESPO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 146,
+        "idestadofk": 15,
+        "municipio": "IRIBARREN",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 147,
+        "idestadofk": 15,
+        "municipio": "JIMENEZ",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 148,
+        "idestadofk": 15,
+        "municipio": "MORAN",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 149,
+        "idestadofk": 15,
+        "municipio": "PALAVECINO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 150,
+        "idestadofk": 15,
+        "municipio": "SIMON PLANAS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 151,
+        "idestadofk": 15,
+        "municipio": "TORRES",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 152,
+        "idestadofk": 15,
+        "municipio": "URDANETA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 153,
+        "idestadofk": 16,
+        "municipio": "ALBERTO ADRIANI",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 154,
+        "idestadofk": 16,
+        "municipio": "ANDRES BELLO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 155,
+        "idestadofk": 16,
+        "municipio": "ANTONIO PINTO SALINAS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 156,
+        "idestadofk": 16,
+        "municipio": "ARICAGUA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 157,
+        "idestadofk": 16,
+        "municipio": "ARZOBISPO CHACON",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 158,
+        "idestadofk": 16,
+        "municipio": "CAMPO ELIAS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 159,
+        "idestadofk": 16,
+        "municipio": "CARACCIOLO PARRA OLMEDO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 160,
+        "idestadofk": 16,
+        "municipio": "CARDENAL QUINTERO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 161,
+        "idestadofk": 16,
+        "municipio": "GUARAQUE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 162,
+        "idestadofk": 16,
+        "municipio": "JULIO CESAR SALAS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 163,
+        "idestadofk": 16,
+        "municipio": "JUSTO BRICEÃ‘O",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 164,
+        "idestadofk": 16,
+        "municipio": "LIBERTADOR",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 165,
+        "idestadofk": 16,
+        "municipio": "MIRANDA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 166,
+        "idestadofk": 16,
+        "municipio": "OBISPO RAMOS DE LORA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 167,
+        "idestadofk": 16,
+        "municipio": "PADRE NOGUERA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 168,
+        "idestadofk": 16,
+        "municipio": "PUEBLO LLANO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 169,
+        "idestadofk": 16,
+        "municipio": "RANGEL",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 170,
+        "idestadofk": 16,
+        "municipio": "RIVAS DAVILA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 171,
+        "idestadofk": 16,
+        "municipio": "SANTOS MARQUINA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 172,
+        "idestadofk": 16,
+        "municipio": "SUCRE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 173,
+        "idestadofk": 16,
+        "municipio": "TOVAR",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 174,
+        "idestadofk": 16,
+        "municipio": "TULIO FEBRES CORDERO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 175,
+        "idestadofk": 16,
+        "municipio": "ZEA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 176,
+        "idestadofk": 18,
+        "municipio": "ACEVEDO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 177,
+        "idestadofk": 18,
+        "municipio": "ANDRES BELLO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 178,
+        "idestadofk": 18,
+        "municipio": "BARUTA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 179,
+        "idestadofk": 18,
+        "municipio": "BRION",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 180,
+        "idestadofk": 18,
+        "municipio": "BUROZ",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 181,
+        "idestadofk": 18,
+        "municipio": "CARRIZAL",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 182,
+        "idestadofk": 18,
+        "municipio": "CHACAO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 183,
+        "idestadofk": 18,
+        "municipio": "CRISTOBAL ROJAS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 184,
+        "idestadofk": 18,
+        "municipio": "EL HATILLO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 185,
+        "idestadofk": 18,
+        "municipio": "GUAICAIPURO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 186,
+        "idestadofk": 18,
+        "municipio": "INDEPENDENCIA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 187,
+        "idestadofk": 18,
+        "municipio": "LANDER",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 188,
+        "idestadofk": 18,
+        "municipio": "LOS SALIAS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 189,
+        "idestadofk": 18,
+        "municipio": "PAEZ",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 190,
+        "idestadofk": 18,
+        "municipio": "PAZ CASTILLO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 191,
+        "idestadofk": 18,
+        "municipio": "PEDRO GUAL",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 192,
+        "idestadofk": 18,
+        "municipio": "PLAZA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 193,
+        "idestadofk": 18,
+        "municipio": "SIMON BOLIVAR",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 194,
+        "idestadofk": 18,
+        "municipio": "SUCRE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 195,
+        "idestadofk": 18,
+        "municipio": "URDANETA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 196,
+        "idestadofk": 18,
+        "municipio": "ZAMORA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 197,
+        "idestadofk": 17,
+        "municipio": "ACOSTA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 198,
+        "idestadofk": 17,
+        "municipio": "AGUASAY",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 199,
+        "idestadofk": 17,
+        "municipio": "BOLIVAR",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 200,
+        "idestadofk": 17,
+        "municipio": "CARIPE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 201,
+        "idestadofk": 17,
+        "municipio": "CEDEÃ‘O",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 202,
+        "idestadofk": 17,
+        "municipio": "EZEQUIEL ZAMORA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 203,
+        "idestadofk": 17,
+        "municipio": "LIBERTADOR",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 204,
+        "idestadofk": 17,
+        "municipio": "MATURIN",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 205,
+        "idestadofk": 17,
+        "municipio": "PIAR",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 206,
+        "idestadofk": 17,
+        "municipio": "PUNCERES",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 207,
+        "idestadofk": 17,
+        "municipio": "SANTA BARBARA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 208,
+        "idestadofk": 17,
+        "municipio": "SOTILLO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 209,
+        "idestadofk": 17,
+        "municipio": "URACOA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 210,
+        "idestadofk": 19,
+        "municipio": "ANTOLIN DEL CAMPO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 211,
+        "idestadofk": 19,
+        "municipio": "ARISMENDI",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 212,
+        "idestadofk": 19,
+        "municipio": "DIAZ",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 213,
+        "idestadofk": 19,
+        "municipio": "GARCIA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 214,
+        "idestadofk": 19,
+        "municipio": "GOMEZ",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 215,
+        "idestadofk": 19,
+        "municipio": "MANEIRO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 216,
+        "idestadofk": 19,
+        "municipio": "MARCANO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 217,
+        "idestadofk": 19,
+        "municipio": "MARIÃ‘O",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 218,
+        "idestadofk": 19,
+        "municipio": "PENINSULA DE MACANAO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 219,
+        "idestadofk": 19,
+        "municipio": "TUBORES",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 220,
+        "idestadofk": 19,
+        "municipio": "VILLALBA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 221,
+        "idestadofk": 20,
+        "municipio": "AGUA BLANCA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 222,
+        "idestadofk": 20,
+        "municipio": "ARAURE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 223,
+        "idestadofk": 20,
+        "municipio": "ESTELLER",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 224,
+        "idestadofk": 20,
+        "municipio": "GUANARE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 225,
+        "idestadofk": 20,
+        "municipio": "GUANARITO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 226,
+        "idestadofk": 20,
+        "municipio": "MONSEÃ‘OR JOSE VICENTE DE UNDA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 227,
+        "idestadofk": 20,
+        "municipio": "OSPINO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 228,
+        "idestadofk": 20,
+        "municipio": "PAEZ",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 229,
+        "idestadofk": 20,
+        "municipio": "PAPELON",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 230,
+        "idestadofk": 20,
+        "municipio": "SAN GENARO DE BOCONOITO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 231,
+        "idestadofk": 20,
+        "municipio": "SAN RAFAEL DE ONOTO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 232,
+        "idestadofk": 20,
+        "municipio": "SANTA ROSALIA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 233,
+        "idestadofk": 20,
+        "municipio": "SUCRE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 234,
+        "idestadofk": 20,
+        "municipio": "TUREN",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 235,
+        "idestadofk": 21,
+        "municipio": "ANDRES ELOY BLANCO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 236,
+        "idestadofk": 21,
+        "municipio": "ANDRES MATA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 237,
+        "idestadofk": 21,
+        "municipio": "ARISMENDI",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 238,
+        "idestadofk": 21,
+        "municipio": "BENITEZ",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 239,
+        "idestadofk": 21,
+        "municipio": "BERMUDEZ",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 240,
+        "idestadofk": 21,
+        "municipio": "BOLIVAR",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 241,
+        "idestadofk": 21,
+        "municipio": "CAJIGAL",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 242,
+        "idestadofk": 21,
+        "municipio": "CRUZ SALMERON ACOSTA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 243,
+        "idestadofk": 21,
+        "municipio": "LIBERTADOR",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 244,
+        "idestadofk": 21,
+        "municipio": "MARIÃ‘O",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 245,
+        "idestadofk": 21,
+        "municipio": "MEJIA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 246,
+        "idestadofk": 21,
+        "municipio": "MONTES",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 247,
+        "idestadofk": 21,
+        "municipio": "RIBERO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 248,
+        "idestadofk": 21,
+        "municipio": "SUCRE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 249,
+        "idestadofk": 21,
+        "municipio": "VALDEZ",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 250,
+        "idestadofk": 22,
+        "municipio": "ANDRES BELLO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 251,
+        "idestadofk": 22,
+        "municipio": "ANTONIO ROMULO COSTA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 252,
+        "idestadofk": 22,
+        "municipio": "AYACUCHO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 253,
+        "idestadofk": 22,
+        "municipio": "BOLIVAR",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 254,
+        "idestadofk": 22,
+        "municipio": "CARDENAS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 255,
+        "idestadofk": 22,
+        "municipio": "CORDOBA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 256,
+        "idestadofk": 22,
+        "municipio": "FERNANDEZ FEO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 257,
+        "idestadofk": 22,
+        "municipio": "FRANCISCO DE MIRANDA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 258,
+        "idestadofk": 22,
+        "municipio": "GARCIA DE HEVIA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 259,
+        "idestadofk": 22,
+        "municipio": "GUASIMOS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 260,
+        "idestadofk": 22,
+        "municipio": "INDEPENDENCIA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 261,
+        "idestadofk": 22,
+        "municipio": "JAUREGUI",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 262,
+        "idestadofk": 22,
+        "municipio": "JOSE MARIA VARGAS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 263,
+        "idestadofk": 22,
+        "municipio": "JUNIN",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 264,
+        "idestadofk": 22,
+        "municipio": "LIBERTAD",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 265,
+        "idestadofk": 22,
+        "municipio": "LIBERTADOR",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 266,
+        "idestadofk": 22,
+        "municipio": "LOBATERA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 267,
+        "idestadofk": 22,
+        "municipio": "MICHELENA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 268,
+        "idestadofk": 22,
+        "municipio": "PANAMERICANO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 269,
+        "idestadofk": 22,
+        "municipio": "PEDRO MARIA UREÃ‘A",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 270,
+        "idestadofk": 22,
+        "municipio": "RAFAEL URDANETA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 271,
+        "idestadofk": 22,
+        "municipio": "SAMUEL DARIO MALDONADO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 272,
+        "idestadofk": 22,
+        "municipio": "SAN CRISTOBAL",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 273,
+        "idestadofk": 22,
+        "municipio": "SEBORUCO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 274,
+        "idestadofk": 22,
+        "municipio": "SIMON RODRIGUEZ",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 275,
+        "idestadofk": 22,
+        "municipio": "SUCRE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 276,
+        "idestadofk": 22,
+        "municipio": "TORBES",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 277,
+        "idestadofk": 22,
+        "municipio": "URIBANTE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 278,
+        "idestadofk": 23,
+        "municipio": "BOCONO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 279,
+        "idestadofk": 23,
+        "municipio": "CANDELARIA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 280,
+        "idestadofk": 23,
+        "municipio": "CARACHE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 281,
+        "idestadofk": 23,
+        "municipio": "ESCUQUE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 282,
+        "idestadofk": 23,
+        "municipio": "MIRANDA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 283,
+        "idestadofk": 23,
+        "municipio": "MONTE CARMELO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 284,
+        "idestadofk": 23,
+        "municipio": "MOTATAN",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 285,
+        "idestadofk": 23,
+        "municipio": "PAMPAM",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 286,
+        "idestadofk": 23,
+        "municipio": "RAFAEL RANGEL",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 287,
+        "idestadofk": 23,
+        "municipio": "SAN RAFAEL DE CARVAJAL",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 288,
+        "idestadofk": 23,
+        "municipio": "SUCRE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 289,
+        "idestadofk": 23,
+        "municipio": "TRUJILLO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 290,
+        "idestadofk": 23,
+        "municipio": "URDANETA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 291,
+        "idestadofk": 23,
+        "municipio": "VALERA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 292,
+        "idestadofk": 23,
+        "municipio": "ANDRES BELLO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 293,
+        "idestadofk": 23,
+        "municipio": "BOLIVAR",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 294,
+        "idestadofk": 23,
+        "municipio": "JOSE FELIPE MARQUEZ CAÃ‘IZALES",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 295,
+        "idestadofk": 23,
+        "municipio": "JUAN VICENTE CAMPO ELIAS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 296,
+        "idestadofk": 23,
+        "municipio": "LA CEIBA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 297,
+        "idestadofk": 23,
+        "municipio": "PAMPANITO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 298,
+        "idestadofk": 25,
+        "municipio": "ARISTIDES BASTIDAS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 299,
+        "idestadofk": 25,
+        "municipio": "BOLIVAR",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 300,
+        "idestadofk": 25,
+        "municipio": "BRUZUAL",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 301,
+        "idestadofk": 25,
+        "municipio": "COCOROTE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 302,
+        "idestadofk": 25,
+        "municipio": "INDEPENDENCIA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 303,
+        "idestadofk": 25,
+        "municipio": "JOSE ANTONIO PAEZ",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 304,
+        "idestadofk": 25,
+        "municipio": "LA TRINIDAD",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 305,
+        "idestadofk": 25,
+        "municipio": "MANUEL MONGE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 306,
+        "idestadofk": 25,
+        "municipio": "NIRGUA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 307,
+        "idestadofk": 25,
+        "municipio": "PEÃ‘A",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 308,
+        "idestadofk": 25,
+        "municipio": "SAN FELIPE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 309,
+        "idestadofk": 25,
+        "municipio": "SUCRE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 310,
+        "idestadofk": 25,
+        "municipio": "URACHICHE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 311,
+        "idestadofk": 25,
+        "municipio": "VEROES",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 312,
+        "idestadofk": 26,
+        "municipio": "ALMIRANTE PADILLA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 313,
+        "idestadofk": 26,
+        "municipio": "BARALT",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 314,
+        "idestadofk": 26,
+        "municipio": "CABIMAS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 315,
+        "idestadofk": 26,
+        "municipio": "CATATUMBO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 316,
+        "idestadofk": 26,
+        "municipio": "COLON",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 317,
+        "idestadofk": 26,
+        "municipio": "JESUS ENRIQUE LOSSADA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 318,
+        "idestadofk": 26,
+        "municipio": "LA CAÃ‘ADA DE URDANETA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 319,
+        "idestadofk": 26,
+        "municipio": "LAGUNILLAS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 320,
+        "idestadofk": 26,
+        "municipio": "MACHIQUES DE PERIJA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 321,
+        "idestadofk": 26,
+        "municipio": "MARA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 322,
+        "idestadofk": 26,
+        "municipio": "MARACAIBO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 323,
+        "idestadofk": 26,
+        "municipio": "MIRANDA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 324,
+        "idestadofk": 26,
+        "municipio": "PAEZ",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 325,
+        "idestadofk": 26,
+        "municipio": "ROSARIO DE PERIJA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 326,
+        "idestadofk": 26,
+        "municipio": "SANTA RITA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 327,
+        "idestadofk": 26,
+        "municipio": "SUCRE",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 328,
+        "idestadofk": 26,
+        "municipio": "VALMORE RODRIGUEZ",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 329,
+        "idestadofk": 26,
+        "municipio": "FRANCISCO JAVIER PULGAR",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 330,
+        "idestadofk": 26,
+        "municipio": "JESUS MARIA SEMPRUN",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 331,
+        "idestadofk": 26,
+        "municipio": "SAN FRANCISCO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 332,
+        "idestadofk": 26,
+        "municipio": "SIMON BOLIVAR",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 333,
+        "idestadofk": 24,
+        "municipio": "VARGAS",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 334,
+        "idestadofk": 4,
+        "municipio": "SOTILLO",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 335,
+        "idestadofk": 12,
+        "municipio": "ARCHIPIELAGO DE LOS ROQUES",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 336,
+        "idestadofk": 12,
+        "municipio": "ARCHIPIELAGO DE LAS AVES",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    },
+    {
+        "idmunicipio": 337,
+        "idestadofk": 12,
+        "municipio": "ARCHIPIELAGO DE LA ORCHILA",
+        "idupdatefk": 1,
+        "updated_at": "2026-04-14 00:00:00"
+    }
+]

@@ -1,4 +1,4 @@
-@extends('layouts.app-public')
+﻿@extends('layouts.app-public')
 @section('titulo', 'Información General - IVSS')
 @section('content')
 <!-- HERO SECTION -->
@@ -121,7 +121,7 @@
         </div>
 
         <div class="text-center mt-5">
-            <a href="{{ route('inicio') }}" data-turbo="false" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold">
+            <a href="{{ route('inicio') }}" wire:navigate class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold">
                 <i class="fas fa-arrow-left me-2"></i> Volver al Inicio
             </a>
         </div>
