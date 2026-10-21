@@ -12,10 +12,12 @@
 
         if (typeof AOS.refreshHard === 'function') {
             AOS.refreshHard();
-        } else {
+        } else if (typeof AOS.refresh === 'function') {
             AOS.refresh();
         }
     }
+
+    window.initAOS = initAOS;
 
     if (document.readyState !== 'loading') {
         initAOS();
@@ -24,8 +26,8 @@
     }
 
     document.addEventListener("livewire:navigated", function() {
-        setTimeout(function() {
-            initAOS();
-        }, 30);
+        initAOS();
+        setTimeout(initAOS, 50);
+        setTimeout(initAOS, 200);
     });
 })();

@@ -10,8 +10,8 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" nonce="{{ app('csp-nonce') }}">
     <link href="{{ asset('css/all.min.css') }}" rel="stylesheet" nonce="{{ app('csp-nonce') }}">
     <link href="{{ asset('css/aos.css') }}" rel="stylesheet" nonce="{{ app('csp-nonce') }}">
-    <link href="{{ asset('css/custom.css') }}" rel="stylesheet" nonce="{{ app('csp-nonce') }}">
-    <link rel="stylesheet" href="{{ asset('css/modern-style.css') }}" nonce="{{ app('csp-nonce') }}">
+    <link href="{{ asset('css/custom.css') }}?v={{ file_exists(public_path('css/custom.css')) ? filemtime(public_path('css/custom.css')) : '1.0' }}" rel="stylesheet" nonce="{{ app('csp-nonce') }}">
+    <link rel="stylesheet" href="{{ asset('css/modern-style.css') }}?v={{ file_exists(public_path('css/modern-style.css')) ? filemtime(public_path('css/modern-style.css')) : '1.0' }}" nonce="{{ app('csp-nonce') }}">
     
     @php
         $alertaPopupImg = \App\Models\Configuracion::where('clave', 'alerta_emergente_img')->value('valor');
@@ -169,10 +169,10 @@
         </div>
     </footer>
 
-    <script src="{{ asset('js/bootstrap.bundle.min.js') }}" nonce="{{ app('csp-nonce') }}"></script>
-    <script src="{{ asset('js/aos.js') }}" nonce="{{ app('csp-nonce') }}"></script>
-    <script src="{{ asset('js/sweetalert2.min.js') }}" nonce="{{ app('csp-nonce') }}"></script>
-    <script src="{{ asset('js/publico/aos-init.js') }}" nonce="{{ app('csp-nonce') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}" data-navigate-once nonce="{{ app('csp-nonce') }}"></script>
+    <script src="{{ asset('js/aos.js') }}" data-navigate-once nonce="{{ app('csp-nonce') }}"></script>
+    <script src="{{ asset('js/sweetalert2.min.js') }}" data-navigate-once nonce="{{ app('csp-nonce') }}"></script>
+    <script src="{{ asset('js/publico/aos-init.js') }}?v={{ file_exists(public_path('js/publico/aos-init.js')) ? filemtime(public_path('js/publico/aos-init.js')) : '1.0.1' }}" data-navigate-once nonce="{{ app('csp-nonce') }}"></script>
     
     <script nonce="{{ app('csp-nonce') }}">
         // Listeners globales para eventos despachados por Livewire
@@ -239,6 +239,15 @@
                 }
             } else {
                 window.scrollTo({ top: 0, behavior: 'instant' });
+            }
+
+            // Reinicializar animaciones AOS de inmediato al navegar con Livewire
+            if (typeof AOS !== 'undefined') {
+                if (typeof AOS.refreshHard === 'function') {
+                    AOS.refreshHard();
+                } else if (typeof AOS.refresh === 'function') {
+                    AOS.refresh();
+                }
             }
 
             // Reiniciar carruseles Bootstrap si existen en la página
