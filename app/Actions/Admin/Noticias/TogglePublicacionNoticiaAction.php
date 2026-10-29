@@ -29,18 +29,24 @@ class TogglePublicacionNoticiaAction
             if (!empty($data['montar_carrusel'])) {
                 $imagenPrincipal = $noticia->medios->where('pivot.tipo_relacion', 'principal')->first() ?? $noticia->medios->first();
                 if ($imagenPrincipal) {
+                    $enlaceABuscar = $noticia->enlace_externo ?: route('noticias.show', $noticia->slug);
+                    Carrusel::where('noticia_id', $noticia->id)->orWhere('enlace', $enlaceABuscar)->delete();
+
                     Carrusel::increment('orden');
                     
                     Carrusel::create([
                         'noticia_id' => $noticia->id,
                         'imagen_ruta' => $imagenPrincipal->ruta,
-                        'enlace' => $noticia->enlace_externo ?: route('noticias.show', $noticia->slug),
+                        'enlace' => $enlaceABuscar,
                         'orden' => 1,
                         'titulo' => $noticia->titulo,
                         'etiquetas' => $noticia->categorias->first() ? $noticia->categorias->first()->nombre : 'Noticias',
                         'fecha_publicacion' => $noticia->fecha_publicacion,
-                        'autor' => $noticia->autor ? $noticia->autor->name : null,
+                        'autor' => $noticia->autor ? ($noticia->autor->nombre ?? $noticia->autor->usuario ?? $noticia->autor->name) : 'Sistema',
                     ]);
+
+                    // Mantener un máximo estricto de 10 noticias en el carrusel (elimina la más antigua)
+                    Carrusel::limitarAMaximo(10);
                 }
             }
         }

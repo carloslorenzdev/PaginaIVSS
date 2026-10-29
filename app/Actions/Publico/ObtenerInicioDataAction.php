@@ -15,7 +15,7 @@ class ObtenerInicioDataAction
         $carruseles = Carrusel::where(function($query) {
             $query->whereNull('fecha_publicacion')
                   ->orWhere('fecha_publicacion', '<=', now());
-        })->orderBy('orden')->get();
+        })->orderBy('orden')->take(10)->get();
 
         $noticias = Noticia::with(['medios' => function($query) {
             $query->where('noticias_medios.tipo_relacion', 'principal');

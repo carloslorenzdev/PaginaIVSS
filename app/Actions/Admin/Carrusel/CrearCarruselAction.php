@@ -14,7 +14,7 @@ class CrearCarruselAction
         $nombreArchivo = time() . '-' . Str::slug($nombreOriginalStr) . '.' . $extension;
         $ruta = $archivo->storeAs('carrusel', $nombreArchivo, 'public');
 
-        return Carrusel::create([
+        $carrusel = Carrusel::create([
             'imagen_ruta' => $ruta,
             'enlace' => $data['enlace'] ?? null,
             'orden' => $data['orden'] ?? (Carrusel::max('orden') + 1),
@@ -23,5 +23,9 @@ class CrearCarruselAction
             'fecha_publicacion' => $data['fecha_publicacion'] ?? null,
             'autor' => $data['autor'] ?? null,
         ]);
+
+        Carrusel::limitarAMaximo(10);
+
+        return $carrusel;
     }
 }
