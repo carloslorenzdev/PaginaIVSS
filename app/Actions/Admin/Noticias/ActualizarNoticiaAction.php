@@ -99,6 +99,13 @@ class ActualizarNoticiaAction
             ]);
         }
 
+        \App\Services\AuditoriaService::registrar(
+            'edicion',
+            "Actualizó la noticia: '{$noticia->titulo}'",
+            $noticia,
+            ['titulo' => $noticia->titulo, 'resumen' => $noticia->resumen]
+        );
+
         return $noticia;
     }
 }

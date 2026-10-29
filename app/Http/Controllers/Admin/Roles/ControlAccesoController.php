@@ -57,6 +57,13 @@ class ControlAccesoController extends Controller
         // Sincronizar permisos (elimina los no pasados y asigna los pasados)
         $role->syncPermissions($request->permissions ?? []);
 
+        \App\Services\AuditoriaService::registrar(
+            'seguridad',
+            "Actualizó los permisos del rol: '{$role->name}'",
+            $role,
+            ['rol' => $role->name, 'permisos_asignados' => $request->permissions ?? []]
+        );
+
         return redirect()->route('usuarios.control_acceso.index')->with('success', 'Permisos actualizados correctamente para el rol: ' . \Str::title($role->name));
     }
 }

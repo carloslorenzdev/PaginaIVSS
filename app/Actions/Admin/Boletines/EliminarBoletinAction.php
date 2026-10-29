@@ -17,6 +17,17 @@ class EliminarBoletinAction
             Storage::disk('public')->delete($boletin->imagen_preview);
         }
 
-        return $boletin->delete();
+        $titulo = $boletin->titulo;
+        $id = $boletin->id;
+        $deleted = $boletin->delete();
+
+        \App\Services\AuditoriaService::registrar(
+            'eliminacion',
+            "Eliminó el boletín: '{$titulo}' (ID: {$id})",
+            null,
+            ['id' => $id, 'titulo' => $titulo]
+        );
+
+        return $deleted;
     }
 }

@@ -23,10 +23,21 @@
             </div>
         </div>
 
-        <div class="overflow-x-auto">
-            <div class="min-w-full inline-block align-middle">
-                <div class="overflow-hidden rounded-lg space-y-3 pb-3">
-                    @include('usuarios/listado/tabla')
+        <div x-data="{ loading: false }"
+             x-on:submit-search.window="loading = true"
+             x-on:click="if ($event.target.closest('.pagination a, a.page-link')) loading = true">
+            
+            {{-- SKELETON PLACEHOLDER DURANTE BÚSQUEDA Y PAGINACIÓN --}}
+            <div x-show="loading" x-cloak class="space-y-4 pb-3">
+                <x-skeleton.list count="6" />
+            </div>
+
+            {{-- LISTADO REAL DE USUARIOS --}}
+            <div x-show="!loading" class="overflow-x-auto">
+                <div class="min-w-full inline-block align-middle">
+                    <div class="overflow-hidden rounded-lg space-y-3 pb-3">
+                        @include('usuarios/listado/tabla')
+                    </div>
                 </div>
             </div>
         </div>

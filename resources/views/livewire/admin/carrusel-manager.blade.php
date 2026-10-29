@@ -57,8 +57,13 @@
             </div>
         </div>
 
+        {{-- SKELETON PLACEHOLDERS --}}
+        <div wire:loading wire:target="guardarEdicion, delete, guardarVelocidad">
+            <x-skeleton.grid :count="6" />
+        </div>
+
         {{-- LISTADO DE IMÁGENES DEL CARRUSEL --}}
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div wire:loading.remove wire:target="guardarEdicion, delete, guardarVelocidad" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse($carruseles as $carrusel)
                 <div class="bg-white dark:bg-neutral-800 rounded-2xl overflow-hidden flex flex-col group/card border border-gray-100 dark:border-neutral-700 shadow-sm hover:shadow-xl hover:border-indigo-300 dark:hover:border-indigo-700 transition-all duration-300 relative" wire:key="carrusel-{{ $carrusel->id }}">
                     <div class="relative h-48 w-full bg-gray-50 dark:bg-neutral-900/50 overflow-hidden">

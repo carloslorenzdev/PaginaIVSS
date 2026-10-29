@@ -56,9 +56,33 @@ class ConsultarPensionadoAction
                 $html = $baseTag . "\n" . $html;
             }
 
-            $html = preg_replace('/<script[^>]*>.*?quitarFrame.*?<\/script>/is', '', $html);
+            // Asegurar que las imágenes y recursos se resuelvan con URLs absolutas para evitar fallos de carga
+            $html = str_ireplace('src="superior.jpg"', 'src="http://www.ivss.gob.ve:28080/Pensionado/imagenes/superior.jpg"', $html);
+            $html = str_ireplace("src='superior.jpg'", "src='http://www.ivss.gob.ve:28080/Pensionado/imagenes/superior.jpg'", $html);
+            $html = str_ireplace('src="imagenes/', 'src="http://www.ivss.gob.ve:28080/Pensionado/imagenes/', $html);
+            $html = str_ireplace("src='imagenes/", "src='http://www.ivss.gob.ve:28080/Pensionado/imagenes/", $html);
 
-            $html = clean($html);
+            // Inyectar el fondo oficial con marca de agua institucional del IVSS
+            $fondoPath = public_path('imagenes/fondo-ivss.png');
+            if (file_exists($fondoPath)) {
+                $bgBase64 = base64_encode(file_get_contents($fondoPath));
+                $bgStyle = "<style>
+                    body {
+                        background-image: url('data:image/png;base64,{$bgBase64}') !important;
+                        background-repeat: repeat !important;
+                        background-position: center top !important;
+                    }
+                </style>";
+                if (strpos($html, '</head>') !== false) {
+                    $html = str_replace('</head>', $bgStyle . "\n</head>", $html);
+                } else {
+                    $html = $bgStyle . "\n" . $html;
+                }
+                $html = preg_replace('/<body([^>]*)\s+background=["\'][^"\']*["\']/i', '<body$1', $html);
+            }
+
+            // Remover scripts no deseados como quitarFrame
+            $html = preg_replace('/<script[^>]*>.*?quitarFrame.*?<\/script>/is', '', $html);
 
             return ['success' => true, 'isHtml' => true, 'html' => $html];
 

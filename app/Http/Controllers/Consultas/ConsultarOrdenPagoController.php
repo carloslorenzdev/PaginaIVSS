@@ -19,9 +19,10 @@ class ConsultarOrdenPagoController extends Controller
         $result = $action->execute($request->only(['idEmpresa', 'periodo', 'tipoEmpresa']));
 
         if ($result['success']) {
+            $nombreArchivo = 'FacturaIVSS_Periodo' . str_replace('/', '-', $request->periodo) . '.pdf';
             return response($result['body'], 200)
-                ->header('Content-Type', $result['contentType'])
-                ->header('Content-Disposition', 'attachment; filename="Orden_de_Pago_'.$request->periodo.'.pdf"');
+                ->header('Content-Type', 'application/pdf')
+                ->header('Content-Disposition', 'inline; filename="' . $nombreArchivo . '"');
         } else {
             return response()->json([
                 'success' => false,

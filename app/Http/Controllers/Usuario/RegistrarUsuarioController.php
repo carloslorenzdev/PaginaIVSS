@@ -36,6 +36,13 @@ class RegistrarUsuarioController extends Controller
             // ROL
             $user->assignRole($data['rol']);
             
+            \App\Services\AuditoriaService::registrar(
+                'creacion',
+                "Registró al nuevo usuario '{$user->usuario}' ({$user->nombre}) con el rol: {$data['rol']}",
+                $user,
+                ['usuario' => $user->usuario, 'rol' => $data['rol'], 'email' => $user->email]
+            );
+
             Log::channel('acciones')
                 ->info('El usuario "' . $request->user()->usuario . '" ha registrado al usuario "' . $user->usuario . '" con el rol: ' . $data['rol']);
                 

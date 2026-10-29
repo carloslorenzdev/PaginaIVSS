@@ -174,7 +174,7 @@
 
         <div class="d-flex flex-column text-start">
               <a href="{{ $configuraciones['url_sistema_estado_cuenta'] ?? '#' }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank"><i class="fas fa-file-invoice-dollar me-2"></i> Estado de Cuenta</a>
-              <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#modalOrdenPago" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-money-check-alt me-2"></i> Orden de Pago</a>
+              <a href="javascript:void(0)" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalAvisoIntimacion" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-money-check-alt me-2"></i> Orden de Pago</a>
               <a href="{{ $configuraciones['url_sistema_solvencias'] ?? '#' }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank"><i class="fas fa-certificate me-2"></i> Solvencias Electrónicas</a>
               <a href="{{ $configuraciones['url_sistema_indemnizaciones_diarias'] ?? '#' }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank"><i class="fas fa-hand-holding-medical me-2"></i> Indemnizaciones Diarias</a>
               <a href="{{ $configuraciones['url_sistema_verificacion_solvencia'] ?? '#' }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank"><i class="fas fa-check-circle me-2"></i> Verificación de Solvencia</a>
@@ -280,26 +280,69 @@
 
 
 
-        <!-- Modal Orden de Pago -->
+        <!-- Modal Aviso de Intimación -->
+        <div class="modal fade" id="modalAvisoIntimacion" tabindex="-1" aria-labelledby="modalAvisoIntimacionLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow-lg" style="border-radius: 1.5rem; overflow: hidden;">
+                    <div class="p-4 text-center position-relative">
+                        <button type="button" class="btn-close position-absolute top-0 end-0 m-4" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                        <div class="mx-auto mb-4 d-flex justify-content-center align-items-center bg-danger bg-opacity-10 text-danger rounded-circle" style="width: 64px; height: 64px;">
+                            <i class="fas fa-exclamation-triangle fa-2x"></i>
+                        </div>
+
+                        <h4 id="modalAvisoIntimacionLabel" class="fw-bold text-dark mb-2">
+                            Aviso de Intimación
+                        </h4>
+                        <p class="small text-muted mb-4">
+                            Información importante sobre el procedimiento de cobro e intimación tributaria.
+                        </p>
+
+                        <div class="p-3 rounded-3 bg-light text-muted small mb-4 border" style="line-height: 1.6; text-align: justify;">
+                            El Instituto Venezolano de los Seguros Sociales, a través de Providencia Administrativa N° 002, de fecha 03 de Abril de 2017, publicada en la Gaceta Oficial de la República Bolivariana de Venezuela N° 41.159, de fecha 26 de Mayo de 2017, aprobó la incorporación del aviso previsto para el Procedimiento de Intimación contemplado en el Capítulo III, Sección Décima del Decreto con Rango, Valor y Fuerza de Ley del Código Orgánico Tributario, en las órdenes de pago libradas por este Instituto a través del Portal Web 
+                            <a href="http://www.ivss.gob.ve" target="_blank" class="text-danger fw-bold text-decoration-none">www.ivss.gob.ve</a>.
+                        </div>
+
+                        <button type="button" 
+                                class="btn btn-danger w-100 py-3 fw-bold rounded-pill shadow-sm text-uppercase" 
+                                data-bs-dismiss="modal" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#modalOrdenPago">
+                            Continuar a Orden de Pago
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Consulta Orden de Pago -->
         <div class="modal fade" id="modalOrdenPago" tabindex="-1" aria-labelledby="modalOrdenPagoLabel" aria-hidden="true" wire:ignore.self>
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0 shadow" style="border-radius: 12px; overflow: hidden;">
-                    <div class="modal-header text-white" style="background-color: #4b74a1;">
-                        <h5 class="modal-title fw-bold" id="modalOrdenPagoLabel">
-                            <i class="fas fa-file-invoice-dollar me-2"></i> Orden de Pago en Línea
-                        </h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body p-4" style="background-color: #4b74a1; color: white;">
-                        <form wire:submit.prevent="consultarOrdenPago" id="formOrdenPago">
+                <div class="modal-content border-0 shadow-lg" style="border-radius: 1.5rem; overflow: hidden;">
+                    <div class="p-4 text-center position-relative">
+                        <button type="button" class="btn-close position-absolute top-0 end-0 m-4" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                        <div class="mx-auto mb-4 d-flex justify-content-center align-items-center bg-danger bg-opacity-10 text-danger rounded-circle" style="width: 64px; height: 64px;">
+                            <i class="fas fa-file-invoice-dollar fa-2x"></i>
+                        </div>
+
+                        <h4 id="modalOrdenPagoLabel" class="fw-bold text-dark mb-2">
+                            Orden de Pago en Línea
+                        </h4>
+                        <p class="small text-muted mb-4">
+                            Ingrese su número patronal para consultar y generar su factura digital en PDF.
+                        </p>
+
+                        <form wire:submit.prevent="consultarOrdenPago" id="formOrdenPago" class="text-start">
                             <div class="mb-3">
-                                <label class="form-label fw-bold text-uppercase small" style="color: #e0e0e0;">NÚMERO DE EMPLEADOR</label>
-                                <input type="text" wire:model="op_idEmpresa" class="form-control" required placeholder="Ingrese Número Patronal">
-                                @error('op_idEmpresa') <span class="text-warning small d-block mt-1">{{ $message }}</span> @enderror
+                                <label class="form-label text-muted small fw-bold text-uppercase mb-2">Número de Empleador / Patronal</label>
+                                <input type="text" wire:model="op_idEmpresa" class="form-control border rounded shadow-sm py-2" required placeholder="Ej. OOO111222">
+                                @error('op_idEmpresa') <span class="text-danger small d-block mt-1">{{ $message }}</span> @enderror
                             </div>
+
                             <div class="mb-3">
-                                <label class="form-label fw-bold text-uppercase small" style="color: #e0e0e0;">PERÍODO DE FACTURACIÓN</label>
-                                <select wire:model="op_periodo" class="form-select" required>
+                                <label class="form-label text-muted small fw-bold text-uppercase mb-2">Período de Facturación</label>
+                                <select wire:model="op_periodo" class="form-select border rounded shadow-sm py-2" required>
                                     @php
                                         $currentDate = \Carbon\Carbon::now();
                                         if ($currentDate->day < 30) {
@@ -313,24 +356,26 @@
                                         }
                                     @endphp
                                 </select>
-                                @error('op_periodo') <span class="text-warning small d-block mt-1">{{ $message }}</span> @enderror
+                                @error('op_periodo') <span class="text-danger small d-block mt-1">{{ $message }}</span> @enderror
                             </div>
+
                             <div class="mb-4">
-                                <label class="form-label fw-bold text-uppercase small" style="color: #e0e0e0;">TIPO EMPRESA O PATRONO</label>
-                                <select wire:model="op_tipoEmpresa" class="form-select" required>
+                                <label class="form-label text-muted small fw-bold text-uppercase mb-2">Tipo de Empresa o Patrono</label>
+                                <select wire:model="op_tipoEmpresa" class="form-select border rounded shadow-sm py-2" required>
                                     <option value="PR">Privado</option>
-                                    <option value="PU">Publico Descentralizado</option>
-                                    <option value="TU">Publi. Centralizado - Orga. Tutelar</option>
-                                    <option value="AD">Publi. Centralizado - Orga. Adscrito</option>
+                                    <option value="PU">Público Descentralizado</option>
+                                    <option value="TU">Público Centralizado - Órgano Tutelar</option>
+                                    <option value="AD">Público Centralizado - Órgano Adscrito</option>
                                 </select>
-                                @error('op_tipoEmpresa') <span class="text-warning small d-block mt-1">{{ $message }}</span> @enderror
+                                @error('op_tipoEmpresa') <span class="text-danger small d-block mt-1">{{ $message }}</span> @enderror
                             </div>
-                            <div class="text-center mt-4">
-                                <button type="submit" id="btnOrdenPago" class="btn text-white px-4 py-2" wire:loading.attr="disabled" style="background-color: #6384a8; border: 1px solid white; font-weight: bold;">
-                                    <span wire:loading.remove wire:target="consultarOrdenPago">Consultar</span>
-                                    <span wire:loading wire:target="consultarOrdenPago"><i class="fas fa-spinner fa-spin me-2"></i> Consultando...</span>
-                                </button>
-                            </div>
+
+                            <button type="submit" class="btn btn-danger w-100 py-3 fw-bold rounded-pill shadow-sm text-uppercase" id="btnOrdenPago" wire:loading.attr="disabled">
+                                <span wire:loading.remove wire:target="consultarOrdenPago">Consultar</span>
+                                <span wire:loading wire:target="consultarOrdenPago">
+                                    <i class="fas fa-spinner fa-spin me-2"></i> Generando Orden de Pago...
+                                </span>
+                            </button>
                         </form>
                     </div>
                 </div>

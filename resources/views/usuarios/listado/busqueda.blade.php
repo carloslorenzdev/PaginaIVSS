@@ -1,4 +1,4 @@
-<form action="" method="get">
+<form action="" method="get" @submit="window.dispatchEvent(new CustomEvent('submit-search'))">
     <div class="grid grid-cols-12 gap-3 my-4">
         <div class="col-span-12 sm:col-span-8 md:col-span-6">
             <div class="relative">

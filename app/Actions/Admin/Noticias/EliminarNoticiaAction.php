@@ -29,7 +29,17 @@ class EliminarNoticiaAction
             }
         }
 
+        $titulo = $noticia->titulo;
+        $noticiaId = $noticia->id;
+
         $noticia->delete();
+
+        \App\Services\AuditoriaService::registrar(
+            'eliminacion',
+            "Eliminó la noticia: '{$titulo}' (ID: {$noticiaId})",
+            null,
+            ['id' => $noticiaId, 'titulo' => $titulo]
+        );
 
         return true;
     }

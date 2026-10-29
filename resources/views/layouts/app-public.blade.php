@@ -26,18 +26,18 @@
 <body>
 
     <!-- Top Ticker Bar -->
-    <div class="top-bar-ticker py-1">
-        <div class="container d-flex align-items-center">
-            <div class="bg-danger text-white px-2 py-0 rounded-1 me-3" style="font-size: 0.6rem; font-weight: 800;">LO ÚLTIMO</div>
-            <div id="tickerCarousel" class="carousel slide vertical" data-bs-ride="carousel">
-                <div class="carousel-inner">
+    <div class="top-bar-ticker py-1 overflow-hidden">
+        <div class="container d-flex align-items-center overflow-hidden">
+            <div class="bg-danger text-white px-2 py-0 rounded-1 me-3 flex-shrink-0" style="font-size: 0.6rem; font-weight: 800;">LO ÚLTIMO</div>
+            <div id="tickerCarousel" class="carousel slide vertical flex-grow-1 overflow-hidden" data-bs-ride="carousel" style="min-width: 0;">
+                <div class="carousel-inner overflow-hidden">
                     @php $ultimas = \App\Models\Noticia::latest()->take(3)->get(); @endphp
                     @forelse($ultimas as $index => $noticia)
                         <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                            <a href="/#noticias" class="text-dark text-decoration-none small opacity-75">{{ Str::limit($noticia->titulo, 90) }}</a>
+                            <a href="/#noticias" class="text-dark text-decoration-none small opacity-75 d-block text-truncate" style="max-width: 100%;">{{ Str::limit($noticia->titulo, 90) }}</a>
                         </div>
                     @empty
-                        <div class="carousel-item active small">Bienvenido al nuevo portal de noticias IVSS</div>
+                        <div class="carousel-item active small text-truncate">Bienvenido al nuevo portal de noticias IVSS</div>
                     @endforelse
                 </div>
             </div>
@@ -108,7 +108,7 @@
         </div>
     </nav>
 
-    <main>
+    <main class="w-100 overflow-hidden">
         {{ $slot ?? '' }}
         @yield('content')
     </main>
@@ -201,6 +201,40 @@
                         text: 'Por favor, habilite las ventanas emergentes (pop-ups) en su navegador para poder ver la planilla.',
                         icon: 'warning',
                         confirmButtonText: 'Entendido'
+                    });
+                }
+            });
+
+            Livewire.on('abrir-pdf-base64', (event) => {
+                const data = Array.isArray(event) ? event[0] : event;
+                try {
+                    // Convertir Base64 a Blob
+                    const byteCharacters = atob(data.pdf);
+                    const byteNumbers = new Array(byteCharacters.length);
+                    for (let i = 0; i < byteCharacters.length; i++) {
+                        byteNumbers[i] = byteCharacters.charCodeAt(i);
+                    }
+                    const byteArray = new Uint8Array(byteNumbers);
+                    const blob = new Blob([byteArray], { type: 'application/pdf' });
+                    const blobUrl = URL.createObjectURL(blob);
+
+                    // Descarga directa limpia
+                    const a = document.createElement('a');
+                    a.href = blobUrl;
+                    a.download = data.filename || 'FacturaIVSS.pdf';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+
+                    // También intentar abrir en nueva pestaña sin alertas molestas
+                    window.open(blobUrl, '_blank');
+                } catch (e) {
+                    console.error('Error al procesar PDF:', e);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error al abrir documento',
+                        text: 'No se pudo generar el documento PDF.',
+                        confirmButtonColor: '#dc3545'
                     });
                 }
             });

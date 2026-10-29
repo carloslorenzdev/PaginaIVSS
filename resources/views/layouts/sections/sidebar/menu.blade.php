@@ -242,8 +242,13 @@
             @endcan
             @can('sistema.logs')
             <li>
+                <x-nav.link href="{{ route('admin.auditoria') }}" active="{{ routeActive('admin.auditoria') }}">
+                    Auditoría de Sesiones
+                </x-nav.link>
+            </li>
+            <li>
                 <x-nav.link href="/log-errors">
-                    Logs del Sistema
+                    Logs de Errores
                 </x-nav.link>
             </li>
             @endcan

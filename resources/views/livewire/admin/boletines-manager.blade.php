@@ -61,7 +61,12 @@
                 </h3>
             </div>
 
-            <div class="p-5 space-y-4">
+            {{-- SKELETON PLACEHOLDERS --}}
+            <div wire:loading wire:target="search, gotoPage, previousPage, nextPage" class="p-5">
+                <x-skeleton.list :count="4" />
+            </div>
+
+            <div wire:loading.remove wire:target="search, gotoPage, previousPage, nextPage" class="p-5 space-y-4">
                 @forelse($boletines as $boletin)
                     <div class="bg-white dark:bg-neutral-900/40 border border-gray-100 dark:border-neutral-700/70 rounded-2xl p-4 sm:p-5 hover:shadow-md transition-all duration-300 relative group" wire:key="boletin-{{ $boletin->id }}">
                         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">

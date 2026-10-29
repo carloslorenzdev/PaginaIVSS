@@ -52,8 +52,13 @@
             </div>
         </div>
 
+        {{-- SKELETON PLACEHOLDERS --}}
+        <div wire:loading wire:target="search, filtroEstado, gotoPage, previousPage, nextPage">
+            <x-skeleton.list :count="5" />
+        </div>
+
         {{-- LISTADO EN TARJETAS --}}
-        <div class="space-y-4">
+        <div wire:loading.remove wire:target="search, filtroEstado, gotoPage, previousPage, nextPage" class="space-y-4">
             @forelse($directorios as $item)
                 <div class="bg-white dark:bg-neutral-900/50 border border-gray-100 dark:border-neutral-700/50 rounded-xl p-5 hover:shadow-md transition-all duration-300 relative group" wire:key="directorio-{{ $item->id }}">
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 pr-16">

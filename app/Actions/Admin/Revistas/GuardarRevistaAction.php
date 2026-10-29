@@ -67,7 +67,7 @@ class GuardarRevistaAction
             }
         }
 
-        return Revista::create([
+        $revista = Revista::create([
             'titulo' => $data['titulo'],
             'edicion' => $data['edicion'] ?? null,
             'descripcion' => $descripcion,
@@ -76,5 +76,14 @@ class GuardarRevistaAction
             'imagen_preview' => $imageName,
             'publicado' => true,
         ]);
+
+        \App\Services\AuditoriaService::registrar(
+            'creacion',
+            "Creó la revista digital: '{$revista->titulo}'" . ($revista->edicion ? " (Edición: {$revista->edicion})" : ""),
+            $revista,
+            ['titulo' => $revista->titulo, 'edicion' => $revista->edicion]
+        );
+
+        return $revista;
     }
 }

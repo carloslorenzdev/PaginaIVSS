@@ -98,16 +98,28 @@ class CategoriasManager extends Component
                 'orden' => $this->orden ?? 0,
                 'activa' => $this->activa ? 1 : 0,
             ]);
+            \App\Services\AuditoriaService::registrar(
+                'edicion',
+                "Actualizó la categoría: '{$categoria->nombre}'",
+                $categoria,
+                ['nombre' => $categoria->nombre]
+            );
             session()->flash('success', 'Categoría actualizada exitosamente.');
         } else {
             abort_if(!auth()->user()->can('categorias.crear'), 403, 'Acceso Denegado');
-            Categoria::create([
+            $categoria = Categoria::create([
                 'nombre' => $this->nombre,
                 'slug' => Str::slug($this->nombre),
                 'descripcion' => $this->descripcion,
                 'orden' => $this->orden ?? 0,
                 'activa' => $this->activa ? 1 : 0,
             ]);
+            \App\Services\AuditoriaService::registrar(
+                'creacion',
+                "Creó la categoría: '{$categoria->nombre}'",
+                $categoria,
+                ['nombre' => $categoria->nombre]
+            );
             session()->flash('success', 'Categoría creada exitosamente.');
         }
 
@@ -151,7 +163,15 @@ class CategoriasManager extends Component
                 $this->closeDeleteModal();
                 return;
             }
+            $nombre = $cat->nombre;
+            $catId = $cat->id;
             $cat->delete();
+            \App\Services\AuditoriaService::registrar(
+                'eliminacion',
+                "Eliminó la categoría: '{$nombre}' (ID: {$catId})",
+                null,
+                ['id' => $catId, 'nombre' => $nombre]
+            );
             session()->flash('success', 'Categoría eliminada exitosamente.');
         }
         $this->closeDeleteModal();

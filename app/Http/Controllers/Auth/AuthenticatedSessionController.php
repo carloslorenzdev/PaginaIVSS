@@ -49,6 +49,7 @@ class AuthenticatedSessionController extends Controller
                 'created_by' => $request->user()->id,
             ]);
 
+            \App\Services\AuditoriaService::login($request->user());
             Log::channel('acciones')->info('El usuario "' . $request->user()->usuario . '" ha iniciado sesión');
         });
 
@@ -71,6 +72,9 @@ class AuthenticatedSessionController extends Controller
             $sesion->save();
         }
 
+        if ($user) {
+            \App\Services\AuditoriaService::logout($user);
+        }
         Auth::guard('web')->logout();
 
         Log::channel('acciones')->info('El usuario "' . $user->usuario . '" ha cerrado sesión');

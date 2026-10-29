@@ -107,7 +107,13 @@
 
         {{-- TABLA DE NOTICIAS --}}
         <div class="bg-white dark:bg-neutral-800 rounded-2xl shadow-sm border border-gray-100 dark:border-neutral-700 overflow-hidden">
-            <div class="overflow-x-auto">
+            {{-- SKELETON PLACEHOLDER DURANTE BÚSQUEDA Y PAGINACIÓN --}}
+            <div wire:loading wire:target="search, filtroEstado, gotoPage, previousPage, nextPage" class="p-4">
+                <x-skeleton.table rows="6" cols="5" />
+            </div>
+
+            {{-- CONTENIDO REAL DE LA TABLA --}}
+            <div wire:loading.remove wire:target="search, filtroEstado, gotoPage, previousPage, nextPage" class="overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
                     <thead class="bg-gray-50/75 dark:bg-neutral-800/75 text-xs font-bold text-gray-500 dark:text-neutral-400 uppercase tracking-wider text-left">
                         <tr>
@@ -146,7 +152,16 @@
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-xs text-gray-600 dark:text-neutral-300">
-                                    {{ $noticia->autor->name ?? 'Sistema' }}
+                                    <div class="flex flex-col">
+                                        <span class="font-medium text-gray-900 dark:text-white">
+                                            {{ $noticia->autor->nombre ?? $noticia->autor->usuario ?? 'Sistema' }}
+                                        </span>
+                                        @if($noticia->creditos_autor && $noticia->creditos_autor !== ($noticia->autor->nombre ?? ''))
+                                            <span class="text-[11px] text-gray-400 dark:text-neutral-400">
+                                                {{ $noticia->creditos_autor }}
+                                            </span>
+                                        @endif
+                                    </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     @if($noticia->publicado)
@@ -223,6 +238,7 @@
     {{-- MODAL APROBACIÓN MULTI-PASO (WIZARD FLUIDO 100% EN CLIENTE) --}}
     <div x-show="aprobarModalOpen"
          x-cloak
+         style="display: none;"
          class="fixed inset-0 z-[80] flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-black/70 backdrop-blur-sm transition-opacity" 
              @click="cerrarAprobarModal"></div>
@@ -386,6 +402,7 @@
     {{-- MODAL ELIMINAR (INSTANTÁNEO) --}}
     <div x-show="deleteModalOpen"
          x-cloak
+         style="display: none;"
          class="fixed inset-0 z-[80] flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity" 
              @click="cerrarEliminarModal"></div>

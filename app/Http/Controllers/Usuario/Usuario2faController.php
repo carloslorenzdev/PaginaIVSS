@@ -77,6 +77,13 @@ class Usuario2faController extends Controller
                 Log::channel('acciones')
                     ->warning('El usuario "' . $request->user()->usuario . '" desactivó el método 2fa Telegram App al usuaro "' . $usuario->usuario . '"');
             }
+            \App\Services\AuditoriaService::registrar(
+                'seguridad',
+                "Desactivó métodos 2FA (" . $metodos->join(', ') . ") al usuario '{$usuario->usuario}'",
+                $usuario,
+                ['usuario' => $usuario->usuario, 'metodos' => $metodos->toArray()]
+            );
+
             // OBSERVACION
             if ($data['observacion']) {
                 $usuario->observaciones()->create([

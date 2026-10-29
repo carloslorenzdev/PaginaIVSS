@@ -134,12 +134,13 @@ class Inicio extends Component
         $this->dispatch('cerrar-modal', id: 'modalOrdenPago');
 
         if ($result['success'] ?? false) {
-            $nombreArchivo = 'Orden_de_Pago_' . str_replace('/', '_', $this->op_periodo) . '.pdf';
-            return response()->streamDownload(function () use ($result) {
-                echo $result['body'];
-            }, $nombreArchivo, [
-                'Content-Type' => $result['contentType'] ?? 'application/pdf',
-                'Content-Disposition' => 'attachment; filename="' . $nombreArchivo . '"',
+            $base64Pdf = base64_encode($result['body']);
+            $nombreArchivo = 'FacturaIVSS_Periodo' . str_replace('/', '-', $this->op_periodo) . '.pdf';
+            
+            $this->dispatch('abrir-pdf-base64', [
+                'pdf' => $base64Pdf,
+                'filename' => $nombreArchivo,
+                'periodo' => $this->op_periodo
             ]);
         } else {
             $this->dispatch('swal', 

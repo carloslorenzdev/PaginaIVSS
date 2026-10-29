@@ -24,6 +24,14 @@ class SeguridadUsuarioController extends Controller
             if ($usuario->isDirty()) {
                 $usuario->updated_by = $request->user()->id;
                 $usuario->save();
+
+                \App\Services\AuditoriaService::registrar(
+                    'seguridad',
+                    "Bloqueó al usuario '{$usuario->usuario}' ({$usuario->nombre})",
+                    $usuario,
+                    ['usuario' => $usuario->usuario, 'accion' => 'bloqueo']
+                );
+
                 Log::channel('acciones')
                     ->warning('El usuario "' . $request->user()->usuario . '" ha bloqueado a "' . $usuario->usuario . '"');
             }
@@ -51,6 +59,14 @@ class SeguridadUsuarioController extends Controller
             if ($usuario->isDirty()) {
                 $usuario->updated_by = $request->user()->id;
                 $usuario->save();
+
+                \App\Services\AuditoriaService::registrar(
+                    'seguridad',
+                    "Desbloqueó al usuario '{$usuario->usuario}' ({$usuario->nombre})",
+                    $usuario,
+                    ['usuario' => $usuario->usuario, 'accion' => 'desbloqueo']
+                );
+
                 Log::channel('acciones')
                     ->warning('El usuario "' . $request->user()->usuario . '" ha desbloqueado a "' . $usuario->usuario . '"');
             }
@@ -78,6 +94,14 @@ class SeguridadUsuarioController extends Controller
         if ($usuario->isDirty()) {
             $usuario->updated_by = $request->user()->id;
             $usuario->save();
+
+            \App\Services\AuditoriaService::registrar(
+                'seguridad',
+                "Restableció la contraseña del usuario '{$usuario->usuario}'",
+                $usuario,
+                ['usuario' => $usuario->usuario, 'accion' => 'restablecer_password']
+            );
+
             Log::channel('acciones')
                 ->warning('El usuario "' . $request->user()->usuario . '" ha restablecido la contraseña a "' . $usuario->usuario . '"');
         }
@@ -106,6 +130,13 @@ class SeguridadUsuarioController extends Controller
         $usuario->save();
         
         $usuario->delete();
+
+        \App\Services\AuditoriaService::registrar(
+            'eliminacion',
+            "Eliminó al usuario '{$nombre}' del sistema",
+            null,
+            ['usuario_eliminado' => $nombre, 'accion' => 'eliminar_usuario']
+        );
 
         Log::channel('acciones')
             ->warning('El usuario "' . $request->user()->usuario . '" ha ELIMINADO a "' . $nombre . '"');

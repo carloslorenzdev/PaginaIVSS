@@ -46,6 +46,14 @@ class TogglePublicacionNoticiaAction
         }
         
         $noticia->save();
+
+        $estadoStr = $noticia->publicado ? 'publicó' : 'despublicó (borrador)';
+        \App\Services\AuditoriaService::registrar(
+            'cambio_estado',
+            "Se {$estadoStr} la noticia: '{$noticia->titulo}'",
+            $noticia,
+            ['publicado' => $noticia->publicado, 'fecha_publicacion' => $noticia->fecha_publicacion]
+        );
         
         return $noticia;
     }

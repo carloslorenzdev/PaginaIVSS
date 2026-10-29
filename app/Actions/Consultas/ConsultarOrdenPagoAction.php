@@ -26,9 +26,10 @@ class ConsultarOrdenPagoAction
 
             $body = $response->body();
             
-            // Si el IVSS responde con un script de alerta, es un error (ej. "No Existen Datos...")
-            if (strpos($body, 'alert(') !== false) {
-                preg_match("/alert\(['\"](.*?)['\"]\)/", $body, $matches);
+            // Si el IVSS responde con un script de alerta o texto plano de error
+            $bodyUtf8 = mb_convert_encoding($body, 'UTF-8', 'ISO-8859-1');
+            if (strpos($bodyUtf8, 'alert(') !== false) {
+                preg_match("/alert\(['\"](.*?)['\"]\)/", $bodyUtf8, $matches);
                 $errorMsg = $matches[1] ?? 'No se encontró información o los datos son inválidos.';
                 return [
                     'success' => false,
@@ -40,7 +41,7 @@ class ConsultarOrdenPagoAction
             return [
                 'success' => true,
                 'body' => $body,
-                'contentType' => $response->header('Content-Type') ?? 'application/pdf'
+                'contentType' => 'application/pdf'
             ];
 
         } catch (\Exception $e) {

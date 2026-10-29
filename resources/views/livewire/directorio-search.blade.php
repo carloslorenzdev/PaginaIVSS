@@ -51,8 +51,22 @@
                 </div>
             </div>
 
+            <!-- SKELETON PLACEHOLDERS -->
+            <div wire:loading wire:target="search" class="row g-4 mb-4">
+                @for($i = 0; $i < 8; $i++)
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden bg-white animate-pulse p-4 text-center">
+                            <div class="rounded-circle mx-auto mb-3" style="width: 70px; height: 70px; background-color: #e2e8f0;"></div>
+                            <div class="rounded mx-auto mb-2" style="height: 18px; width: 60%; background-color: #cbd5e1;"></div>
+                            <div class="rounded mx-auto mb-3" style="height: 16px; width: 40%; background-color: #f1f5f9;"></div>
+                            <div class="rounded mx-auto" style="height: 38px; width: 100%; background-color: #e2e8f0;"></div>
+                        </div>
+                    </div>
+                @endfor
+            </div>
+
             <!-- Grid de Estados -->
-            <div class="row g-4" data-aos="fade-up" data-aos-delay="100">
+            <div wire:loading.remove wire:target="search" class="row g-4" data-aos="fade-up" data-aos-delay="100">
                 @forelse($estados as $item)
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="card h-100 border-0 shadow-sm rounded-4 hover-elevate transition-all overflow-hidden bg-white">

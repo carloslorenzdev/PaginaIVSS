@@ -27,7 +27,28 @@
                 </div>
             </div>
 
-            <div class="row g-4">
+            {{-- SKELETON PLACEHOLDERS --}}
+            <div wire:loading wire:target="search, clearSearch, previousPage, nextPage, gotoPage" class="row g-4 mb-4">
+                @for($i = 0; $i < 6; $i++)
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm overflow-hidden bg-white rounded-3 animate-pulse">
+                            <div class="bg-light" style="height: 200px; width: 100%; background-color: #e2e8f0;"></div>
+                            <div class="card-body p-4">
+                                <div class="rounded mb-2" style="height: 18px; width: 80%; background-color: #cbd5e1;"></div>
+                                <div class="rounded mb-1" style="height: 14px; width: 100%; background-color: #f1f5f9;"></div>
+                                <div class="rounded mb-3" style="height: 14px; width: 65%; background-color: #f1f5f9;"></div>
+                            </div>
+                            <div class="card-footer bg-white border-top-0 pt-0 pb-3 px-4 d-flex justify-content-between align-items-center">
+                                <div class="rounded" style="height: 12px; width: 90px; background-color: #e2e8f0;"></div>
+                                <div class="rounded" style="height: 12px; width: 60px; background-color: #e2e8f0;"></div>
+                            </div>
+                        </div>
+                    </div>
+                @endfor
+            </div>
+
+            {{-- CONTENIDO REAL --}}
+            <div wire:loading.remove wire:target="search, clearSearch, previousPage, nextPage, gotoPage" class="row g-4">
                 @forelse($noticias as $index => $noticia)
                     @php
                         $imagenUrl = $noticia->medios->first() ? asset('storage/' . $noticia->medios->first()->ruta) : asset('img/imagen.jpg');

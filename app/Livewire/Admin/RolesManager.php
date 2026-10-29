@@ -82,13 +82,25 @@ class RolesManager extends Component
             }
 
             $role->update(['name' => strtolower(trim($this->name))]);
+            \App\Services\AuditoriaService::registrar(
+                'edicion',
+                "Actualizó el rol: '{$role->name}'",
+                $role,
+                ['name' => $role->name]
+            );
             session()->flash('success', 'Rol actualizado exitosamente.');
         } else {
             abort_if(!auth()->user()->hasPermissionTo('roles.crear'), 403, 'Acceso denegado. No tienes permiso para crear roles.');
-            Role::create([
+            $nuevoRol = Role::create([
                 'name' => strtolower(trim($this->name)),
                 'guard_name' => 'web'
             ]);
+            \App\Services\AuditoriaService::registrar(
+                'creacion',
+                "Creó el nuevo rol: '{$nuevoRol->name}'",
+                $nuevoRol,
+                ['name' => $nuevoRol->name]
+            );
             session()->flash('success', 'Rol creado exitosamente.');
         }
 
@@ -142,7 +154,17 @@ class RolesManager extends Component
                 return;
             }
 
+            $nombreRol = $role->name;
+            $roleId = $role->id;
             $role->delete();
+
+            \App\Services\AuditoriaService::registrar(
+                'eliminacion',
+                "Eliminó el rol: '{$nombreRol}' (ID: {$roleId})",
+                null,
+                ['id' => $roleId, 'name' => $nombreRol]
+            );
+
             session()->flash('success', 'Rol eliminado exitosamente.');
         }
 

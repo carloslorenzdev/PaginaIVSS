@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
+use Livewire\Attributes\Lazy;
 use App\Models\Noticia;
 use App\Models\Visita;
 use App\Actions\Admin\Noticias\EliminarNoticiaAction;

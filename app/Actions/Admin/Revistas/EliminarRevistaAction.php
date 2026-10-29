@@ -17,6 +17,17 @@ class EliminarRevistaAction
             Storage::disk('public')->delete($revista->imagen_preview);
         }
 
-        return $revista->delete();
+        $titulo = $revista->titulo;
+        $id = $revista->id;
+        $deleted = $revista->delete();
+
+        \App\Services\AuditoriaService::registrar(
+            'eliminacion',
+            "Eliminó la revista digital: '{$titulo}' (ID: {$id})",
+            null,
+            ['id' => $id, 'titulo' => $titulo]
+        );
+
+        return $deleted;
     }
 }

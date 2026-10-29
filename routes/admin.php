@@ -135,11 +135,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 
     // ----------------------------------------------------------------
-    // RENDIMIENTO / LOGS
+    // RENDIMIENTO / LOGS / AUDITORÍA
     // ----------------------------------------------------------------
     Route::get('/rendimiento', [\App\Http\Controllers\Admin\RendimientoController::class, 'index'])->name('rendimiento');
     Route::post('/rendimiento/optimizar', [\App\Http\Controllers\Admin\RendimientoController::class, 'optimizar'])->name('rendimiento.optimizar');
-    Route::get('/logs', \App\Http\Controllers\Admin\LogsController::class)->name('logs');
+    Route::get('/auditoria', \App\Livewire\Admin\AuditoriaManager::class)->name('auditoria');
+    Route::get('/logs', \App\Livewire\Admin\AuditoriaManager::class)->name('logs');
 
     // ----------------------------------------------------------------
     // BASE DE CONOCIMIENTO (CHATBOT) (Livewire 4 Page Components)

@@ -61,7 +61,12 @@
                 </h3>
             </div>
 
-            <div class="space-y-4">
+            {{-- SKELETON PLACEHOLDERS --}}
+            <div wire:loading wire:target="save, delete">
+                <x-skeleton.list :count="4" />
+            </div>
+
+            <div wire:loading.remove wire:target="save, delete" class="space-y-4">
                 @foreach($roles as $rol)
                     <div class="bg-white dark:bg-neutral-900/50 border border-gray-100 dark:border-neutral-700/50 rounded-xl p-5 hover:shadow-md transition-all duration-300 relative group" wire:key="rol-{{ $rol->id }}">
                         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5">

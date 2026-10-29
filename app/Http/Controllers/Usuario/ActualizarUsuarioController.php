@@ -49,6 +49,14 @@ class ActualizarUsuarioController extends Controller
                     $usuario->email_verified_at = null;
                 }
                 $usuario->save();
+
+                \App\Services\AuditoriaService::registrar(
+                    'edicion',
+                    "Actualizó la información del usuario '{$usuario->usuario}' ({$usuario->nombre})",
+                    $usuario,
+                    ['nombre' => $usuario->nombre, 'email' => $usuario->email]
+                );
+
                 Log::channel('acciones')
                     ->info('El usuario "' . $request->user()->usuario . '" ha actualizado la información del usuario "' . $usuario->usuario . '"');
             }
@@ -58,6 +66,14 @@ class ActualizarUsuarioController extends Controller
                 $usuario->syncRoles($data['rol']);
                 $usuario->updated_by = $request->user()->id;
                 $usuario->save();
+
+                \App\Services\AuditoriaService::registrar(
+                    'seguridad',
+                    "Cambió el rol del usuario '{$usuario->usuario}' a '{$data['rol']}'",
+                    $usuario,
+                    ['usuario' => $usuario->usuario, 'nuevo_rol' => $data['rol']]
+                );
+
                 Log::channel('acciones')
                     ->info('El usuario "' . $request->user()->usuario . '" ha cambiado el rol del usuario "' . $usuario->usuario . '" a: ' . $data['rol']);
             }

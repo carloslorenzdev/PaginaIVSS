@@ -150,8 +150,13 @@
                         </div>
                     </form>
 
+                    <!-- SKELETON PLACEHOLDERS -->
+                    <div wire:loading wire:target="guardarBanner, deleteBanner, deleteAlerta">
+                        <x-skeleton.grid :count="4" />
+                    </div>
+
                     <!-- Lista de Banners -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div wire:loading.remove wire:target="guardarBanner, deleteBanner, deleteAlerta" class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         @forelse($banners as $b)
                             <div class="relative group rounded-xl border border-gray-100 dark:border-neutral-700 bg-white dark:bg-neutral-900 overflow-hidden shadow-sm hover:shadow-md transition-all" wire:key="banner-{{ $b->id }}">
                                 <img src="{{ asset('storage/' . $b->ruta_imagen) }}" alt="{{ $b->titulo }}" class="w-full h-36 object-cover">

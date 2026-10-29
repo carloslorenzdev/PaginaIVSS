@@ -37,8 +37,13 @@
             </div>
         </div>
 
+        {{-- SKELETON PLACEHOLDERS --}}
+        <div wire:loading wire:target="gotoPage, previousPage, nextPage">
+            <x-skeleton.list :count="4" />
+        </div>
+
         {{-- LISTADO EN TARJETAS --}}
-        <div class="space-y-4">
+        <div wire:loading.remove wire:target="gotoPage, previousPage, nextPage" class="space-y-4">
             @forelse($preguntas as $item)
                 <div wire:key="pregunta-{{ $item->id }}" class="bg-white dark:bg-neutral-900/50 border border-gray-100 dark:border-neutral-700/50 rounded-xl p-5 hover:shadow-md transition-all duration-300 relative group">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pr-20">

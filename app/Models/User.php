@@ -84,6 +84,14 @@ class User extends Authenticatable
         });
     }
 
+    /**
+     * Accesor para compatibilidad con código que espere $user->name
+     */
+    public function name(): Attribute
+    {
+        return Attribute::get(fn () => $this->nombre);
+    }
+
     // ----------------------------------------------------------------
     // HELPERS DE ROL
     // ----------------------------------------------------------------

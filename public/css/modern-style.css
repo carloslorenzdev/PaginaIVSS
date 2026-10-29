@@ -67,6 +67,15 @@
     --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
+html,
+body {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--ivss-bg-light);
@@ -104,6 +113,8 @@ h5,
     height: 30px;
     display: flex;
     align-items: center;
+    overflow: hidden;
+    max-width: 100%;
 }
 
 .membrete-strip {
@@ -557,4 +568,16 @@ html {
     background-color: rgba(0, 0, 0, 0.6) !important;
     backdrop-filter: blur(8px) !important;
     -webkit-backdrop-filter: blur(8px) !important;
+}
+
+/* =======================================================
+   SKELETON PLACEHOLDERS & LIVEWIRE LOADING OPTIMIZATION
+   ======================================================= */
+@keyframes skeletonPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.45; }
+}
+
+.animate-pulse {
+    animation: skeletonPulse 1.6s cubic-bezier(0.4, 0, 0.6, 1) infinite !important;
 }

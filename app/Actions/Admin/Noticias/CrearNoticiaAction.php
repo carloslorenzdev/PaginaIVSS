@@ -51,6 +51,13 @@ class CrearNoticiaAction
             'orden' => 1,
         ]);
 
+        \App\Services\AuditoriaService::registrar(
+            'creacion',
+            "Creó la noticia: '{$noticia->titulo}'",
+            $noticia,
+            ['titulo' => $noticia->titulo, 'resumen' => $noticia->resumen]
+        );
+
         return $noticia;
     }
 }

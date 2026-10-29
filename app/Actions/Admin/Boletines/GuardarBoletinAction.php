@@ -67,7 +67,7 @@ class GuardarBoletinAction
             }
         }
 
-        return Boletin::create([
+        $boletin = Boletin::create([
             'titulo' => $data['titulo'],
             'descripcion' => $descripcion,
             'fecha_publicacion' => $data['fecha_publicacion'],
@@ -75,5 +75,14 @@ class GuardarBoletinAction
             'imagen_preview' => $imageName,
             'publicado' => true,
         ]);
+
+        \App\Services\AuditoriaService::registrar(
+            'creacion',
+            "Creó el boletín informativo: '{$boletin->titulo}'",
+            $boletin,
+            ['titulo' => $boletin->titulo, 'fecha' => $boletin->fecha_publicacion]
+        );
+
+        return $boletin;
     }
 }

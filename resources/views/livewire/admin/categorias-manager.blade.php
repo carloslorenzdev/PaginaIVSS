@@ -75,7 +75,13 @@
                 </span>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-6">
+            {{-- SKELETON PLACEHOLDERS --}}
+            <div wire:loading wire:target="search, gotoPage, previousPage, nextPage" class="p-6">
+                <x-skeleton.grid :count="6" />
+            </div>
+
+            {{-- CONTENIDO REAL --}}
+            <div wire:loading.remove wire:target="search, gotoPage, previousPage, nextPage" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-6">
                 @forelse($categorias as $cat)
                     <div class="bg-white dark:bg-neutral-800 border border-gray-100 dark:border-neutral-700 rounded-2xl p-5 hover:shadow-md transition-all duration-300 flex flex-col justify-between group relative overflow-hidden" wire:key="cat-{{ $cat->id }}">
                         <div class="space-y-3">
