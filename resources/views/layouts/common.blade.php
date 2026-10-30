@@ -8,7 +8,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('imagenes/favicon-16x16.png') }}">
     <title>{{ !empty($title) ? $title : '' }}@hasSection('titulo')@yield('titulo')@endif | Panel Admin</title>
-    @cspMetaTag
     @include('layouts/sections/styles')
     @include('layouts/sections/scriptsIncludes')
     @livewireStyles

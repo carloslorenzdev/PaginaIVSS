@@ -64,9 +64,14 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <!-- Social Icons on the left -->
                 @php
-                    $redes = \App\Models\Configuracion::whereIn('clave', ['url_instagram', 'url_twitter', 'url_youtube', 'url_tiktok', 'url_facebook', 'url_telegram', 'url_threads'])->pluck('valor', 'clave');
-                    $getNavSocialLink = function($key) use ($redes) {
-                        $url = trim($redes[$key] ?? '');
+                    $socialKeys = ['url_instagram', 'url_twitter', 'url_youtube', 'url_tiktok', 'url_facebook', 'url_telegram', 'url_threads'];
+                    $socialVisKeys = array_map(fn($k) => 'visible_' . $k, $socialKeys);
+                    $configRedes = \App\Models\Configuracion::whereIn('clave', array_merge($socialKeys, $socialVisKeys))->pluck('valor', 'clave');
+                    $isSocialVisible = function($key) use ($configRedes) {
+                        return ($configRedes['visible_' . $key] ?? '1') !== '0';
+                    };
+                    $getNavSocialLink = function($key) use ($configRedes) {
+                        $url = trim($configRedes[$key] ?? '');
                         if(empty($url) || $url === '#') {
                             return 'href="javascript:void(0)" onclick="Swal.fire({icon: \'info\', title: \'Próximamente\', text: \'Esta red social no está disponible en este momento.\', confirmButtonColor: \'#dc3545\'})"';
                         }
@@ -74,27 +79,41 @@
                     };
                 @endphp
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row gap-3">
+                    @if($isSocialVisible('url_instagram'))
                     <li class="nav-item">
                         <a class="nav-link text-danger fs-5 px-0" {!! $getNavSocialLink('url_instagram') !!} title="Instagram"><i class="fab fa-instagram"></i></a>
                     </li>
+                    @endif
+                    @if($isSocialVisible('url_twitter'))
                     <li class="nav-item">
                         <a class="nav-link text-danger fs-5 px-0" {!! $getNavSocialLink('url_twitter') !!} title="X"><i class="fa-brands fa-x-twitter"></i></a>
                     </li>
+                    @endif
+                    @if($isSocialVisible('url_youtube'))
                     <li class="nav-item">
                         <a class="nav-link text-danger fs-5 px-0" {!! $getNavSocialLink('url_youtube') !!} title="YouTube"><i class="fab fa-youtube"></i></a>
                     </li>
+                    @endif
+                    @if($isSocialVisible('url_tiktok'))
                     <li class="nav-item">
                         <a class="nav-link text-danger fs-5 px-0" {!! $getNavSocialLink('url_tiktok') !!} title="TikTok"><i class="fab fa-tiktok"></i></a>
                     </li>
+                    @endif
+                    @if($isSocialVisible('url_telegram'))
                     <li class="nav-item">
                         <a class="nav-link text-danger fs-5 px-0" {!! $getNavSocialLink('url_telegram') !!} title="Telegram"><i class="fab fa-telegram"></i></a>
                     </li>
+                    @endif
+                    @if($isSocialVisible('url_facebook'))
                     <li class="nav-item">
                         <a class="nav-link text-danger fs-5 px-0" {!! $getNavSocialLink('url_facebook') !!} title="Facebook"><i class="fab fa-facebook-f"></i></a>
                     </li>
+                    @endif
+                    @if($isSocialVisible('url_threads'))
                     <li class="nav-item">
                         <a class="nav-link text-danger fs-5 px-0" {!! $getNavSocialLink('url_threads') !!} title="Threads"><i class="fa-brands fa-threads"></i></a>
                     </li>
+                    @endif
                 </ul>
                 <!-- Main Links on the right -->
                 <ul class="navbar-nav ms-auto font-medium">
@@ -140,9 +159,8 @@
                 <div class="col-lg-4 col-md-6">
                     <h6 class="fw-bold mb-4">SÍGUENOS</h6>
                     @php
-                        $redesFooter = $redes ?? \App\Models\Configuracion::whereIn('clave', ['url_instagram', 'url_twitter', 'url_youtube', 'url_tiktok', 'url_facebook', 'url_telegram', 'url_threads'])->pluck('valor', 'clave');
-                        $getFooterSocialLink = function($key) use ($redesFooter) {
-                            $url = trim($redesFooter[$key] ?? '');
+                        $getFooterSocialLink = function($key) use ($configRedes) {
+                            $url = trim($configRedes[$key] ?? '');
                             if(empty($url) || $url === '#') {
                                 return 'href="javascript:void(0)" onclick="Swal.fire({icon: \'info\', title: \'Próximamente\', text: \'Esta red social no está disponible en este momento.\', confirmButtonColor: \'#dc3545\'})"';
                             }
@@ -150,13 +168,13 @@
                         };
                     @endphp
                     <div class="d-flex gap-3 mb-4 flex-wrap">
-                        <a {!! $getFooterSocialLink('url_instagram') !!} class="text-danger" title="Instagram"><i class="fab fa-instagram fs-5"></i></a>
-                        <a {!! $getFooterSocialLink('url_twitter') !!} class="text-danger" title="X"><i class="fa-brands fa-x-twitter fs-5"></i></a>
-                        <a {!! $getFooterSocialLink('url_youtube') !!} class="text-danger" title="YouTube"><i class="fab fa-youtube fs-5"></i></a>
-                        <a {!! $getFooterSocialLink('url_tiktok') !!} class="text-danger" title="TikTok"><i class="fab fa-tiktok fs-5"></i></a>
-                        <a {!! $getFooterSocialLink('url_telegram') !!} class="text-danger" title="Telegram"><i class="fab fa-telegram fs-5"></i></a>
-                        <a {!! $getFooterSocialLink('url_facebook') !!} class="text-danger" title="Facebook"><i class="fab fa-facebook fs-5"></i></a>
-                        <a {!! $getFooterSocialLink('url_threads') !!} class="text-danger" title="Threads"><i class="fa-brands fa-threads fs-5"></i></a>
+                        @if($isSocialVisible('url_instagram'))<a {!! $getFooterSocialLink('url_instagram') !!} class="text-danger" title="Instagram"><i class="fab fa-instagram fs-5"></i></a>@endif
+                        @if($isSocialVisible('url_twitter'))<a {!! $getFooterSocialLink('url_twitter') !!} class="text-danger" title="X"><i class="fa-brands fa-x-twitter fs-5"></i></a>@endif
+                        @if($isSocialVisible('url_youtube'))<a {!! $getFooterSocialLink('url_youtube') !!} class="text-danger" title="YouTube"><i class="fab fa-youtube fs-5"></i></a>@endif
+                        @if($isSocialVisible('url_tiktok'))<a {!! $getFooterSocialLink('url_tiktok') !!} class="text-danger" title="TikTok"><i class="fab fa-tiktok fs-5"></i></a>@endif
+                        @if($isSocialVisible('url_telegram'))<a {!! $getFooterSocialLink('url_telegram') !!} class="text-danger" title="Telegram"><i class="fab fa-telegram fs-5"></i></a>@endif
+                        @if($isSocialVisible('url_facebook'))<a {!! $getFooterSocialLink('url_facebook') !!} class="text-danger" title="Facebook"><i class="fab fa-facebook fs-5"></i></a>@endif
+                        @if($isSocialVisible('url_threads'))<a {!! $getFooterSocialLink('url_threads') !!} class="text-danger" title="Threads"><i class="fa-brands fa-threads fs-5"></i></a>@endif
                     </div>
                     <p class="small text-muted mb-0">Caracas, Venezuela. Sede Principal Altagracia.</p>
                 </div>

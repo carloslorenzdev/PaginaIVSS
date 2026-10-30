@@ -29,7 +29,6 @@ class GestionarEnlacesController extends Controller
             ],
             'Sistemas en Línea' => [
                 'url_sistema_estado_cuenta' => 'Estado de Cuenta',
-                'url_sistema_orden_pago' => 'Orden de Pago',
                 'url_sistema_solvencias' => 'Solvencias Electrónicas',
                 'url_sistema_indemnizaciones_diarias' => 'Indemnizaciones Diarias',
                 'url_sistema_verificacion_solvencia' => 'Verificación de Solvencia',
@@ -60,6 +59,9 @@ class GestionarEnlacesController extends Controller
 
         $enlaces = Configuracion::whereIn('clave', $todasLasClaves)->pluck('valor', 'clave')->toArray();
 
-        return view('admin.configuraciones.enlaces', compact('grupos', 'enlaces'));
+        $visiblesKeys = array_map(fn($k) => 'visible_' . $k, $todasLasClaves);
+        $visibilidad = Configuracion::whereIn('clave', $visiblesKeys)->pluck('valor', 'clave')->toArray();
+
+        return view('admin.configuraciones.enlaces', compact('grupos', 'enlaces', 'visibilidad'));
     }
 }

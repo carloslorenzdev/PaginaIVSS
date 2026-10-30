@@ -78,6 +78,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/visual/backgrounds', \App\Http\Controllers\Admin\Configuraciones\UpdateBackgroundsController::class)->name('visual.backgrounds');
         Route::get('/enlaces', \App\Http\Controllers\Admin\Configuraciones\GestionarEnlacesController::class)->name('enlaces');
         Route::post('/enlaces', \App\Http\Controllers\Admin\Configuraciones\GuardarEnlacesController::class)->name('enlaces.guardar');
+        Route::post('/enlaces/toggle', \App\Http\Controllers\Admin\Configuraciones\ToggleVisibilidadEnlaceController::class)->name('enlaces.toggle');
         Route::get('/modulo/{clave}', \App\Http\Controllers\Admin\Configuraciones\GestionarModuloController::class)->name('modulo');
         Route::post('/modulo/{clave}', \App\Http\Controllers\Admin\Configuraciones\GuardarModuloController::class)->name('modulo.guardar');
         Route::delete('/modulo/{clave}', \App\Http\Controllers\Admin\Configuraciones\EliminarModuloController::class)->name('modulo.eliminar');

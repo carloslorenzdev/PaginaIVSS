@@ -23,7 +23,7 @@ class GuardarEnlacesController extends Controller
                 'url_cuenta_individual', 'url_tiuna', 'url_registro_tiuna', 'url_farmacias', 'url_centros_salud', 'url_oficinas'
             ],
             'Sistemas en Línea' => [
-                'url_sistema_estado_cuenta', 'url_sistema_orden_pago', 'url_sistema_solvencias',
+                'url_sistema_estado_cuenta', 'url_sistema_solvencias',
                 'url_sistema_indemnizaciones_diarias', 'url_sistema_verificacion_solvencia',
                 'url_sistema_indemnizaciones_unicas', 'url_sistema_sigesp_v3', 'url_sistema_sigesp_v4'
             ],
@@ -55,6 +55,7 @@ class GuardarEnlacesController extends Controller
                     $fail("El enlace en '{$attribute}' debe ser una URL segura (iniciando con http://, https:// o /).");
                 }
             }];
+            $rules['visible_' . $clave] = ['nullable', 'in:0,1'];
         }
 
         $validated = $request->validate($rules);
