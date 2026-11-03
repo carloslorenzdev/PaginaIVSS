@@ -74,17 +74,17 @@ class ConsultarPensionadoAction
                 : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
             $html = preg_replace('/(src|background)=["\'][^"\']*bg_lineas_med\.jpg[^"\']*["\']/i', '$1="' . $bgLineasMedBase64 . '"', $html);
 
-            // 5. Inyectar estilos CSS y marca de agua institucional como Base64 (sin peticiones de red externas)
+            // 5. Inyectar estilos CSS y fondo oficial idéntico al de la página de inicio (con Base64)
             $fondoPath = public_path('imagenes/fondo-ivss.png');
             $bgWatermark = file_exists($fondoPath) ? base64_encode(file_get_contents($fondoPath)) : '';
 
             $customCss = "
 <style>
     body {
-        " . ($bgWatermark ? "background-image: url('data:image/png;base64,{$bgWatermark}') !important; background-repeat: repeat !important; background-position: center top !important;" : "") . "
+        " . ($bgWatermark ? "background-image: linear-gradient(rgba(243, 244, 246, 0.88), rgba(243, 244, 246, 0.88)), url('data:image/png;base64,{$bgWatermark}') !important; background-size: cover !important; background-position: center !important; background-attachment: fixed !important;" : "background-color: #f8f9fa !important;") . "
         font-family: Arial, Helvetica, sans-serif !important;
         margin: 0;
-        padding: 10px;
+        padding: 15px;
     }
     .estilo { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; color: #000099; }
     .letraCampo { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; color: #0000CC; }
