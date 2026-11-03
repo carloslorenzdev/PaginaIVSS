@@ -46,41 +46,78 @@ class ConsultarPensionadoAction
                 return ['success' => true, 'isHtml' => false, 'message' => 'El ciudadano no tiene Pensión Asociada.'];
             }
 
-            // Eliminar cualquier etiqueta <base> previa que apunte a puertos internos inaccesibles
+            // 1. Eliminar cualquier etiqueta <base> previa que apunte a puertos internos inaccesibles
             $html = preg_replace('/<base[^>]*>/i', '', $html);
 
-            // Reemplazar referencias a recursos para que pasen por el proxy seguro de Laravel
-            $html = str_ireplace('src="superior.jpg"', 'src="/consulta/recurso/pensionado/imagenes/superior.jpg"', $html);
-            $html = str_ireplace("src='superior.jpg'", "src='/consulta/recurso/pensionado/imagenes/superior.jpg'", $html);
-            $html = str_ireplace('src="imagenes/', 'src="/consulta/recurso/pensionado/imagenes/', $html);
-            $html = str_ireplace("src='imagenes/", "src='/consulta/recurso/pensionado/imagenes/", $html);
-            $html = str_ireplace('href="css/', 'href="/consulta/recurso/pensionado/css/', $html);
-            $html = str_ireplace("href='css/", "href='/consulta/recurso/pensionado/css/", $html);
+            // 2. Eliminar enlaces a hojas de estilo externas bloqueadas o inaccesibles
+            $html = preg_replace('/<link[^>]*href=["\'][^"\']*estilo\.css[^"\']*["\'][^>]*>/i', '', $html);
+            $html = preg_replace('/<link[^>]*href=["\'][^"\']*2808[0-9][^"\']*["\'][^>]*>/i', '', $html);
 
-            // Inyectar el fondo oficial con marca de agua institucional del IVSS
-            $fondoPath = public_path('imagenes/fondo-ivss.png');
-            if (file_exists($fondoPath)) {
-                $bgBase64 = base64_encode(file_get_contents($fondoPath));
-                $bgStyle = "<style>
-                    body {
-                        background-image: url('data:image/png;base64,{$bgBase64}') !important;
-                        background-repeat: repeat !important;
-                        background-position: center top !important;
-                        font-family: Arial, Helvetica, sans-serif !important;
-                    }
-                </style>";
-                if (strpos($html, '</head>') !== false) {
-                    $html = str_replace('</head>', $bgStyle . "\n</head>", $html);
-                } else {
-                    $html = $bgStyle . "\n" . $html;
-                }
-                $html = preg_replace('/<body([^>]*)\s+background=["\'][^"\']*["\']/i', '<body$1', $html);
+            // 3. Encabezado institucional oficial en Base64 (superior.jpg)
+            $superiorFile = public_path('imagenes/superior.jpg');
+            if (!file_exists($superiorFile)) {
+                $superiorFile = public_path('imagenes/cintillo-ivss.jpg');
             }
+            $superiorBase64 = 'data:image/jpeg;base64,' . base64_encode(file_get_contents($superiorFile));
+            $html = preg_replace('/src=["\'][^"\']*superior\.jpg[^"\']*["\']/i', 'src="' . $superiorBase64 . '"', $html);
 
-            // Remover scripts no deseados como quitarFrame o analíticas antiguas bloqueadas por CSP
+            // 4. Líneas divisorias decorativas en Base64 (bg_lineas.jpg, bg_lineas_med.jpg)
+            $bgLineasFile = public_path('imagenes/bg_lineas.jpg');
+            $bgLineasBase64 = file_exists($bgLineasFile)
+                ? 'data:image/jpeg;base64,' . base64_encode(file_get_contents($bgLineasFile))
+                : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+            $html = preg_replace('/(src|background)=["\'][^"\']*bg_lineas\.jpg[^"\']*["\']/i', '$1="' . $bgLineasBase64 . '"', $html);
+
+            $bgLineasMedFile = public_path('imagenes/bg_lineas_med.jpg');
+            $bgLineasMedBase64 = file_exists($bgLineasMedFile)
+                ? 'data:image/jpeg;base64,' . base64_encode(file_get_contents($bgLineasMedFile))
+                : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+            $html = preg_replace('/(src|background)=["\'][^"\']*bg_lineas_med\.jpg[^"\']*["\']/i', '$1="' . $bgLineasMedBase64 . '"', $html);
+
+            // 5. Inyectar estilos CSS y marca de agua institucional como Base64 (sin peticiones de red externas)
+            $fondoPath = public_path('imagenes/fondo-ivss.png');
+            $bgWatermark = file_exists($fondoPath) ? base64_encode(file_get_contents($fondoPath)) : '';
+
+            $customCss = "
+<style>
+    body {
+        " . ($bgWatermark ? "background-image: url('data:image/png;base64,{$bgWatermark}') !important; background-repeat: repeat !important; background-position: center top !important;" : "") . "
+        font-family: Arial, Helvetica, sans-serif !important;
+        margin: 0;
+        padding: 10px;
+    }
+    .estilo { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; color: #000099; }
+    .letraCampo { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; color: #0000CC; }
+    .letraTitulo { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #FFFFFF; text-align: left; }
+    .letraRelleno { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; text-align: left; }
+    .otraLetraCampo { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; color: #000000; text-align: right; }
+    .estiloBoton { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; text-align: center; color: #000000; }
+    .letraFecha { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; color: #000066; }
+    .letraTexto { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; color: #000000; }
+    .letraMenu { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: #000066; text-align: left; }
+    .letraFechaEncab { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px; color: #FFFFFF; }
+    .letraTituloDerecho { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: #4c6c8f; text-align: right; }
+    .letraCombo { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; color: #000000; }
+    .letraTabla { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: #000000; text-align: center; vertical-align: middle; background-color: #cfdced; }
+</style>
+";
+            if (stripos($html, '</head>') !== false) {
+                $html = str_ireplace('</head>', $customCss . "\n</head>", $html);
+            } else {
+                $html = $customCss . "\n" . $html;
+            }
+            $html = preg_replace('/<body([^>]*)\s+background=["\'][^"\']*["\']/i', '<body$1', $html);
+
+            // 6. Reemplazar cualquier imagen restante huérfana para evitar timeouts o peticiones directas
+            $transparentGif = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+            $html = preg_replace('/src=["\'](?!data:)[^"\']*imagenes\/[^"\']*["\']/i', 'src="' . $transparentGif . '"', $html);
+            $html = preg_replace('/src=["\'](?!data:)[^"\']*:2808[0-9][^"\']*["\']/i', 'src="' . $transparentGif . '"', $html);
+
+            // 7. Remover scripts no deseados como quitarFrame o analíticas antiguas bloqueadas por CSP
             $html = preg_replace('/<script[^>]*>.*?quitarFrame.*?<\/script>/is', '', $html);
             $html = preg_replace('/<script[^>]*>.*?google-analytics.*?<\/script>/is', '', $html);
             $html = preg_replace('/<script[^>]*>.*?ga\.js.*?<\/script>/is', '', $html);
+            $html = preg_replace('/<script[^>]*src=["\'][^"\']*(?:google-analytics|ga\.js|urchin)[^"\']*["\'][^>]*>.*?<\/script>/is', '', $html);
 
             return ['success' => true, 'isHtml' => true, 'html' => $html];
 

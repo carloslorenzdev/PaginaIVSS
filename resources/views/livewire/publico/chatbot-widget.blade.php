@@ -226,7 +226,8 @@
                 function mostrarMensajeManual() {
                     if (respondido) return;
                     respondido = true;
-                    wire.responderErrorGps('No se pudo determinar tu ubicación exacta automáticamente. Por favor escribe <b>centros de salud en</b> seguido de tu estado (Ejemplo: <i>centros de salud en Distrito Capital</i> o <i>Miranda</i>).');
+                    // Intentar resolver por IP desde el servidor como último recurso automático
+                    wire.resolverUbicacionPorIp();
                 }
 
                 function resolverPorIp() {

@@ -4,6 +4,7 @@ namespace App\Livewire\Publico;
 
 use Livewire\Component;
 use Livewire\Attributes\On;
+use Illuminate\Support\Facades\Http;
 use App\Actions\Publico\Chatbot\ProcesarMensajeChatbotAction;
 
 class ChatbotWidget extends Component
@@ -145,6 +146,43 @@ class ChatbotWidget extends Component
 
         $this->isThinking = true;
         $this->dispatch('chat-scrolled');
+    }
+
+    public function resolverUbicacionPorIp()
+    {
+        $ip = request()->ip();
+        $estado = null;
+
+        // Intentar geolocalizar la IP pública del cliente
+        if ($ip && !in_array($ip, ['127.0.0.1', '::1']) && !str_starts_with($ip, '192.168.') && !str_starts_with($ip, '10.')) {
+            try {
+                $geo = Http::timeout(3)->get("https://get.geojs.io/v1/ip/geo/{$ip}.json");
+                if ($geo->successful()) {
+                    $data = $geo->json();
+                    $estado = $data['region'] ?? $data['city'] ?? null;
+                }
+            } catch (\Exception $e) {
+                // Ignore
+            }
+
+            if (!$estado) {
+                try {
+                    $geo = Http::timeout(3)->get("https://ipinfo.io/{$ip}/json");
+                    if ($geo->successful()) {
+                        $data = $geo->json();
+                        $estado = $data['region'] ?? $data['city'] ?? null;
+                    }
+                } catch (\Exception $e) {
+                    // Ignore
+                }
+            }
+        }
+
+        if ($estado) {
+            $this->generarRespuesta('ubicacion_ip:' . $estado);
+        } else {
+            $this->responderErrorGps('No se pudo determinar tu ubicación exacta automáticamente. Por favor escribe <b>centros de salud en</b> seguido de tu estado (Ejemplo: <i>centros de salud en Distrito Capital</i> o <i>Miranda</i>).');
+        }
     }
 
     public function responderErrorGps(string $texto)
