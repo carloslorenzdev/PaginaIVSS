@@ -221,26 +221,62 @@
                 var wire = getChatbotWire();
                 if (!wire) return;
 
-                var isSecure = window.isSecureContext || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+                var respondido = false;
+
+                function mostrarMensajeManual() {
+                    if (respondido) return;
+                    respondido = true;
+                    wire.responderErrorGps('No se pudo determinar tu ubicación exacta automáticamente. Por favor escribe <b>centros de salud en</b> seguido de tu estado (Ejemplo: <i>centros de salud en Distrito Capital</i> o <i>Miranda</i>).');
+                }
+
+                function resolverPorIp() {
+                    if (respondido) return;
+                    fetch('https://get.geojs.io/v1/ip/geo.json', { cache: 'no-store' })
+                        .then(function (r) { return r.json(); })
+                        .then(function (data) {
+                            if (respondido) return;
+                            var estado = data.region || data.city;
+                            if (estado) {
+                                respondido = true;
+                                wire.generarRespuesta('ubicacion_ip:' + estado);
+                            } else {
+                                resolverPorIpInfo();
+                            }
+                        })
+                        .catch(function () {
+                            resolverPorIpInfo();
+                        });
+                }
+
+                function resolverPorIpInfo() {
+                    if (respondido) return;
+                    fetch('https://ipinfo.io/json', { cache: 'no-store' })
+                        .then(function (r) { return r.json(); })
+                        .then(function (data) {
+                            if (respondido) return;
+                            var estado = data.region || data.city;
+                            if (estado) {
+                                respondido = true;
+                                wire.generarRespuesta('ubicacion_ip:' + estado);
+                            } else {
+                                mostrarMensajeManual();
+                            }
+                        })
+                        .catch(function () {
+                            mostrarMensajeManual();
+                        });
+                }
 
                 if (!navigator.geolocation) {
-                    wire.responderErrorGps('Tu navegador no soporta geolocalización. Por favor escribe <b>centros de salud en</b> seguido de tu estado.');
+                    resolverPorIp();
                     return;
                 }
-
-                if (!isSecure) {
-                    wire.responderErrorGps('La geolocalización automática del navegador requiere una conexión segura (HTTPS). Por favor escribe <b>centros de salud en</b> seguido de tu estado.');
-                    return;
-                }
-
-                var respondido = false;
 
                 var fallbackTimer = setTimeout(function () {
                     if (!respondido) {
-                        respondido = true;
-                        wire.responderErrorGps('No se pudo determinar tu ubicación exacta a tiempo. Por favor escribe <b>centros de salud en</b> seguido de tu estado (Ejemplo: centros de salud en Distrito Capital o Miranda).');
+                        resolverPorIp();
                     }
-                }, 6500);
+                }, 10000);
 
                 navigator.geolocation.getCurrentPosition(
                     function (pos) {
@@ -250,17 +286,11 @@
                         wire.generarRespuesta('ubicacion:' + pos.coords.latitude + ',' + pos.coords.longitude);
                     },
                     function (err) {
-                        if (respondido) return;
-                        respondido = true;
                         clearTimeout(fallbackTimer);
-
-                        var msg = 'No fue posible obtener tu ubicación de forma automática. Por favor escribe <b>centros de salud en</b> seguido de tu estado (Ejemplo: centros de salud en Distrito Capital o Miranda).';
-                        if (err.code === 1) {
-                            msg = 'Permiso de ubicación denegado por el navegador. Por favor escribe <b>centros de salud en</b> seguido de tu estado (Ejemplo: centros de salud en Distrito Capital o Miranda).';
-                        }
-                        wire.responderErrorGps(msg);
+                        // Si el permiso fue bloqueado o hay error en el contexto SSL, recurrir inmediatamente a la IP
+                        resolverPorIp();
                     },
-                    { enableHighAccuracy: false, timeout: 6000, maximumAge: 300000 }
+                    { enableHighAccuracy: false, timeout: 9500, maximumAge: 60000 }
                 );
             });
         })();

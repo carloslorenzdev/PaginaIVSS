@@ -46,6 +46,9 @@ Route::get('/storage/{path}', function ($path) {
 Route::post('/consulta-pensionado', \App\Http\Controllers\Consultas\ConsultarPensionadoController::class)->name('consulta.pensionado');
 Route::post('/consulta-orden-pago', \App\Http\Controllers\Consultas\ConsultarOrdenPagoController::class)->name('consulta.ordenpago');
 Route::post('/consulta-cuenta-individual', \App\Http\Controllers\Consultas\ConsultarCuentaIndividualController::class)->name('consulta.cuenta_individual');
+Route::get('/consulta/recurso/{servicio}/{archivo}', [\App\Http\Controllers\Consultas\RecursoConsultaController::class, 'obtener'])
+    ->where('archivo', '.*')
+    ->name('consulta.recurso');
 
 // SERVICIOS COMPLEMENTARIOS (Livewire 4 Page Components)
 Route::get('/marco-normativo', \App\Livewire\Publico\MarcoNormativo::class)->name('marco_normativo');

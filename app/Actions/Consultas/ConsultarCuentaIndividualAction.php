@@ -69,14 +69,44 @@ class ConsultarCuentaIndividualAction
             }
         }
 
-        // Inject base URL so images and CSS load correctly from the new tab
-        $baseTag = "<base href=\"{$baseUrl}\">";
-        if (strpos($html, '<head>') !== false) {
-            $html = str_replace('<head>', "<head>\n    " . $baseTag, $html);
-        } else {
-            $html = $baseTag . "\n" . $html;
+        // Eliminar cualquier etiqueta <base> previa que apunte a puertos internos inaccesibles
+        $html = preg_replace('/<base[^>]*>/i', '', $html);
+
+        // Reemplazar referencias a recursos para que pasen por el proxy seguro de Laravel
+        $html = str_ireplace('src="superior2.png"', 'src="/consulta/recurso/cuenta/imagenes/superior2.png"', $html);
+        $html = str_ireplace("src='superior2.png'", "src='/consulta/recurso/cuenta/imagenes/superior2.png'", $html);
+        $html = str_ireplace('src="marcaivss01.JPG"', 'src="/consulta/recurso/cuenta/imagenes/marcaivss01.JPG"', $html);
+        $html = str_ireplace("src='marcaivss01.JPG'", "src='/consulta/recurso/cuenta/imagenes/marcaivss01.JPG'", $html);
+        $html = str_ireplace('src="imagenes/', 'src="/consulta/recurso/cuenta/imagenes/', $html);
+        $html = str_ireplace("src='imagenes/", "src='/consulta/recurso/cuenta/imagenes/", $html);
+        $html = str_ireplace('href="css/', 'href="/consulta/recurso/cuenta/css/', $html);
+        $html = str_ireplace("href='css/", "href='/consulta/recurso/cuenta/css/", $html);
+
+        // Inyectar el fondo oficial con marca de agua institucional del IVSS
+        $fondoPath = public_path('imagenes/fondo-ivss.png');
+        if (file_exists($fondoPath)) {
+            $bgBase64 = base64_encode(file_get_contents($fondoPath));
+            $bgStyle = "<style>
+                body {
+                    background-image: url('data:image/png;base64,{$bgBase64}') !important;
+                    background-repeat: repeat !important;
+                    background-position: center top !important;
+                    font-family: Arial, Helvetica, sans-serif !important;
+                }
+            </style>";
+            if (strpos($html, '</head>') !== false) {
+                $html = str_replace('</head>', $bgStyle . "\n</head>", $html);
+            } else {
+                $html = $bgStyle . "\n" . $html;
+            }
+            $html = preg_replace('/<body([^>]*)\s+background=["\'][^"\']*["\']/i', '<body$1', $html);
         }
-        
+
+        // Remover scripts no deseados como analíticas antiguas bloqueadas por CSP o quitarFrame
+        $html = preg_replace('/<script[^>]*>.*?quitarFrame.*?<\/script>/is', '', $html);
+        $html = preg_replace('/<script[^>]*>.*?google-analytics.*?<\/script>/is', '', $html);
+        $html = preg_replace('/<script[^>]*>.*?ga\.js.*?<\/script>/is', '', $html);
+
         return ['success' => true, 'html' => $html];
     }
 }

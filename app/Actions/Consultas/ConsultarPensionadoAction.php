@@ -46,21 +46,16 @@ class ConsultarPensionadoAction
                 return ['success' => true, 'isHtml' => false, 'message' => 'El ciudadano no tiene Pensión Asociada.'];
             }
 
-            // Inyectar etiqueta <base> para que los estilos e imágenes relativas carguen correctamente
-            $baseUrl = 'http://www.ivss.gob.ve:28080/Pensionado/';
-            $baseTag = "<base href=\"{$baseUrl}\">";
-            
-            if (strpos($html, '<head>') !== false) {
-                $html = str_replace('<head>', "<head>\n    " . $baseTag, $html);
-            } else {
-                $html = $baseTag . "\n" . $html;
-            }
+            // Eliminar cualquier etiqueta <base> previa que apunte a puertos internos inaccesibles
+            $html = preg_replace('/<base[^>]*>/i', '', $html);
 
-            // Asegurar que las imágenes y recursos se resuelvan con URLs absolutas para evitar fallos de carga
-            $html = str_ireplace('src="superior.jpg"', 'src="http://www.ivss.gob.ve:28080/Pensionado/imagenes/superior.jpg"', $html);
-            $html = str_ireplace("src='superior.jpg'", "src='http://www.ivss.gob.ve:28080/Pensionado/imagenes/superior.jpg'", $html);
-            $html = str_ireplace('src="imagenes/', 'src="http://www.ivss.gob.ve:28080/Pensionado/imagenes/', $html);
-            $html = str_ireplace("src='imagenes/", "src='http://www.ivss.gob.ve:28080/Pensionado/imagenes/", $html);
+            // Reemplazar referencias a recursos para que pasen por el proxy seguro de Laravel
+            $html = str_ireplace('src="superior.jpg"', 'src="/consulta/recurso/pensionado/imagenes/superior.jpg"', $html);
+            $html = str_ireplace("src='superior.jpg'", "src='/consulta/recurso/pensionado/imagenes/superior.jpg'", $html);
+            $html = str_ireplace('src="imagenes/', 'src="/consulta/recurso/pensionado/imagenes/', $html);
+            $html = str_ireplace("src='imagenes/", "src='/consulta/recurso/pensionado/imagenes/", $html);
+            $html = str_ireplace('href="css/', 'href="/consulta/recurso/pensionado/css/', $html);
+            $html = str_ireplace("href='css/", "href='/consulta/recurso/pensionado/css/", $html);
 
             // Inyectar el fondo oficial con marca de agua institucional del IVSS
             $fondoPath = public_path('imagenes/fondo-ivss.png');
@@ -71,6 +66,7 @@ class ConsultarPensionadoAction
                         background-image: url('data:image/png;base64,{$bgBase64}') !important;
                         background-repeat: repeat !important;
                         background-position: center top !important;
+                        font-family: Arial, Helvetica, sans-serif !important;
                     }
                 </style>";
                 if (strpos($html, '</head>') !== false) {
@@ -81,8 +77,10 @@ class ConsultarPensionadoAction
                 $html = preg_replace('/<body([^>]*)\s+background=["\'][^"\']*["\']/i', '<body$1', $html);
             }
 
-            // Remover scripts no deseados como quitarFrame
+            // Remover scripts no deseados como quitarFrame o analíticas antiguas bloqueadas por CSP
             $html = preg_replace('/<script[^>]*>.*?quitarFrame.*?<\/script>/is', '', $html);
+            $html = preg_replace('/<script[^>]*>.*?google-analytics.*?<\/script>/is', '', $html);
+            $html = preg_replace('/<script[^>]*>.*?ga\.js.*?<\/script>/is', '', $html);
 
             return ['success' => true, 'isHtml' => true, 'html' => $html];
 

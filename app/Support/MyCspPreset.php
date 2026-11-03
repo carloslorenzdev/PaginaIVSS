@@ -15,7 +15,7 @@ class MyCspPreset implements Preset
             return;
         }
         $policy
-            ->add(Directive::BASE, [Keyword::SELF, 'http://*.ivss.gob.ve:*', 'http://ivss.gob.ve:*', 'http://www.ivss.gob.ve:*'])
+            ->add(Directive::BASE, [Keyword::SELF, 'http://*.ivss.gob.ve:*', 'http://ivss.gob.ve:*', 'http://www.ivss.gob.ve:*', 'https://*.ivss.gob.ve:*', 'https://ivss.gob.ve:*', 'https://www.ivss.gob.ve:*'])
             ->add(Directive::CHILD, Keyword::NONE)
             ->add(Directive::CONNECT, [Keyword::SELF, 'http://localhost:*', 'https://localhost:*', 'http://127.0.0.1:*', 'https://127.0.0.1:*', 'https://ipinfo.io', 'https://get.geojs.io'])
             ->add(Directive::DEFAULT, Keyword::SELF)
@@ -23,12 +23,12 @@ class MyCspPreset implements Preset
             ->add(Directive::FORM_ACTION, Keyword::SELF)
             ->add(Directive::FRAME, Keyword::NONE)
             ->add(Directive::FRAME_ANCESTORS, Keyword::NONE)
-            ->add(Directive::IMG, [Keyword::SELF, 'data:', 'https://cdn.jsdelivr.net', 'http://*.ivss.gob.ve:*', 'http://ivss.gob.ve:*', 'http://www.ivss.gob.ve:*', 'http://localhost:*', 'https://localhost:*', 'http://127.0.0.1:*', 'https://127.0.0.1:*'])
+            ->add(Directive::IMG, [Keyword::SELF, 'data:', 'https://cdn.jsdelivr.net', 'http://*.ivss.gob.ve:*', 'http://ivss.gob.ve:*', 'http://www.ivss.gob.ve:*', 'https://*.ivss.gob.ve:*', 'https://ivss.gob.ve:*', 'https://www.ivss.gob.ve:*', 'http://localhost:*', 'https://localhost:*', 'http://127.0.0.1:*', 'https://127.0.0.1:*'])
             ->add(Directive::MANIFEST, Keyword::SELF)
             ->add(Directive::MEDIA, Keyword::SELF)
             ->add(Directive::OBJECT, Keyword::NONE)
             ->add([Directive::SCRIPT, Directive::SCRIPT_ATTR, Directive::SCRIPT_ELEM], [Keyword::SELF, Keyword::UNSAFE_INLINE, 'https://cdn.jsdelivr.net', 'https://unpkg.com', 'http://localhost:*', 'https://localhost:*', 'http://127.0.0.1:*', 'https://127.0.0.1:*'])
-            ->add([Directive::STYLE, Directive::STYLE_ELEM], [Keyword::SELF, 'https://cdn.jsdelivr.net', 'https://cdnjs.cloudflare.com', 'https://unpkg.com', 'https://fonts.googleapis.com', Keyword::UNSAFE_INLINE, 'http://localhost:*', 'https://localhost:*', 'http://127.0.0.1:*', 'https://127.0.0.1:*'])
+            ->add([Directive::STYLE, Directive::STYLE_ELEM], [Keyword::SELF, 'https://cdn.jsdelivr.net', 'https://cdnjs.cloudflare.com', 'https://unpkg.com', 'https://fonts.googleapis.com', Keyword::UNSAFE_INLINE, 'http://*.ivss.gob.ve:*', 'https://*.ivss.gob.ve:*', 'http://localhost:*', 'https://localhost:*', 'http://127.0.0.1:*', 'https://127.0.0.1:*'])
             ->add(Directive::STYLE_ATTR, [Keyword::UNSAFE_EVAL, Keyword::UNSAFE_INLINE])
             ->add(Directive::WORKER, Keyword::NONE)
             ->addNonce(Directive::FONT)
