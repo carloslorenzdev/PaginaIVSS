@@ -84,11 +84,8 @@ class ConsultarCuentaIndividualAction
             $headerFile = public_path('imagenes/cintillo-ivss.jpg');
         }
         $headerBase64 = 'data:image/jpeg;base64,' . base64_encode(file_get_contents($headerFile));
-        // Reemplazar por coincidencia en src (superior, superior2, cuentaindividual)
-        $html = preg_replace('/src=["\'][^"\']*(superior|cuentaindividual)[^"\']*["\']/i', 'src="' . $headerBase64 . '"', $html);
-        // Reemplazar también si la etiqueta img tiene alt="cuentaindividual"
-        $html = preg_replace('/<img([^>]*\balt=["\'][^"\']*cuentaindividual[^"\']*["\'][^>]*)src=["\'][^"\']*["\']/i', '<img$1src="' . $headerBase64 . '"', $html);
-        $html = preg_replace('/<img([^>]*)src=["\'][^"\']*["\']([^>]*\balt=["\'][^"\']*cuentaindividual[^"\']*["\'][^>]*)/i', '<img$1src="' . $headerBase64 . '"$2', $html);
+        // Reemplazar la imagen de cabecera por coincidencia en src o en alt
+        $html = preg_replace('/src=["\'][^"\']*(?:superior2|cuentaindividual|superior)[^"\']*["\']/i', 'src="' . $headerBase64 . '"', $html);
 
         // 4. Marca de agua o imagen antigua (marcaivss_01.JPG o marcaivss01.JPG) reemplazada por gif transparente
         $transparentGif = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
@@ -107,7 +104,10 @@ class ConsultarCuentaIndividualAction
             : $transparentGif;
         $html = preg_replace('/(src|background)=["\'][^"\']*bg_lineas_med\.jpg[^"\']*["\']/i', '$1="' . $bgLineasMedBase64 . '"', $html);
 
-        // 6. Inyectar estilos CSS y fondo oficial idéntico al de la página de inicio (con Base64)
+        // 6. Remover de forma segura todos los scripts heredados (evita eval, CSP y bloqueo de contenido)
+        $html = preg_replace('/<script\b[^>]*>(?:(?!<\/script>)[\s\S])*?<\/script>/i', '', $html);
+
+        // 7. Inyectar estilos CSS, fondo oficial y funciones nativas seguras (imprimir, cerrar)
         $fondoPath = public_path('imagenes/fondo-ivss.png');
         $bgWatermark = file_exists($fondoPath) ? base64_encode(file_get_contents($fondoPath)) : '';
 
@@ -133,6 +133,11 @@ class ConsultarCuentaIndividualAction
     .letraCombo { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; color: #000000; }
     .letraTabla { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: #000000; text-align: center; vertical-align: middle; background-color: #cfdced; }
 </style>
+<script>
+    function imprimir() { window.print(); }
+    function cerrar() { window.close(); }
+    function salir() { window.close(); }
+</script>
 ";
         if (stripos($html, '</head>') !== false) {
             $html = str_ireplace('</head>', $customCss . "\n</head>", $html);
@@ -140,16 +145,11 @@ class ConsultarCuentaIndividualAction
             $html = $customCss . "\n" . $html;
         }
         $html = preg_replace('/<body([^>]*)\s+background=["\'][^"\']*["\']/i', '<body$1', $html);
+        $html = preg_replace('/<body([^>]*)\s+onload=["\'][^"\']*["\']/i', '<body$1', $html);
 
-        // 7. Reemplazar cualquier imagen restante huérfana para evitar timeouts o peticiones directas
+        // 8. Reemplazar cualquier imagen restante huérfana para evitar timeouts o peticiones directas
         $html = preg_replace('/src=["\'](?!data:)[^"\']*imagenes\/[^"\']*["\']/i', 'src="' . $transparentGif . '"', $html);
         $html = preg_replace('/src=["\'](?!data:)[^"\']*:2808[0-9][^"\']*["\']/i', 'src="' . $transparentGif . '"', $html);
-
-        // 8. Remover scripts no deseados como analíticas antiguas bloqueadas por CSP, eval o quitarFrame
-        $html = preg_replace('/<script[^>]*src=["\'][^"\']*(?:google-analytics|ga\.js|urchin)[^"\']*["\'][^>]*>.*?<\/script>/is', '', $html);
-        $html = preg_replace('/<script[^>]*>.*?(?:quitarFrame|google-analytics|ga\.js|MM_|eval|Function).*?<\/script>/is', '', $html);
-
-        return ['success' => true, 'html' => $html];
 
         return ['success' => true, 'html' => $html];
     }
