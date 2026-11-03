@@ -78,35 +78,42 @@ class ConsultarCuentaIndividualAction
         $html = preg_replace('/<link[^>]*href=["\'][^"\']*estilo\.css[^"\']*["\'][^>]*>/i', '', $html);
         $html = preg_replace('/<link[^>]*href=["\'][^"\']*2808[0-9][^"\']*["\'][^>]*>/i', '', $html);
 
-        // 3. Encabezado institucional oficial en Base64 (superior.jpg o cintillo-ivss.jpg)
-        $headerFile = public_path('imagenes/superior.jpg');
+        // 3. Encabezado institucional oficial real en Base64 (superior2.png original del IVSS)
+        $headerFile = public_path('servicios1/cta_individual/superior2.png');
         if (!file_exists($headerFile)) {
-            $headerFile = public_path('imagenes/cintillo-ivss.jpg');
+            $headerFile = public_path('superior2.png');
         }
-        $headerBase64 = 'data:image/jpeg;base64,' . base64_encode(file_get_contents($headerFile));
-        // Reemplazar la imagen de cabecera por coincidencia en src o en alt (con o sin comillas)
-        $html = preg_replace('/src=["\']?[^"\'\s>]*superior2\.png["\']?/i', 'src="' . $headerBase64 . '"', $html);
-        $html = preg_replace('/src=["\']?[^"\'\s>]*cuentaindividual[^"\'\s>]*["\']?/i', 'src="' . $headerBase64 . '"', $html);
-        $html = preg_replace('/src=["\']?[^"\'\s>]*superior\.jpg["\']?/i', 'src="' . $headerBase64 . '"', $html);
-        $html = preg_replace('/<img([^>]*\balt=["\'][^"\']*cuentaindividual[^"\']*["\'][^>]*)src=["\'][^"\']*["\']/i', '<img$1src="' . $headerBase64 . '"', $html);
+        if (!file_exists($headerFile)) {
+            $headerFile = public_path('imagenes/superior.jpg');
+        }
+        $headerBase64 = 'data:image/png;base64,' . base64_encode(file_get_contents($headerFile));
 
-        // 4. Marca de agua o imagen antigua (marcaivss_01.JPG o marcaivss01.JPG) reemplazada por gif transparente
+        // Reemplazar tanto rutas relativas completas como simples del encabezado
+        $html = str_ireplace('servicios1/cta_individual/superior2.png', $headerBase64, $html);
+        $html = str_ireplace('superior2.png', $headerBase64, $html);
+        $html = preg_replace('/src\s*=\s*["\']?[^"\'\s>]*superior2\.png["\']?/i', 'src="' . $headerBase64 . '"', $html);
+        $html = preg_replace('/src\s*=\s*["\']?[^"\'\s>]*cuentaindividual[^"\'\s>]*["\']?/i', 'src="' . $headerBase64 . '"', $html);
+
+        // 4. Marca de agua reemplazada por gif transparente
         $transparentGif = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+        $html = str_ireplace('imagenes/marcaivss_01.JPG', $transparentGif, $html);
+        $html = str_ireplace('marcaivss_01.JPG', $transparentGif, $html);
         $html = preg_replace('/((?:src|background)=)["\']?[^"\'\s>]*marcaivss[^"\'\s>]*["\']?/i', '$1"' . $transparentGif . '"', $html);
 
-        // 5. Líneas divisorias decorativas en Base64 (bg_lineas.jpg, bg_lineas_med.jpg)
-        $bgLineasFile = public_path('imagenes/bg_lineas.jpg');
+        // 5. Líneas divisorias decorativas (bg_lineas.jpg, bg_lineas_med.jpg) en Base64 tanto en HTML como en CSS url(...)
+        $bgLineasFile = public_path('servicios1/cta_individual/bg_lineas.jpg');
         $bgLineasBase64 = file_exists($bgLineasFile)
             ? 'data:image/jpeg;base64,' . base64_encode(file_get_contents($bgLineasFile))
             : $transparentGif;
-        $html = preg_replace('/((?:src|background)=)["\']?[^"\'\s>]*bg_lineas\.jpg["\']?/i', '$1"' . $bgLineasBase64 . '"', $html);
+        $html = str_ireplace('servicios1/cta_individual/bg_lineas.jpg', $bgLineasBase64, $html);
+        $html = str_ireplace('bg_lineas.jpg', $bgLineasBase64, $html);
 
-        $bgLineasMedFile = public_path('imagenes/bg_lineas_med.jpg');
+        $bgLineasMedFile = public_path('servicios1/cta_individual/bg_lineas_med.jpg');
         $bgLineasMedBase64 = file_exists($bgLineasMedFile)
             ? 'data:image/jpeg;base64,' . base64_encode(file_get_contents($bgLineasMedFile))
             : $transparentGif;
-        $html = preg_replace('/((?:src|background)=)["\']?[^"\'\s>]*bg_lineas_med\.jpg["\']?/i', '$1"' . $bgLineasMedBase64 . '"', $html);
-
+        $html = str_ireplace('servicios1/cta_individual/bg_lineas_med.jpg', $bgLineasMedBase64, $html);
+        $html = str_ireplace('bg_lineas_med.jpg', $bgLineasMedBase64, $html);
         // 6. Remover de forma segura todos los scripts heredados (evita eval, CSP y bloqueo de contenido)
         $html = preg_replace('/<script\b[^>]*>(?:(?!<\/script>)[\s\S])*?<\/script>/i', '', $html);
 
