@@ -351,7 +351,7 @@
                             Ingrese su número patronal para consultar y generar su factura digital en PDF.
                         </p>
 
-                        <form wire:submit.prevent="consultarOrdenPago" id="formOrdenPago" class="text-start">
+                        <form wire:submit.prevent="consultarOrdenPago" id="formOrdenPago" class="text-start" autocomplete="off">
                             <div class="mb-3">
                                 <label class="form-label text-muted small fw-bold text-uppercase mb-2">Número de Empleador / Patronal</label>
                                 <input type="text" wire:model="op_idEmpresa" class="form-control border rounded shadow-sm py-2" required placeholder="Ej. OOO111222">
@@ -845,7 +845,7 @@
               Ingrese su número de cédula para consultar su estado de cuenta individual.
             </p>
 
-            <form wire:submit.prevent="consultarCuentaIndividual" id="formCuentaIndividual" class="text-start">
+            <form wire:submit.prevent="consultarCuentaIndividual" id="formCuentaIndividual" class="text-start" autocomplete="off">
                 <div class="mb-4">
                     <label class="form-label text-muted small fw-bold text-uppercase mb-2">Cédula del Asegurado</label>
                     <div class="input-group border rounded shadow-sm">
@@ -886,7 +886,7 @@
               Consulte el estatus de su pensión ingresando su cédula y fecha de nacimiento.
             </p>
 
-            <form wire:submit.prevent="consultarPensionado" id="formConsultaPensionado" class="text-start">
+            <form wire:submit.prevent="consultarPensionado" id="formConsultaPensionado" class="text-start" autocomplete="off">
                 <div class="mb-3">
                     <label class="form-label text-muted small fw-bold text-uppercase mb-2">Cédula del Asegurado</label>
                     <div class="input-group border rounded shadow-sm">

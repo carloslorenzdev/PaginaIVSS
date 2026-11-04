@@ -281,6 +281,14 @@
             document.body.style.paddingRight = '';
         });
 
+        // Limpieza de formularios de consultas al cerrar cualquier modal
+        document.addEventListener('hidden.bs.modal', (e) => {
+            if (['modalCuentaIndividual', 'modalConsultaPensionado', 'modalOrdenPago'].includes(e.target.id)) {
+                const form = e.target.querySelector('form');
+                if (form) form.reset();
+            }
+        });
+
         document.addEventListener('livewire:navigated', () => {
             // Posicionamiento de scroll inteligente (respetando hashes como #servicios)
             const hash = window.location.hash;

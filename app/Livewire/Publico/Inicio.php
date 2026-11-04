@@ -55,6 +55,11 @@ class Inicio extends Component
             'cedula' => $this->ci_cedula,
         ]);
 
+        // Limpiar datos de la consulta para que la modal esté limpia al reabrirla
+        $this->reset(['ci_cedula']);
+        $this->ci_nacionalidad = 'V';
+        $this->resetValidation();
+
         $this->dispatch('cerrar-modal', id: 'modalCuentaIndividual');
 
         if ($result['success'] ?? false) {
@@ -90,6 +95,11 @@ class Inicio extends Component
             'm1' => $this->pen_m1,
             'y1' => $this->pen_y1,
         ]);
+
+        // Limpiar datos de la consulta para que la modal esté limpia al reabrirla
+        $this->reset(['pen_cedula', 'pen_d1', 'pen_m1', 'pen_y1']);
+        $this->pen_nacionalidad = 'V';
+        $this->resetValidation();
 
         $this->dispatch('cerrar-modal', id: 'modalConsultaPensionado');
 
@@ -131,16 +141,23 @@ class Inicio extends Component
             'tipoEmpresa' => $this->op_tipoEmpresa,
         ]);
 
+        $periodoConsultado = $this->op_periodo;
+
+        // Limpiar datos de la consulta para que la modal esté limpia al reabrirla
+        $this->reset(['op_idEmpresa']);
+        $this->op_tipoEmpresa = 'PR';
+        $this->resetValidation();
+
         $this->dispatch('cerrar-modal', id: 'modalOrdenPago');
 
         if ($result['success'] ?? false) {
             $base64Pdf = base64_encode($result['body']);
-            $nombreArchivo = 'FacturaIVSS_Periodo' . str_replace('/', '-', $this->op_periodo) . '.pdf';
+            $nombreArchivo = 'FacturaIVSS_Periodo' . str_replace('/', '-', $periodoConsultado) . '.pdf';
             
             $this->dispatch('abrir-pdf-base64', [
                 'pdf' => $base64Pdf,
                 'filename' => $nombreArchivo,
-                'periodo' => $this->op_periodo
+                'periodo' => $periodoConsultado
             ]);
         } else {
             $this->dispatch('swal', 
