@@ -13,16 +13,16 @@ Route::group([
         ->name('login');
     Route::post('Padminlogin', [AuthenticatedSessionController::class, 'store']);
 
-    // RECUPERAR CONTRASEÑA (Protegido contra fuerza bruta en OTP CWE-307)
+    // RECUPERAR CONTRASEÑA (Protegido contra fuerza bruta por IP y por cuenta CWE-307)
     Route::get('recuperar-password', [\App\Http\Controllers\Auth\PasswordResetController::class, 'show'])->name('password.request');
     Route::post('recuperar-password/verificar-usuario', [\App\Http\Controllers\Auth\PasswordResetController::class, 'verificarUsuario'])
-        ->middleware('throttle:5,1')
+        ->middleware('throttle:password-reset')
         ->name('password.verify-user');
     Route::post('recuperar-password/verificar-codigo', [\App\Http\Controllers\Auth\PasswordResetController::class, 'verificarCodigo'])
-        ->middleware('throttle:5,1')
+        ->middleware('throttle:password-reset')
         ->name('password.verify-code');
     Route::post('recuperar-password/restablecer', [\App\Http\Controllers\Auth\PasswordResetController::class, 'restablecer'])
-        ->middleware('throttle:5,1')
+        ->middleware('throttle:password-reset')
         ->name('password.update');
 });
 

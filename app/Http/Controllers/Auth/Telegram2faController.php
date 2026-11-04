@@ -67,6 +67,7 @@ class Telegram2faController extends Controller
         }
 
         TelegramService::desactivar($request->user());
+        \App\Services\Auth\TwoFactorAuthService::forgetRememberDevice($request->user());
         Log::channel('acciones')
             ->info('El usuario "' . $request->user()->usuario . '" ha desactivado el método 2FA de Telegram App');
         TwoFactorAuthService::clearRateLimitedOtp($throttleKey);

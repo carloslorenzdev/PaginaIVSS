@@ -208,18 +208,26 @@
 
             Livewire.on('abrir-ventana-html', (event) => {
                 const data = Array.isArray(event) ? event[0] : event;
-                const newWindow = window.open('', '_blank');
-                if (newWindow) {
-                    newWindow.document.open();
-                    newWindow.document.write(data.html);
-                    newWindow.document.close();
-                } else {
-                    Swal.fire({
-                        title: 'Popups Bloqueados',
-                        text: 'Por favor, habilite las ventanas emergentes (pop-ups) en su navegador para poder ver la planilla.',
-                        icon: 'warning',
-                        confirmButtonText: 'Entendido'
-                    });
+                try {
+                    // Abrir mediante Blob aislado con noopener para mitigar CWE-79 / Cross-Window scripting
+                    const blob = new Blob([data.html], { type: 'text/html;charset=utf-8' });
+                    const blobUrl = URL.createObjectURL(blob);
+                    const newWindow = window.open(blobUrl, '_blank', 'noopener,noreferrer');
+                    if (!newWindow) {
+                        Swal.fire({
+                            title: 'Popups Bloqueados',
+                            text: 'Por favor, habilite las ventanas emergentes (pop-ups) en su navegador para poder ver la planilla.',
+                            icon: 'warning',
+                            confirmButtonText: 'Entendido'
+                        });
+                    }
+                } catch (e) {
+                    const newWindow = window.open('about:blank', '_blank', 'noopener,noreferrer');
+                    if (newWindow) {
+                        newWindow.document.open();
+                        newWindow.document.write(data.html);
+                        newWindow.document.close();
+                    }
                 }
             });
 

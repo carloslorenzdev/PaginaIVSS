@@ -18,7 +18,7 @@ class CrearActividadAnualAction
         ]);
 
         if ($archivo) {
-            $extension = $archivo->getClientOriginalExtension();
+            $extension = $archivo->extension() ?: $archivo->guessExtension() ?: 'jpg';
             $nombreOriginal = $archivo->getClientOriginalName();
             $nombreOriginalStr = pathinfo($nombreOriginal, PATHINFO_FILENAME);
             $nombreArchivo = time() . '-' . Str::slug($nombreOriginalStr) . '.' . $extension;
@@ -50,7 +50,7 @@ class CrearActividadAnualAction
         }
 
         if ($documentoAdjunto) {
-            $extensionDoc = $documentoAdjunto->getClientOriginalExtension();
+            $extensionDoc = $documentoAdjunto->extension() ?: $documentoAdjunto->guessExtension() ?: 'pdf';
             $nombreOriginalDoc = $documentoAdjunto->getClientOriginalName();
             $nombreOriginalStrDoc = pathinfo($nombreOriginalDoc, PATHINFO_FILENAME);
             $nombreArchivoDoc = time() . '-doc-' . Str::slug($nombreOriginalStrDoc) . '.' . $extensionDoc;

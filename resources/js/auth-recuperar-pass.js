@@ -1,6 +1,7 @@
 const csrfToken = '{{ csrf_token() }}';
         let currentUsername = '';
         let currentCode = '';
+        let currentResetToken = '';
 
         async function verifyUser() {
             const btn = document.getElementById('btn-step-1');
@@ -64,6 +65,7 @@ const csrfToken = '{{ csrf_token() }}';
                     Swal.fire('Error', data.message || 'Código incorrecto', 'error');
                 } else {
                     currentCode = codigo;
+                    currentResetToken = data.reset_token;
                     document.getElementById('step-2').classList.add('hidden');
                     document.getElementById('step-3').classList.remove('hidden');
                     document.getElementById('password').focus();
@@ -93,8 +95,7 @@ const csrfToken = '{{ csrf_token() }}';
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrfToken, 'Accept': 'application/json' },
                     body: JSON.stringify({ 
-                        usuario: currentUsername, 
-                        codigo: currentCode, 
+                        reset_token: currentResetToken,
                         password, 
                         password_confirmation 
                     })

@@ -15,13 +15,18 @@ class UploadEditorImageController extends Controller
      */
     public function __invoke(Request $request)
     {
+        // Control de permisos estricto (CWE-862)
+        abort_if(!auth()->user() || (!auth()->user()->can('noticias.crear') && !auth()->user()->can('noticias.editar')), 403, 'Acceso Denegado.');
+
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $filename = time() . '_' . Str::random(10) . '.' . $file->getClientOriginalExtension();
+            // Derivar extensión del MIME verificado por finfo en el servidor y no del cliente (CWE-434)
+            $extension = $file->extension() ?: $file->guessExtension() ?: 'jpg';
+            $filename = time() . '_' . Str::random(10) . '.' . $extension;
             
             // Define the storage path
             $path = 'noticias/editor/' . date('Y/m');

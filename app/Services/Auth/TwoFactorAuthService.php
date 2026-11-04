@@ -417,20 +417,26 @@ class TwoFactorAuthService
     }
 
     /**
-     * Guarda una cookie segura para recordar el dispositivo por 30 días
+     * Guarda una cookie segura con token criptográfico para recordar el dispositivo por 30 días (CWE-613)
      */
     public static function rememberDevice(\App\Models\User $user)
     {
+        $token = \Illuminate\Support\Str::random(64);
+        $tokenHash = hash('sha256', $token);
+
+        // Almacenar token hasheado con expiración de 30 días en el servidor
+        \Illuminate\Support\Facades\Cache::put('2fa_device:' . $user->id . ':' . $tokenHash, true, now()->addDays(30));
+
         $payload = [
             'id' => $user->id,
-            'remember_token' => $user->getAuthIdentifier() // Una forma simple de verificar que la cookie pertenece a este usuario
+            'token' => $token,
         ];
         // Encriptar el payload en una cookie que dura 30 días (43200 minutos)
         \Illuminate\Support\Facades\Cookie::queue('remember_2fa', json_encode($payload), 43200);
     }
 
     /**
-     * Verifica si el dispositivo actual tiene la cookie válida para saltar el 2FA
+     * Verifica si el dispositivo actual tiene la cookie y token válidos en el servidor para saltar el 2FA
      */
     public static function isDeviceRemembered(\App\Models\User $user): bool
     {
@@ -440,17 +446,41 @@ class TwoFactorAuthService
         }
 
         try {
-            // Decodificar JSON (Laravel ya desencripta automáticamente las cookies)
             $payload = json_decode($cookie, true);
-            if (isset($payload['id']) && $payload['id'] === $user->id) {
-                // Restablecer las variables de sesión para que el middleware crea que ya se validó el 2FA
-                self::saveConfirmedAuth();
-                self::saveConfirmedOtp();
-                return true;
+            if (isset($payload['id'], $payload['token']) && $payload['id'] === $user->id) {
+                $tokenHash = hash('sha256', $payload['token']);
+                $isValid = \Illuminate\Support\Facades\Cache::get('2fa_device:' . $user->id . ':' . $tokenHash, false);
+
+                if ($isValid) {
+                    self::saveConfirmedAuth();
+                    self::saveConfirmedOtp();
+                    return true;
+                }
             }
         } catch (\Exception $e) {
             return false;
         }
         return false;
+    }
+
+    /**
+     * Revoca el dispositivo recordado y elimina la cookie remember_2fa
+     */
+    public static function forgetRememberDevice(?\App\Models\User $user = null)
+    {
+        if ($user) {
+            $cookie = request()->cookie('remember_2fa');
+            if ($cookie) {
+                try {
+                    $payload = json_decode($cookie, true);
+                    if (isset($payload['token'])) {
+                        \Illuminate\Support\Facades\Cache::forget('2fa_device:' . $user->id . ':' . hash('sha256', $payload['token']));
+                    }
+                } catch (\Exception $e) {
+                    // Ignore
+                }
+            }
+        }
+        \Illuminate\Support\Facades\Cookie::queue(\Illuminate\Support\Facades\Cookie::forget('remember_2fa'));
     }
 }

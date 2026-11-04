@@ -16,7 +16,8 @@ class GuardarModuloAction
             Storage::disk('public')->delete($config->valor);
         }
 
-        $extension = $archivo->getClientOriginalExtension();
+        // Derivar extensión del tipo MIME verificado en el servidor (CWE-434)
+        $extension = $archivo->extension() ?: $archivo->guessExtension() ?: 'bin';
         $nombreOriginalStr = pathinfo($archivo->getClientOriginalName(), PATHINFO_FILENAME);
         $nombreArchivo = time() . '-' . Str::slug($nombreOriginalStr) . '.' . $extension;
         $ruta = $archivo->storeAs('modulos', $nombreArchivo, 'public');

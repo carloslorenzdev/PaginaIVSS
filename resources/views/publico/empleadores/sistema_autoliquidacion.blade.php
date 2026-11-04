@@ -1,4 +1,4 @@
-﻿?@extends('layouts.app-public')
+?@extends('layouts.app-public')
 @section('titulo', 'Sistema Autoliquidación (TIUNA) - IVSS')
 @section('content')
 <div class="position-relative overflow-hidden text-center bg-light" style="padding: 100px 0 60px 0;">
@@ -46,7 +46,7 @@
                     
                     <p class="text-muted mb-0" style="font-size: 1.1rem;">
                         Si deseas acceder al Sistema de Gestión y Autoliquidación de Empresas Tiuna ir al siguiente enlace:<br>
-                        <a href="http://autoliquidacionv2.ivss.gob.ve:28080/TiunaWeb/" target="_blank" class="text-decoration-none fw-bold" style="color: #6f42c1;">http://autoliquidacionv2.ivss.gob.ve:28080/TiunaWeb/</a>
+                        <a href="http://autoliquidacionv2.ivss.gob.ve:28080/TiunaWeb/" target="_blank" rel="noopener noreferrer" class="text-decoration-none fw-bold" style="color: #6f42c1;">http://autoliquidacionv2.ivss.gob.ve:28080/TiunaWeb/</a>
                     </p>
                 </div>
             </div>
@@ -56,7 +56,7 @@
             <a href="{{ route('inicio') }}" wire:navigate class="btn text-white rounded-pill px-4 py-2 fw-bold" style="background-color: #6f42c1; border-color: #6f42c1;">
                 <i class="fas fa-arrow-left me-2"></i> Volver al Inicio
             </a>
-            <a href="http://tiuna.ivss.gob.ve" target="_blank" class="btn btn-outline-dark rounded-pill px-4 py-2 fw-bold ms-2">
+            <a href="http://tiuna.ivss.gob.ve" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark rounded-pill px-4 py-2 fw-bold ms-2">
                 Ir al Sistema TIUNA <i class="fas fa-external-link-alt ms-2"></i>
             </a>
         </div>

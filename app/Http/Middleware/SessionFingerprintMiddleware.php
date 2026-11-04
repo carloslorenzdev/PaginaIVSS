@@ -19,7 +19,8 @@ class SessionFingerprintMiddleware
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check()) {
-            $currentFingerprint = hash('sha256', $request->ip() . '|' . $request->userAgent());
+            // No vincular la sesión estrictamente a la IP volátil del cliente para evitar deslogueos por rotación de proxies (CWE-348)
+            $currentFingerprint = hash('sha256', (string) $request->userAgent());
 
             if (!Session::has('session_fingerprint')) {
                 Session::put('session_fingerprint', $currentFingerprint);

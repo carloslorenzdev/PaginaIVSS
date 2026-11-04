@@ -9,7 +9,7 @@ class CrearCarruselAction
 {
     public function execute(array $data, $archivo)
     {
-        $extension = $archivo->getClientOriginalExtension();
+        $extension = $archivo->extension() ?: $archivo->guessExtension() ?: 'jpg';
         $nombreOriginalStr = pathinfo($archivo->getClientOriginalName(), PATHINFO_FILENAME);
         $nombreArchivo = time() . '-' . Str::slug($nombreOriginalStr) . '.' . $extension;
         $ruta = $archivo->storeAs('carrusel', $nombreArchivo, 'public');

@@ -74,6 +74,9 @@ class AuthenticatedSessionController extends Controller
 
         if ($user) {
             \App\Services\AuditoriaService::logout($user);
+            \App\Services\Auth\TwoFactorAuthService::forgetRememberDevice($user);
+        } else {
+            \App\Services\Auth\TwoFactorAuthService::forgetRememberDevice();
         }
         Auth::guard('web')->logout();
 

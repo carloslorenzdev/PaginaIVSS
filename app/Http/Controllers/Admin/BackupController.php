@@ -45,10 +45,22 @@ class BackupController extends Controller
     public function download($file_name)
     {
         abort_if(!auth()->user()->isAdmin(), 403, 'Acceso denegado. Solo el administrador puede gestionar backups.');
-        $file = config('backup.backup.name') . '/' . $file_name;
+
+        // Mitigación Path Traversal (CWE-22): Sanitización y lista blanca estricta
+        $safeFileName = basename($file_name);
+        if (!preg_match('/^[a-zA-Z0-9_\-\.]+\.zip$/', $safeFileName)) {
+            abort(400, 'Nombre de archivo de respaldo inválido.');
+        }
+
+        $file = config('backup.backup.name') . '/' . $safeFileName;
         $disk = Storage::disk(config('backup.backup.destination.disks')[0]);
 
         if ($disk->exists($file)) {
+            if (function_exists('activity')) {
+                activity('backup')
+                    ->causedBy(auth()->user())
+                    ->log("Descarga de respaldo de base de datos: {$safeFileName}");
+            }
             return $disk->download($file);
         }
 
@@ -58,11 +70,23 @@ class BackupController extends Controller
     public function delete($file_name)
     {
         abort_if(!auth()->user()->isAdmin(), 403, 'Acceso denegado. Solo el administrador puede gestionar backups.');
-        $file = config('backup.backup.name') . '/' . $file_name;
+
+        // Mitigación Path Traversal (CWE-22): Sanitización y lista blanca estricta
+        $safeFileName = basename($file_name);
+        if (!preg_match('/^[a-zA-Z0-9_\-\.]+\.zip$/', $safeFileName)) {
+            abort(400, 'Nombre de archivo de respaldo inválido.');
+        }
+
+        $file = config('backup.backup.name') . '/' . $safeFileName;
         $disk = Storage::disk(config('backup.backup.destination.disks')[0]);
 
         if ($disk->exists($file)) {
             $disk->delete($file);
+            if (function_exists('activity')) {
+                activity('backup')
+                    ->causedBy(auth()->user())
+                    ->log("Eliminación de respaldo de base de datos: {$safeFileName}");
+            }
             return redirect()->route('admin.backups.index')->with('success', 'Backup eliminado exitosamente.');
         }
 

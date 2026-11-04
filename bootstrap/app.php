@@ -28,12 +28,30 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->trustProxies(at: '*');
+        $trustedProxies = env('TRUSTED_PROXIES');
+        if ($trustedProxies) {
+            $middleware->trustProxies(at: array_map('trim', explode(',', $trustedProxies)));
+        } else {
+            // Limitar confianza de proxies a redes privadas internas y reverse proxies conocidos (CWE-348 / CWE-290)
+            $middleware->trustProxies(at: [
+                '127.0.0.1',
+                '::1',
+                '10.0.0.0/8',
+                '192.168.0.0/16',
+                '172.16.0.0/12',
+            ]);
+        }
+
+        // Restringir hosts permitidos a dominios institucionales
+        $middleware->trustHosts(at: [
+            'ivss.gob.ve',
+            '*.ivss.gob.ve',
+            'localhost',
+            '127.0.0.1',
+        ]);
+
         $middleware->throttleWithRedis();
         $middleware->redirectUsersTo('/admin/panel');
-        $middleware->prepend([
-            TrustHosts::class,
-        ]);
         $middleware->append([
             AddCspHeaders::class,
             AddContextLog::class,

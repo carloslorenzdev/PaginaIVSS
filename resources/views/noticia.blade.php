@@ -56,7 +56,7 @@
                             <div class="row g-3">
                                 @foreach($noticia->medios->where('pivot.tipo_relacion', 'galeria') as $medio)
                                     <div class="col-md-4 col-sm-6">
-                                        <a href="{{ asset('storage/' . $medio->ruta) }}" target="_blank">
+                                        <a href="{{ asset('storage/' . $medio->ruta) }}" target="_blank" rel="noopener noreferrer">
                                             <img src="{{ asset('storage/' . $medio->ruta) }}" class="img-fluid rounded shadow-sm w-100" style="height: 200px; object-fit: cover;" alt="Galería">
                                         </a>
                                     </div>
@@ -88,7 +88,7 @@
                             @endif
                             
                             @if($noticia->enlace_externo)
-                                <a href="{{ $noticia->enlace_externo }}" target="_blank" class="text-decoration-none text-danger fw-semibold small ms-auto">
+                                <a href="{{ $noticia->enlace_externo }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none text-danger fw-semibold small ms-auto">
                                     <i class="fas fa-external-link-alt"></i> Fuente Original
                                 </a>
                             @endif

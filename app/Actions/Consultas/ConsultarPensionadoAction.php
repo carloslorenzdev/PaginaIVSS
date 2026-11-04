@@ -122,7 +122,10 @@ class ConsultarPensionadoAction
             return ['success' => true, 'isHtml' => true, 'html' => $html];
 
         } catch (\Exception $e) {
-            return ['success' => false, 'isHtml' => false, 'message' => 'Error de conexión con el servidor del IVSS. Detalles: ' . $e->getMessage()];
+            \Illuminate\Support\Facades\Log::error('Error en consulta de pensionado: ' . $e->getMessage(), [
+                'exception' => $e
+            ]);
+            return ['success' => false, 'isHtml' => false, 'message' => 'No fue posible establecer conexión con el sistema de consultas en este momento. Por favor intente más tarde.'];
         }
     }
 }

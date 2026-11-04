@@ -51,12 +51,18 @@ class ConsultarConocimientoChatbotAction
             return nl2br($mejorConocimiento->respuesta);
         }
 
-        // Registrar pregunta sin respuesta si no existe previamente
-        $existe = ChatbotPreguntaSinRespuesta::where('pregunta', $mensajeOriginal)->exists();
-        if (!$existe) {
-            ChatbotPreguntaSinRespuesta::create([
-                'pregunta' => $mensajeOriginal
-            ]);
+        // Registrar pregunta sin respuesta si no existe previamente y tiene longitud razonable (CWE-770)
+        $preguntaLimpia = \Illuminate\Support\Str::limit(trim($mensajeOriginal), 250);
+        if (mb_strlen($preguntaLimpia) >= 4 && mb_strlen($preguntaLimpia) <= 250) {
+            $totalSinRespuesta = ChatbotPreguntaSinRespuesta::count();
+            if ($totalSinRespuesta < 3000) {
+                $existe = ChatbotPreguntaSinRespuesta::where('pregunta', $preguntaLimpia)->exists();
+                if (!$existe) {
+                    ChatbotPreguntaSinRespuesta::create([
+                        'pregunta' => $preguntaLimpia
+                    ]);
+                }
+            }
         }
 
         return 'Lo siento, soy un Asistente del IVSS configurado exclusivamente para orientación de trámites y consultas institucionales. No cuento con IA externa ni conexión a Internet abierta para responder a esa solicitud. ¿Te puedo ayudar buscando alguna farmacia, centro de salud, trámite de RRHH o del Sistema Tiuna?';

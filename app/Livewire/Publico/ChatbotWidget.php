@@ -114,6 +114,22 @@ class ChatbotWidget extends Component
     #[On('procesar-respuesta-bot')]
     public function procesarRespuestaBot(string $query, ?ProcesarMensajeChatbotAction $action = null)
     {
+        // Rate limiting por IP/sesión en las acciones del chatbot (CWE-770)
+        $rateKey = 'chatbot:' . request()->ip();
+        if (\Illuminate\Support\Facades\RateLimiter::tooManyAttempts($rateKey, 25)) {
+            $this->messages[] = [
+                'id' => 'bot-' . uniqid(),
+                'sender' => 'bot',
+                'type' => 'answer',
+                'text' => 'Has enviado varios mensajes en poco tiempo. Por favor espera unos segundos antes de continuar.',
+            ];
+            $this->isThinking = false;
+            $this->dispatch('chat-scrolled');
+            return;
+        }
+        \Illuminate\Support\Facades\RateLimiter::hit($rateKey, 60);
+
+        $query = \Illuminate\Support\Str::limit(trim($query), 300);
         $action = $action ?? app(ProcesarMensajeChatbotAction::class);
         $respuesta = $action->execute($query);
 

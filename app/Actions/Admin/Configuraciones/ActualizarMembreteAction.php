@@ -15,7 +15,8 @@ class ActualizarMembreteAction
             Storage::disk('public')->delete($config->valor);
         }
 
-        $nombreArchivo = 'membrete-' . time() . '.' . $archivo->getClientOriginalExtension();
+        $extension = $archivo->extension() ?: $archivo->guessExtension() ?: 'png';
+        $nombreArchivo = 'membrete-' . time() . '.' . $extension;
         $ruta = $archivo->storeAs('modulos', $nombreArchivo, 'public');
 
         $config->valor = $ruta;

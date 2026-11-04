@@ -91,7 +91,7 @@ class AuditoriaManager extends Component
 
             foreach ($activities as $act) {
                 $props = $act->properties ?? [];
-                fputcsv($handle, [
+                fputcsv($handle, array_map([$this, 'sanitizeCsvValue'], [
                     $act->id,
                     $act->created_at->format('Y-m-d H:i:s'),
                     strtoupper($act->event ?? 'ACCION'),
@@ -103,7 +103,7 @@ class AuditoriaManager extends Component
                     $props['navegador'] ?? 'N/A',
                     $props['sistema_operativo'] ?? 'N/A',
                     $props['url'] ?? 'N/A',
-                ]);
+                ]));
             }
 
             fclose($handle);
@@ -150,6 +150,21 @@ class AuditoriaManager extends Component
         }
 
         return $query;
+    }
+
+    /**
+     * Sanitiza los valores de celdas para prevenir inyección de fórmulas en hojas de cálculo (CSV Injection / CWE-1236).
+     */
+    private function sanitizeCsvValue($value): string
+    {
+        if ($value === null) {
+            return '';
+        }
+        $str = (string) $value;
+        if (preg_match('/^[=\+\-@\t\r]/', $str)) {
+            return "'" . $str;
+        }
+        return $str;
     }
 
     public function render()

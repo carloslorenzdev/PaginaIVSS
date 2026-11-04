@@ -19,7 +19,8 @@ class ActualizarBackgroundsAction
                     Storage::disk('public')->delete($config->valor);
                 }
 
-                $nombreArchivo = $clave . '-' . time() . '.' . $archivo->getClientOriginalExtension();
+                $extension = $archivo->extension() ?: $archivo->guessExtension() ?: 'jpg';
+                $nombreArchivo = $clave . '-' . time() . '.' . $extension;
                 $ruta = $archivo->storeAs('modulos', $nombreArchivo, 'public');
 
                 $config->valor = $ruta;

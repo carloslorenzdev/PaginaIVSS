@@ -100,6 +100,7 @@ class Authenticator2faController extends Controller
 
         // DESHABILITA MÉTODO
         AuthenticatorAppService::desactivar($user);
+        \App\Services\Auth\TwoFactorAuthService::forgetRememberDevice($user);
         Log::channel('acciones')->info('El usuario "' . $user->usuario . '" ha desactivado el método 2FA de Authenticator App');
         TwoFactorAuthService::clearRateLimitedOtp($throttleKey);
 

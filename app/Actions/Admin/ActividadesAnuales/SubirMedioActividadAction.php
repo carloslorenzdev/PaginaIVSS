@@ -12,7 +12,7 @@ class SubirMedioActividadAction
     {
         $actividad = ActividadAnual::findOrFail($id);
         
-        $extension = $archivo->getClientOriginalExtension();
+        $extension = $archivo->extension() ?: $archivo->guessExtension() ?: 'jpg';
         $nombreOriginal = $archivo->getClientOriginalName();
         $nombreOriginalStr = pathinfo($nombreOriginal, PATHINFO_FILENAME);
         $nombreArchivo = time() . '-' . Str::slug($nombreOriginalStr) . '.' . $extension;

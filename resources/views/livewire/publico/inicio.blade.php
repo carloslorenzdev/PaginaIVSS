@@ -19,7 +19,7 @@
                                 @forelse($carruseles as $index => $carrusel)
                                     <div class="carousel-item {{ $index === 0 ? 'active' : '' }} h-100 position-relative">
                                         @if($carrusel->enlace)
-                                            <a href="{{ $carrusel->enlace }}" target="_blank" class="d-block w-100 h-100">
+                                            <a href="{{ $carrusel->enlace }}" target="_blank" rel="noopener noreferrer" class="d-block w-100 h-100">
                                         @endif
                                         
                                         <img src="{{ asset('storage/' . $carrusel->imagen_ruta) }}" class="hero-parallax-img w-100 h-100" style="object-fit: cover;" alt="Carrusel Image">
@@ -97,10 +97,10 @@
                             <p class="text-white-50 small mb-4">Plataforma de autoliquidación y gestión de trabajadores para empresas.</p>
                             <div class="d-flex gap-2 w-100">
                                 @if(($configuraciones['visible_url_tiuna'] ?? '1') !== '0')
-                                <a href="{{ $configuraciones['url_tiuna'] ?? '#' }}" target="_blank" class="btn-ultimate btn-ultimate-red flex-fill d-flex align-items-center justify-content-center text-center px-2 py-2 fs-6 text-decoration-none">INGRESAR</a>
+                                <a href="{{ $configuraciones['url_tiuna'] ?? '#' }}" target="_blank" rel="noopener noreferrer" class="btn-ultimate btn-ultimate-red flex-fill d-flex align-items-center justify-content-center text-center px-2 py-2 fs-6 text-decoration-none">INGRESAR</a>
                                 @endif
                                 @if(($configuraciones['visible_url_registro_tiuna'] ?? '1') !== '0')
-                                <a href="{{ $configuraciones['url_registro_tiuna'] ?? '#' }}" target="_blank" class="btn-ultimate btn-ultimate-outline border-white text-white flex-fill d-flex align-items-center justify-content-center text-center px-2 py-2 fs-6 text-decoration-none">REGISTRO</a>
+                                <a href="{{ $configuraciones['url_registro_tiuna'] ?? '#' }}" target="_blank" rel="noopener noreferrer" class="btn-ultimate btn-ultimate-outline border-white text-white flex-fill d-flex align-items-center justify-content-center text-center px-2 py-2 fs-6 text-decoration-none">REGISTRO</a>
                                 @endif
                             </div>
                         </div>
@@ -178,26 +178,26 @@
 
         <div class="d-flex flex-column text-start">
               @if(($configuraciones['visible_url_sistema_estado_cuenta'] ?? '1') !== '0')
-              <a href="{{ $configuraciones['url_sistema_estado_cuenta'] ?? '#' }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank"><i class="fas fa-file-invoice-dollar me-2"></i> Estado de Cuenta</a>
+              <a href="{{ $configuraciones['url_sistema_estado_cuenta'] ?? '#' }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-invoice-dollar me-2"></i> Estado de Cuenta</a>
               @endif
               <a href="javascript:void(0)" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalAvisoIntimacion" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-money-check-alt me-2"></i> Orden de Pago</a>
               @if(($configuraciones['visible_url_sistema_solvencias'] ?? '1') !== '0')
-              <a href="{{ $configuraciones['url_sistema_solvencias'] ?? '#' }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank"><i class="fas fa-certificate me-2"></i> Solvencias Electrónicas</a>
+              <a href="{{ $configuraciones['url_sistema_solvencias'] ?? '#' }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-certificate me-2"></i> Solvencias Electrónicas</a>
               @endif
               @if(($configuraciones['visible_url_sistema_indemnizaciones_diarias'] ?? '1') !== '0')
-              <a href="{{ $configuraciones['url_sistema_indemnizaciones_diarias'] ?? '#' }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank"><i class="fas fa-hand-holding-medical me-2"></i> Indemnizaciones Diarias</a>
+              <a href="{{ $configuraciones['url_sistema_indemnizaciones_diarias'] ?? '#' }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-hand-holding-medical me-2"></i> Indemnizaciones Diarias</a>
               @endif
               @if(($configuraciones['visible_url_sistema_verificacion_solvencia'] ?? '1') !== '0')
-              <a href="{{ $configuraciones['url_sistema_verificacion_solvencia'] ?? '#' }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank"><i class="fas fa-check-circle me-2"></i> Verificación de Solvencia</a>
+              <a href="{{ $configuraciones['url_sistema_verificacion_solvencia'] ?? '#' }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-check-circle me-2"></i> Verificación de Solvencia</a>
               @endif
               @if(($configuraciones['visible_url_sistema_indemnizaciones_unicas'] ?? '1') !== '0')
-              <a href="{{ $configuraciones['url_sistema_indemnizaciones_unicas'] ?? '#' }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank"><i class="fas fa-hand-holding-usd me-2"></i> Indemnizaciones Únicas</a>
+              <a href="{{ $configuraciones['url_sistema_indemnizaciones_unicas'] ?? '#' }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-hand-holding-usd me-2"></i> Indemnizaciones Únicas</a>
               @endif
               @if(($configuraciones['visible_url_sistema_sigesp_v3'] ?? '1') !== '0')
-              <a href="{{ $configuraciones['url_sistema_sigesp_v3'] ?? '#' }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank"><i class="fas fa-laptop-code me-2"></i> Sigesp_v3</a>
+              <a href="{{ $configuraciones['url_sistema_sigesp_v3'] ?? '#' }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-laptop-code me-2"></i> Sigesp_v3</a>
               @endif
               @if(($configuraciones['visible_url_sistema_sigesp_v4'] ?? '1') !== '0')
-              <a href="{{ $configuraciones['url_sistema_sigesp_v4'] ?? '#' }}" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0" target="_blank"><i class="fas fa-laptop-code me-2"></i> Sigesp_v4</a>
+              <a href="{{ $configuraciones['url_sistema_sigesp_v4'] ?? '#' }}" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-laptop-code me-2"></i> Sigesp_v4</a>
               @endif
         </div>
       </div>
@@ -477,17 +477,17 @@
                             </a>
                             @endif
                             @if(($configuraciones['visible_url_ingresa_correo'] ?? '1') !== '0')
-                            <a href="{{ $configuraciones['url_ingresa_correo'] ?? '#' }}" target="_blank" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0">
+                            <a href="{{ $configuraciones['url_ingresa_correo'] ?? '#' }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0">
                                 <i class="fas fa-envelope me-2"></i> Ingresa a tu Correo
                             </a>
                             @endif
                             @if(($configuraciones['visible_url_solicitudes_rrhh'] ?? '1') !== '0')
-                            <a href="{{ $configuraciones['url_solicitudes_rrhh'] ?? '#' }}" target="_blank" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0">
+                            <a href="{{ $configuraciones['url_solicitudes_rrhh'] ?? '#' }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0">
                                 <i class="fas fa-file-alt me-2"></i> Solicitudes a RRHH
                             </a>
                             @endif
                             @if(($configuraciones['visible_url_consulta_prestaciones'] ?? '1') !== '0')
-                            <a href="{{ $configuraciones['url_consulta_prestaciones'] ?? '#' }}" target="_blank" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0">
+                            <a href="{{ $configuraciones['url_consulta_prestaciones'] ?? '#' }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0">
                                 <i class="fas fa-hand-holding-usd me-2"></i> Consulta de Prestaciones Sociales
                             </a>
                             @endif
@@ -671,17 +671,17 @@
 
                         <div class="d-flex flex-column text-start">
                             @if(($configuraciones['visible_url_verificacion_autorizacion'] ?? '1') !== '0')
-                            <a href="{{ $configuraciones['url_verificacion_autorizacion'] ?? '#' }}" target="_blank" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0">
+                            <a href="{{ $configuraciones['url_verificacion_autorizacion'] ?? '#' }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0">
                                 <i class="fas fa-check-circle me-2"></i> Verificación de Autorización de Cobro de Pensión
                             </a>
                             @endif
                             @if(($configuraciones['visible_url_verificacion_pension'] ?? '1') !== '0')
-                            <a href="{{ $configuraciones['url_verificacion_pension'] ?? '#' }}" target="_blank" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0">
+                            <a href="{{ $configuraciones['url_verificacion_pension'] ?? '#' }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0">
                                 <i class="fas fa-blind me-2"></i> Constancia de Pensión
                             </a>
                             @endif
                             @if(($configuraciones['visible_url_verificacion_cotizacion'] ?? '1') !== '0')
-                            <a href="{{ $configuraciones['url_verificacion_cotizacion'] ?? '#' }}" target="_blank" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0">
+                            <a href="{{ $configuraciones['url_verificacion_cotizacion'] ?? '#' }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0">
                                 <i class="fas fa-hourglass-half me-2"></i> Constancia de Cotización
                             </a>
                             @endif
@@ -711,17 +711,17 @@
 
                         <div class="d-flex flex-column text-start">
                             @if(($configuraciones['visible_url_constancia_cotizaciones'] ?? '1') !== '0')
-                            <a href="{{ $configuraciones['url_constancia_cotizaciones'] ?? '#' }}" target="_blank" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0">
+                            <a href="{{ $configuraciones['url_constancia_cotizaciones'] ?? '#' }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0">
                                 <i class="fas fa-hourglass-half me-2"></i> Cotizaciones
                             </a>
                             @endif
                             @if(($configuraciones['visible_url_constancia_pension'] ?? '1') !== '0')
-                            <a href="{{ $configuraciones['url_constancia_pension'] ?? '#' }}" target="_blank" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0">
+                            <a href="{{ $configuraciones['url_constancia_pension'] ?? '#' }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0">
                                 <i class="fas fa-blind me-2"></i> Pensión
                             </a>
                             @endif
                             @if(($configuraciones['visible_url_constancia_autorizacion'] ?? '1') !== '0')
-                            <a href="{{ $configuraciones['url_constancia_autorizacion'] ?? '#' }}" target="_blank" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0">
+                            <a href="{{ $configuraciones['url_constancia_autorizacion'] ?? '#' }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0">
                                 <i class="fas fa-file-contract me-2"></i> Autorización de Cobro de Pensión
                             </a>
                             @endif
@@ -787,7 +787,7 @@
                         </button>
                         
                         <template x-if="promoEnlace">
-                            <a :href="promoEnlace" target="_blank" class="d-block">
+                            <a :href="promoEnlace" target="_blank" rel="noopener noreferrer" class="d-block">
                                 <img :src="promoRuta" class="img-fluid rounded-4 shadow-lg" style="max-height: 85vh; width: auto; max-width: 100%; object-fit: contain;">
                             </a>
                         </template>
@@ -814,7 +814,7 @@
                         <i class="fas fa-times fs-5 text-dark"></i>
                     </button>
                     @if($alertaEnlace)
-                        <a href="{{ $alertaEnlace }}" target="_blank" class="d-block">
+                        <a href="{{ $alertaEnlace }}" target="_blank" rel="noopener noreferrer" class="d-block">
                     @endif
                     <img src="{{ asset('storage/' . $alertaImg) }}" class="img-fluid rounded-4 shadow-lg" loading="eager" fetchpriority="high" decoding="sync" style="max-height: 85vh; width: auto; max-width: 100%; object-fit: contain;">
                     @if($alertaEnlace)

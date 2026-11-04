@@ -59,20 +59,29 @@ class BuscarUbicacionGpsAction
                 return 'Coordenadas geográficas inválidas.';
             }
 
-            try {
-                $response = Http::withHeaders([
-                    'User-Agent' => 'IVSS-Chatbot/1.0 (Contacto: soporte@ivss.gob.ve)'
-                ])->timeout(5)->get("https://nominatim.openstreetmap.org/reverse?lat={$lat}&lon={$lng}&format=json");
+            // Cachear y limitar consultas a Nominatim (CWE-770) agrupando por cercanía (~1km)
+            $cacheKey = 'nominatim_rev:' . round((float) $lat, 2) . '_' . round((float) $lng, 2);
+            $state = \Illuminate\Support\Facades\Cache::remember($cacheKey, now()->addDays(7), function () use ($lat, $lng) {
+                try {
+                    $response = Http::withHeaders([
+                        'User-Agent' => 'IVSS-Chatbot/1.0 (Contacto: soporte@ivss.gob.ve)'
+                    ])->timeout(4)->get("https://nominatim.openstreetmap.org/reverse?lat={$lat}&lon={$lng}&format=json");
 
-                if ($response->successful()) {
-                    $data = $response->json();
-                    $address = $data['address'] ?? [];
-                    $state = $address['state'] ?? $address['state_district'] ?? $address['province'] ?? $address['region'] ?? $address['city'] ?? null;
+                    if ($response->successful()) {
+                        $data = $response->json();
+                        $address = $data['address'] ?? [];
+                        return $address['state'] ?? $address['state_district'] ?? $address['province'] ?? $address['region'] ?? $address['city'] ?? null;
+                    }
+                } catch (\Exception $e) {
+                    \Illuminate\Support\Facades\Log::warning('Error en consulta externa Nominatim: ' . $e->getMessage());
+                }
+                return null;
+            });
 
-                    if ($state) {
-                        $estadoNormalizado = $this->resolverEstado->normalizar($state);
-                        
-                        $centros = Directorio::centrosSalud()
+            if ($state) {
+                $estadoNormalizado = $this->resolverEstado->normalizar($state);
+                
+                $centros = Directorio::centrosSalud()
                             ->where('estado', 'LIKE', "%$estadoNormalizado%")
                             ->take(3)
                             ->get();
@@ -91,10 +100,6 @@ class BuscarUbicacionGpsAction
                         }
 
                         return "Detectamos tu ubicación en {$estadoNormalizado}, pero no encontramos centros de salud registrados en el sistema para esa región. Puedes escribir <b>'centros de salud en' seguido de tu estado</b> (Ejemplo: centros de salud en Distrito Capital o Miranda).";
-                    }
-                }
-            } catch (\Exception $e) {
-                return "Hubo un problema de conexión al determinar tu ubicación. Por favor escribe <b>'centros de salud en' seguido de tu estado</b> (Ejemplo: centros de salud en Distrito Capital o Miranda).";
             }
 
             return "Obtuvimos tus coordenadas, pero tuvimos problemas determinando tu estado exacto en nuestros registros. Por favor escribe <b>'centros de salud en' seguido de tu estado</b> (Ejemplo: centros de salud en Distrito Capital o Miranda).";
