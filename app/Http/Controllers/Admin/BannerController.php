@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Configuracion;
+use App\Services\ImageOptimizerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -38,7 +39,15 @@ class BannerController extends Controller
             'enlace' => 'nullable|url|max:255',
         ]);
 
-        $ruta_imagen = $request->file('archivo')->store('banners', 'public');
+        $opt = ImageOptimizerService::optimizarYGuardar(
+            $request->file('archivo'),
+            'banners',
+            'alerta-' . time(),
+            ImageOptimizerService::MAX_WIDTH_BANNER,
+            ImageOptimizerService::CALIDAD_WEBP,
+            'public'
+        );
+        $ruta_imagen = $opt['ruta'];
 
         Configuracion::updateOrCreate(['clave' => 'alerta_emergente_img'], ['valor' => $ruta_imagen]);
         Configuracion::updateOrCreate(['clave' => 'alerta_emergente_url'], ['valor' => $request->enlace]);
@@ -73,7 +82,15 @@ class BannerController extends Controller
             'enlace' => 'nullable|url|max:255',
         ]);
 
-        $ruta_imagen = $request->file('archivo')->store('banners', 'public');
+        $opt = ImageOptimizerService::optimizarYGuardar(
+            $request->file('archivo'),
+            'banners',
+            'banner-' . time(),
+            ImageOptimizerService::MAX_WIDTH_BANNER,
+            ImageOptimizerService::CALIDAD_WEBP,
+            'public'
+        );
+        $ruta_imagen = $opt['ruta'];
 
         Banner::create([
             'titulo' => $request->titulo,

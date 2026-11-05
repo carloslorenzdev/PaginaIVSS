@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Intervention\Image\ImageManagerStatic as Image;
+use App\Services\ImageOptimizerService;
 
 class UploadEditorImageController extends Controller
 {
@@ -24,18 +24,21 @@ class UploadEditorImageController extends Controller
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            // Derivar extensión del MIME verificado por finfo en el servidor y no del cliente (CWE-434)
-            $extension = $file->extension() ?: $file->guessExtension() ?: 'jpg';
-            $filename = time() . '_' . Str::random(10) . '.' . $extension;
-            
-            // Define the storage path
             $path = 'noticias/editor/' . date('Y/m');
-            
-            // Store the file in the public disk
-            $file->storeAs($path, $filename, 'public');
+            $nombreBase = time() . '_' . Str::random(10);
+
+            // Optimización y conversión automática a WebP (máx 1200px para el cuerpo del artículo)
+            $opt = ImageOptimizerService::optimizarYGuardar(
+                $file,
+                $path,
+                $nombreBase,
+                1200,
+                ImageOptimizerService::CALIDAD_WEBP,
+                'public'
+            );
 
             // Generate URL for the frontend
-            $url = Storage::disk('public')->url($path . '/' . $filename);
+            $url = Storage::disk('public')->url($opt['ruta']);
 
             return response()->json([
                 'success' => 1,

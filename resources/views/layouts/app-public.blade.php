@@ -48,7 +48,8 @@
     <div class="membrete-strip bg-white" style="width: 100%; overflow: hidden; line-height: 0; margin: 0; padding: 0;">
         @php
             $membrete = \App\Models\Configuracion::where('clave', 'membrete_img')->first();
-            $membreteUrl = $membrete && $membrete->valor ? asset('storage/' . $membrete->valor) : asset('imagenes/cintillo ivss_2026.png');
+            $cintilloFallback = file_exists(public_path('imagenes/cintillo ivss_2026.webp')) ? asset('imagenes/cintillo ivss_2026.webp') : asset('imagenes/cintillo ivss_2026.png');
+            $membreteUrl = $membrete && $membrete->valor ? asset('storage/' . $membrete->valor) : $cintilloFallback;
         @endphp
         <img src="{{ $membreteUrl }}" alt="Cintillo" style="width: 100.1%; height: auto; display: block; border: none; margin: 0; padding: 0; max-width: 100.1%;">
     </div>

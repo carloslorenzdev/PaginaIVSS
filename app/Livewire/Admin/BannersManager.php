@@ -8,6 +8,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use App\Models\Banner;
 use App\Models\Configuracion;
+use App\Services\ImageOptimizerService;
 use Illuminate\Support\Facades\Storage;
 
 #[Layout('layouts.app')]
@@ -68,8 +69,15 @@ class BannersManager extends Component
         $this->validate($rules, $messages);
 
         if ($this->nuevoAlertaArchivo) {
-            $ruta_imagen = $this->nuevoAlertaArchivo->store('banners', 'public');
-            Configuracion::updateOrCreate(['clave' => 'alerta_emergente_img'], ['valor' => $ruta_imagen]);
+            $opt = ImageOptimizerService::optimizarYGuardar(
+                $this->nuevoAlertaArchivo,
+                'banners',
+                'alerta-' . time(),
+                ImageOptimizerService::MAX_WIDTH_BANNER,
+                ImageOptimizerService::CALIDAD_WEBP,
+                'public'
+            );
+            Configuracion::updateOrCreate(['clave' => 'alerta_emergente_img'], ['valor' => $opt['ruta']]);
         }
 
         Configuracion::updateOrCreate(['clave' => 'alerta_emergente_url'], ['valor' => $this->nuevoAlertaEnlace ?: null]);
@@ -107,11 +115,18 @@ class BannersManager extends Component
             'bannerArchivo.max' => 'La imagen no debe exceder los 5MB.',
         ]);
 
-        $ruta_imagen = $this->bannerArchivo->store('banners', 'public');
+        $opt = ImageOptimizerService::optimizarYGuardar(
+            $this->bannerArchivo,
+            'banners',
+            'banner-' . time(),
+            ImageOptimizerService::MAX_WIDTH_BANNER,
+            ImageOptimizerService::CALIDAD_WEBP,
+            'public'
+        );
 
         Banner::create([
             'titulo' => $this->bannerTitulo,
-            'ruta_imagen' => $ruta_imagen,
+            'ruta_imagen' => $opt['ruta'],
             'enlace' => $this->bannerEnlace ?: null,
         ]);
 

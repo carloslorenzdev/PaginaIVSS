@@ -3,6 +3,7 @@
 namespace App\Actions\Admin\Revistas;
 
 use App\Models\Revista;
+use App\Services\ImageOptimizerService;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -44,9 +45,18 @@ class GuardarRevistaAction
                         'image/webp' => 'webp',
                     ];
                     if (array_key_exists($mimeType, $allowedMimeTypes)) {
-                        $extension = $allowedMimeTypes[$mimeType];
-                        $imageName = 'revistas/imagenes/' . Str::random(40) . '.' . $extension;
-                        Storage::disk('public')->put($imageName, $decodedImage);
+                        $tempFile = tempnam(sys_get_temp_dir(), 'rev_');
+                        file_put_contents($tempFile, $decodedImage);
+                        $opt = ImageOptimizerService::optimizarYGuardar(
+                            $tempFile,
+                            'revistas/imagenes',
+                            Str::random(40),
+                            1000,
+                            ImageOptimizerService::CALIDAD_WEBP,
+                            'public'
+                        );
+                        @unlink($tempFile);
+                        $imageName = $opt['ruta'];
                     }
                 }
             } catch (\Throwable $e) {}

@@ -3,6 +3,7 @@
 namespace App\Actions\Admin\Configuraciones;
 
 use App\Models\Configuracion;
+use App\Services\ImageOptimizerService;
 use Illuminate\Support\Facades\Storage;
 
 class ActualizarBackgroundsAction
@@ -19,11 +20,16 @@ class ActualizarBackgroundsAction
                     Storage::disk('public')->delete($config->valor);
                 }
 
-                $extension = $archivo->extension() ?: $archivo->guessExtension() ?: 'jpg';
-                $nombreArchivo = $clave . '-' . time() . '.' . $extension;
-                $ruta = $archivo->storeAs('modulos', $nombreArchivo, 'public');
+                $opt = ImageOptimizerService::optimizarYGuardar(
+                    $archivo,
+                    'modulos',
+                    $clave . '-' . time(),
+                    ImageOptimizerService::MAX_WIDTH_BANNER,
+                    ImageOptimizerService::CALIDAD_WEBP,
+                    'public'
+                );
 
-                $config->valor = $ruta;
+                $config->valor = $opt['ruta'];
                 $config->save();
             }
         }

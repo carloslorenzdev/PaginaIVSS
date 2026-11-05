@@ -4,6 +4,7 @@ namespace App\Actions\Admin\Noticias;
 
 use App\Models\Noticia;
 use App\Models\Medio;
+use App\Services\ImageOptimizerService;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -30,39 +31,41 @@ class ActualizarNoticiaAction
 
         if ($archivo) {
             $imagenPrincipal = $noticia->medios()->wherePivot('tipo_relacion', 'principal')->first();
+            $nombreOriginal = $archivo->getClientOriginalName();
+            $nombreOriginalStr = pathinfo($nombreOriginal, PATHINFO_FILENAME);
+            $nombreBase = time() . '-' . Str::slug($nombreOriginalStr);
+
+            // Optimización y conversión automática a WebP
+            $opt = ImageOptimizerService::optimizarYGuardar(
+                $archivo,
+                'medios',
+                $nombreBase,
+                ImageOptimizerService::MAX_WIDTH_NOTICIA,
+                ImageOptimizerService::CALIDAD_WEBP,
+                'public'
+            );
+
             if ($imagenPrincipal) {
                 // Delete old image
                 Storage::disk('public')->delete($imagenPrincipal->ruta);
                 // Update Medio
-                $extension = $archivo->extension() ?: $archivo->guessExtension() ?: 'jpg';
-                $nombreOriginal = $archivo->getClientOriginalName();
-                $nombreOriginalStr = pathinfo($nombreOriginal, PATHINFO_FILENAME);
-                $nombreArchivo = time() . '-' . Str::slug($nombreOriginalStr) . '.' . $extension;
-                $ruta = $archivo->storeAs('medios', $nombreArchivo, 'public');
-
                 $imagenPrincipal->update([
                     'nombre_original' => $nombreOriginal,
-                    'nombre_archivo' => $nombreArchivo,
-                    'ruta' => $ruta,
-                    'mime_type' => $archivo->getMimeType(),
-                    'tamano' => $archivo->getSize(),
+                    'nombre_archivo' => $opt['nombre_archivo'],
+                    'ruta' => $opt['ruta'],
+                    'mime_type' => $opt['mime_type'],
+                    'tamano' => $opt['tamano'],
                     'leyenda' => $data['leyenda'] ?? $imagenPrincipal->leyenda,
                 ]);
             } else {
                 // Create Medio
-                $extension = $archivo->extension() ?: $archivo->guessExtension() ?: 'jpg';
-                $nombreOriginal = $archivo->getClientOriginalName();
-                $nombreOriginalStr = pathinfo($nombreOriginal, PATHINFO_FILENAME);
-                $nombreArchivo = time() . '-' . Str::slug($nombreOriginalStr) . '.' . $extension;
-                $ruta = $archivo->storeAs('medios', $nombreArchivo, 'public');
-
                 $medio = Medio::create([
                     'tipo' => 'imagen',
                     'nombre_original' => $nombreOriginal,
-                    'nombre_archivo' => $nombreArchivo,
-                    'ruta' => $ruta,
-                    'mime_type' => $archivo->getMimeType(),
-                    'tamano' => $archivo->getSize(),
+                    'nombre_archivo' => $opt['nombre_archivo'],
+                    'ruta' => $opt['ruta'],
+                    'mime_type' => $opt['mime_type'],
+                    'tamano' => $opt['tamano'],
                     'usuario_id' => $userId,
                     'leyenda' => $data['leyenda'] ?? null,
                 ]);

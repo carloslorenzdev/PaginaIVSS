@@ -3,6 +3,7 @@
 namespace App\Actions\Admin\Configuraciones;
 
 use App\Models\Configuracion;
+use App\Services\ImageOptimizerService;
 use Illuminate\Support\Facades\Storage;
 
 class ActualizarMembreteAction
@@ -15,11 +16,16 @@ class ActualizarMembreteAction
             Storage::disk('public')->delete($config->valor);
         }
 
-        $extension = $archivo->extension() ?: $archivo->guessExtension() ?: 'png';
-        $nombreArchivo = 'membrete-' . time() . '.' . $extension;
-        $ruta = $archivo->storeAs('modulos', $nombreArchivo, 'public');
+        $opt = ImageOptimizerService::optimizarYGuardar(
+            $archivo,
+            'modulos',
+            'membrete-' . time(),
+            ImageOptimizerService::MAX_WIDTH_BANNER,
+            ImageOptimizerService::CALIDAD_WEBP,
+            'public'
+        );
 
-        $config->valor = $ruta;
+        $config->valor = $opt['ruta'];
         $config->save();
 
         return $config;
