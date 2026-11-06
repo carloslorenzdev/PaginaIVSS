@@ -72,19 +72,42 @@
                                     <div class="row g-3">
                                         @foreach($datos['documentos'] as $doc)
                                             <div class="col-12">
-                                                <div class="card border-0 shadow-sm border-start border-4 border-{{ $datos['color'] }} hover-elevate transition-all">
-                                                    <div class="card-body p-3 d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between">
-                                                        <div class="mb-3 mb-md-0 d-flex align-items-center">
+                                                <div class="card border-0 shadow-sm border-start border-4 border-{{ $doc['disponible'] ? $datos['color'] : 'secondary-subtle' }} hover-elevate transition-all {{ !$doc['disponible'] ? 'bg-light bg-opacity-50' : '' }}">
+                                                    <div class="card-body p-3 d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3">
+                                                        <div class="d-flex align-items-center">
                                                             @php
-                                                                $esPdf = str_ends_with(strtolower($doc['url']), '.pdf');
+                                                                $esPdf = ($doc['extension'] ?? '') === 'pdf';
                                                                 $iconoDoc = $esPdf ? 'fas fa-file-pdf text-danger' : 'fas fa-file-word text-primary';
+                                                                if (!$doc['disponible']) {
+                                                                    $iconoDoc = 'fas fa-file-lines text-muted';
+                                                                }
                                                             @endphp
                                                             <i class="{{ $iconoDoc }} fa-2x me-3 opacity-75"></i>
-                                                            <h5 class="fw-bold text-dark mb-0" style="font-size: 1rem;">{{ $doc['titulo'] }}</h5>
+                                                            <div>
+                                                                <h5 class="fw-bold {{ $doc['disponible'] ? 'text-dark' : 'text-secondary' }} mb-0" style="font-size: 1rem;">
+                                                                    {{ $doc['titulo'] }}
+                                                                </h5>
+                                                                @if($doc['disponible'] && $doc['reciente'])
+                                                                    <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-2.5 py-1 mt-1 d-inline-flex align-items-center" style="font-size: 0.72rem;">
+                                                                        <i class="fas fa-check-circle me-1"></i> Actualizado recientemente
+                                                                    </span>
+                                                                @elseif(!$doc['disponible'])
+                                                                    <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle rounded-pill px-2.5 py-1 mt-1 d-inline-flex align-items-center" style="font-size: 0.72rem;">
+                                                                        <i class="fas fa-clock me-1"></i> Disponible próximamente
+                                                                    </span>
+                                                                @endif
+                                                            </div>
                                                         </div>
-                                                        <a href="{{ $doc['url'] }}" target="_blank" class="btn btn-outline-{{ $datos['color'] }} btn-sm px-4 fw-bold rounded-pill shadow-sm">
-                                                            <i class="fas fa-download me-1"></i> Descargar
-                                                        </a>
+
+                                                        @if($doc['disponible'])
+                                                            <a href="{{ $doc['url'] }}" target="_blank" download class="btn btn-outline-{{ $datos['color'] }} btn-sm px-4 fw-bold rounded-pill shadow-sm text-nowrap">
+                                                                <i class="fas fa-download me-1"></i> Descargar
+                                                            </a>
+                                                        @else
+                                                            <button type="button" disabled class="btn btn-light text-muted border btn-sm px-3 fw-medium rounded-pill shadow-none text-nowrap" style="cursor: not-allowed; opacity: 0.8;" title="Documento en proceso de actualización">
+                                                                <i class="fas fa-lock me-1"></i> No disponible
+                                                            </button>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>

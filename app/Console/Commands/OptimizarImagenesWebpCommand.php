@@ -432,3 +432,4 @@ class OptimizarImagenesWebpCommand extends Command
         }
     }
 }
+

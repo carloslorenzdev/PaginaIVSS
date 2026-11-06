@@ -38,10 +38,7 @@
                                                 <h2 class="text-white fw-bold mb-3" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">{{ $carrusel->titulo }}</h2>
                                                 <div class="d-flex align-items-center text-white-50">
                                                     @if($carrusel->fecha_publicacion)
-                                                        <span class="me-4"><i class="fas fa-clock me-1"></i> {{ \Carbon\Carbon::parse($carrusel->fecha_publicacion)->format('d/m/Y') }}</span>
-                                                    @endif
-                                                    @if($carrusel->autor)
-                                                        <span><i class="fas fa-user-circle me-1"></i> {{ $carrusel->autor }}</span>
+                                                        <span><i class="fas fa-clock me-1"></i> {{ \Carbon\Carbon::parse($carrusel->fecha_publicacion)->format('d/m/Y') }}</span>
                                                     @endif
                                                 </div>
                                             </div>
