@@ -44,9 +44,19 @@
                                 dark:file:bg-red-500 dark:hover:file:bg-red-400">
                         </div>
                         
-                        <div id="membretePreviewContainer" class="hidden bg-gray-50 dark:bg-neutral-800 p-4 border border-gray-200 dark:border-neutral-700 rounded-lg">
-                            <p class="text-sm font-semibold text-gray-600 dark:text-neutral-300 mb-2">Vista Previa del Nuevo Membrete:</p>
-                            <img id="membretePreviewImg" src="" alt="Vista Previa" class="max-w-full h-auto rounded shadow-sm">
+                        <div id="membretePreviewContainer" class="hidden bg-gray-50 dark:bg-neutral-800 p-4 border border-gray-200 dark:border-neutral-700 rounded-xl transition-all">
+                            <div class="flex items-center justify-between mb-2">
+                                <p class="text-sm font-semibold text-gray-700 dark:text-neutral-300 flex items-center gap-1.5">
+                                    <i class="bx bx-check-circle text-green-500"></i> Vista Previa del Nuevo Membrete:
+                                </p>
+                                <span id="membreteDimensions" class="text-xs font-mono text-gray-500 dark:text-neutral-400 bg-gray-200 dark:bg-neutral-700 px-2 py-0.5 rounded"></span>
+                            </div>
+                            <div class="overflow-hidden rounded-lg border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 shadow-sm">
+                                <img id="membretePreviewImg" src="" alt="Vista Previa" class="max-w-full h-auto mx-auto block">
+                            </div>
+                            <p id="membreteResolutionWarning" class="hidden text-xs font-semibold text-amber-600 dark:text-amber-400 mt-2 flex items-center gap-1">
+                                <i class="bx bx-error-circle"></i> Advertencia: La resolución de la imagen es baja (<span id="resDimensionsText"></span>). Se recomienda mínimo 800x100 píxeles.
+                            </p>
                         </div>
 
                         <div class="flex flex-wrap gap-3 pt-3">
@@ -104,16 +114,15 @@
                                 <label class="block text-sm font-bold mb-2 text-gray-700 dark:text-gray-300">{{ $label }}</label>
                                 <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
                                     <input type="file" name="{{ $key }}" accept="image/*" 
-                                        class="block w-full text-sm text-gray-500 dark:text-neutral-400
+                                        class="input-bg-preview block w-full text-sm text-gray-500 dark:text-neutral-400
                                         file:me-3 file:py-2 file:px-3 file:rounded-lg file:border-0
                                         file:text-xs file:font-bold file:bg-teal-50 file:text-teal-700 dark:file:bg-teal-900/30 dark:file:text-teal-400
-                                        hover:file:bg-teal-100 border border-gray-200 dark:border-neutral-700 rounded-xl p-1 bg-white dark:bg-neutral-900 shadow-sm cursor-pointer transition-colors">
+                                        hover:file:bg-teal-100 border border-gray-200 dark:border-neutral-700 rounded-xl p-1 bg-white dark:bg-neutral-900 shadow-sm cursor-pointer transition-colors"
+                                        data-preview-target="preview-{{ $key }}">
                                     
-                                    @if(!empty($configuraciones[$key]))
-                                        <div class="shrink-0 relative group rounded-lg overflow-hidden border border-gray-200 dark:border-neutral-700 shadow-sm">
-                                            <img src="{{ asset('storage/' . $configuraciones[$key]) }}" class="h-14 w-24 object-cover transform group-hover:scale-110 transition-transform duration-300">
-                                        </div>
-                                    @endif
+                                    <div class="shrink-0 relative group rounded-lg overflow-hidden border border-gray-200 dark:border-neutral-700 shadow-sm bg-gray-100 dark:bg-neutral-800">
+                                        <img id="preview-{{ $key }}" src="{{ !empty($configuraciones[$key]) ? asset('storage/' . $configuraciones[$key]) : asset('img/hero-innovation-bg.png') }}" class="h-14 w-24 object-cover transform group-hover:scale-110 transition-transform duration-300">
+                                    </div>
                                 </div>
                             </div>
                             @endforeach
@@ -154,13 +163,13 @@
                         </div>
                         <span class="mt-2 text-sm font-semibold text-gray-700 dark:text-neutral-300">Cargando vista previa...</span>
                     </div>
-                    <iframe id="livePreviewFrame" src="" class="w-full h-full border-0 absolute inset-0 opacity-0 transition-opacity duration-300" onload="handleIframeLoad()"></iframe>
+                    <iframe id="livePreviewFrame" src="" class="w-full h-full border-0 absolute inset-0 opacity-0 transition-opacity duration-300"></iframe>
                 </div>
             </div>
         </div>
     </div>
 @endsection
 
-@push('scripts')
+@push('page-scripts')
     <script src="{{ asset('js/admin/visual.js') }}" nonce="{{ app('csp-nonce') ?? '' }}"></script>
 @endpush
