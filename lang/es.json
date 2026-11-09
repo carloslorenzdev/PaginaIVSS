@@ -8,5 +8,9 @@
     "Not Found":"Página no encontrada",
     "Page Expired":"Página expirada",
     "Too Many Requests":"Demasiadas peticiones. Espere unos minutos",
-    "Service Unavailable":"Sistema en mantenimiento"
+    "Service Unavailable":"Sistema en mantenimiento",
+    "Showing": "Mostrando",
+    "to": "a",
+    "of": "de",
+    "results": "resultados"
 }

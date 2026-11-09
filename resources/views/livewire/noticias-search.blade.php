@@ -1,6 +1,6 @@
 <div>
     <div class="py-5" style="background-image: linear-gradient(rgba(243, 244, 246, 0.85), rgba(243, 244, 246, 0.85)), url('{{ asset('imagenes/fondo-ivss.png') }}'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh;">
-        <div class="container mt-4">
+        <div class="container mt-4" id="top-noticias-list">
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-5 border-bottom pb-3 gap-3">
                 <h2 class="fw-bold text-dark m-0">
                     <i class="fas fa-newspaper text-danger me-2"></i> ARCHIVO DE NOTICIAS
@@ -97,7 +97,7 @@
             <!-- Paginación -->
             @if($noticias->hasPages())
                 <div class="d-flex justify-content-center mt-5 pt-3">
-                    {{ $noticias->links() }}
+                    {{ $noticias->links('vendor.pagination.noticias-publicas') }}
                 </div>
             @endif
         </div>

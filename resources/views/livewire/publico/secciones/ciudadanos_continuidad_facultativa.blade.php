@@ -41,6 +41,7 @@
                     <ul class="text-muted mb-4" style="font-size: 1.1rem; line-height: 1.8;">
                         <li>Presentar Cédula de Identidad.</li>
                         <li>Llenar forma 14-196</li>
+                        <li>RIF (Registro de Información Fiscal)</li>
                     </ul>
 
                     <p class="text-muted mb-5 text-justify" style="font-size: 1.1rem; line-height: 1.8;">

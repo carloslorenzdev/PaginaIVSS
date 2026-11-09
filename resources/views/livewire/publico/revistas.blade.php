@@ -75,7 +75,7 @@
             </div>
 
             <div class="mt-5 d-flex justify-content-center">
-                {{ $revistas->links() }}
+                {{ $revistas->links('vendor.pagination.noticias-publicas') }}
             </div>
         @else
             <!-- ESTADO VACÍO -->

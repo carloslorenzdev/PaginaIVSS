@@ -77,7 +77,7 @@
             </div>
 
             <div class="mt-5 d-flex justify-content-center">
-                {{ $boletines->links() }}
+                {{ $boletines->links('vendor.pagination.noticias-publicas') }}
             </div>
         @else
             <!-- ESTADO VACÍO -->

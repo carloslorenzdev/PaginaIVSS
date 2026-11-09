@@ -16,7 +16,10 @@ class RevistasPublicas extends Component
 
     public string $search = '';
 
-    protected $paginationTheme = 'bootstrap';
+    public function paginationView()
+    {
+        return 'vendor.pagination.noticias-publicas';
+    }
 
     public function updatingSearch()
     {
