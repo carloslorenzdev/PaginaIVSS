@@ -51,8 +51,10 @@ class GuardarEnlacesController extends Controller
 
         foreach ($claves as $clave) {
             $rules[$clave] = ['nullable', 'string', 'max:500', function ($attribute, $value, $fail) {
-                if ($value && $value !== '#' && !preg_match('~^(https?://|mailto:|tel:|/)~i', $value)) {
-                    $fail("El enlace en '{$attribute}' debe ser una URL segura (iniciando con http://, https:// o /).");
+                $val = trim((string)$value);
+                // Acepta http://, https://, //, www., rutas /, dominios internos (.int, etc.), IPs y puertos (:28080)
+                if ($val !== '' && $val !== '#' && !preg_match('~^((https?://|//|www\.|/|mailto:|tel:)|[a-zA-Z0-9_.-]+(:\d+)?(/.*)?$)~i', $val)) {
+                    $fail("El enlace en '{$attribute}' debe ser una URL o dirección válida.");
                 }
             }];
             $rules['visible_' . $clave] = ['nullable', 'in:0,1'];

@@ -75,8 +75,9 @@
                                     <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-3.5">
                                         <i class="bx bx-link text-gray-400 group-focus-within/input:text-red-500 transition-colors"></i>
                                     </div>
-                                    <input type="url" name="{{ $clave }}" id="{{ $clave }}" value="{{ $enlaces[$clave] ?? '' }}" 
-                                           placeholder="https://ejemplo.com"
+                                    <input type="text" name="{{ $clave }}" id="{{ $clave }}" value="{{ $enlaces[$clave] ?? '' }}" 
+                                           placeholder="http://ejemplo.com o www.ejemplo.com"
+                                           autocomplete="off"
                                            class="input-enlace-url py-2.5 px-4 ps-10 pe-12 block w-full rounded-xl text-sm focus:border-red-500 focus:ring-red-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:text-neutral-300 dark:placeholder-neutral-500 shadow-sm hover:border-gray-300 dark:hover:border-neutral-600 transition-all {{ $esVisible ? 'border-gray-200 dark:border-neutral-700' : 'border-dashed border-amber-300 dark:border-amber-700/60 bg-amber-50/20 dark:bg-neutral-800/50 text-gray-400' }}">
 
                                     <!-- Botón del ojo a la derecha del input -->

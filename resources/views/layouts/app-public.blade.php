@@ -76,7 +76,7 @@
                         if(empty($url) || $url === '#') {
                             return 'href="javascript:void(0)" onclick="Swal.fire({icon: \'info\', title: \'Próximamente\', text: \'Esta red social no está disponible en este momento.\', confirmButtonColor: \'#dc3545\'})"';
                         }
-                        return 'href="' . e($url) . '" target="_blank" rel="noopener noreferrer"';
+                        return 'href="' . e(formatear_enlace($url)) . '" target="_blank" rel="noopener noreferrer"';
                     };
                 @endphp
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row gap-3">
@@ -165,7 +165,7 @@
                             if(empty($url) || $url === '#') {
                                 return 'href="javascript:void(0)" onclick="Swal.fire({icon: \'info\', title: \'Próximamente\', text: \'Esta red social no está disponible en este momento.\', confirmButtonColor: \'#dc3545\'})"';
                             }
-                            return 'href="' . e($url) . '" target="_blank" rel="noopener noreferrer"';
+                            return 'href="' . e(formatear_enlace($url)) . '" target="_blank" rel="noopener noreferrer"';
                         };
                     @endphp
                     <div class="d-flex gap-3 mb-4 flex-wrap">

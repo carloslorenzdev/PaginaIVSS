@@ -26,9 +26,12 @@ class SecurityHeaders
             $response->header('Referrer-Policy', 'strict-origin-when-cross-origin');
             $response->header('Permissions-Policy', 'geolocation=*, microphone=(), camera=()');
             
-            // HSTS solo se debería aplicar si se está usando HTTPS en producción
+            // HSTS solo se debería aplicar si se está usando HTTPS en producción.
+            // NOTA CRÍTICA: NO usar 'includeSubDomains' ni 'preload' porque los servicios legacy del IVSS
+            // (Tiuna, Solvencias, Constancias en puertos 28080-28089) operan en subdominios bajo HTTP puro.
+            // Con 'includeSubDomains', los navegadores forzaban automáticamente HTTPS en esos subdominios causando ERR_SSL_PROTOCOL_ERROR.
             if (config('app.env') === 'production' && $request->isSecure()) {
-                $response->header('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+                $response->header('Strict-Transport-Security', 'max-age=31536000');
             }
         }
 

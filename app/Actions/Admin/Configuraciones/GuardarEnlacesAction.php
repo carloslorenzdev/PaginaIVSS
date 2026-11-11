@@ -10,9 +10,10 @@ class GuardarEnlacesAction
     {
         foreach ($clavesPermitidas as $clave) {
             if (array_key_exists($clave, $enlaces)) {
+                $valor = is_string($enlaces[$clave]) ? trim($enlaces[$clave]) : $enlaces[$clave];
                 Configuracion::updateOrCreate(
                     ['clave' => $clave],
-                    ['valor' => $enlaces[$clave]]
+                    ['valor' => $valor]
                 );
             }
 

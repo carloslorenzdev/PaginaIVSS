@@ -27,6 +27,15 @@ class EnlacesSeeder extends Seeder
             $item->save();
         }
 
+        // Reparar URLs que tengan https:// apuntando a puertos HTTP legacy (28080-28089 o 9090)
+        $httpsPorts = Configuracion::where('valor', 'like', 'https://%:2808%')
+            ->orWhere('valor', 'like', 'https://%:9090%')
+            ->get();
+        foreach ($httpsPorts as $item) {
+            $item->valor = preg_replace('/^https:\/\//i', 'http://', $item->valor);
+            $item->save();
+        }
+
         // 3. URLs institucionales oficiales y verificadas
         $links = [
             // Redes Sociales
