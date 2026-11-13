@@ -152,10 +152,10 @@ class ConsultarAutorizacionCobroAction
         $autorizador = null;
         if ($idUsuarioAut !== '') {
             $autorizador = (array)(DB::connection('oracle_consulta')
-                ->selectOne(
-                    "SELECT NOMBRE, CEDULA FROM PRESTACIONES.USUARIO_PRESTACIONES WHERE UPPER(TRIM(ID_USUARIO)) = UPPER(TRIM(:id))",
-                    ['id' => $idUsuarioAut]
-                ) ?: []);
+                ->table('PRESTACIONES.USUARIO_PRESTACIONES')
+                ->whereRaw('UPPER(TRIM(ID_USUARIO)) = UPPER(TRIM(?))', [$idUsuarioAut])
+                ->select(['NOMBRE', 'CEDULA'])
+                ->first() ?: []);
         }
 
         // Formatear Nombres Completos
@@ -242,98 +242,83 @@ class ConsultarAutorizacionCobroAction
     }
 
     /**
-     * Ejecuta el query del programador unificado para obtener expediente, contingencia y banco.
+     * Obtiene los datos del expediente, contingencia y banco utilizando
+     * el Query Builder / ORM de Laravel unificando la consulta institucional del programador.
      */
     protected function obtenerDatosExpediente(string $ciPensionado): array
     {
-        // Query 1: Expedientes estándar (EXPEDIENTES_14105)
-        $sqlProgramador = "SELECT
-            TC.DESCRIPCION_DE_CONTINGENCIA AS TIPO_DE_PENSION,
-            E.CEDULA_CAUSANTE,
-            NVL(
-                NULLIF(REGEXP_REPLACE(TRIM(C_CAUS.PRIMER_NOMBRE || ' ' || C_CAUS.SEGUNDO_NOMBRE || ' ' || C_CAUS.PRIMER_APELLIDO || ' ' || C_CAUS.SEGUNDO_APELLIDO), ' +', ' '), ''),
-                CASE WHEN TRIM(E.CEDULA_CAUSANTE) = TRIM(CP.CEDULA_DEL_COBRADOR) THEN NVL(TRIM(CP.NOMBRE_COBRADOR), 'NO REGISTRADO') ELSE 'NO REGISTRADO' END
-            ) AS NOMBRE_CAUSANTE,
-            BP.NOMBRE_BANCO AS ENTIDAD_FINANCIERA,
-            E.NRO_CUENTA AS NUMERO_DE_CUENTA,
-            EP.DESCRIPCION AS ESTATUS_DE_LA_PENSION,
-            NVL(E.MONTO_PENSION, 0) AS MONTO_DE_PENSION,
-            E.NUMERO_RESOLUCION,
-            E.ORIGEN_DATA
-        FROM PRESTACIONES.COBRADOR_PENSION CP
-        INNER JOIN PRESTACIONES.EXPEDIENTES_14105 E
-            ON E.NUMERO_EXPEDIENTE = CP.NUMERO_EXPEDIENTE
-        LEFT JOIN SIRA.CIUDADANO C_CAUS
-            ON C_CAUS.ID_CIUDADANO = E.CEDULA_CAUSANTE
-        LEFT JOIN SIRA.CIUDADANO C_COB
-            ON C_COB.ID_CIUDADANO = CP.CEDULA_DEL_COBRADOR
-        INNER JOIN PRESTACIONES.TIPOS_CONTINGENCIA TC
-            ON TC.TIPO_DE_CONTINGENCIA = E.TIPO_DE_CONTINGENCIA
-        INNER JOIN PRESTACIONES.BANCO_PRESTACIONES BP
-            ON BP.ID_BANCO = E.ID_BANCO
-        INNER JOIN PRESTACIONES.ESTATUS_PENSIONES EP
-            ON EP.ID_ESTATUS = E.ID_ESTATUS
-        WHERE E.CEDULA_CAUSANTE = :ci";
+        // 1. Query Builder para Expedientes estándar (EXPEDIENTES_14105)
+        $expediente = DB::connection('oracle_consulta')
+            ->table('PRESTACIONES.COBRADOR_PENSION as cp')
+            ->join('PRESTACIONES.EXPEDIENTES_14105 as e', 'e.NUMERO_EXPEDIENTE', '=', 'cp.NUMERO_EXPEDIENTE')
+            ->leftJoin('SIRA.CIUDADANO as c_caus', 'c_caus.ID_CIUDADANO', '=', 'e.CEDULA_CAUSANTE')
+            ->leftJoin('SIRA.CIUDADANO as c_cob', 'c_cob.ID_CIUDADANO', '=', 'cp.CEDULA_DEL_COBRADOR')
+            ->join('PRESTACIONES.TIPOS_CONTINGENCIA as tc', 'tc.TIPO_DE_CONTINGENCIA', '=', 'e.TIPO_DE_CONTINGENCIA')
+            ->join('PRESTACIONES.BANCO_PRESTACIONES as bp', 'bp.ID_BANCO', '=', 'e.ID_BANCO')
+            ->join('PRESTACIONES.ESTATUS_PENSIONES as ep', 'ep.ID_ESTATUS', '=', 'e.ID_ESTATUS')
+            ->where('e.CEDULA_CAUSANTE', $ciPensionado)
+            ->select([
+                'tc.DESCRIPCION_DE_CONTINGENCIA as tipo_de_pension',
+                'e.CEDULA_CAUSANTE as cedula_causante',
+                DB::raw("NVL(
+                    NULLIF(REGEXP_REPLACE(TRIM(c_caus.PRIMER_NOMBRE || ' ' || c_caus.SEGUNDO_NOMBRE || ' ' || c_caus.PRIMER_APELLIDO || ' ' || c_caus.SEGUNDO_APELLIDO), ' +', ' '), ''),
+                    CASE WHEN TRIM(e.CEDULA_CAUSANTE) = TRIM(cp.CEDULA_DEL_COBRADOR) THEN NVL(TRIM(cp.NOMBRE_COBRADOR), 'NO REGISTRADO') ELSE 'NO REGISTRADO' END
+                ) as nombre_causante"),
+                'bp.NOMBRE_BANCO as entidad_financiera',
+                'e.NRO_CUENTA as numero_de_cuenta',
+                'ep.DESCRIPCION as estatus_de_la_pension',
+                DB::raw('NVL(e.MONTO_PENSION, 0) as monto_de_pension'),
+                'e.NUMERO_RESOLUCION as numero_resolucion',
+                'e.ORIGEN_DATA as origen_data',
+            ])
+            ->first();
 
-        $res = DB::connection('oracle_consulta')->selectOne($sqlProgramador, ['ci' => $ciPensionado]);
-        if ($res) {
-            return (array)$res;
+        if ($expediente) {
+            return (array)$expediente;
         }
 
-        // Query 2: Fallback para pensiones Amor Mayor (EXPEDIENTES_14105_CP)
-        $sqlCP = "SELECT
-            TC.DESCRIPCION_DE_CONTINGENCIA AS TIPO_DE_PENSION,
-            E.CEDULA_CAUSANTE,
-            NVL(
-                NULLIF(REGEXP_REPLACE(TRIM(C_CAUS.PRIMER_NOMBRE || ' ' || C_CAUS.SEGUNDO_NOMBRE || ' ' || C_CAUS.PRIMER_APELLIDO || ' ' || C_CAUS.SEGUNDO_APELLIDO), ' +', ' '), ''),
-                'NO REGISTRADO'
-            ) AS NOMBRE_CAUSANTE,
-            BP.NOMBRE_BANCO AS ENTIDAD_FINANCIERA,
-            BP.NRO_CUENTA AS NUMERO_DE_CUENTA,
-            'ACTIVA' AS ESTATUS_DE_LA_PENSION,
-            NVL(E.MONTO_PENSION, 0) AS MONTO_DE_PENSION,
-            E.NUMERO_RESOLUCION,
-            E.ORIGEN_DATA
-        FROM PRESTACIONES.EXPEDIENTES_14105_CP E
-        LEFT JOIN SIRA.CIUDADANO C_CAUS
-            ON C_CAUS.ID_CIUDADANO = E.CEDULA_CAUSANTE
-        LEFT JOIN PRESTACIONES.TIPOS_CONTINGENCIA TC
-            ON TC.TIPO_DE_CONTINGENCIA = E.TIPO_DE_CONTINGENCIA
-        LEFT JOIN PRESTACIONES.BANCO_PRESTACIONES BP
-            ON BP.ID_BANCO = E.ID_BANCO
-        WHERE E.CEDULA_CAUSANTE = :ci";
+        // 2. Query Builder para pensiones Amor Mayor (EXPEDIENTES_14105_CP)
+        $expedienteCP = DB::connection('oracle_consulta')
+            ->table('PRESTACIONES.EXPEDIENTES_14105_CP as e')
+            ->leftJoin('SIRA.CIUDADANO as c_caus', 'c_caus.ID_CIUDADANO', '=', 'e.CEDULA_CAUSANTE')
+            ->leftJoin('PRESTACIONES.TIPOS_CONTINGENCIA as tc', 'tc.TIPO_DE_CONTINGENCIA', '=', 'e.TIPO_DE_CONTINGENCIA')
+            ->leftJoin('PRESTACIONES.BANCO_PRESTACIONES as bp', 'bp.ID_BANCO', '=', 'e.ID_BANCO')
+            ->where('e.CEDULA_CAUSANTE', $ciPensionado)
+            ->select([
+                'tc.DESCRIPCION_DE_CONTINGENCIA as tipo_de_pension',
+                'e.CEDULA_CAUSANTE as cedula_causante',
+                DB::raw("NVL(
+                    NULLIF(REGEXP_REPLACE(TRIM(c_caus.PRIMER_NOMBRE || ' ' || c_caus.SEGUNDO_NOMBRE || ' ' || c_caus.PRIMER_APELLIDO || ' ' || c_caus.SEGUNDO_APELLIDO), ' +', ' '), ''),
+                    'NO REGISTRADO'
+                ) as nombre_causante"),
+                'bp.NOMBRE_BANCO as entidad_financiera',
+                'bp.NRO_CUENTA as numero_de_cuenta',
+                DB::raw("'ACTIVA' as estatus_de_la_pension"),
+                DB::raw('NVL(e.MONTO_PENSION, 0) as monto_de_pension'),
+                'e.NUMERO_RESOLUCION as numero_resolucion',
+                'e.ORIGEN_DATA as origen_data',
+            ])
+            ->first();
 
-        $resCP = DB::connection('oracle_consulta')->selectOne($sqlCP, ['ci' => $ciPensionado]);
-        if ($resCP) {
-            return (array)$resCP;
+        if ($expedienteCP) {
+            return (array)$expedienteCP;
         }
 
-        // Query 3: Respaldo legacy de EXPEDIENTES_14105 con JOIN directo a BANCO_PRESTACIONES
-        $sqlDirecto = "SELECT 
-            e.NUMERO_RESOLUCION, 
-            e.MONTO_PENSION, 
-            e.ORIGEN_DATA,
-            bp.NOMBRE_BANCO,
-            bp.NRO_CUENTA
-        FROM PRESTACIONES.EXPEDIENTES_14105 e
-        LEFT JOIN PRESTACIONES.BANCO_PRESTACIONES bp ON e.ID_BANCO = bp.ID_BANCO
-        WHERE e.CEDULA_CAUSANTE = :ci
-        UNION
-        SELECT 
-            e.NUMERO_RESOLUCION, 
-            e.MONTO_PENSION, 
-            e.ORIGEN_DATA,
-            bp.NOMBRE_BANCO,
-            bp.NRO_CUENTA
-        FROM PRESTACIONES.EXPEDIENTES_14105_CP e
-        LEFT JOIN PRESTACIONES.BANCO_PRESTACIONES bp ON e.ID_BANCO = bp.ID_BANCO
-        WHERE e.CEDULA_CAUSANTE = :ci2";
+        // 3. Query Builder de respaldo para cuentas bancarias en EXPEDIENTES_14105
+        $expedienteDirecto = DB::connection('oracle_consulta')
+            ->table('PRESTACIONES.EXPEDIENTES_14105 as e')
+            ->leftJoin('PRESTACIONES.BANCO_PRESTACIONES as bp', 'bp.ID_BANCO', '=', 'e.ID_BANCO')
+            ->where('e.CEDULA_CAUSANTE', $ciPensionado)
+            ->select([
+                'e.NUMERO_RESOLUCION as numero_resolucion',
+                'e.MONTO_PENSION as monto_pension',
+                'e.ORIGEN_DATA as origen_data',
+                'bp.NOMBRE_BANCO as nombre_banco',
+                'bp.NRO_CUENTA as nro_cuenta',
+            ])
+            ->first();
 
-        $resDirecto = DB::connection('oracle_consulta')->selectOne($sqlDirecto, [
-            'ci' => $ciPensionado,
-            'ci2' => $ciPensionado
-        ]);
-
-        return $resDirecto ? (array)$resDirecto : [];
+        return $expedienteDirecto ? (array)$expedienteDirecto : [];
     }
 }
+

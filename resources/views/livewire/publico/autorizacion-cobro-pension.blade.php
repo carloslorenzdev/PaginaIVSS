@@ -10,8 +10,8 @@
                     <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3 shadow" style="width: 85px; height: 85px;">
                         <i class="fas fa-file-contract text-danger fa-2x"></i>
                     </div>
-                    <h1 class="display-5 fw-bold text-white mb-2">Autorización de Cobro de Pensión</h1>
-                    <p class="lead text-white-50 mb-0 fs-6">Emisión oficial, consulta y verificación de autenticidad de la <strong>Forma 14-179</strong></p>
+                    <h1 class="display-5 fw-bold text-white mb-2">Actualización de Autorización de Cobro de Pensión</h1>
+                    <p class="lead text-white-50 mb-0 fs-6">Consulte su autorización y descargue la <strong>Forma 14-179</strong> oficial</p>
                 </div>
             </div>
         </div>
@@ -25,204 +25,147 @@
     </div>
 
     <!-- CONTENIDO PRINCIPAL -->
-    <section class="py-5" style="background-color: #f8f9fa; min-height: 65vh;">
+    <section class="py-5" style="background-color: #f8f9fa; min-height: 60vh;">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-10">
+                <div class="col-lg-9">
 
-                    <!-- Pestañas de Navegación Estilo Cápsula Moderna -->
-                    <div class="d-flex justify-content-center mb-4">
-                        <div class="bg-white p-1 rounded-pill shadow-sm border d-inline-flex">
-                            <button type="button" 
-                                wire:click="cambiarTab('solicitud')"
-                                class="btn rounded-pill px-4 py-2 fw-semibold transition-all {{ $tab === 'solicitud' ? 'btn-danger text-white shadow-sm' : 'btn-light text-muted border-0' }}">
-                                <i class="fas fa-search me-2"></i> Consultar / Emitir Planilla
-                            </button>
-                            <button type="button" 
-                                wire:click="cambiarTab('verificar')"
-                                class="btn rounded-pill px-4 py-2 fw-semibold transition-all {{ $tab === 'verificar' ? 'btn-danger text-white shadow-sm' : 'btn-light text-muted border-0' }}">
-                                <i class="fas fa-check-circle me-2"></i> Verificar Documento
-                            </button>
+                    <!-- TARJETA FORMULARIO (Campos exactos a SolicitudAutorizacion.jsp con diseño moderno) -->
+                    <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden">
+                        <div class="card-header bg-white border-bottom py-3 px-4 d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-danger bg-opacity-10 text-danger rounded-3 p-2 me-3">
+                                    <i class="fas fa-file-signature fs-5"></i>
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold mb-0 text-dark">Datos de la Solicitud</h5>
+                                    <small class="text-muted">Ingrese los datos para consultar y generar su autorización</small>
+                                </div>
+                            </div>
+                            <span class="badge bg-danger bg-opacity-10 text-danger px-3 py-2 rounded-pill fw-semibold">
+                                Forma 14-179
+                            </span>
+                        </div>
+
+                        <div class="card-body p-4">
+                            <form wire:submit.prevent="consultar">
+                                <div class="row g-3">
+                                    <!-- Nacionalidad del Pensionado -->
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold text-dark small mb-1">
+                                            Nacionalidad del Pensionado:
+                                        </label>
+                                        <select wire:model="nac_pensionado" class="form-select @error('nac_pensionado') is-invalid @enderror">
+                                            <option value="V">Venezolano</option>
+                                            <option value="E">Extranjero</option>
+                                            <option value="T">Transeunte</option>
+                                        </select>
+                                        @error('nac_pensionado')
+                                            <div class="text-danger small mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <!-- Cédula del Pensionado -->
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold text-dark small mb-1">
+                                            Cédula del Pensionado:
+                                        </label>
+                                        <input type="text" 
+                                            wire:model="cedula_pensionado"
+                                            class="form-control @error('cedula_pensionado') is-invalid @enderror" 
+                                            placeholder="Cédula del Pensionado"
+                                            maxlength="10"
+                                            inputmode="numeric">
+                                        @error('cedula_pensionado')
+                                            <div class="text-danger small mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <!-- Tipo de Pensión -->
+                                    <div class="col-md-12">
+                                        <label class="form-label fw-semibold text-dark small mb-1">
+                                            Tipo de Pensión:
+                                        </label>
+                                        <select wire:model="tipo_pension" class="form-select @error('tipo_pension') is-invalid @enderror">
+                                            <option value="01">Invalidez</option>
+                                            <option value="06">Incapacidad</option>
+                                            <option value="10">Vejez</option>
+                                            <option value="12">Sobreviviente</option>
+                                        </select>
+                                        @error('tipo_pension')
+                                            <div class="text-danger small mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <!-- Nacionalidad del Autorizado -->
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold text-dark small mb-1">
+                                            Nacionalidad del Autorizado:
+                                        </label>
+                                        <select wire:model="nac_autorizado" class="form-select @error('nac_autorizado') is-invalid @enderror">
+                                            <option value="V">Venezolano</option>
+                                            <option value="E">Extranjero</option>
+                                            <option value="T">Transeunte</option>
+                                        </select>
+                                        @error('nac_autorizado')
+                                            <div class="text-danger small mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <!-- Cédula del Autorizado -->
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold text-dark small mb-1">
+                                            Cédula del Autorizado:
+                                        </label>
+                                        <input type="text" 
+                                            wire:model="cedula_autorizado"
+                                            class="form-control @error('cedula_autorizado') is-invalid @enderror" 
+                                            placeholder="Cédula del Autorizado"
+                                            maxlength="10"
+                                            inputmode="numeric">
+                                        @error('cedula_autorizado')
+                                            <div class="text-danger small mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <!-- Botones de Acción -->
+                                    <div class="col-12 mt-4 text-center">
+                                        <div class="d-inline-flex gap-2">
+                                            <button type="submit" class="btn btn-danger px-4 py-2 rounded-3 fw-semibold shadow-sm" wire:loading.attr="disabled">
+                                                <span wire:loading.remove wire:target="consultar">
+                                                    <i class="fas fa-search me-2"></i> Consultar
+                                                </span>
+                                                <span wire:loading wire:target="consultar">
+                                                    <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+                                                    Consultando...
+                                                </span>
+                                            </button>
+                                            <button type="button" wire:click="limpiar" class="btn btn-outline-secondary px-4 py-2 rounded-3">
+                                                <i class="fas fa-eraser me-1"></i> Limpiar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
 
-                    @if($tab === 'solicitud')
-                        <!-- TARJETA FORMULARIO: CONSULTA / EMISIÓN -->
-                        <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden">
-                            <div class="card-header bg-white border-bottom py-3 px-4 d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center">
-                                    <div class="bg-danger bg-opacity-10 text-danger rounded-3 p-2 me-3">
-                                        <i class="fas fa-id-card fs-5"></i>
-                                    </div>
-                                    <div>
-                                        <h5 class="fw-bold mb-0 text-dark">Consulta de Autorización de Cobro</h5>
-                                        <small class="text-muted">Ingrese los datos del pensionado y de la persona autorizada</small>
-                                    </div>
-                                </div>
-                                <span class="badge bg-danger bg-opacity-10 text-danger px-3 py-2 rounded-pill fw-semibold">
-                                    Forma 14-179
-                                </span>
-                            </div>
-
-                            <div class="card-body p-4">
-                                <form wire:submit.prevent="consultar">
-                                    <div class="row g-3">
-                                        <!-- Pensionado -->
-                                        <div class="col-md-6">
-                                            <label class="form-label fw-semibold text-dark small mb-1">
-                                                <i class="fas fa-user text-danger me-1"></i> Cédula del Pensionado
-                                            </label>
-                                            <div class="input-group">
-                                                <select wire:model="nac_pensionado" class="form-select border-end-0 bg-light fw-bold text-center" style="max-width: 80px;">
-                                                    <option value="V">V-</option>
-                                                    <option value="E">E-</option>
-                                                    <option value="T">T-</option>
-                                                </select>
-                                                <input type="text" 
-                                                    wire:model="cedula_pensionado"
-                                                    class="form-control @error('cedula_pensionado') is-invalid @enderror" 
-                                                    placeholder="Ej: 3111307"
-                                                    maxlength="10"
-                                                    inputmode="numeric">
-                                            </div>
-                                            @error('cedula_pensionado')
-                                                <div class="text-danger small mt-1">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-
-                                        <!-- Tipo de Pensión -->
-                                        <div class="col-md-6">
-                                            <label class="form-label fw-semibold text-dark small mb-1">
-                                                <i class="fas fa-certificate text-danger me-1"></i> Tipo de Pensión
-                                            </label>
-                                            <select wire:model="tipo_pension" class="form-select @error('tipo_pension') is-invalid @enderror">
-                                                <option value="10">Vejez (Trabajo)</option>
-                                                <option value="01">Invalidez</option>
-                                                <option value="06">Incapacidad</option>
-                                                <option value="12">Sobreviviente</option>
-                                            </select>
-                                            @error('tipo_pension')
-                                                <div class="text-danger small mt-1">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-
-                                        <!-- Autorizado -->
-                                        <div class="col-md-6">
-                                            <label class="form-label fw-semibold text-dark small mb-1">
-                                                <i class="fas fa-user-check text-danger me-1"></i> Cédula del Autorizado
-                                            </label>
-                                            <div class="input-group">
-                                                <select wire:model="nac_autorizado" class="form-select border-end-0 bg-light fw-bold text-center" style="max-width: 80px;">
-                                                    <option value="V">V-</option>
-                                                    <option value="E">E-</option>
-                                                    <option value="T">T-</option>
-                                                </select>
-                                                <input type="text" 
-                                                    wire:model="cedula_autorizado"
-                                                    class="form-control @error('cedula_autorizado') is-invalid @enderror" 
-                                                    placeholder="Ej: 30513975"
-                                                    maxlength="10"
-                                                    inputmode="numeric">
-                                            </div>
-                                            @error('cedula_autorizado')
-                                                <div class="text-danger small mt-1">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-
-                                        <div class="col-md-6 d-flex align-items-end">
-                                            <div class="d-flex gap-2 w-100">
-                                                <button type="submit" class="btn btn-danger px-4 py-2 flex-grow-1 rounded-3 fw-semibold shadow-sm" wire:loading.attr="disabled">
-                                                    <span wire:loading.remove wire:target="consultar">
-                                                        <i class="fas fa-search me-2"></i> Consultar
-                                                    </span>
-                                                    <span wire:loading wire:target="consultar">
-                                                        <span class="spinner-border spinner-border-sm me-2" role="status"></span>
-                                                        Consultando en Oracle...
-                                                    </span>
-                                                </button>
-                                                <button type="button" wire:click="limpiar" class="btn btn-outline-secondary px-3 py-2 rounded-3" title="Limpiar formulario">
-                                                    <i class="fas fa-eraser"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    @else
-                        <!-- TARJETA FORMULARIO: VERIFICACIÓN POR CÓDIGO -->
-                        <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden">
-                            <div class="card-header bg-white border-bottom py-3 px-4 d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center">
-                                    <div class="bg-primary bg-opacity-10 text-primary rounded-3 p-2 me-3">
-                                        <i class="fas fa-shield-alt fs-5"></i>
-                                    </div>
-                                    <div>
-                                        <h5 class="fw-bold mb-0 text-dark">Validación Bancaria e Institucional</h5>
-                                        <small class="text-muted">Verifique la autenticidad del documento impreso o presentado ante la entidad bancaria</small>
-                                    </div>
-                                </div>
-                                <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill fw-semibold">
-                                    Portal IVSS
-                                </span>
-                            </div>
-
-                            <div class="card-body p-4">
-                                <form wire:submit.prevent="verificar">
-                                    <div class="row g-3">
-                                        <div class="col-md-8">
-                                            <label class="form-label fw-semibold text-dark small mb-1">
-                                                <i class="fas fa-barcode text-primary me-1"></i> Código de Verificación o Nº de Planilla
-                                            </label>
-                                            <input type="text" 
-                                                wire:model="codigo_verificacion"
-                                                class="form-control form-control-lg fs-6 @error('codigo_verificacion') is-invalid @enderror" 
-                                                placeholder="Ej: 10-l1000001-202602 ó OAZ00000022026"
-                                                autocomplete="off">
-                                            @error('codigo_verificacion')
-                                                <div class="text-danger small mt-1">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-
-                                        <div class="col-md-4 d-flex align-items-end">
-                                            <div class="d-flex gap-2 w-100">
-                                                <button type="submit" class="btn btn-primary px-4 py-2 flex-grow-1 rounded-3 fw-semibold shadow-sm" style="height: 48px;" wire:loading.attr="disabled">
-                                                    <span wire:loading.remove wire:target="verificar">
-                                                        <i class="fas fa-check-circle me-2"></i> Verificar
-                                                    </span>
-                                                    <span wire:loading wire:target="verificar">
-                                                        <span class="spinner-border spinner-border-sm me-2" role="status"></span>
-                                                        Validando...
-                                                    </span>
-                                                </button>
-                                                <button type="button" wire:click="limpiar" class="btn btn-outline-secondary px-3 rounded-3" style="height: 48px;" title="Limpiar">
-                                                    <i class="fas fa-eraser"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    @endif
-
-                    <!-- MENSAJE DE ERROR O NO ENCONTRADO -->
+                    <!-- MENSAJE DE ALERTA -->
                     @if($errorMensaje)
                         <div class="alert alert-warning border-0 shadow-sm rounded-4 p-4 mb-4 d-flex align-items-start" role="alert">
                             <div class="bg-warning bg-opacity-25 text-warning-emphasis rounded-circle p-2 me-3 flex-shrink-0">
                                 <i class="fas fa-exclamation-triangle fs-4"></i>
                             </div>
                             <div class="flex-grow-1">
-                                <h6 class="fw-bold mb-1 text-dark">Información Importante</h6>
+                                <h6 class="fw-bold mb-1 text-dark">Aviso</h6>
                                 <p class="mb-0 text-muted small">{{ $errorMensaje }}</p>
                             </div>
                         </div>
                     @endif
 
-                    <!-- TARJETA DE RESULTADO / DETALLES DE LA AUTORIZACIÓN -->
+                    <!-- TARJETA DE RESULTADO -->
                     @if($resultado)
                         <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-5">
-                            <!-- Cabecera del resultado -->
                             <div class="card-header bg-gradient p-4 text-white position-relative" style="background: linear-gradient(135deg, #0d3b66 0%, #1d2d44 100%);">
                                 <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
                                     <div class="d-flex align-items-center">
@@ -233,30 +176,29 @@
                                             <div class="d-flex align-items-center gap-2 mb-1">
                                                 <span class="badge bg-danger rounded-pill px-3 py-1 fw-bold">FORMA 14-179</span>
                                                 <span class="badge bg-success bg-opacity-75 rounded-pill px-3 py-1">
-                                                    <i class="fas fa-check-circle me-1"></i> AUTORIZACIÓN VÁLIDA
+                                                    <i class="fas fa-check-circle me-1"></i> APROBADA
                                                 </span>
                                             </div>
                                             <h4 class="fw-bold mb-0 text-white">Planilla Nº {{ $resultado['id'] }}</h4>
                                         </div>
                                     </div>
 
-                                    <div class="text-end">
+                                    <div>
                                         <a href="{{ route('autorizacion.pdf', $resultado['id']) }}" 
                                             target="_blank" 
                                             class="btn btn-danger btn-lg px-4 py-2 rounded-3 fw-bold shadow">
-                                            <i class="fas fa-file-pdf me-2"></i> Descargar PDF Oficial
+                                            <i class="fas fa-file-pdf me-2"></i> Descargar PDF
                                         </a>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Cuerpo con los datos organizados -->
                             <div class="card-body p-4">
                                 <div class="row g-4">
-                                    <!-- 1. DATOS DEL PENSIONADO -->
+                                    <!-- Datos del Pensionado -->
                                     <div class="col-md-6">
                                         <div class="bg-light rounded-4 p-3 h-100 border">
-                                            <h6 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center">
+                                            <h6 class="fw-bold text-dark border-bottom pb-2 mb-3">
                                                 <i class="fas fa-user text-danger me-2"></i> Datos del Pensionado
                                             </h6>
                                             <div class="row g-2 small">
@@ -266,19 +208,19 @@
                                                 <div class="col-sm-5 text-muted">Cédula de Identidad:</div>
                                                 <div class="col-sm-7 fw-semibold text-dark">{{ $resultado['id_pensionado'] }}</div>
 
-                                                <div class="col-sm-5 text-muted">Teléfono:</div>
-                                                <div class="col-sm-7 text-dark">{{ $resultado['telefono_pensionado'] ?: 'No registrado' }}</div>
-
                                                 <div class="col-sm-5 text-muted">Dirección:</div>
                                                 <div class="col-sm-7 text-dark">{{ $resultado['direccion_pensionado'] ?: 'No registrada' }}</div>
+
+                                                <div class="col-sm-5 text-muted">Teléfono:</div>
+                                                <div class="col-sm-7 text-dark">{{ $resultado['telefono_pensionado'] ?: 'No registrado' }}</div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- 2. DATOS DEL AUTORIZADO -->
+                                    <!-- Datos del Autorizado -->
                                     <div class="col-md-6">
                                         <div class="bg-light rounded-4 p-3 h-100 border">
-                                            <h6 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center">
+                                            <h6 class="fw-bold text-dark border-bottom pb-2 mb-3">
                                                 <i class="fas fa-user-check text-success me-2"></i> Datos del Autorizado
                                             </h6>
                                             <div class="row g-2 small">
@@ -288,20 +230,20 @@
                                                 <div class="col-sm-5 text-muted">Cédula de Identidad:</div>
                                                 <div class="col-sm-7 fw-semibold text-dark">{{ $resultado['id_autorizado'] }}</div>
 
-                                                <div class="col-sm-5 text-muted">Teléfono:</div>
-                                                <div class="col-sm-7 text-dark">{{ $resultado['telefono_autorizado'] ?: 'No registrado' }}</div>
-
                                                 <div class="col-sm-5 text-muted">Dirección:</div>
                                                 <div class="col-sm-7 text-dark">{{ $resultado['direccion_autorizado'] ?: 'No registrada' }}</div>
+
+                                                <div class="col-sm-5 text-muted">Teléfono:</div>
+                                                <div class="col-sm-7 text-dark">{{ $resultado['telefono_autorizado'] ?: 'No registrado' }}</div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- 3. DATOS DE LA PENSIÓN -->
+                                    <!-- Datos de la Pensión -->
                                     <div class="col-12">
                                         <div class="bg-white rounded-4 p-3 border shadow-sm">
-                                            <h6 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center">
-                                                <i class="fas fa-money-check-alt text-primary me-2"></i> Datos de la Pensión y Entidad Financiera
+                                            <h6 class="fw-bold text-dark border-bottom pb-2 mb-3">
+                                                <i class="fas fa-money-check-alt text-primary me-2"></i> Datos de la Pensión
                                             </h6>
                                             <div class="row g-3">
                                                 <div class="col-md-3 col-6">
@@ -329,18 +271,18 @@
                                                     <span class="fw-semibold text-dark">{{ $resultado['razon_social'] }}</span>
                                                 </div>
                                                 <div class="col-md-3 col-6">
-                                                    <small class="text-muted d-block">Lugar de Emisión</small>
+                                                    <small class="text-muted d-block">Lugar</small>
                                                     <span class="text-dark">{{ $resultado['lugar'] }}</span>
                                                 </div>
                                                 <div class="col-md-3 col-6">
-                                                    <small class="text-muted d-block">Fecha de Emisión</small>
+                                                    <small class="text-muted d-block">Fecha</small>
                                                     <span class="text-dark">{{ !empty($resultado['fecha']) ? date('d/m/Y', strtotime($resultado['fecha'])) : '' }}</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- 4. MENSUALIDADES AUTORIZADAS -->
+                                    <!-- Mensualidades Autorizadas -->
                                     <div class="col-12">
                                         <div class="bg-light rounded-4 p-3 border">
                                             <h6 class="fw-bold text-dark mb-2 small text-uppercase">Mensualidades Autorizadas</h6>
@@ -376,14 +318,14 @@
                                     </div>
                                 </div>
 
-                                <!-- Barra inferior con Código de Verificación y Acciones -->
+                                <!-- Acciones y Código -->
                                 <div class="mt-4 pt-3 border-top d-flex flex-wrap align-items-center justify-content-between gap-3">
                                     <div class="d-flex align-items-center">
                                         <div class="bg-secondary bg-opacity-10 text-secondary rounded-2 p-2 me-2">
-                                            <i class="fas fa-qrcode fs-5"></i>
+                                            <i class="fas fa-barcode fs-5"></i>
                                         </div>
                                         <div>
-                                            <small class="text-muted d-block" style="font-size: 0.75rem;">CÓDIGO DE VERIFICACIÓN OFICIAL</small>
+                                            <small class="text-muted d-block" style="font-size: 0.75rem;">CÓDIGO DE VERIFICACIÓN</small>
                                             <span class="font-monospace fw-bold text-dark fs-6">{{ $resultado['codigo_verificacion'] }}</span>
                                         </div>
                                     </div>
