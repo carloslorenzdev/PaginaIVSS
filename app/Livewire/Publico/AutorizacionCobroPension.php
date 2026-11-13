@@ -11,7 +11,7 @@ use Livewire\Component;
 #[Title('Actualización de Autorización de Cobro de Pensión - IVSS')]
 class AutorizacionCobroPension extends Component
 {
-    // Campos de Solicitud (exactos al sistema institucional SolicitudAutorizacion.jsp)
+    // Campos del Formulario (exactos a SolicitudAutorizacion.jsp)
     public string $nac_pensionado = 'V';
     public string $cedula_pensionado = '';
     public string $tipo_pension = '10';
@@ -22,6 +22,7 @@ class AutorizacionCobroPension extends Component
     public ?array $resultado = null;
     public ?string $errorMensaje = null;
     public bool $busquedaRealizada = false;
+    public bool $esRenovacion = false;
 
     public function limpiar(): void
     {
@@ -30,7 +31,8 @@ class AutorizacionCobroPension extends Component
             'cedula_autorizado',
             'resultado',
             'errorMensaje',
-            'busquedaRealizada'
+            'busquedaRealizada',
+            'esRenovacion',
         ]);
         $this->nac_pensionado = 'V';
         $this->nac_autorizado = 'V';
@@ -39,6 +41,16 @@ class AutorizacionCobroPension extends Component
     }
 
     public function consultar(ConsultarAutorizacionCobroAction $action): void
+    {
+        $this->procesarSolicitud($action, false);
+    }
+
+    public function renovar(ConsultarAutorizacionCobroAction $action): void
+    {
+        $this->procesarSolicitud($action, true);
+    }
+
+    protected function procesarSolicitud(ConsultarAutorizacionCobroAction $action, bool $esRenovar): void
     {
         $this->validate([
             'nac_pensionado' => 'required|in:V,E,T',
@@ -57,6 +69,7 @@ class AutorizacionCobroPension extends Component
         $this->busquedaRealizada = true;
         $this->errorMensaje = null;
         $this->resultado = null;
+        $this->esRenovacion = $esRenovar;
 
         try {
             $datos = $action->consultarPorSolicitud([
@@ -68,9 +81,13 @@ class AutorizacionCobroPension extends Component
             ]);
 
             if ($datos) {
+                if ($esRenovar && strtoupper($datos['renovable'] ?? 'N') !== 'S') {
+                    $this->errorMensaje = 'Esta autorización no se encuentra habilitada para renovación automática. Debe dirigirse a su respectiva oficina administrativa.';
+                    return;
+                }
                 $this->resultado = $datos;
             } else {
-                $this->errorMensaje = 'No se encontró ninguna autorización de cobro de pensión con los datos suministrados.';
+                $this->errorMensaje = 'Lo sentimos, no se encontró ninguna autorización. Debe dirigirse a su respectiva oficina administrativa.';
             }
         } catch (\Throwable $th) {
             $this->errorMensaje = 'Error al consultar la autorización en la base de datos de prestaciones. Intente más tarde.';
