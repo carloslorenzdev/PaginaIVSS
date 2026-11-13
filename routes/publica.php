@@ -50,6 +50,10 @@ Route::get('/consulta/recurso/{servicio}/{archivo}', [\App\Http\Controllers\Cons
     ->where('archivo', '.*')
     ->name('consulta.recurso');
 
+// AUTORIZACIÓN PARA COBRO DE PENSIÓN (FORMA 14-179)
+Route::get('/autorizacion-cobro-pension', \App\Livewire\Publico\AutorizacionCobroPension::class)->name('autorizacion_cobro_pension');
+Route::get('/autorizacion-cobro-pension/pdf/{id}', \App\Http\Controllers\Consultas\DescargarPlanilla14179Controller::class)->name('autorizacion.pdf');
+
 // SERVICIOS COMPLEMENTARIOS (Livewire 4 Page Components)
 Route::get('/marco-normativo', \App\Livewire\Publico\MarcoNormativo::class)->name('marco_normativo');
 Route::get('/biblioteca-formas', \App\Livewire\Publico\BibliotecaFormas::class)->name('biblioteca_formas');

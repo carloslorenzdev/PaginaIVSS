@@ -631,7 +631,7 @@
 
                         <div class="d-flex flex-column text-start">
                             @if(($configuraciones['visible_url_verificacion_autorizacion'] ?? '1') !== '0')
-                            <a href="{{ formatear_enlace($configuraciones['url_verificacion_autorizacion'] ?? '#') }}" target="_blank" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0">
+                            <a href="{{ route('autorizacion_cobro_pension', ['tab' => 'verificar']) }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0">
                                 <i class="fas fa-check-circle me-2"></i> Verificación de Autorización de Cobro de Pensión
                             </a>
                             @endif
@@ -681,7 +681,7 @@
                             </a>
                             @endif
                             @if(($configuraciones['visible_url_constancia_autorizacion'] ?? '1') !== '0')
-                            <a href="{{ formatear_enlace($configuraciones['url_constancia_autorizacion'] ?? '#') }}" target="_blank" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0">
+                            <a href="{{ route('autorizacion_cobro_pension') }}" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0">
                                 <i class="fas fa-file-contract me-2"></i> Autorización de Cobro de Pensión
                             </a>
                             @endif
