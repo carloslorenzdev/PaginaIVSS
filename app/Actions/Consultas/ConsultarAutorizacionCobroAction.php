@@ -31,6 +31,27 @@ class ConsultarAutorizacionCobroAction
     }
 
     /**
+     * Formatea la cédula para visualización pública eliminando los ceros del formato interno de Oracle.
+     * Ejemplo: 'V004483720' => 'V-4483720', 'V003111307' => 'V-3111307'
+     */
+    public function formatearCedulaPublica(?string $cedula): string
+    {
+        if (empty($cedula)) {
+            return '';
+        }
+
+        $cedula = trim($cedula);
+        $primeraLetra = strtoupper(substr($cedula, 0, 1));
+
+        if (in_array($primeraLetra, ['V', 'E', 'T'])) {
+            $numero = ltrim(substr($cedula, 1), '0');
+            return $primeraLetra . '-' . ($numero ?: '0');
+        }
+
+        return ltrim($cedula, '0');
+    }
+
+    /**
      * Consultar por número de planilla (ID).
      */
     public function consultarPorPlanilla(string $idPlanilla): ?array
@@ -215,6 +236,14 @@ class ConsultarAutorizacionCobroAction
     {
         $row = (object)$row;
 
+        $idPensionadoRaw = $row->cedula_pensionado ?? $row->CEDULA_PENSIONADO ?? '';
+        $idAutorizadoRaw = $row->cedula_autorizado ?? $row->CEDULA_AUTORIZADO ?? '';
+        $idAutorizadorRaw = $row->cedula_autorizador ?? $row->CEDULA_AUTORIZADOR ?? '';
+
+        $idPensionadoPublico = $this->formatearCedulaPublica($idPensionadoRaw);
+        $idAutorizadoPublico = $this->formatearCedulaPublica($idAutorizadoRaw);
+        $idAutorizadorPublico = ltrim(trim($idAutorizadorRaw), '0');
+
         return [
             'id' => $row->numero_planilla ?? $row->NUMERO_PLANILLA ?? '',
             'lugar' => $row->lugar ?? $row->LUGAR ?? 'DISTRITO CAPITAL',
@@ -226,13 +255,15 @@ class ConsultarAutorizacionCobroAction
             'tipo_display' => $row->tipo_pension ?? $row->TIPO_PENSION ?? 'TRABAJO',
 
             // Pensionado
-            'id_pensionado' => $row->cedula_pensionado ?? $row->CEDULA_PENSIONADO ?? '',
+            'id_pensionado' => $idPensionadoPublico,
+            'id_pensionado_raw' => $idPensionadoRaw,
             'nombre_pensionado' => $row->nombre_pensionado ?? $row->NOMBRE_PENSIONADO ?? 'NO REGISTRADO',
             'direccion_pensionado' => $row->direccion_pensionado ?? $row->DIRECCION_PENSIONADO ?? 'NO REGISTRADA',
             'telefono_pensionado' => $row->telefono_pensionado ?? $row->TELEFONO_PENSIONADO ?? 'NO REGISTRADO',
 
             // Autorizado
-            'id_autorizado' => $row->cedula_autorizado ?? $row->CEDULA_AUTORIZADO ?? '',
+            'id_autorizado' => $idAutorizadoPublico,
+            'id_autorizado_raw' => $idAutorizadoRaw,
             'nombre_autorizado' => $row->nombre_autorizado ?? $row->NOMBRE_AUTORIZADO ?? 'NO REGISTRADO',
             'direccion_autorizado' => $row->direccion_autorizado ?? $row->DIRECCION_AUTORIZADO ?? 'NO REGISTRADA',
             'telefono_autorizado' => $row->telefono_autorizado ?? $row->TELEFONO_AUTORIZADO ?? 'NO REGISTRADO',
@@ -259,7 +290,7 @@ class ConsultarAutorizacionCobroAction
 
             // Autorizador
             'nombre_autorizador' => trim($row->nombre_autorizador ?? $row->NOMBRE_AUTORIZADOR ?? 'CESAR RODRIGUEZ MARIA'),
-            'cedula_autorizador' => trim($row->cedula_autorizador ?? $row->CEDULA_AUTORIZADOR ?? '8906738'),
+            'cedula_autorizador' => $idAutorizadorPublico ?: '8906738',
             'cargo_autorizador' => $row->cargo_autorizador ?? $row->CARGO_AUTORIZADOR ?? 'Aprobador Autorizado Cobro Pensión',
             'oficina_autorizador' => $row->oficina_administrativa ?? $row->OFICINA_ADMINISTRATIVA ?? 'DIRECCIÓN DE PRESTACIONES',
         ];

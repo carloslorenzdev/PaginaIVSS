@@ -123,6 +123,9 @@
                                 <div class="d-flex align-items-center gap-2">
                                     <span class="badge bg-danger rounded-pill px-3 py-1">FORMA 14-179</span>
                                     <span class="fw-bold text-white fs-6">Nº {{ $resultado['id'] }}</span>
+                                </div>
+
+                                <div>
                                     @if($esRenovacion)
                                         <span class="badge bg-info text-dark rounded-pill px-3 py-1">
                                             <i class="fas fa-sync-alt me-1"></i> RENOVACIÓN VIGENTE
@@ -133,12 +136,6 @@
                                         </span>
                                     @endif
                                 </div>
-
-                                <a href="{{ route('autorizacion.pdf', $resultado['id']) }}" 
-                                    target="_blank" 
-                                    class="btn btn-danger btn-sm px-3 py-2 fw-semibold shadow-sm">
-                                    <i class="fas fa-file-pdf me-1"></i> Descargar PDF Oficial
-                                </a>
                             </div>
 
                             <div class="card-body p-4">
@@ -147,7 +144,7 @@
                                         <i class="fas fa-check-circle text-success fs-5"></i>
                                         <div>
                                             <strong>Autorización habilitada y vigente para renovación automática.</strong>
-                                            <div class="small text-muted">Puede descargar su planilla actualizada haciendo clic en el botón superior o inferior.</div>
+                                            <div class="small text-muted">Puede descargar o imprimir su planilla actualizada mediante los botones al pie del documento.</div>
                                         </div>
                                     </div>
                                 @endif
@@ -261,7 +258,7 @@
                                         <a href="{{ route('autorizacion.pdf', $resultado['id']) }}" 
                                             target="_blank" 
                                             class="btn btn-danger px-4 py-2 fw-semibold shadow-sm">
-                                            <i class="fas fa-file-pdf me-2"></i> Descargar PDF Oficial
+                                            <i class="fas fa-file-pdf me-2"></i> Descargar PDF
                                         </a>
                                         <button type="button" 
                                             onclick="window.open('{{ route('autorizacion.pdf', $resultado['id']) }}', '_blank').print();" 
