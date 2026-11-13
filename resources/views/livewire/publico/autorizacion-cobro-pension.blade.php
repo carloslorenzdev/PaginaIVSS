@@ -31,7 +31,7 @@
                                 </div>
                                 <div>
                                     <h5 class="fw-bold mb-0 text-dark">Datos de la Solicitud</h5>
-                                    <span class="text-muted small">Ingrese los datos para consultar o tramitar la renovación</span>
+                                    <span class="text-muted small">Ingrese la cédula del pensionado y el tipo de pensión</span>
                                 </div>
                             </div>
                         </div>
@@ -76,37 +76,6 @@
                                         @error('tipo_pension')
                                             <div class="text-danger small mt-1">{{ $message }}</div>
                                         @enderror
-                                    </div>
-
-                                    <!-- Cédula del Autorizado -->
-                                    <div class="col-md-7 col-12">
-                                        <label class="form-label fw-semibold text-dark mb-1">
-                                            <i class="fas fa-user-check text-success me-1"></i> Cédula del Autorizado:
-                                        </label>
-                                        <div class="input-group">
-                                            <select wire:model="nac_autorizado" class="form-select bg-light fw-bold text-center" style="max-width: 80px;">
-                                                <option value="V">V-</option>
-                                                <option value="E">E-</option>
-                                                <option value="T">T-</option>
-                                            </select>
-                                            <input type="text" 
-                                                wire:model="cedula_autorizado"
-                                                class="form-control @error('cedula_autorizado') is-invalid @enderror" 
-                                                placeholder="Ej: 30513975"
-                                                maxlength="10"
-                                                inputmode="numeric">
-                                        </div>
-                                        @error('cedula_autorizado')
-                                            <div class="text-danger small mt-1">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    <!-- Nota institucional de apoyo -->
-                                    <div class="col-md-5 col-12 d-flex align-items-end">
-                                        <div class="p-2 px-3 rounded-3 bg-light border text-muted small w-100 d-flex align-items-center gap-2">
-                                            <i class="fas fa-shield-alt text-danger fs-5"></i>
-                                            <span style="font-size: 0.82rem;">Trámite oficial avalado por la Dirección de Prestaciones</span>
-                                        </div>
                                     </div>
                                 </div>
 

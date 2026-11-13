@@ -60,7 +60,14 @@ class GenerarPlanilla14179PdfAction
         $pdf->SetFont('Arial', '', 7.5);
         $pdf->SetXY(95, 32);
         $pdf->Cell(70, 5, $this->encode($datos['lugar'] ?? 'DISTRITO CAPITAL'), 1, 0, 'C');
-        $fechaFormatted = !empty($datos['fecha']) ? date('d/m/y', strtotime($datos['fecha'])) : '';
+        $rawFecha = $datos['fecha'] ?? '';
+        $fechaFormatted = '';
+        if (preg_match('/^(\d{2})\/(\d{2})\/(\d{4})$/', $rawFecha, $m)) {
+            $fechaFormatted = $m[1] . '/' . $m[2] . '/' . substr($m[3], -2);
+        } elseif (!empty($rawFecha)) {
+            $ts = strtotime(str_replace('/', '-', $rawFecha));
+            $fechaFormatted = $ts ? date('d/m/y', $ts) : $rawFecha;
+        }
         $pdf->Cell(35, 5, $fechaFormatted, 1, 1, 'C');
 
         // 5. Título del Documento

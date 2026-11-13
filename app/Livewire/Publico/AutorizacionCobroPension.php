@@ -11,12 +11,10 @@ use Livewire\Component;
 #[Title('Actualización de Autorización de Cobro de Pensión - IVSS')]
 class AutorizacionCobroPension extends Component
 {
-    // Campos del Formulario (exactos a SolicitudAutorizacion.jsp)
+    // Campos del Formulario: Cédula del Pensionado y Tipo de Pensión
     public string $nac_pensionado = 'V';
     public string $cedula_pensionado = '';
     public string $tipo_pension = '10';
-    public string $nac_autorizado = 'V';
-    public string $cedula_autorizado = '';
 
     // Estados de resultado
     public ?array $resultado = null;
@@ -28,14 +26,12 @@ class AutorizacionCobroPension extends Component
     {
         $this->reset([
             'cedula_pensionado',
-            'cedula_autorizado',
             'resultado',
             'errorMensaje',
             'busquedaRealizada',
             'esRenovacion',
         ]);
         $this->nac_pensionado = 'V';
-        $this->nac_autorizado = 'V';
         $this->tipo_pension = '10';
         $this->resetValidation();
     }
@@ -56,14 +52,10 @@ class AutorizacionCobroPension extends Component
             'nac_pensionado' => 'required|in:V,E,T',
             'cedula_pensionado' => 'required|numeric|min:1',
             'tipo_pension' => 'required|in:01,06,10,12',
-            'nac_autorizado' => 'required|in:V,E,T',
-            'cedula_autorizado' => 'required|numeric|min:1',
         ], [
             'cedula_pensionado.required' => 'Debe ingresar el número de cédula del Pensionado.',
             'cedula_pensionado.numeric' => 'La cédula del pensionado debe contener solo números.',
             'tipo_pension.required' => 'Debe ingresar el Tipo de Pensión.',
-            'cedula_autorizado.required' => 'Debe ingresar el número de cédula del Autorizado.',
-            'cedula_autorizado.numeric' => 'La cédula del autorizado debe contener solo números.',
         ]);
 
         $this->busquedaRealizada = true;
@@ -76,8 +68,6 @@ class AutorizacionCobroPension extends Component
                 'nacionalidad_solicitante' => $this->nac_pensionado,
                 'cedula_solicitante' => $this->cedula_pensionado,
                 'tipo_pension' => $this->tipo_pension,
-                'nacionalidad_autorizado' => $this->nac_autorizado,
-                'cedula_autorizado' => $this->cedula_autorizado,
             ]);
 
             if ($datos) {

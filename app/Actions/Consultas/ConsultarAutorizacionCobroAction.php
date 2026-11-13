@@ -35,16 +35,23 @@ class ConsultarAutorizacionCobroAction
      */
     public function consultarPorPlanilla(string $idPlanilla): ?array
     {
+        $idPlanillaLimpia = strtoupper(trim($idPlanilla));
+
         $pension = DB::connection('oracle_consulta')
             ->table('PRESTACIONES.AUTORIZA_COBRO_PENSION')
-            ->where('ID', strtoupper(trim($idPlanilla)))
+            ->where('ID', $idPlanillaLimpia)
             ->first();
 
         if (!$pension) {
             return null;
         }
 
-        return $this->cargarDetallesCompletos((array)$pension);
+        $idPensionado = $pension->id_pensionado ?? $pension->ID_PENSIONADO ?? '';
+        if ($idPensionado) {
+            return $this->ejecutarConsultaAutorizacion($idPensionado);
+        }
+
+        return null;
     }
 
     /**
@@ -65,14 +72,17 @@ class ConsultarAutorizacionCobroAction
             return null;
         }
 
-        return $this->cargarDetallesCompletos((array)$pension);
+        $idPensionado = $pension->id_pensionado ?? $pension->ID_PENSIONADO ?? '';
+        if ($idPensionado) {
+            return $this->ejecutarConsultaAutorizacion($idPensionado);
+        }
+
+        return null;
     }
 
     /**
-     * Consultar por formulario de solicitud:
-     * - Nacionalidad y Cédula del Pensionado
-     * - Nacionalidad y Cédula del Autorizado
-     * - Tipo de Pensión (opcional)
+     * Consultar únicamente por cédula del pensionado y tipo de pensión,
+     * utilizando la consulta oficial institucional.
      */
     public function consultarPorSolicitud(array $data): ?array
     {
@@ -81,244 +91,177 @@ class ConsultarAutorizacionCobroAction
             $data['cedula_solicitante'] ?? ''
         );
 
-        $ciAutorizado = $this->normalizarCedula(
-            $data['nacionalidad_autorizado'] ?? 'V',
-            $data['cedula_autorizado'] ?? ''
-        );
-
-        $query = DB::connection('oracle_consulta')
-            ->table('PRESTACIONES.AUTORIZA_COBRO_PENSION')
-            ->where('ID_PENSIONADO', $ciPensionado)
-            ->where('ID_AUTORIZADO', $ciAutorizado);
-
-        // Si se indicó un tipo de pensión específico
+        $tipoPension = null;
         if (!empty($data['tipo_pension']) && $data['tipo_pension'] !== '0') {
-            $tipoTexto = $this->tiposPension[$data['tipo_pension']] ?? strtoupper(trim($data['tipo_pension']));
-            $query->where(function ($q) use ($tipoTexto, $data) {
-                $q->where('TIPO_PENSION', $tipoTexto)
-                  ->orWhere('TIPO_PENSION', $data['tipo_pension']);
-            });
+            $tipoPension = $this->tiposPension[$data['tipo_pension']] ?? strtoupper(trim($data['tipo_pension']));
         }
 
-        // Obtener la autorización más reciente
-        $pension = $query->orderBy('FECHA', 'desc')->first();
+        return $this->ejecutarConsultaAutorizacion($ciPensionado, $tipoPension);
+    }
 
-        if (!$pension) {
-            // Reintento: buscar solo por cédula de pensionado si el autorizado no coincide exactamente
-            $pensionFallback = DB::connection('oracle_consulta')
-                ->table('PRESTACIONES.AUTORIZA_COBRO_PENSION')
-                ->where('ID_PENSIONADO', $ciPensionado)
-                ->orderBy('FECHA', 'desc')
-                ->first();
+    /**
+     * Ejecuta el query institucional unificado de Autorización de Cobro de Pensión.
+     */
+    public function ejecutarConsultaAutorizacion(string $cedulaPensionado, ?string $tipoPension = null): ?array
+    {
+        $sql = "
+        WITH FILTRO AS (
+            SELECT :cedula AS CEDULA FROM DUAL
+        )
+        SELECT 
+            ACP.ID AS NUMERO_PLANILLA, 
+            ACP.LUGAR, 
+            TO_CHAR(ACP.FECHA, 'DD/MM/YYYY') AS FECHA, 
+            ACP.RENOVABLE,
+            REGEXP_REPLACE( 
+                TRIM(P.PRIMER_NOMBRE || ' ' || P.SEGUNDO_NOMBRE || ' ' || P.PRIMER_APELLIDO || ' ' || P.SEGUNDO_APELLIDO), 
+                ' +', ' ' 
+            ) AS NOMBRE_PENSIONADO, 
+            P.ID_CIUDADANO AS CEDULA_PENSIONADO, 
+            ACP.DIRECCION_PENSIONADO, 
+            ACP.TELEFONO_PENSIONADO, 
+            EXP.MONTO_PENSION, 
+            EXP.NUMERO_RESOLUCION AS RESOLUCION_NRO, 
+            CASE WHEN EXP.ORIGEN_DATA = 'MIGRACIONCP' THEN 'AMOR MAYOR' ELSE EXP.ORIGEN_DATA END AS RAZON_SOCIAL, 
+            CASE UPPER(TRIM(ACP.TIPO_PENSION)) 
+                WHEN 'VEJEZ' THEN 'TRABAJO' 
+                WHEN 'INCAPACIDAD' THEN 'DISCAPACIDAD' 
+                WHEN 'INVALIDEZ' THEN 'DISCAPACIDAD' 
+                ELSE ACP.TIPO_PENSION 
+            END AS TIPO_PENSION, 
+            BCO.NOMBRE_BANCO AS ENTIDAD_BANCARIA, 
+            CASE WHEN BCO.CEDULA_CAUSANTE IS NOT NULL THEN NVL(TRIM(BCO.NRO_CUENTA), '00000000000000000000') END AS NUMERO_CUENTA, 
+            REGEXP_REPLACE( 
+                TRIM(A.PRIMER_NOMBRE || ' ' || A.SEGUNDO_NOMBRE || ' ' || A.PRIMER_APELLIDO || ' ' || A.SEGUNDO_APELLIDO), 
+                ' +', ' ' 
+            ) AS NOMBRE_AUTORIZADO, 
+            A.ID_CIUDADANO AS CEDULA_AUTORIZADO, 
+            ACP.DIRECCION_AUTORIZADO, 
+            ACP.TELEFONO_AUTORIZADO, 
+            ACP.ACUMULADO, 
+            ACP.ANO_ACUMULADO, 
+            ACP.MES1, 
+            ACP.ANO1, 
+            ACP.MES2, 
+            ACP.ANO2, 
+            ACP.MES3, 
+            ACP.ANO3, 
+            ACP.MES4, 
+            ACP.ANO4, 
+            NVL(U_AUT.NOMBRE, 'N/A') AS NOMBRE_AUTORIZADOR, 
+            NVL(TO_CHAR(U_AUT.CEDULA), 'N/A') AS CEDULA_AUTORIZADOR, 
+            'Aprobador Autorizado Cobro Pensión' AS CARGO_AUTORIZADOR, 
+            'DIRECCIÓN DE PRESTACIONES' AS OFICINA_ADMINISTRATIVA, 
+            ACP.CODIGO_VERIFICACION
+        FROM ( 
+            SELECT * FROM ( 
+                SELECT ACP_ALL.* FROM PRESTACIONES.AUTORIZA_COBRO_PENSION ACP_ALL 
+                INNER JOIN FILTRO F ON ACP_ALL.ID_PENSIONADO = F.CEDULA 
+                WHERE ACP_ALL.ESTATUS_REGISTRO = 'APR' 
+                  AND (
+                    :tipo_pension IS NULL 
+                    OR UPPER(TRIM(ACP_ALL.TIPO_PENSION)) = UPPER(TRIM(:tipo_pension))
+                  )
+                ORDER BY ACP_ALL.FECHA_AUTORIZADOR DESC NULLS LAST, ACP_ALL.FECHA DESC, ACP_ALL.ID DESC 
+            ) WHERE ROWNUM = 1
+        ) ACP
+        INNER JOIN SIRA.CIUDADANO P ON P.ID_CIUDADANO = ACP.ID_PENSIONADO
+        INNER JOIN SIRA.CIUDADANO A ON A.ID_CIUDADANO = ACP.ID_AUTORIZADO
+        LEFT JOIN ( 
+            SELECT CEDULA_CAUSANTE, NUMERO_RESOLUCION, MONTO_PENSION, ORIGEN_DATA FROM ( 
+                SELECT CEDULA_CAUSANTE, NUMERO_RESOLUCION, MONTO_PENSION, ORIGEN_DATA FROM PRESTACIONES.EXPEDIENTES_14105 WHERE CEDULA_CAUSANTE = (SELECT CEDULA FROM FILTRO) 
+                UNION 
+                SELECT CEDULA_CAUSANTE, NUMERO_RESOLUCION, MONTO_PENSION, ORIGEN_DATA FROM PRESTACIONES.EXPEDIENTES_14105_CP WHERE CEDULA_CAUSANTE = (SELECT CEDULA FROM FILTRO) 
+            ) WHERE ROWNUM = 1
+        ) EXP ON EXP.CEDULA_CAUSANTE = ACP.ID_PENSIONADO
+        LEFT JOIN ( 
+            SELECT CEDULA_CAUSANTE, NOMBRE_BANCO, NRO_CUENTA FROM ( 
+                SELECT E.CEDULA_CAUSANTE, BP.NOMBRE_BANCO, BP.NRO_CUENTA 
+                FROM (SELECT CEDULA_CAUSANTE, ID_BANCO FROM PRESTACIONES.EXPEDIENTES_14105 WHERE CEDULA_CAUSANTE = (SELECT CEDULA FROM FILTRO) AND ROWNUM >= 1) E 
+                INNER JOIN PRESTACIONES.BANCO_PRESTACIONES BP ON E.ID_BANCO = BP.ID_BANCO 
+                UNION 
+                SELECT E.CEDULA_CAUSANTE, BP.NOMBRE_BANCO, BP.NRO_CUENTA 
+                FROM (SELECT CEDULA_CAUSANTE, ID_BANCO FROM PRESTACIONES.EXPEDIENTES_14105_CP WHERE CEDULA_CAUSANTE = (SELECT CEDULA FROM FILTRO) AND ROWNUM >= 1) E 
+                INNER JOIN PRESTACIONES.BANCO_PRESTACIONES BP ON E.ID_BANCO = BP.ID_BANCO 
+            ) WHERE ROWNUM = 1
+        ) BCO ON BCO.CEDULA_CAUSANTE = ACP.ID_PENSIONADO
+        LEFT JOIN PRESTACIONES.USUARIO_PRESTACIONES U_AUT ON UPPER(TRIM(U_AUT.ID_USUARIO)) = UPPER(TRIM(ACP.USUARIO_AUTORIZADOR))
+        ";
 
-            if ($pensionFallback && trim($pensionFallback->id_autorizado) === $ciAutorizado) {
-                $pension = $pensionFallback;
-            }
+        $row = DB::connection('oracle_consulta')->selectOne($sql, [
+            'cedula' => $cedulaPensionado,
+            'tipo_pension' => $tipoPension,
+        ]);
+
+        // Si con el filtro de tipo de pensión no devolvió nada, reintentar sin filtro de tipo de pensión
+        if (!$row && $tipoPension !== null) {
+            $row = DB::connection('oracle_consulta')->selectOne($sql, [
+                'cedula' => $cedulaPensionado,
+                'tipo_pension' => null,
+            ]);
         }
 
-        if (!$pension) {
+        if (!$row) {
             return null;
         }
 
-        return $this->cargarDetallesCompletos((array)$pension);
+        return $this->mapearResultado($row);
     }
 
     /**
-     * Carga todos los datos asociados (Pensionado, Autorizado, Expediente/Banco, Autorizador)
-     * unificando la consulta institucional del programador.
+     * Mapea el registro de la consulta al formato estandarizado que requiere la vista y el PDF.
      */
-    protected function cargarDetallesCompletos(array $pension): array
+    protected function mapearResultado(object|array $row): array
     {
-        $idPensionado = $pension['id_pensionado'] ?? $pension['ID_PENSIONADO'] ?? '';
-        $idAutorizado = $pension['id_autorizado'] ?? $pension['ID_AUTORIZADO'] ?? '';
-        $idUsuarioAut = trim($pension['usuario_autorizador'] ?? $pension['USUARIO_AUTORIZADOR'] ?? '');
-
-        // 1. Datos del Ciudadano Pensionado
-        $pensionado = (array)(DB::connection('oracle_consulta')
-            ->table('SIRA.CIUDADANO')
-            ->where('ID_CIUDADANO', $idPensionado)
-            ->first() ?: []);
-
-        // 2. Datos del Ciudadano Autorizado
-        $autorizado = (array)(DB::connection('oracle_consulta')
-            ->table('SIRA.CIUDADANO')
-            ->where('ID_CIUDADANO', $idAutorizado)
-            ->first() ?: []);
-
-        // 3. Consulta de Expediente, Banco y Pensión (Query unificado del programador)
-        $datosExpediente = $this->obtenerDatosExpediente($idPensionado);
-
-        // 4. Datos del Funcionario Autorizador
-        $autorizador = null;
-        if ($idUsuarioAut !== '') {
-            $autorizador = (array)(DB::connection('oracle_consulta')
-                ->table('PRESTACIONES.USUARIO_PRESTACIONES')
-                ->whereRaw('UPPER(TRIM(ID_USUARIO)) = UPPER(TRIM(?))', [$idUsuarioAut])
-                ->select(['NOMBRE', 'CEDULA'])
-                ->first() ?: []);
-        }
-
-        // Formatear Nombres Completos
-        $nombrePensionado = trim(
-            ($pensionado['primer_nombre'] ?? $pensionado['PRIMER_NOMBRE'] ?? '') . ' ' .
-            ($pensionado['segundo_nombre'] ?? $pensionado['SEGUNDO_NOMBRE'] ?? '') . ' ' .
-            ($pensionado['primer_apellido'] ?? $pensionado['PRIMER_APELLIDO'] ?? '') . ' ' .
-            ($pensionado['segundo_apellido'] ?? $pensionado['SEGUNDO_APELLIDO'] ?? '')
-        );
-
-        if (empty($nombrePensionado) && !empty($datosExpediente['nombre_causante'])) {
-            $nombrePensionado = $datosExpediente['nombre_causante'];
-        }
-
-        $nombreAutorizado = trim(
-            ($autorizado['primer_nombre'] ?? $autorizado['PRIMER_NOMBRE'] ?? '') . ' ' .
-            ($autorizado['segundo_nombre'] ?? $autorizado['SEGUNDO_NOMBRE'] ?? '') . ' ' .
-            ($autorizado['primer_apellido'] ?? $autorizado['PRIMER_APELLIDO'] ?? '') . ' ' .
-            ($autorizado['segundo_apellido'] ?? $autorizado['SEGUNDO_APELLIDO'] ?? '')
-        );
-
-        // Transformación de Tipo de Pensión para vista
-        $tipoPensionRaw = strtoupper($pension['tipo_pension'] ?? $pension['TIPO_PENSION'] ?? 'VEJEZ');
-        $tipoDisplay = $tipoPensionRaw;
-        if ($tipoPensionRaw === 'VEJEZ') {
-            $tipoDisplay = 'TRABAJO';
-        } elseif ($tipoPensionRaw === 'INCAPACIDAD' || $tipoPensionRaw === 'INVALIDEZ') {
-            $tipoDisplay = 'DISCAPACIDAD';
-        }
-
-        $origenData = ($datosExpediente['origen_data'] ?? '') === 'MIGRACIONCP'
-            ? 'AMOR MAYOR'
-            : ($datosExpediente['origen_data'] ?? 'AMOR MAYOR');
+        $row = (object)$row;
 
         return [
-            'id' => $pension['id'] ?? $pension['ID'],
-            'lugar' => $pension['lugar'] ?? $pension['LUGAR'] ?? 'DISTRITO CAPITAL',
-            'fecha' => $pension['fecha'] ?? $pension['FECHA'] ?? '',
-            'estatus_registro' => $pension['estatus_registro'] ?? $pension['ESTATUS_REGISTRO'] ?? '',
-            'codigo_verificacion' => $pension['codigo_verificacion'] ?? $pension['CODIGO_VERIFICACION'] ?? '',
-            'renovable' => $pension['renovable'] ?? $pension['RENOVABLE'] ?? 'N',
-            'tipo_pension' => $tipoPensionRaw,
-            'tipo_display' => $tipoDisplay,
+            'id' => $row->numero_planilla ?? $row->NUMERO_PLANILLA ?? '',
+            'lugar' => $row->lugar ?? $row->LUGAR ?? 'DISTRITO CAPITAL',
+            'fecha' => $row->fecha ?? $row->FECHA ?? '',
+            'renovable' => $row->renovable ?? $row->RENOVABLE ?? 'N',
+            'estatus_registro' => 'APR',
+            'codigo_verificacion' => $row->codigo_verificacion ?? $row->CODIGO_VERIFICACION ?? '',
+            'tipo_pension' => $row->tipo_pension ?? $row->TIPO_PENSION ?? 'TRABAJO',
+            'tipo_display' => $row->tipo_pension ?? $row->TIPO_PENSION ?? 'TRABAJO',
 
             // Pensionado
-            'id_pensionado' => $idPensionado,
-            'nombre_pensionado' => $nombrePensionado ?: 'NO REGISTRADO',
-            'direccion_pensionado' => $pension['direccion_pensionado'] ?? $pension['DIRECCION_PENSIONADO'] ?? 'NO REGISTRADA',
-            'telefono_pensionado' => $pension['telefono_pensionado'] ?? $pension['TELEFONO_PENSIONADO'] ?? 'NO REGISTRADO',
+            'id_pensionado' => $row->cedula_pensionado ?? $row->CEDULA_PENSIONADO ?? '',
+            'nombre_pensionado' => $row->nombre_pensionado ?? $row->NOMBRE_PENSIONADO ?? 'NO REGISTRADO',
+            'direccion_pensionado' => $row->direccion_pensionado ?? $row->DIRECCION_PENSIONADO ?? 'NO REGISTRADA',
+            'telefono_pensionado' => $row->telefono_pensionado ?? $row->TELEFONO_PENSIONADO ?? 'NO REGISTRADO',
 
             // Autorizado
-            'id_autorizado' => $idAutorizado,
-            'nombre_autorizado' => $nombreAutorizado ?: 'NO REGISTRADO',
-            'direccion_autorizado' => $pension['direccion_autorizado'] ?? $pension['DIRECCION_AUTORIZADO'] ?? 'NO REGISTRADA',
-            'telefono_autorizado' => $pension['telefono_autorizado'] ?? $pension['TELEFONO_AUTORIZADO'] ?? 'NO REGISTRADO',
+            'id_autorizado' => $row->cedula_autorizado ?? $row->CEDULA_AUTORIZADO ?? '',
+            'nombre_autorizado' => $row->nombre_autorizado ?? $row->NOMBRE_AUTORIZADO ?? 'NO REGISTRADO',
+            'direccion_autorizado' => $row->direccion_autorizado ?? $row->DIRECCION_AUTORIZADO ?? 'NO REGISTRADA',
+            'telefono_autorizado' => $row->telefono_autorizado ?? $row->TELEFONO_AUTORIZADO ?? 'NO REGISTRADO',
 
-            // Pensión / Expediente
-            'monto_pension' => $datosExpediente['monto_de_pension'] ?? $datosExpediente['monto_pension'] ?? 130,
-            'numero_resolucion' => $datosExpediente['numero_resolucion'] ?? '',
-            'razon_social' => $origenData,
-            'nombre_banco' => $datosExpediente['entidad_financiera'] ?? $datosExpediente['nombre_banco'] ?? 'NO REGISTRADO',
-            'nro_cuenta' => $datosExpediente['numero_de_cuenta'] ?? $datosExpediente['nro_cuenta'] ?? '00000000000000000000',
-            'estatus_pension' => $datosExpediente['estatus_de_la_pension'] ?? 'ACTIVA',
+            // Datos Pensión / Expediente
+            'monto_pension' => $row->monto_pension ?? $row->MONTO_PENSION ?? '130',
+            'numero_resolucion' => $row->resolucion_nro ?? $row->RESOLUCION_NRO ?? '',
+            'razon_social' => $row->razon_social ?? $row->RAZON_SOCIAL ?? 'AMOR MAYOR',
+            'nombre_banco' => $row->entidad_bancaria ?? $row->ENTIDAD_BANCARIA ?? 'NO REGISTRADO',
+            'nro_cuenta' => $row->numero_cuenta ?? $row->NUMERO_CUENTA ?? '00000000000000000000',
+            'estatus_pension' => 'ACTIVA',
 
-            // Mensualidades autorizadas
-            'acumulado' => $pension['acumulado'] ?? $pension['ACUMULADO'] ?? '',
-            'ano_acumulado' => $pension['ano_acumulado'] ?? $pension['ANO_ACUMULADO'] ?? '',
-            'mes1' => $pension['mes1'] ?? $pension['MES1'] ?? '',
-            'ano1' => $pension['ano1'] ?? $pension['ANO1'] ?? '',
-            'mes2' => $pension['mes2'] ?? $pension['MES2'] ?? '',
-            'ano2' => $pension['ano2'] ?? $pension['ANO2'] ?? '',
-            'mes3' => $pension['mes3'] ?? $pension['MES3'] ?? '',
-            'ano3' => $pension['ano3'] ?? $pension['ANO3'] ?? '',
-            'mes4' => $pension['mes4'] ?? $pension['MES4'] ?? '',
-            'ano4' => $pension['ano4'] ?? $pension['ANO4'] ?? '',
+            // Mensualidades
+            'acumulado' => $row->acumulado ?? $row->ACUMULADO ?? '',
+            'ano_acumulado' => $row->ano_acumulado ?? $row->ANO_ACUMULADO ?? '',
+            'mes1' => $row->mes1 ?? $row->MES1 ?? '',
+            'ano1' => $row->ano1 ?? $row->ANO1 ?? '',
+            'mes2' => $row->mes2 ?? $row->MES2 ?? '',
+            'ano2' => $row->ano2 ?? $row->ANO2 ?? '',
+            'mes3' => $row->mes3 ?? $row->MES3 ?? '',
+            'ano3' => $row->ano3 ?? $row->ANO3 ?? '',
+            'mes4' => $row->mes4 ?? $row->MES4 ?? '',
+            'ano4' => $row->ano4 ?? $row->ANO4 ?? '',
 
             // Autorizador
-            'usuario_autorizador' => $idUsuarioAut,
-            'nombre_autorizador' => trim($autorizador['nombre'] ?? $autorizador['NOMBRE'] ?? 'CESAR RODRIGUEZ MARIA'),
-            'cedula_autorizador' => trim($autorizador['cedula'] ?? $autorizador['CEDULA'] ?? '8906738'),
-            'cargo_autorizador' => 'Aprobador Autorizado Cobro Pensión',
-            'oficina_autorizador' => 'DIRECCIÓN DE PRESTACIONES',
+            'nombre_autorizador' => trim($row->nombre_autorizador ?? $row->NOMBRE_AUTORIZADOR ?? 'CESAR RODRIGUEZ MARIA'),
+            'cedula_autorizador' => trim($row->cedula_autorizador ?? $row->CEDULA_AUTORIZADOR ?? '8906738'),
+            'cargo_autorizador' => $row->cargo_autorizador ?? $row->CARGO_AUTORIZADOR ?? 'Aprobador Autorizado Cobro Pensión',
+            'oficina_autorizador' => $row->oficina_administrativa ?? $row->OFICINA_ADMINISTRATIVA ?? 'DIRECCIÓN DE PRESTACIONES',
         ];
     }
-
-    /**
-     * Obtiene los datos del expediente, contingencia y banco utilizando
-     * el Query Builder / ORM de Laravel unificando la consulta institucional del programador.
-     */
-    protected function obtenerDatosExpediente(string $ciPensionado): array
-    {
-        // 1. Query Builder para Expedientes estándar (EXPEDIENTES_14105)
-        $expediente = DB::connection('oracle_consulta')
-            ->table('PRESTACIONES.COBRADOR_PENSION as cp')
-            ->join('PRESTACIONES.EXPEDIENTES_14105 as e', 'e.NUMERO_EXPEDIENTE', '=', 'cp.NUMERO_EXPEDIENTE')
-            ->leftJoin('SIRA.CIUDADANO as c_caus', 'c_caus.ID_CIUDADANO', '=', 'e.CEDULA_CAUSANTE')
-            ->leftJoin('SIRA.CIUDADANO as c_cob', 'c_cob.ID_CIUDADANO', '=', 'cp.CEDULA_DEL_COBRADOR')
-            ->join('PRESTACIONES.TIPOS_CONTINGENCIA as tc', 'tc.TIPO_DE_CONTINGENCIA', '=', 'e.TIPO_DE_CONTINGENCIA')
-            ->join('PRESTACIONES.BANCO_PRESTACIONES as bp', 'bp.ID_BANCO', '=', 'e.ID_BANCO')
-            ->join('PRESTACIONES.ESTATUS_PENSIONES as ep', 'ep.ID_ESTATUS', '=', 'e.ID_ESTATUS')
-            ->where('e.CEDULA_CAUSANTE', $ciPensionado)
-            ->select([
-                'tc.DESCRIPCION_DE_CONTINGENCIA as tipo_de_pension',
-                'e.CEDULA_CAUSANTE as cedula_causante',
-                DB::raw("NVL(
-                    NULLIF(REGEXP_REPLACE(TRIM(c_caus.PRIMER_NOMBRE || ' ' || c_caus.SEGUNDO_NOMBRE || ' ' || c_caus.PRIMER_APELLIDO || ' ' || c_caus.SEGUNDO_APELLIDO), ' +', ' '), ''),
-                    CASE WHEN TRIM(e.CEDULA_CAUSANTE) = TRIM(cp.CEDULA_DEL_COBRADOR) THEN NVL(TRIM(cp.NOMBRE_COBRADOR), 'NO REGISTRADO') ELSE 'NO REGISTRADO' END
-                ) as nombre_causante"),
-                'bp.NOMBRE_BANCO as entidad_financiera',
-                'e.NRO_CUENTA as numero_de_cuenta',
-                'ep.DESCRIPCION as estatus_de_la_pension',
-                DB::raw('NVL(e.MONTO_PENSION, 0) as monto_de_pension'),
-                'e.NUMERO_RESOLUCION as numero_resolucion',
-                'e.ORIGEN_DATA as origen_data',
-            ])
-            ->first();
-
-        if ($expediente) {
-            return (array)$expediente;
-        }
-
-        // 2. Query Builder para pensiones Amor Mayor (EXPEDIENTES_14105_CP)
-        $expedienteCP = DB::connection('oracle_consulta')
-            ->table('PRESTACIONES.EXPEDIENTES_14105_CP as e')
-            ->leftJoin('SIRA.CIUDADANO as c_caus', 'c_caus.ID_CIUDADANO', '=', 'e.CEDULA_CAUSANTE')
-            ->leftJoin('PRESTACIONES.TIPOS_CONTINGENCIA as tc', 'tc.TIPO_DE_CONTINGENCIA', '=', 'e.TIPO_DE_CONTINGENCIA')
-            ->leftJoin('PRESTACIONES.BANCO_PRESTACIONES as bp', 'bp.ID_BANCO', '=', 'e.ID_BANCO')
-            ->where('e.CEDULA_CAUSANTE', $ciPensionado)
-            ->select([
-                'tc.DESCRIPCION_DE_CONTINGENCIA as tipo_de_pension',
-                'e.CEDULA_CAUSANTE as cedula_causante',
-                DB::raw("NVL(
-                    NULLIF(REGEXP_REPLACE(TRIM(c_caus.PRIMER_NOMBRE || ' ' || c_caus.SEGUNDO_NOMBRE || ' ' || c_caus.PRIMER_APELLIDO || ' ' || c_caus.SEGUNDO_APELLIDO), ' +', ' '), ''),
-                    'NO REGISTRADO'
-                ) as nombre_causante"),
-                'bp.NOMBRE_BANCO as entidad_financiera',
-                'bp.NRO_CUENTA as numero_de_cuenta',
-                DB::raw("'ACTIVA' as estatus_de_la_pension"),
-                DB::raw('NVL(e.MONTO_PENSION, 0) as monto_de_pension'),
-                'e.NUMERO_RESOLUCION as numero_resolucion',
-                'e.ORIGEN_DATA as origen_data',
-            ])
-            ->first();
-
-        if ($expedienteCP) {
-            return (array)$expedienteCP;
-        }
-
-        // 3. Query Builder de respaldo para cuentas bancarias en EXPEDIENTES_14105
-        $expedienteDirecto = DB::connection('oracle_consulta')
-            ->table('PRESTACIONES.EXPEDIENTES_14105 as e')
-            ->leftJoin('PRESTACIONES.BANCO_PRESTACIONES as bp', 'bp.ID_BANCO', '=', 'e.ID_BANCO')
-            ->where('e.CEDULA_CAUSANTE', $ciPensionado)
-            ->select([
-                'e.NUMERO_RESOLUCION as numero_resolucion',
-                'e.MONTO_PENSION as monto_pension',
-                'e.ORIGEN_DATA as origen_data',
-                'bp.NOMBRE_BANCO as nombre_banco',
-                'bp.NRO_CUENTA as nro_cuenta',
-            ])
-            ->first();
-
-        return $expedienteDirecto ? (array)$expedienteDirecto : [];
-    }
 }
-
