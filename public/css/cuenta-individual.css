@@ -1,0 +1,253 @@
+/* ==========================================================================
+   Cuenta Individual - Estilos Oficiales IVSS (100% Autónomo / Sin CDNs)
+   ========================================================================== */
+
+/* Fuentes Locales */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../fonts/inter-400.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('../fonts/inter-600.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../fonts/inter-700.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('../fonts/outfit-600.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../fonts/outfit-700.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url('../fonts/outfit-700.ttf') format('truetype');
+}
+
+:root {
+    --ivss-red: #c82333;
+    --ivss-red-dark: #8b0000;
+    --ivss-dark: #1e293b;
+    --ivss-gray: #64748B;
+    --ivss-bg-light: #f1f5f9;
+}
+
+@page {
+    size: A4 portrait;
+    margin: 8mm;
+}
+
+body.cuenta-individual-body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: var(--ivss-dark);
+    -webkit-font-smoothing: antialiased;
+    font-size: 0.8rem;
+    line-height: 1.25;
+    margin: 0;
+    padding: 16px 0;
+}
+
+.cuenta-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #ffffff;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.header-banner {
+    border-bottom: 3px solid var(--ivss-red);
+    padding-bottom: 12px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-logo {
+    max-height: 52px;
+    width: auto;
+}
+
+.page-title {
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 800;
+    color: var(--ivss-dark);
+    font-size: 1.15rem;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    letter-spacing: -0.3px;
+}
+
+.page-subtitle {
+    color: var(--ivss-red);
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-top: 2px;
+}
+
+.section-title {
+    background: var(--ivss-bg-light);
+    color: var(--ivss-dark);
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 700;
+    padding: 6px 12px;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+    border-left: 4px solid var(--ivss-red);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+/* Tablas Compactas */
+.grid-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 14px;
+    font-size: 0.75rem;
+}
+
+.grid-table th,
+.grid-table td {
+    border: 1px solid #dee2e6;
+    padding: 5px 8px;
+    vertical-align: middle;
+}
+
+.grid-table th {
+    background-color: #f1f5f9;
+    color: var(--ivss-gray);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    white-space: nowrap;
+}
+
+.grid-table td.label-cell {
+    background-color: #f8fafc;
+    font-weight: 600;
+    color: var(--ivss-gray);
+    width: 20%;
+}
+
+.grid-table td.value-cell {
+    font-weight: 700;
+    color: var(--ivss-dark);
+}
+
+.grid-table-dark th {
+    background-color: #1e293b;
+    color: #ffffff;
+    text-align: center;
+    border-color: #334155;
+    font-size: 0.72rem;
+    padding: 5px 4px;
+}
+
+.grid-table-dark td {
+    text-align: center;
+    padding: 4px;
+    font-size: 0.75rem;
+}
+
+.text-red {
+    color: var(--ivss-red) !important;
+}
+
+.bg-red-light {
+    background-color: rgba(200, 35, 51, 0.08) !important;
+}
+
+.footer-actions {
+    margin-top: 24px;
+    text-align: center;
+}
+
+.btn-ultimate-red {
+    background: linear-gradient(135deg, #c82333 0%, #8b0000 100%);
+    color: #ffffff;
+    border: none;
+    padding: 9px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-family: 'Outfit', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(200, 35, 51, 0.3);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-ultimate-red:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(200, 35, 51, 0.4);
+    color: #ffffff;
+}
+
+.timestamp {
+    font-size: 0.7rem;
+    color: var(--ivss-gray);
+    text-align: center;
+    margin-top: 14px;
+    font-weight: 500;
+    border-top: 1px dashed #cbd5e1;
+    padding-top: 10px;
+}
+
+/* Estilos de Impresión */
+@media print {
+    body.cuenta-individual-body {
+        background-color: #ffffff !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .cuenta-container {
+        box-shadow: none !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+    }
+
+    .footer-actions {
+        display: none !important;
+    }
+
+    .header-banner {
+        border-bottom: 2px solid var(--ivss-red) !important;
+    }
+}
