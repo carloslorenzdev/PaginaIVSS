@@ -4,10 +4,6 @@
         <div class="position-absolute top-0 start-0 w-100 h-100" style="background-image: url('{{ asset('img/fondo_sede.jpg') }}'); background-size: cover; background-position: center; opacity: 0.12; z-index: 0;"></div>
 
         <div class="container position-relative" style="z-index: 2;">
-            <div class="d-inline-flex align-items-center gap-2 mb-2 bg-white bg-opacity-15 text-white px-3 py-1 rounded-pill small">
-                <i class="fas fa-file-contract text-warning"></i>
-                <span class="fw-semibold">Dirección de Prestaciones • Forma 14-179</span>
-            </div>
             <h1 class="h3 fw-bold text-white mb-2">Actualización de Autorización de Cobro de Pensión</h1>
             <p class="text-white-50 mb-0 fs-6">Consulte o renueve su autorización de cobro ante el IVSS</p>
         </div>
@@ -28,7 +24,7 @@
 
                     <!-- TARJETA FORMULARIO -->
                     <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden">
-                        <div class="card-header bg-white border-bottom py-3 px-4 d-flex align-items-center justify-content-between">
+                        <div class="card-header bg-white border-bottom py-3 px-4">
                             <div class="d-flex align-items-center gap-2">
                                 <div class="bg-danger bg-opacity-10 text-danger rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
                                     <i class="fas fa-id-card"></i>
@@ -38,9 +34,6 @@
                                     <span class="text-muted small">Ingrese los datos para consultar o tramitar la renovación</span>
                                 </div>
                             </div>
-                            <span class="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 px-3 py-2 rounded-pill small">
-                                Forma 14-179
-                            </span>
                         </div>
 
                         <div class="card-body p-4">
