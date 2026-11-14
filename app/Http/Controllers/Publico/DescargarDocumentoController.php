@@ -36,3 +36,4 @@ class DescargarDocumentoController extends Controller
         return Storage::disk('public')->download($doc->archivo_path, $nombreDescarga);
     }
 }
+

@@ -132,7 +132,7 @@ class DocumentosManager extends Component
             'tamano_bytes' => null,
         ]);
 
-        session()->flash('success', "Archivo removido para '{$doc->titulo}'. El documento figura como no subido.");
+        session()->flash('success', "Archivo desvinculado de '{$doc->titulo}'. El documento se mantiene en el catálogo como No Subido.");
     }
 
     public function render()
@@ -162,7 +162,7 @@ class DocumentosManager extends Component
                             ->orderBy('categoria')
                             ->orderBy('orden')
                             ->orderBy('id', 'asc')
-                            ->paginate(20);
+                            ->paginate(50);
 
         $totales = [
             'total' => DocumentoInstitucional::count(),

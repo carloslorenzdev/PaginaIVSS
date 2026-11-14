@@ -12,7 +12,7 @@
             </div>
         </div>
 
-        {{-- MENSAJES FLASH --}}
+        {{-- MENSAJES FLASH / NOTIFICACIÓN FLOTANTE --}}
         @if (session()->has('success'))
             <div class="bg-emerald-50 border border-emerald-200 text-emerald-800 dark:bg-emerald-950/40 dark:border-emerald-800 dark:text-emerald-200 px-4 py-3 rounded-xl flex items-center justify-between shadow-sm">
                 <div class="flex items-center gap-2.5">
@@ -20,6 +20,22 @@
                     <span class="text-sm font-semibold">{{ session('success') }}</span>
                 </div>
                 <button type="button" onclick="this.parentElement.remove()" class="text-emerald-500 hover:text-emerald-700">
+                    <i class="bx bx-x text-lg"></i>
+                </button>
+            </div>
+
+            {{-- Toast flotante visible en cualquier posición de la pantalla --}}
+            <div x-data="{ show: true }"
+                 x-show="show"
+                 x-init="setTimeout(() => show = false, 4500)"
+                 class="fixed bottom-6 right-6 z-[100] max-w-md flex items-center gap-3 px-4 py-3 bg-white dark:bg-neutral-800 text-gray-900 dark:text-white rounded-xl shadow-2xl border border-gray-200 dark:border-neutral-700">
+                <div class="size-8 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0">
+                    <i class="bx bx-check-circle text-xl"></i>
+                </div>
+                <div class="text-xs font-semibold flex-grow">
+                    {{ session('success') }}
+                </div>
+                <button type="button" @click="show = false" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200">
                     <i class="bx bx-x text-lg"></i>
                 </button>
             </div>
@@ -212,9 +228,11 @@
                                     {{-- Botón Quitar Archivo (Sin modal de confirmación) --}}
                                     <button type="button"
                                             wire:click="quitarArchivo({{ $item->id }})"
-                                            title="Quitar archivo adjunto"
-                                            class="size-8 rounded-lg flex items-center justify-center border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-700 hover:bg-red-50 dark:hover:bg-red-900/30 text-gray-600 hover:text-red-600 dark:text-neutral-300 dark:hover:text-red-400 shadow-sm transition-colors">
-                                        <i class="bx bx-trash text-base"></i>
+                                            wire:loading.attr="disabled"
+                                            title="Quitar archivo adjunto (volver a No Subido)"
+                                            class="size-8 rounded-lg flex items-center justify-center border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-700 hover:bg-red-50 dark:hover:bg-red-900/30 text-gray-600 hover:text-red-600 dark:text-neutral-300 dark:hover:text-red-400 shadow-sm transition-colors disabled:opacity-50">
+                                        <i class="bx bx-trash text-base" wire:loading.remove wire:target="quitarArchivo({{ $item->id }})"></i>
+                                        <i class="bx bx-loader-alt bx-spin text-base text-red-600" wire:loading wire:target="quitarArchivo({{ $item->id }})"></i>
                                     </button>
                                 @else
                                     {{-- Botón Subir Archivo (Sólido normal, sin degradado) --}}
