@@ -141,6 +141,16 @@
 </li>
 @endcan
 
+{{-- DOCUMENTOS INSTITUCIONALES --}}
+@can('documentos.ver')
+<li>
+    <x-nav.link href="{{ route('admin.documentos.index') }}" active="{{ routeActive('admin.documentos.*') }}">
+        <i class="bx bx-file bx-sm"></i>
+        Documentos Institucionales
+    </x-nav.link>
+</li>
+@endcan
+
 @canany(['chatbot_conocimiento.ver', 'chatbot_preguntas.ver'])
 <li>
     <x-nav.accordion id="chatbot-acordion" active="{{ request()->routeIs('admin.chatbot.*') }}">

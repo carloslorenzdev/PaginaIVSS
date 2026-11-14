@@ -43,6 +43,9 @@
                                 type="button" role="tab" aria-controls="v-pills-{{ Str::slug($nombre) }}" 
                                 aria-selected="{{ $i === 0 ? 'true' : 'false' }}">
                                 <i class="{{ $datos['icono'] }} me-2 text-{{ $datos['color'] }}"></i> {{ $nombre }}
+                                @if(count($datos['documentos']) > 0)
+                                    <span class="badge bg-light text-dark rounded-pill float-end">{{ count($datos['documentos']) }}</span>
+                                @endif
                             </button>
                             @php $i++; @endphp
                         @endforeach
@@ -65,7 +68,10 @@
                                     <div class="bg-{{ $datos['color'] }} bg-opacity-10 text-{{ $datos['color'] }} rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
                                         <i class="{{ $datos['icono'] }} fa-lg"></i>
                                     </div>
-                                    <h2 class="fw-bold text-dark mb-0">{{ $nombre }}</h2>
+                                    <div>
+                                        <h2 class="fw-bold text-dark mb-0">{{ $nombre }}</h2>
+                                        <p class="text-muted small mb-0">Descarga de formatos oficiales emitidos por el IVSS</p>
+                                    </div>
                                 </div>
 
                                 @if(count($datos['documentos']) > 0)
@@ -75,37 +81,35 @@
                                                 <div class="card border-0 shadow-sm border-start border-4 border-{{ $doc['disponible'] ? $datos['color'] : 'secondary-subtle' }} hover-elevate transition-all {{ !$doc['disponible'] ? 'bg-light bg-opacity-50' : '' }}">
                                                     <div class="card-body p-3 d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3">
                                                         <div class="d-flex align-items-center">
-                                                            @php
-                                                                $esPdf = ($doc['extension'] ?? '') === 'pdf';
-                                                                $iconoDoc = $esPdf ? 'fas fa-file-pdf text-danger' : 'fas fa-file-word text-primary';
-                                                                if (!$doc['disponible']) {
-                                                                    $iconoDoc = 'fas fa-file-lines text-muted';
-                                                                }
-                                                            @endphp
-                                                            <i class="{{ $iconoDoc }} fa-2x me-3 opacity-75"></i>
+                                                            <i class="{{ $doc['icono_formato'] }} fa-2x me-3 opacity-75"></i>
                                                             <div>
                                                                 <h5 class="fw-bold {{ $doc['disponible'] ? 'text-dark' : 'text-secondary' }} mb-0" style="font-size: 1rem;">
                                                                     {{ $doc['titulo'] }}
                                                                 </h5>
-                                                                @if($doc['disponible'] && $doc['reciente'])
-                                                                    <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-2.5 py-1 mt-1 d-inline-flex align-items-center" style="font-size: 0.72rem;">
-                                                                        <i class="fas fa-check-circle me-1"></i> Actualizado recientemente
-                                                                    </span>
-                                                                @elseif(!$doc['disponible'])
-                                                                    <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle rounded-pill px-2.5 py-1 mt-1 d-inline-flex align-items-center" style="font-size: 0.72rem;">
-                                                                        <i class="fas fa-clock me-1"></i> Disponible próximamente
-                                                                    </span>
+                                                                @if(!empty($doc['descripcion']))
+                                                                    <p class="text-muted small mb-0">{{ $doc['descripcion'] }}</p>
                                                                 @endif
+                                                                <div class="mt-1 d-flex flex-wrap align-items-center gap-1.5">
+                                                                    @if($doc['disponible'] && $doc['reciente'])
+                                                                        <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-2.5 py-0.5" style="font-size: 0.72rem;">
+                                                                            <i class="fas fa-check-circle me-1"></i> Actualizado recientemente
+                                                                        </span>
+                                                                    @elseif(!$doc['disponible'])
+                                                                        <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle rounded-pill px-2.5 py-0.5" style="font-size: 0.72rem;">
+                                                                            <i class="fas fa-clock me-1"></i> Disponible próximamente
+                                                                        </span>
+                                                                    @endif
+                                                                </div>
                                                             </div>
                                                         </div>
 
                                                         @if($doc['disponible'])
                                                             <a href="{{ $doc['url'] }}" target="_blank" download class="btn btn-outline-{{ $datos['color'] }} btn-sm px-4 fw-bold rounded-pill shadow-sm text-nowrap">
-                                                                <i class="fas fa-download me-1"></i> Descargar
+                                                                <i class="fas fa-download me-1"></i> Descargar ({{ $doc['tamano'] }})
                                                             </a>
                                                         @else
-                                                            <button type="button" disabled class="btn btn-light text-muted border btn-sm px-3 fw-medium rounded-pill shadow-none text-nowrap" style="cursor: not-allowed; opacity: 0.8;" title="Documento en proceso de actualización">
-                                                                <i class="fas fa-lock me-1"></i> No disponible
+                                                            <button disabled class="btn btn-light btn-sm px-4 fw-bold rounded-pill text-muted opacity-75 text-nowrap">
+                                                                <i class="fas fa-clock me-1"></i> Próximamente
                                                             </button>
                                                         @endif
                                                     </div>
@@ -148,9 +152,13 @@
     .custom-pills .nav-link.active i {
         color: #fff !important;
     }
+    .custom-pills .nav-link.active .badge {
+        background-color: rgba(255, 255, 255, 0.2) !important;
+        color: #fff !important;
+    }
     .hover-elevate:hover {
         transform: translateY(-3px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.08) !important;
     }
     .transition-all {
         transition: all 0.3s ease;

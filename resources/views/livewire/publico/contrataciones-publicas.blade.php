@@ -43,6 +43,9 @@
                                 type="button" role="tab" aria-controls="v-pills-{{ Str::slug($nombre) }}" 
                                 aria-selected="{{ $i === 0 ? 'true' : 'false' }}">
                                 <i class="{{ $datos['icono'] }} me-2 text-{{ $datos['color'] }}"></i> {{ $nombre }}
+                                @if(count($datos['documentos']) > 0)
+                                    <span class="badge bg-light text-dark rounded-pill float-end">{{ count($datos['documentos']) }}</span>
+                                @endif
                             </button>
                             @php $i++; @endphp
                         @endforeach
@@ -65,7 +68,10 @@
                                     <div class="bg-{{ $datos['color'] }} bg-opacity-10 text-{{ $datos['color'] }} rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
                                         <i class="{{ $datos['icono'] }} fa-lg"></i>
                                     </div>
-                                    <h2 class="fw-bold text-dark mb-0">{{ $nombre }}</h2>
+                                    <div>
+                                        <h2 class="fw-bold text-dark mb-0">{{ $nombre }}</h2>
+                                        <p class="text-muted small mb-0">Pliegos, concursos y requerimientos de proveedores</p>
+                                    </div>
                                 </div>
 
                                 @if(isset($datos['tipo']) && $datos['tipo'] === 'informativo')
@@ -75,7 +81,7 @@
                                         
                                         <div class="alert alert-warning border-0 rounded-4 shadow-sm mb-4">
                                             <div class="d-flex">
-                                                <i class="fas fa-exclamation-triangle fa-2x me-3 text-warning"></i>
+                                                <i class="fas fa-exclamation-triangle fa-2x me-3 text-warning flex-shrink-0"></i>
                                                 <div>
                                                     <h5 class="fw-bold mb-1">Información Importante</h5>
                                                     <p class="mb-0">Los recaudos deben ser presentados en una <strong>carpeta de fibra marrón (tamaño oficio)</strong> y toda la información debe estar también digitalizada e incluida en un <strong>CD</strong>. Consignar en el Edificio Sede del IVSS, Altagracia, Piso 3 o Unidad de Registro de Proveedores, Mezzanina. Correo: <a href="mailto:URPIVSS@GMAIL.COM" class="alert-link">URPIVSS@GMAIL.COM</a> | Teléfono: 0212-8011050.</p>
@@ -85,50 +91,71 @@
 
                                         <h5 class="fw-bold text-dark border-bottom pb-2 mb-3"><i class="fas fa-building text-danger me-2"></i> Requisitos para Personas Jurídicas</h5>
                                         <ul class="list-unstyled space-y-3 text-muted">
-                                            <li class="d-flex mb-3"><i class="fas fa-check-circle text-success mt-1 me-3"></i> <div><strong>1. Acta Constitutiva:</strong> y Estatutos Sociales con todas sus modificaciones (Registro Mercantil).</div></li>
-                                            <li class="d-flex mb-3"><i class="fas fa-check-circle text-success mt-1 me-3"></i> <div><strong>2. Cédula de Identidad:</strong> Copias legibles de la Junta Directiva, Administradores y Representantes Legales.</div></li>
-                                            <li class="d-flex mb-3"><i class="fas fa-check-circle text-success mt-1 me-3"></i> <div><strong>3. Cooperativas:</strong> Lista de miembros, registro SUNACOOP y certificado de cumplimiento.</div></li>
-                                            <li class="d-flex mb-3"><i class="fas fa-check-circle text-success mt-1 me-3"></i> <div><strong>4. Declaración de ISLR:</strong> Del último ejercicio fiscal o certificado de exención.</div></li>
-                                            <li class="d-flex mb-3"><i class="fas fa-check-circle text-success mt-1 me-3"></i> <div><strong>5. RIF:</strong> Registro de Información Fiscal vigente.</div></li>
-                                            <li class="d-flex mb-3"><i class="fas fa-check-circle text-success mt-1 me-3"></i> <div><strong>6. SNC:</strong> Certificado de inscripción vigente en el Servicio Nacional de Contratistas.</div></li>
-                                            <li class="d-flex mb-3"><i class="fas fa-check-circle text-success mt-1 me-3"></i> <div><strong>7. Solvencia Laboral:</strong> Vigente y en regla.</div></li>
-                                            <li class="d-flex mb-3"><i class="fas fa-check-circle text-success mt-1 me-3"></i> <div><strong>8. Solvencia IVSS:</strong> Certificado vigente acompañado del último recibo de pago.</div></li>
-                                            <li class="d-flex mb-3"><i class="fas fa-check-circle text-success mt-1 me-3"></i> <div><strong>9. Permiso Sanitario:</strong> Permiso Sanitario de Funcionamiento o Registro Sanitario (solo si aplica según la actividad).</div></li>
-                                            <li class="d-flex"><i class="fas fa-check-circle text-success mt-1 me-3"></i> <div><strong>10. Certificación Bancaria:</strong> Documento oficial del banco que refleje el número de cuenta de 20 dígitos.</div></li>
+                                            <li class="d-flex mb-3"><i class="fas fa-check-circle text-success mt-1 me-3 flex-shrink-0"></i> <div><strong>1. Acta Constitutiva:</strong> y Estatutos Sociales con todas sus modificaciones (Registro Mercantil).</div></li>
+                                            <li class="d-flex mb-3"><i class="fas fa-check-circle text-success mt-1 me-3 flex-shrink-0"></i> <div><strong>2. Cédula de Identidad:</strong> Copias legibles de la Junta Directiva, Administradores y Representantes Legales.</div></li>
+                                            <li class="d-flex mb-3"><i class="fas fa-check-circle text-success mt-1 me-3 flex-shrink-0"></i> <div><strong>3. Cooperativas:</strong> Lista de miembros, registro SUNACOOP y certificado de cumplimiento.</div></li>
+                                            <li class="d-flex mb-3"><i class="fas fa-check-circle text-success mt-1 me-3 flex-shrink-0"></i> <div><strong>4. Declaración de ISLR:</strong> Del último ejercicio fiscal o certificado de exención.</div></li>
+                                            <li class="d-flex mb-3"><i class="fas fa-check-circle text-success mt-1 me-3 flex-shrink-0"></i> <div><strong>5. RIF:</strong> Registro de Información Fiscal vigente.</div></li>
+                                            <li class="d-flex mb-3"><i class="fas fa-check-circle text-success mt-1 me-3 flex-shrink-0"></i> <div><strong>6. SNC:</strong> Certificado de inscripción vigente en el Servicio Nacional de Contratistas.</div></li>
+                                            <li class="d-flex mb-3"><i class="fas fa-check-circle text-success mt-1 me-3 flex-shrink-0"></i> <div><strong>7. Solvencia Laboral:</strong> Vigente y en regla.</div></li>
+                                            <li class="d-flex mb-3"><i class="fas fa-check-circle text-success mt-1 me-3 flex-shrink-0"></i> <div><strong>8. Solvencia IVSS:</strong> Certificado vigente acompañado del último recibo de pago.</div></li>
+                                            <li class="d-flex mb-3"><i class="fas fa-check-circle text-success mt-1 me-3 flex-shrink-0"></i> <div><strong>9. Permiso Sanitario:</strong> Permiso Sanitario de Funcionamiento o Registro Sanitario (solo si aplica según la actividad).</div></li>
+                                            <li class="d-flex"><i class="fas fa-check-circle text-success mt-1 me-3 flex-shrink-0"></i> <div><strong>10. Certificación Bancaria:</strong> Documento oficial del banco que refleje el número de cuenta de 20 dígitos.</div></li>
                                         </ul>
                                     </div>
-                                @else
-                                    <!-- LISTA DE DOCUMENTOS DESCARGABLES -->
-                                    @if(count($datos['documentos']) > 0)
-                                        <div class="row g-3">
-                                            @foreach($datos['documentos'] as $doc)
-                                                <div class="col-12">
-                                                    <div class="card border-0 shadow-sm border-start border-4 border-{{ $datos['color'] }} hover-elevate transition-all">
-                                                        <div class="card-body p-3 d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between">
-                                                            <div class="mb-3 mb-md-0 d-flex align-items-center">
-                                                                @php
-                                                                    $esPdf = str_ends_with(strtolower($doc['url']), '.pdf');
-                                                                    $iconoDoc = $esPdf ? 'fas fa-file-pdf text-danger' : 'fas fa-external-link-alt text-primary';
-                                                                @endphp
-                                                                <i class="{{ $iconoDoc }} fa-2x me-3 opacity-75"></i>
-                                                                <h5 class="fw-bold text-dark mb-0" style="font-size: 1rem;">{{ $doc['titulo'] }}</h5>
+                                @endif
+
+                                <!-- LISTA DE DOCUMENTOS DESCARGABLES -->
+                                @if(count($datos['documentos']) > 0)
+                                    <div class="row g-3">
+                                        @foreach($datos['documentos'] as $doc)
+                                            <div class="col-12">
+                                                <div class="card border-0 shadow-sm border-start border-4 border-{{ $doc['tiene_archivo'] ? $datos['color'] : 'secondary-subtle' }} hover-elevate transition-all {{ !$doc['tiene_archivo'] ? 'bg-light bg-opacity-50' : '' }}">
+                                                    <div class="card-body p-3 d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3">
+                                                        <div class="d-flex align-items-center">
+                                                            <i class="{{ $doc['icono_formato'] }} fa-2x me-3 opacity-75"></i>
+                                                            <div>
+                                                                <h5 class="fw-bold {{ $doc['tiene_archivo'] ? 'text-dark' : 'text-secondary' }} mb-0" style="font-size: 1rem;">
+                                                                    {{ $doc['titulo'] }}
+                                                                </h5>
+                                                                @if(!empty($doc['descripcion']))
+                                                                    <p class="text-muted small mb-0">{{ $doc['descripcion'] }}</p>
+                                                                @endif
+                                                                <div class="mt-1 d-flex flex-wrap align-items-center gap-1.5">
+                                                                    @if($doc['tiene_archivo'] && $doc['reciente'])
+                                                                        <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-2.5 py-0.5" style="font-size: 0.72rem;">
+                                                                            <i class="fas fa-check-circle me-1"></i> Actualizado recientemente
+                                                                        </span>
+                                                                    @elseif(!$doc['tiene_archivo'])
+                                                                        <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle rounded-pill px-2.5 py-0.5" style="font-size: 0.72rem;">
+                                                                            <i class="fas fa-clock me-1"></i> En proceso de digitalización
+                                                                        </span>
+                                                                    @endif
+                                                                </div>
                                                             </div>
-                                                            <a href="{{ $doc['url'] }}" target="_blank" class="btn btn-outline-{{ $datos['color'] }} btn-sm px-4 fw-bold rounded-pill shadow-sm">
-                                                                <i class="fas fa-{{ $esPdf ? 'download' : 'eye' }} me-1"></i> {{ $esPdf ? 'Descargar' : 'Ver Detalles' }}
-                                                            </a>
                                                         </div>
+
+                                                        @if($doc['tiene_archivo'])
+                                                            <a href="{{ $doc['url'] }}" target="_blank" download class="btn btn-outline-{{ $datos['color'] }} btn-sm px-4 fw-bold rounded-pill shadow-sm text-nowrap">
+                                                                <i class="fas fa-download me-1"></i> Descargar ({{ $doc['tamano'] }})
+                                                            </a>
+                                                        @else
+                                                            <button disabled class="btn btn-light btn-sm px-4 fw-bold rounded-pill text-muted opacity-75 text-nowrap">
+                                                                <i class="fas fa-clock me-1"></i> Próximamente
+                                                            </button>
+                                                        @endif
                                                     </div>
                                                 </div>
-                                            @endforeach
-                                        </div>
-                                    @else
-                                        <!-- ESTADO VACÍO -->
-                                        <div class="text-center py-5 border rounded-4 border-dashed bg-light">
-                                            <i class="fas fa-folder-open fa-3x text-muted opacity-25 mb-3"></i>
-                                            <h5 class="text-muted fw-bold">No hay registros disponibles.</h5>
-                                            <p class="text-muted small mb-0">Actualmente no existen documentos publicados en la categoría de {{ $nombre }}.</p>
-                                        </div>
-                                    @endif
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @elseif(!isset($datos['tipo']) || $datos['tipo'] !== 'informativo')
+                                    <!-- ESTADO VACÍO -->
+                                    <div class="text-center py-5 border rounded-4 border-dashed bg-light">
+                                        <i class="fas fa-folder-open fa-3x text-muted opacity-25 mb-3"></i>
+                                        <h5 class="text-muted fw-bold">No hay registros disponibles.</h5>
+                                        <p class="text-muted small mb-0">Actualmente no existen documentos publicados en la categoría de {{ $nombre }}.</p>
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -149,7 +176,7 @@
     }
     .custom-pills .nav-link:hover {
         background-color: #f8f9fa;
-        color: #343a40; /* Dark color text */
+        color: #343a40;
     }
     .custom-pills .nav-link.active {
         background-color: #343a40;
@@ -159,9 +186,13 @@
     .custom-pills .nav-link.active i {
         color: #fff !important;
     }
+    .custom-pills .nav-link.active .badge {
+        background-color: rgba(255, 255, 255, 0.2) !important;
+        color: #fff !important;
+    }
     .hover-elevate:hover {
         transform: translateY(-3px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.08) !important;
     }
     .transition-all {
         transition: all 0.3s ease;

@@ -72,15 +72,15 @@ class AutorizacionCobroPension extends Component
 
             if ($datos) {
                 if ($esRenovar && strtoupper($datos['renovable'] ?? 'N') !== 'S') {
-                    $this->errorMensaje = 'Esta autorización no se encuentra habilitada para renovación automática. Debe dirigirse a su respectiva oficina administrativa.';
+                    $this->errorMensaje = 'Esta autorización no se encuentra habilitada para renovación automática. Debe dirigirse a la Oficina Administrativa más cercana.';
                     return;
                 }
                 $this->resultado = $datos;
             } else {
-                $this->errorMensaje = 'Lo sentimos, no se encontró ninguna autorización. Debe dirigirse a su respectiva oficina administrativa.';
+                $this->errorMensaje = 'Lo sentimos, no se encontró ninguna autorización. Debe dirigirse a la Oficina Administrativa más cercana.';
             }
         } catch (\Throwable $th) {
-            $this->errorMensaje = 'Error al consultar la autorización en la base de datos de prestaciones. Intente más tarde.';
+            $this->errorMensaje = 'Error al consultar, por favor intente más tarde.';
         }
     }
 

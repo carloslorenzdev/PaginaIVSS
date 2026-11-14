@@ -2,9 +2,10 @@
 
 namespace App\Livewire\Publico;
 
-use Livewire\Component;
+use App\Models\DocumentoInstitucional;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
+use Livewire\Component;
 
 #[Layout('layouts.app-public')]
 #[Title('Biblioteca de Formas - IVSS')]
@@ -12,136 +13,50 @@ class BibliotecaFormas extends Component
 {
     public function render()
     {
-        $categorias = $this->obtenerCategorias();
-
-        return view('livewire.publico.biblioteca-formas', compact('categorias'));
-    }
-
-    private function obtenerCategorias(): array
-    {
-        $raw = [
-            'Formas' => [
-                'icono' => 'fas fa-file-invoice',
-                'color' => 'success',
-                'documentos' => [
-                    [
-                        'titulo' => 'Solicitud de Evaluación de Discapacidad Residual (Forma 14-08)',
-                        'archivo' => 'forma_14_08_solicitud_evaluacion_discapacidad_residual.doc',
-                    ],
-                    [
-                        'titulo' => 'Solicitud de Prestaciones en Dinero (Forma 14-04)',
-                        'archivo' => 'f_14_04_solic_prest_dinero.pdf',
-                    ],
-                    [
-                        'titulo' => 'Constancia de Orden de Pago (Forma 14-23)',
-                        'archivo' => 'f_14_23_constancia_de_orden_de_pago.docx',
-                    ],
-                    [
-                        'titulo' => 'Registro Patronal de Asegurado (Forma 13-12)',
-                        'archivo' => 'formulario_13_12.pdf',
-                    ],
-                    [
-                        'titulo' => 'Solicitud de Declaración Jurada de Empresa Desaparecida (Forma 14-205)',
-                        'archivo' => 'forma14_205.pdf',
-                    ],
-                    [
-                        'titulo' => 'Solicitud de Convenio de Pago (Forma 14-134)',
-                        'archivo' => 'f_14_134.doc',
-                    ],
-                    [
-                        'titulo' => 'Constancia de Trabajo para el IVSS (Forma 14-100)',
-                        'archivo' => 'f_14_100.pdf',
-                    ],
-                    [
-                        'titulo' => 'Solicitud de Inscripción Continuación Facultativa y No Dependiente (Forma 14-196)',
-                        'archivo' => 'f_14_196_1_.doc',
-                    ],
-                    [
-                        'titulo' => 'Comprobante de consignación de datos (Forma 14-52)',
-                        'archivo' => 'f_14_52_comprob_consig_datos.doc',
-                    ],
-                ]
-            ],
-            'Instructivo de Formas' => [
-                'icono' => 'fas fa-book-open',
-                'color' => 'info',
-                'documentos' => [
-                    [
-                        'titulo' => 'Instructivo Solicitud de Evaluación de Discapacidad Residual (Forma 14-08)',
-                        'archivo' => 'instructivo_14_08_solicitud_evaluacion_discapacidad_residual.pdf',
-                    ],
-                    [
-                        'titulo' => 'Instructivo Solicitud de Prestaciones en Dinero (Forma 14-04)',
-                        'archivo' => 'f_14_04_instructivo.pdf',
-                    ],
-                    [
-                        'titulo' => 'Instructivo Solicitud de Convenio de Pago (Forma 14-134)',
-                        'archivo' => 'instructivo_14_134.doc',
-                    ],
-                    [
-                        'titulo' => 'Instructivo Constancia de Trabajo para el IVSS (Forma 14-100)',
-                        'archivo' => 'instructivo_14_100.pdf',
-                    ],
-                    [
-                        'titulo' => 'Instructivo Solicitud de Inscripción Continuación Facultativa y No Dependiente (Forma 14-196)',
-                        'archivo' => 'instructivo_14_196_2_.doc',
-                    ],
-                    [
-                        'titulo' => 'Instructivo Comprobante de consignación de datos (Forma 14-52)',
-                        'archivo' => 'instructivof_14_52.pdf',
-                    ],
-                    [
-                        'titulo' => 'Instructivo Registro Patronal de Asegurado (Forma 13-12)',
-                        'archivo' => 'instructivo_13_12.pdf',
-                    ],
-                ]
-            ]
+        $configCategorias = [
+            'Formas' => ['icono' => 'fas fa-file-invoice', 'color' => 'success'],
+            'Instructivo de Formas' => ['icono' => 'fas fa-book-open', 'color' => 'info'],
         ];
 
-        $carpetaBase = public_path('documentos' . DIRECTORY_SEPARATOR . 'formas');
+        $docsDb = DocumentoInstitucional::porSeccion(DocumentoInstitucional::SECCION_BIBLIOTECA_FORMAS)
+            ->activos()
+            ->orderBy('orden')
+            ->orderBy('id')
+            ->get();
 
-        foreach ($raw as &$categoria) {
-            foreach ($categoria['documentos'] as &$doc) {
-                $nombreArchivo = $doc['archivo'];
-                $baseName = pathinfo($nombreArchivo, PATHINFO_FILENAME);
+        $categorias = [];
 
-                // Buscar coincidencia exacta o extensiones comunes (.pdf, .doc, .docx)
-                $archivoEncontrado = null;
-                $rutaFisica = null;
-                $posibles = [
-                    $nombreArchivo,
-                    $baseName . '.pdf',
-                    $baseName . '.doc',
-                    $baseName . '.docx',
-                ];
-
-                foreach ($posibles as $posible) {
-                    $ruta = $carpetaBase . DIRECTORY_SEPARATOR . $posible;
-                    if (file_exists($ruta) && !is_dir($ruta)) {
-                        $archivoEncontrado = $posible;
-                        $rutaFisica = $ruta;
-                        break;
-                    }
-                }
-
-                if ($archivoEncontrado && $rutaFisica) {
-                    $doc['disponible'] = true;
-                    $doc['url'] = asset('documentos/formas/' . $archivoEncontrado);
-                    $doc['extension'] = strtolower(pathinfo($archivoEncontrado, PATHINFO_EXTENSION));
-
-                    // Se muestra "Actualizado recientemente" si fue modificado en los últimos 30 días
-                    $diasModificacion = (time() - filemtime($rutaFisica)) / 86400;
-                    $doc['reciente'] = $diasModificacion <= 30;
-                } else {
-                    $doc['disponible'] = false;
-                    $doc['url'] = null;
-                    $doc['extension'] = strtolower(pathinfo($nombreArchivo, PATHINFO_EXTENSION));
-                    $doc['reciente'] = false;
-                }
-            }
+        foreach ($configCategorias as $catNombre => $meta) {
+            $categorias[$catNombre] = [
+                'icono' => $meta['icono'],
+                'color' => $meta['color'],
+                'documentos' => [],
+            ];
         }
-        unset($categoria, $doc);
 
-        return $raw;
+        foreach ($docsDb as $doc) {
+            $cat = $doc->categoria ?: 'Formas';
+            if (!isset($categorias[$cat])) {
+                $categorias[$cat] = [
+                    'icono' => 'fas fa-folder',
+                    'color' => 'primary',
+                    'documentos' => [],
+                ];
+            }
+
+            $categorias[$cat]['documentos'][] = [
+                'id' => $doc->id,
+                'titulo' => $doc->titulo,
+                'descripcion' => $doc->descripcion,
+                'url' => $doc->url,
+                'formato' => $doc->formato,
+                'icono_formato' => $doc->icono_formato,
+                'tamano' => $doc->tamano_formateado,
+                'disponible' => $doc->tiene_archivo,
+                'reciente' => $doc->es_reciente,
+            ];
+        }
+
+        return view('livewire.publico.biblioteca-formas', compact('categorias'));
     }
 }

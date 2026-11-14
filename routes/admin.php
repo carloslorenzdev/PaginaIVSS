@@ -136,6 +136,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 
     // ----------------------------------------------------------------
+    // DOCUMENTOS INSTITUCIONALES (Livewire 4 Page Component)
+    // ----------------------------------------------------------------
+    Route::prefix('documentos')->name('documentos.')->group(function () {
+        Route::get('/', \App\Livewire\Admin\DocumentosManager::class)->name('index');
+    });
+
+    // ----------------------------------------------------------------
     // RENDIMIENTO / LOGS / AUDITORÍA
     // ----------------------------------------------------------------
     Route::get('/rendimiento', [\App\Http\Controllers\Admin\RendimientoController::class, 'index'])->name('rendimiento');

@@ -2,9 +2,10 @@
 
 namespace App\Livewire\Publico;
 
-use Livewire\Component;
+use App\Models\DocumentoInstitucional;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
+use Livewire\Component;
 
 #[Layout('layouts.app-public')]
 #[Title('Contrataciones Públicas - IVSS')]
@@ -12,32 +13,53 @@ class ContratacionesPublicas extends Component
 {
     public function render()
     {
-        $secciones = [
-            'Concursos' => [
-                'icono' => 'fas fa-gavel',
-                'color' => 'primary',
-                'documentos' => [
-                    ['titulo' => 'Llamado a Concurso 2025-2026', 'url' => 'http://www.ivss.gov.ve/imag/page/pagina_1630701052/pdf_llamado_a_concurso_2025_2026.pdf'],
-                    ['titulo' => 'Llamado a Concurso 2020-2021', 'url' => 'http://www.ivss.gob.ve/imag/page/pagina_1599788871/llamado_a_concurso_2020_2021.pdf'],
-                    ['titulo' => 'Concurso Planes de Formación del IVSS 2014', 'url' => 'http://www.ivss.gov.ve/contenido/Concurso-correspondiente-a-los-Planes-de-Formacion-del-IVSS-ano-2014'],
-                ]
-            ],
-            'Adjudicaciones' => [
-                'icono' => 'fas fa-award',
-                'color' => 'success',
-                'documentos' => []
-            ],
-            'Compromiso de Responsabilidad Social' => [
-                'icono' => 'fas fa-hands-helping',
-                'color' => 'warning',
-                'documentos' => []
-            ],
-            'Requisitos' => [
-                'icono' => 'fas fa-clipboard-list',
-                'color' => 'danger',
-                'tipo' => 'informativo'
-            ]
+        $seccionesConfig = [
+            'Concursos' => ['icono' => 'fas fa-gavel', 'color' => 'primary'],
+            'Adjudicaciones' => ['icono' => 'fas fa-award', 'color' => 'success'],
+            'Compromiso de Responsabilidad Social' => ['icono' => 'fas fa-hands-helping', 'color' => 'warning'],
+            'Requisitos' => ['icono' => 'fas fa-clipboard-list', 'color' => 'danger', 'tipo' => 'informativo'],
         ];
+
+        $docsDb = DocumentoInstitucional::porSeccion(DocumentoInstitucional::SECCION_CONTRATACIONES)
+            ->activos()
+            ->orderBy('orden')
+            ->orderBy('id')
+            ->get();
+
+        $secciones = [];
+
+        foreach ($seccionesConfig as $nombre => $meta) {
+            $secciones[$nombre] = [
+                'icono' => $meta['icono'],
+                'color' => $meta['color'],
+                'tipo' => $meta['tipo'] ?? 'documentos',
+                'documentos' => [],
+            ];
+        }
+
+        foreach ($docsDb as $doc) {
+            $cat = $doc->categoria ?: 'Concursos';
+            if (!isset($secciones[$cat])) {
+                $secciones[$cat] = [
+                    'icono' => 'fas fa-folder',
+                    'color' => 'primary',
+                    'tipo' => 'documentos',
+                    'documentos' => [],
+                ];
+            }
+
+            $secciones[$cat]['documentos'][] = [
+                'id' => $doc->id,
+                'titulo' => $doc->titulo,
+                'descripcion' => $doc->descripcion,
+                'url' => $doc->url,
+                'formato' => $doc->formato,
+                'icono_formato' => $doc->icono_formato,
+                'tamano' => $doc->tamano_formateado,
+                'tiene_archivo' => $doc->tiene_archivo,
+                'reciente' => $doc->es_reciente,
+            ];
+        }
 
         return view('livewire.publico.contrataciones-publicas', compact('secciones'));
     }

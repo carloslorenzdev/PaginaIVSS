@@ -31,6 +31,12 @@ class RoleSeeder extends Seeder
                 'revistas.editar',
                 'revistas.eliminar',
 
+                // Documentos Institucionales
+                'documentos.ver',
+                'documentos.crear',
+                'documentos.editar',
+                'documentos.eliminar',
+
                 // Banners y Alertas
                 'banners.ver',
                 'banners.crear',
