@@ -58,6 +58,7 @@ Route::get('/autorizacion-cobro-pension/pdf/{id}', \App\Http\Controllers\Consult
 Route::get('/marco-normativo', \App\Livewire\Publico\MarcoNormativo::class)->name('marco_normativo');
 Route::get('/biblioteca-formas', \App\Livewire\Publico\BibliotecaFormas::class)->name('biblioteca_formas');
 Route::get('/contrataciones-publicas', \App\Livewire\Publico\ContratacionesPublicas::class)->name('contrataciones_publicas');
+Route::get('/documentos/descargar/{id}', [\App\Http\Controllers\Publico\DescargarDocumentoController::class, 'descargar'])->name('documentos.descargar');
 Route::get('/boletin-informativo', \App\Livewire\Publico\BoletinesPublicos::class)->name('boletin_informativo');
 Route::get('/revista-digital', \App\Livewire\Publico\RevistasPublicas::class)->name('revista_digital');
 Route::get('/revista-digital/{revista}', \App\Livewire\Publico\RevistaShow::class)->name('revista_digital.show');

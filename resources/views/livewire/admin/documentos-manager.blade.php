@@ -209,10 +209,9 @@
                                                accept=".pdf,.doc,.docx,.xls,.xlsx,.zip,.rar">
                                     </label>
 
-                                    {{-- Botón Quitar Archivo --}}
+                                    {{-- Botón Quitar Archivo (Sin modal de confirmación) --}}
                                     <button type="button"
                                             wire:click="quitarArchivo({{ $item->id }})"
-                                            wire:confirm="¿Está seguro de quitar el archivo adjunto a '{{ $item->titulo }}'?"
                                             title="Quitar archivo adjunto"
                                             class="size-8 rounded-lg flex items-center justify-center border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-700 hover:bg-red-50 dark:hover:bg-red-900/30 text-gray-600 hover:text-red-600 dark:text-neutral-300 dark:hover:text-red-400 shadow-sm transition-colors">
                                         <i class="bx bx-trash text-base"></i>

@@ -101,8 +101,8 @@ class DocumentoInstitucional extends Model
             return $this->archivo_path;
         }
 
-        // Si está en storage público
-        return asset('storage/' . ltrim($this->archivo_path, '/'));
+        // Si está en storage público, retornar ruta de descarga oficial con nombre de archivo limpio
+        return route('documentos.descargar', $this->id);
     }
 
     public function getTieneArchivoAttribute(): bool
