@@ -1,23 +1,12 @@
-<div x-data="{
-        modalOpen: @entangle('modalOpen'),
-        deleteModalOpen: @entangle('deleteModalOpen'),
-        cerrar() {
-            this.modalOpen = false;
-            $wire.closeModal();
-        },
-        cerrarDelete() {
-            this.deleteModalOpen = false;
-            $wire.closeDeleteModal();
-        }
-     }"
-     x-on:close-modal.window="modalOpen = false; deleteModalOpen = false"
-     x-on:keydown.escape.window="cerrar(); cerrarDelete();">
+<div x-data="documentosData"
+     x-on:close-modal.window="cerrarTodo"
+     x-on:keydown.escape.window="cerrarTodo">
 
     <x-section class="space-y-4 p-5 sm:space-y-6 sm:p-8 bg-gray-50/30 dark:bg-neutral-900/30 rounded-2xl">
         {{-- HEADER --}}
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-                <x-titulo titulo="{{ $titulo }}" class="text-gradient font-extrabold text-3xl" />
+                <x-titulo titulo="Documentos Institucionales" class="text-gradient font-extrabold text-3xl" />
                 <p class="text-sm text-gray-500 dark:text-neutral-400 mt-1">
                     Administre, suba y organice los archivos de Marco Normativo, Contrataciones Públicas y Biblioteca de Formas.
                 </p>
@@ -25,7 +14,7 @@
             
             @can('documentos.crear')
                 <button type="button"
-                    wire:click="openCreateModal"
+                    @click="abrirCrear"
                     wire:loading.attr="disabled"
                     class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-red-600 to-red-700 px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-red-500/20 hover:shadow-lg hover:from-red-700 hover:to-red-800 transition-all transform hover:-translate-y-0.5 disabled:opacity-50">
                     <i class="bx bx-plus text-lg" wire:loading.remove wire:target="openCreateModal"></i>
@@ -229,7 +218,8 @@
                             {{-- Editar --}}
                             @can('documentos.editar')
                                 <button type="button"
-                                    wire:click="openEditModal({{ $item->id }})"
+                                    @click="abrirEditar({{ $item->id }})"
+                                    wire:loading.attr="disabled"
                                     title="Editar o reemplazar archivo"
                                     class="size-9 rounded-xl flex items-center justify-center bg-blue-50 hover:bg-blue-100 text-blue-600 dark:bg-blue-950/30 dark:hover:bg-blue-900/40 dark:text-blue-400 transition-colors shadow-sm">
                                     <i class="bx bx-edit text-lg"></i>
@@ -239,7 +229,8 @@
                             {{-- Eliminar --}}
                             @can('documentos.eliminar')
                                 <button type="button"
-                                    wire:click="confirmDelete({{ $item->id }})"
+                                    @click="abrirEliminar({{ $item->id }})"
+                                    wire:loading.attr="disabled"
                                     title="Eliminar documento"
                                     class="size-9 rounded-xl flex items-center justify-center bg-red-50 hover:bg-red-100 text-red-600 dark:bg-red-950/30 dark:hover:bg-red-900/40 dark:text-red-400 transition-colors shadow-sm">
                                     <i class="bx bx-trash text-lg"></i>
@@ -264,9 +255,10 @@
         </div>
     </x-section>
 
-    {{-- MODAL CREAR / EDITAR --}}
+    {{-- MODAL CREAR / EDITAR (Oculto por defecto con display: none y x-cloak) --}}
     <div x-show="modalOpen"
          x-cloak
+         style="display: none;"
          class="fixed inset-0 z-[80] flex items-center justify-center p-4">
         <div class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity" @click="cerrar"></div>
         <div class="relative w-full max-w-xl rounded-2xl bg-white shadow-2xl dark:bg-neutral-800 overflow-hidden border border-gray-100 dark:border-neutral-700 z-10 max-h-[90vh] flex flex-col">
@@ -416,11 +408,12 @@
         </div>
     </div>
 
-    {{-- MODAL ELIMINAR --}}
+    {{-- MODAL ELIMINAR (Oculto por defecto con display: none y x-cloak) --}}
     <div x-show="deleteModalOpen"
          x-cloak
+         style="display: none;"
          class="fixed inset-0 z-[80] flex items-center justify-center p-4">
-        <div class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity" @click="cerrarDelete"></div>
+        <div class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity" @click="cerrarEliminar"></div>
         <div class="relative w-full max-w-md rounded-2xl bg-white shadow-2xl dark:bg-neutral-800 overflow-hidden border border-gray-100 dark:border-neutral-700 z-10 p-6 text-center">
             <div class="size-14 rounded-2xl bg-red-50 text-red-600 dark:bg-red-950/40 dark:text-red-400 flex items-center justify-center mx-auto mb-4">
                 <i class="bx bx-trash text-3xl"></i>
@@ -430,7 +423,7 @@
                 Está a punto de eliminar <strong class="text-gray-800 dark:text-neutral-200">"{{ $deletingTitulo }}"</strong>. Si tiene un archivo asociado, también se eliminará permanentemente del servidor.
             </p>
             <div class="flex items-center justify-center gap-3">
-                <button type="button" @click="cerrarDelete" class="px-5 py-2.5 rounded-xl text-sm font-semibold text-gray-600 hover:bg-gray-100 dark:text-neutral-300 dark:hover:bg-neutral-700 transition-colors">
+                <button type="button" @click="cerrarEliminar" class="px-5 py-2.5 rounded-xl text-sm font-semibold text-gray-600 hover:bg-gray-100 dark:text-neutral-300 dark:hover:bg-neutral-700 transition-colors">
                     Cancelar
                 </button>
                 <button type="button" wire:click="delete" wire:loading.attr="disabled" class="inline-flex items-center gap-2 rounded-xl bg-red-600 hover:bg-red-700 px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-red-500/20 transition-all disabled:opacity-50">
@@ -441,4 +434,48 @@
         </div>
     </div>
 
+    {{-- SCRIPT ALPINE Y REGISTRO COMPONENTE --}}
+    <script nonce="{{ app('csp-nonce') }}">
+    (function() {
+        function initDocumentos() {
+            if (window.Alpine && typeof window.Alpine.data === 'function') {
+                window.Alpine.data('documentosData', () => ({
+                    modalOpen: false,
+                    deleteModalOpen: false,
+                    abrirCrear() {
+                        this.modalOpen = true;
+                        if (this.$wire) this.$wire.openCreateModal();
+                    },
+                    abrirEditar(id) {
+                        this.modalOpen = true;
+                        if (this.$wire) this.$wire.openEditModal(id);
+                    },
+                    cerrar() {
+                        this.modalOpen = false;
+                        if (this.$wire) this.$wire.closeModal();
+                    },
+                    abrirEliminar(id) {
+                        this.deleteModalOpen = true;
+                        if (this.$wire) this.$wire.confirmDelete(id);
+                    },
+                    cerrarEliminar() {
+                        this.deleteModalOpen = false;
+                        if (this.$wire) this.$wire.closeDeleteModal();
+                    },
+                    cerrarTodo() {
+                        this.modalOpen = false;
+                        this.deleteModalOpen = false;
+                        if (this.$wire) {
+                            this.$wire.closeModal();
+                            this.$wire.closeDeleteModal();
+                        }
+                    }
+                }));
+            }
+        }
+        initDocumentos();
+        document.addEventListener('alpine:init', initDocumentos);
+        document.addEventListener('livewire:navigated', initDocumentos);
+    })();
+    </script>
 </div>

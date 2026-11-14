@@ -153,3 +153,4 @@ class DocumentoInstitucional extends Model
         return $this->updated_at->diffInDays(now()) <= 30;
     }
 }
+

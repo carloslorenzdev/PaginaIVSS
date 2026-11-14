@@ -214,6 +214,7 @@ class DocumentosManager extends Component
         $this->deleteModalOpen = false;
         $this->deletingId = null;
         $this->deletingTitulo = '';
+        $this->dispatch('close-modal');
     }
 
     public function delete()
@@ -296,6 +297,7 @@ class DocumentosManager extends Component
         ];
 
         return view('livewire.admin.documentos-manager', [
+            'titulo' => $this->titulo,
             'documentos' => $documentos,
             'totales' => $totales,
             'seccionesDisponibles' => DocumentoInstitucional::seccionesDisponibles(),
@@ -303,3 +305,4 @@ class DocumentosManager extends Component
         ]);
     }
 }
+
