@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('descripcion')->nullable();
             $table->string('archivo_path')->nullable(); // Ruta relativa en storage/app/public
             $table->string('archivo_nombre_original')->nullable();
-            $table->string('formato', 20)->default('pdf'); // 'pdf', 'doc', 'docx', 'xls', 'xlsx', etc.
+            $table->string('formato', 20)->nullable()->default('pdf'); // 'pdf', 'doc', 'docx', 'xls', 'xlsx', etc.
             $table->unsignedBigInteger('tamano_bytes')->nullable();
             $table->integer('orden')->default(0);
             $table->boolean('activo')->default(true)->index();

@@ -12,30 +12,26 @@
             </div>
         </div>
 
-        {{-- MENSAJES FLASH / NOTIFICACIÓN FLOTANTE --}}
+        {{-- MENSAJES FLASH --}}
         @if (session()->has('success'))
-            <div class="bg-emerald-50 border border-emerald-200 text-emerald-800 dark:bg-emerald-950/40 dark:border-emerald-800 dark:text-emerald-200 px-4 py-3 rounded-xl flex items-center justify-between shadow-sm">
+            <div class="bg-teal-50 border border-teal-200 text-teal-800 dark:bg-teal-900/30 dark:border-teal-800 dark:text-teal-200 px-4 py-3 rounded-xl flex items-center justify-between shadow-sm">
                 <div class="flex items-center gap-2.5">
-                    <i class="bx bx-check-circle text-xl text-emerald-600 dark:text-emerald-400"></i>
-                    <span class="text-sm font-semibold">{{ session('success') }}</span>
+                    <i class="bx bx-check-circle text-xl text-teal-600 dark:text-teal-400"></i>
+                    <span class="text-sm font-medium">{{ session('success') }}</span>
                 </div>
-                <button type="button" onclick="this.parentElement.remove()" class="text-emerald-500 hover:text-emerald-700">
+                <button type="button" onclick="this.parentElement.remove()" class="text-teal-500 hover:text-teal-700">
                     <i class="bx bx-x text-lg"></i>
                 </button>
             </div>
+        @endif
 
-            {{-- Toast flotante visible en cualquier posición de la pantalla --}}
-            <div x-data="{ show: true }"
-                 x-show="show"
-                 x-init="setTimeout(() => show = false, 4500)"
-                 class="fixed bottom-6 right-6 z-[100] max-w-md flex items-center gap-3 px-4 py-3 bg-white dark:bg-neutral-800 text-gray-900 dark:text-white rounded-xl shadow-2xl border border-gray-200 dark:border-neutral-700">
-                <div class="size-8 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0">
-                    <i class="bx bx-check-circle text-xl"></i>
+        @if (session()->has('error'))
+            <div class="bg-red-50 border border-red-200 text-red-800 dark:bg-red-900/30 dark:border-red-800 dark:text-red-200 px-4 py-3 rounded-xl flex items-center justify-between shadow-sm">
+                <div class="flex items-center gap-2.5">
+                    <i class="bx bx-error-circle text-xl text-red-600 dark:text-red-400"></i>
+                    <span class="text-sm font-medium">{{ session('error') }}</span>
                 </div>
-                <div class="text-xs font-semibold flex-grow">
-                    {{ session('success') }}
-                </div>
-                <button type="button" @click="show = false" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200">
+                <button type="button" onclick="this.parentElement.remove()" class="text-red-500 hover:text-red-700">
                     <i class="bx bx-x text-lg"></i>
                 </button>
             </div>
