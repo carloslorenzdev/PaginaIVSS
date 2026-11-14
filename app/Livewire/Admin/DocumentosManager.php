@@ -4,6 +4,7 @@ namespace App\Livewire\Admin;
 
 use App\Models\DocumentoInstitucional;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -21,28 +22,10 @@ class DocumentosManager extends Component
     // Filtros
     public string $search = '';
     public string $filtroSeccion = '';
-    public string $filtroCategoria = '';
-    public string $filtroEstado = '';
+    public string $filtroEstado = ''; // 'subidos', 'pendientes'
 
-    // Modal Crear / Editar
-    public bool $modalOpen = false;
-    public ?int $editingId = null;
-    public string $seccion = DocumentoInstitucional::SECCION_MARCO_NORMATIVO;
-    public string $categoria = '';
-    public string $nuevaCategoria = '';
-    public string $docTitulo = '';
-    public ?string $descripcion = null;
-    public $archivo = null;
-    public ?string $currentArchivo = null;
-    public ?string $currentNombreOriginal = null;
-    public ?string $currentFormato = null;
-    public int $orden = 0;
-    public bool $activo = true;
-
-    // Modal Eliminar
-    public bool $deleteModalOpen = false;
-    public ?int $deletingId = null;
-    public string $deletingTitulo = '';
+    // Array de archivos temporales asociados por ID [doc_id => UploadedFile]
+    public array $archivos = [];
 
     protected $paginationTheme = 'tailwind';
 
@@ -53,12 +36,6 @@ class DocumentosManager extends Component
 
     public function updatingFiltroSeccion()
     {
-        $this->filtroCategoria = '';
-        $this->resetPage();
-    }
-
-    public function updatingFiltroCategoria()
-    {
         $this->resetPage();
     }
 
@@ -67,192 +44,95 @@ class DocumentosManager extends Component
         $this->resetPage();
     }
 
-    public function openCreateModal(?string $seccionDefault = null)
+    /**
+     * Captura el evento de carga del archivo por ID de documento
+     */
+    public function updated($property, $value)
     {
-        abort_if(!auth()->user()->can('documentos.crear'), 403, 'No tienes permiso para crear documentos.');
-
-        $this->resetValidation();
-        $this->editingId = null;
-        $this->seccion = $seccionDefault ?: ($this->filtroSeccion ?: DocumentoInstitucional::SECCION_MARCO_NORMATIVO);
-        $this->categoria = '';
-        $this->nuevaCategoria = '';
-        $this->docTitulo = '';
-        $this->descripcion = '';
-        $this->archivo = null;
-        $this->currentArchivo = null;
-        $this->currentNombreOriginal = null;
-        $this->currentFormato = null;
-        $this->orden = (DocumentoInstitucional::where('seccion', $this->seccion)->max('orden') ?? 0) + 1;
-        $this->activo = true;
-        $this->modalOpen = true;
+        if (str_starts_with($property, 'archivos.')) {
+            $id = (int) str_replace('archivos.', '', $property);
+            $this->guardarArchivoDocumento($id, $value);
+        }
     }
 
-    public function openEditModal(int $id)
+    /**
+     * Guarda el archivo seleccionado directamente en el documento correspondiente
+     */
+    public function guardarArchivoDocumento(int $id, $file)
     {
-        abort_if(!auth()->user()->can('documentos.editar'), 403, 'No tienes permiso para editar documentos.');
-
-        $this->resetValidation();
-        $doc = DocumentoInstitucional::findOrFail($id);
-
-        $this->editingId = $doc->id;
-        $this->seccion = $doc->seccion;
-        $this->categoria = $doc->categoria;
-        $this->nuevaCategoria = '';
-        $this->docTitulo = $doc->titulo;
-        $this->descripcion = $doc->descripcion;
-        $this->archivo = null;
-        $this->currentArchivo = $doc->archivo_path;
-        $this->currentNombreOriginal = $doc->archivo_nombre_original;
-        $this->currentFormato = $doc->formato;
-        $this->orden = $doc->orden;
-        $this->activo = (bool)$doc->activo;
-        $this->modalOpen = true;
-    }
-
-    public function closeModal()
-    {
-        $this->modalOpen = false;
-        $this->resetValidation();
-        $this->dispatch('close-modal');
-    }
-
-    public function save()
-    {
-        if ($this->editingId) {
-            abort_if(!auth()->user()->can('documentos.editar'), 403, 'No tienes permiso para editar documentos.');
-        } else {
-            abort_if(!auth()->user()->can('documentos.crear'), 403, 'No tienes permiso para crear documentos.');
+        if (auth()->check() && !auth()->user()->can('documentos.crear') && !auth()->user()->can('documentos.editar')) {
+            abort(403, 'No tienes permiso para subir archivos.');
         }
 
-        // Si escribió una nueva categoría, darle prioridad
-        $catFinal = !empty(trim($this->nuevaCategoria)) ? trim($this->nuevaCategoria) : trim($this->categoria);
-
-        $rules = [
-            'seccion' => 'required|string|max:60',
-            'docTitulo' => 'required|string|max:255',
-            'descripcion' => 'nullable|string|max:1000',
-            'orden' => 'required|integer|min:0',
-            'archivo' => $this->editingId ? 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,zip,rar|max:51200' : 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,zip,rar|max:51200',
-        ];
-
-        if (empty($catFinal)) {
-            $this->addError('categoria', 'Debe seleccionar o escribir una categoría para el documento.');
+        if (!$file || !is_object($file) || !method_exists($file, 'getClientOriginalName')) {
             return;
         }
 
-        $this->validate($rules, [
-            'seccion.required' => 'Debe seleccionar una sección del portal.',
-            'docTitulo.required' => 'El título del documento es obligatorio.',
-            'archivo.mimes' => 'El formato debe ser PDF, Word (doc, docx), Excel (xls, xlsx) o Comprimido (zip, rar).',
-            'archivo.max' => 'El archivo no debe exceder los 50MB.',
-        ]);
-
-        $data = [
-            'seccion' => $this->seccion,
-            'categoria' => $catFinal,
-            'titulo' => trim($this->docTitulo),
-            'descripcion' => trim($this->descripcion ?: ''),
-            'orden' => $this->orden,
-            'activo' => $this->activo,
-        ];
-
-        // Procesar subida de archivo
-        if ($this->archivo) {
-            $originalName = $this->archivo->getClientOriginalName();
-            $formato = strtolower($this->archivo->getClientOriginalExtension());
-            $tamano = $this->archivo->getSize();
-
-            // Guardar en storage/app/public/documentos/{seccion}
-            $path = $this->archivo->store('documentos/' . $this->seccion, 'public');
-
-            // Si estaba editando y tenía archivo anterior físico, eliminarlo
-            if ($this->editingId && $this->currentArchivo && Storage::disk('public')->exists($this->currentArchivo)) {
-                Storage::disk('public')->delete($this->currentArchivo);
-            }
-
-            $data['archivo_path'] = $path;
-            $data['archivo_nombre_original'] = $originalName;
-            $data['formato'] = $formato;
-            $data['tamano_bytes'] = $tamano;
-        }
-
-        if ($this->editingId) {
-            $doc = DocumentoInstitucional::findOrFail($this->editingId);
-            $doc->update($data);
-            session()->flash('success', 'Documento actualizado correctamente.');
-        } else {
-            DocumentoInstitucional::create($data);
-            session()->flash('success', 'Documento registrado y publicado con éxito.');
-        }
-
-        $this->closeModal();
-    }
-
-    public function toggleActivo(int $id)
-    {
-        abort_if(!auth()->user()->can('documentos.editar'), 403, 'No tienes permiso para modificar este documento.');
-
         $doc = DocumentoInstitucional::findOrFail($id);
-        $doc->activo = !$doc->activo;
-        $doc->save();
 
-        session()->flash('success', 'El estado del documento ha sido modificado.');
-    }
+        $validator = Validator::make(
+            ['archivo' => $file],
+            ['archivo' => 'required|file|mimes:pdf,doc,docx,xls,xlsx,zip,rar|max:51200'],
+            [
+                'archivo.required' => 'Debe seleccionar un archivo.',
+                'archivo.file' => 'El archivo no es válido.',
+                'archivo.mimes' => 'Formato no permitido. Solo se aceptan archivos PDF, Word (doc, docx), Excel (xls, xlsx) o Comprimidos (zip, rar).',
+                'archivo.max' => 'El archivo no debe exceder los 50MB.',
+            ]
+        );
 
-    public function confirmDelete(int $id)
-    {
-        abort_if(!auth()->user()->can('documentos.eliminar'), 403, 'No tienes permiso para eliminar documentos.');
-
-        $doc = DocumentoInstitucional::findOrFail($id);
-        $this->deletingId = $doc->id;
-        $this->deletingTitulo = $doc->titulo;
-        $this->deleteModalOpen = true;
-    }
-
-    public function closeDeleteModal()
-    {
-        $this->deleteModalOpen = false;
-        $this->deletingId = null;
-        $this->deletingTitulo = '';
-        $this->dispatch('close-modal');
-    }
-
-    public function delete()
-    {
-        abort_if(!auth()->user()->can('documentos.eliminar'), 403, 'No tienes permiso para eliminar documentos.');
-
-        if (!$this->deletingId) {
+        if ($validator->fails()) {
+            $this->addError("archivos.{$id}", $validator->errors()->first('archivo'));
             return;
         }
 
-        $doc = DocumentoInstitucional::findOrFail($this->deletingId);
-
-        // Si tiene archivo en storage, eliminarlo
+        // Si ya tenía un archivo en el storage, eliminarlo
         if ($doc->archivo_path && Storage::disk('public')->exists($doc->archivo_path)) {
             Storage::disk('public')->delete($doc->archivo_path);
         }
 
-        $doc->delete();
+        $originalName = $file->getClientOriginalName();
+        $formato = strtolower($file->getClientOriginalExtension());
+        $tamano = $file->getSize();
 
-        session()->flash('success', 'El documento ha sido eliminado satisfactoriamente.');
-        $this->closeDeleteModal();
+        // Guardar archivo en disco público dentro de la sección correspondiente
+        $path = $file->store('documentos/' . $doc->seccion, 'public');
+
+        $doc->update([
+            'archivo_path' => $path,
+            'archivo_nombre_original' => $originalName,
+            'formato' => $formato,
+            'tamano_bytes' => $tamano,
+        ]);
+
+        unset($this->archivos[$id]);
+
+        session()->flash('success', "Archivo subido correctamente para '{$doc->titulo}'.");
     }
 
-    public function getCategoriasDisponiblesProperty(): array
+    /**
+     * Remueve el archivo adjunto y devuelve el documento al estado pendiente
+     */
+    public function quitarArchivo(int $id)
     {
-        $seccionActiva = $this->modalOpen ? $this->seccion : $this->filtroSeccion;
-
-        if (!empty($seccionActiva)) {
-            $estandar = DocumentoInstitucional::categoriasPorSeccion($seccionActiva);
-            $bd = DocumentoInstitucional::where('seccion', $seccionActiva)
-                ->distinct()
-                ->pluck('categoria')
-                ->filter()
-                ->toArray();
-            return array_values(array_unique(array_merge($estandar, $bd)));
+        if (auth()->check() && !auth()->user()->can('documentos.eliminar') && !auth()->user()->can('documentos.editar')) {
+            abort(403, 'No tienes permiso para realizar esta acción.');
         }
 
-        return DocumentoInstitucional::distinct()->pluck('categoria')->filter()->toArray();
+        $doc = DocumentoInstitucional::findOrFail($id);
+
+        if ($doc->archivo_path && Storage::disk('public')->exists($doc->archivo_path)) {
+            Storage::disk('public')->delete($doc->archivo_path);
+        }
+
+        $doc->update([
+            'archivo_path' => null,
+            'archivo_nombre_original' => null,
+            'formato' => null,
+            'tamano_bytes' => null,
+        ]);
+
+        session()->flash('success', "Archivo removido para '{$doc->titulo}'. El documento figura como no subido.");
     }
 
     public function render()
@@ -272,25 +152,22 @@ class DocumentosManager extends Component
             $query->where('seccion', $this->filtroSeccion);
         }
 
-        if (!empty($this->filtroCategoria)) {
-            $query->where('categoria', $this->filtroCategoria);
-        }
-
-        if ($this->filtroEstado === 'activos') {
-            $query->where('activo', true);
-        } elseif ($this->filtroEstado === 'inactivos') {
-            $query->where('activo', false);
+        if ($this->filtroEstado === 'subidos') {
+            $query->whereNotNull('archivo_path');
+        } elseif ($this->filtroEstado === 'pendientes') {
+            $query->whereNull('archivo_path');
         }
 
         $documentos = $query->orderBy('seccion')
                             ->orderBy('categoria')
                             ->orderBy('orden')
-                            ->orderBy('id', 'desc')
-                            ->paginate(15);
+                            ->orderBy('id', 'asc')
+                            ->paginate(20);
 
-        // Contadores para las tarjetas de resumen
         $totales = [
             'total' => DocumentoInstitucional::count(),
+            'subidos' => DocumentoInstitucional::whereNotNull('archivo_path')->count(),
+            'pendientes' => DocumentoInstitucional::whereNull('archivo_path')->count(),
             'marco' => DocumentoInstitucional::where('seccion', DocumentoInstitucional::SECCION_MARCO_NORMATIVO)->count(),
             'contrataciones' => DocumentoInstitucional::where('seccion', DocumentoInstitucional::SECCION_CONTRATACIONES)->count(),
             'formas' => DocumentoInstitucional::where('seccion', DocumentoInstitucional::SECCION_BIBLIOTECA_FORMAS)->count(),
@@ -301,8 +178,6 @@ class DocumentosManager extends Component
             'documentos' => $documentos,
             'totales' => $totales,
             'seccionesDisponibles' => DocumentoInstitucional::seccionesDisponibles(),
-            'categoriasDisponibles' => $this->categoriasDisponibles,
         ]);
     }
 }
-
