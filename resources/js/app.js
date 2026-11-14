@@ -2,6 +2,10 @@ import 'preline';
 import './bootstrap';
 import { ToastAlert } from './toastify';
 
+if (typeof window !== 'undefined') {
+    window.ToastAlert = ToastAlert;
+}
+
 (function() {
     function initModule() {
         // Limpiar backdrops huérfanos que pudieran quedar de navegaciones anteriores
@@ -49,4 +53,15 @@ import { ToastAlert } from './toastify';
         document.addEventListener('DOMContentLoaded', initModule);
     }
     document.addEventListener('livewire:navigated', initModule);
+    document.addEventListener('livewire:initialized', () => {
+        if (window.Livewire && typeof window.Livewire.hook === 'function') {
+            window.Livewire.hook('morph.updated', () => {
+                const elementoToast = document.querySelector('#hs-new-toast');
+                if (elementoToast) {
+                    elementoToast.remove();
+                    ToastAlert(elementoToast.innerHTML);
+                }
+            });
+        }
+    });
 })();

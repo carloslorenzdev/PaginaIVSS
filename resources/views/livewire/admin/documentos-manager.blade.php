@@ -1,40 +1,42 @@
-<div>
+<div x-data
+     x-init="
+        const dispararToast = () => {
+            const el = document.querySelector('#hs-new-toast');
+            if (el && typeof window.ToastAlert === 'function') {
+                const html = el.innerHTML;
+                el.remove();
+                window.ToastAlert(html);
+            }
+        };
+        dispararToast();
+        if (window.Livewire && typeof window.Livewire.hook === 'function') {
+            window.Livewire.hook('morph.updated', () => {
+                setTimeout(dispararToast, 50);
+            });
+        }
+     ">
     <x-section class="space-y-4 p-5 sm:space-y-6 sm:p-8 bg-gray-50/30 dark:bg-neutral-900/30 rounded-2xl">
         {{-- ENCABEZADO --}}
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div>
-                <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">
-                    Documentos Institucionales
-                </h1>
-                <p class="text-sm text-gray-500 dark:text-neutral-400 mt-1">
-                    Catálogo oficial: Marco Normativo, Contrataciones Públicas y Biblioteca de Formas. Administre los archivos descargables.
-                </p>
-            </div>
+            <x-titulo titulo="Documentos Institucionales" class="text-gradient font-extrabold text-3xl" />
         </div>
 
-        {{-- MENSAJES FLASH --}}
+        <x-breadcrumb>
+            <x-breadcrumb.item ruta="{{ route('admin.panel') }}" icono="bx bx-tachometer">
+                Panel
+            </x-breadcrumb.item>
+            <x-breadcrumb.current>
+                Documentos Institucionales
+            </x-breadcrumb.current>
+        </x-breadcrumb>
+
+        {{-- NOTIFICACIONES TOAST (ESTILO OFICIAL DEL SISTEMA) --}}
         @if (session()->has('success'))
-            <div class="bg-teal-50 border border-teal-200 text-teal-800 dark:bg-teal-900/30 dark:border-teal-800 dark:text-teal-200 px-4 py-3 rounded-xl flex items-center justify-between shadow-sm">
-                <div class="flex items-center gap-2.5">
-                    <i class="bx bx-check-circle text-xl text-teal-600 dark:text-teal-400"></i>
-                    <span class="text-sm font-medium">{{ session('success') }}</span>
-                </div>
-                <button type="button" onclick="this.parentElement.remove()" class="text-teal-500 hover:text-teal-700">
-                    <i class="bx bx-x text-lg"></i>
-                </button>
-            </div>
+            <x-toast :data="['success', session('success')]" />
         @endif
 
         @if (session()->has('error'))
-            <div class="bg-red-50 border border-red-200 text-red-800 dark:bg-red-900/30 dark:border-red-800 dark:text-red-200 px-4 py-3 rounded-xl flex items-center justify-between shadow-sm">
-                <div class="flex items-center gap-2.5">
-                    <i class="bx bx-error-circle text-xl text-red-600 dark:text-red-400"></i>
-                    <span class="text-sm font-medium">{{ session('error') }}</span>
-                </div>
-                <button type="button" onclick="this.parentElement.remove()" class="text-red-500 hover:text-red-700">
-                    <i class="bx bx-x text-lg"></i>
-                </button>
-            </div>
+            <x-toast :data="['danger', session('error')]" />
         @endif
 
         {{-- RESUMEN / ESTADÍSTICAS --}}

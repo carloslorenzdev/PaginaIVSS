@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\DocumentoInstitucional;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Attributes\Layout;
@@ -86,9 +87,15 @@ class DocumentosManager extends Component
             return;
         }
 
-        // Si ya tenía un archivo en el storage, eliminarlo
-        if ($doc->archivo_path && Storage::disk('public')->exists($doc->archivo_path)) {
-            Storage::disk('public')->delete($doc->archivo_path);
+        // Si ya tenía un archivo en la carpeta, eliminarlo físicamente para no dejar basura en el servidor
+        if (!empty($doc->archivo_path)) {
+            if (Storage::disk('public')->exists($doc->archivo_path)) {
+                Storage::disk('public')->delete($doc->archivo_path);
+            }
+            $storageFile = storage_path('app/public/' . ltrim($doc->archivo_path, '/'));
+            if (File::exists($storageFile)) {
+                File::delete($storageFile);
+            }
         }
 
         $originalName = $file->getClientOriginalName();
@@ -111,7 +118,7 @@ class DocumentosManager extends Component
     }
 
     /**
-     * Remueve el archivo adjunto y devuelve el documento al estado pendiente
+     * Elimina físicamente el archivo del disco/servidor y devuelve el documento al estado pendiente
      */
     public function quitarArchivo(int $id)
     {
@@ -121,8 +128,24 @@ class DocumentosManager extends Component
 
         $doc = DocumentoInstitucional::findOrFail($id);
 
-        if ($doc->archivo_path && Storage::disk('public')->exists($doc->archivo_path)) {
-            Storage::disk('public')->delete($doc->archivo_path);
+        // Eliminar el archivo físicamente de la carpeta del servidor
+        if (!empty($doc->archivo_path)) {
+            // 1. Eliminar mediante disco public
+            if (Storage::disk('public')->exists($doc->archivo_path)) {
+                Storage::disk('public')->delete($doc->archivo_path);
+            }
+
+            // 2. Eliminar ruta física directa en storage_path('app/public/...')
+            $storageFile = storage_path('app/public/' . ltrim($doc->archivo_path, '/'));
+            if (File::exists($storageFile)) {
+                File::delete($storageFile);
+            }
+
+            // 3. Eliminar enlace público si existiera
+            $publicFile = public_path('storage/' . ltrim($doc->archivo_path, '/'));
+            if (File::exists($publicFile) && !is_link($publicFile)) {
+                File::delete($publicFile);
+            }
         }
 
         $doc->update([
@@ -132,7 +155,7 @@ class DocumentosManager extends Component
             'tamano_bytes' => null,
         ]);
 
-        session()->flash('success', "Archivo desvinculado de '{$doc->titulo}'. El documento se mantiene en el catálogo como No Subido.");
+        session()->flash('success', "Archivo de '{$doc->titulo}' eliminado definitivamente del servidor.");
     }
 
     public function render()
@@ -158,6 +181,7 @@ class DocumentosManager extends Component
             $query->whereNull('archivo_path');
         }
 
+        // Mostrar todos los 36 documentos en una sola lista continua para que ninguno quede oculto
         $documentos = $query->orderBy('seccion')
                             ->orderBy('categoria')
                             ->orderBy('orden')

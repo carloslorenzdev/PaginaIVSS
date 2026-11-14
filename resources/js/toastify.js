@@ -166,4 +166,8 @@ function ToastAlert(datos) {
     });
 }
 
+if (typeof window !== 'undefined') {
+    window.ToastAlert = ToastAlert;
+}
+
 export { ToastAlert }
