@@ -129,9 +129,19 @@ class ConsultarCuentaIndividualAction
             ];
 
             // Resumen de semanas
+            $art92 = $resumenRow['ARTICULO_92'] ?? null;
+            if (empty($art92) || $art92 === 0 || $art92 === '0' || strtoupper(trim((string)$art92)) === 'NO APLICA') {
+                $art92 = 'NO APLICA';
+            }
+
+            $decr4269 = $ficha['DECRETO_4269'] ?? $resumenRow['DECRETO_4269'] ?? null;
+            if (empty($decr4269) || $decr4269 === 0 || $decr4269 === '0') {
+                $decr4269 = '';
+            }
+
             $resumen_semanas = [
-                'articulo_92' => (int)($resumenRow['ARTICULO_92'] ?? 0),
-                'decreto_4269' => (int)($ficha['DECRETO_4269'] ?? 0),
+                'articulo_92' => $art92,
+                'decreto_4269' => $decr4269,
                 'ultimos_10' => (int)($resumenRow['ULTIMOS_10_ANOS'] ?? 0),
                 'ultimos_4' => (int)($resumenRow['ULTIMOS_4_ANOS'] ?? 0),
                 'ultimos_3' => (int)($resumenRow['ULTIMOS_3_ANOS'] ?? 0),
@@ -140,9 +150,9 @@ class ConsultarCuentaIndividualAction
 
             // Promedios
             $promedios = [
-                'mensual_10_anios' => (float)($resumenRow['PROMEDIO_MENSUAL_10'] ?? 0),
-                'mensual_5_anios' => (float)($resumenRow['PROMEDIO_MENSUAL_5'] ?? 0),
-                'semanal_100_cotiz' => (float)($resumenRow['PROMEDIO_SEMANAL_100'] ?? 0),
+                'mensual_10_anios' => $resumenRow['PROMEDIO_MENSUAL_10'] ?? 0,
+                'mensual_5_anios' => $resumenRow['PROMEDIO_MENSUAL_5'] ?? 0,
+                'semanal_100_cotiz' => $resumenRow['PROMEDIO_SEMANAL_100'] ?? 0,
                 'total_salarios' => (float)($resumenRow['TOTAL_SALARIOS_COTIZADOS'] ?? 0),
             ];
 
