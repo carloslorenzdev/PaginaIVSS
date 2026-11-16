@@ -130,7 +130,8 @@ class ConsultarCuentaIndividualAction
 
             // Resumen de semanas
             $art92 = $resumenRow['ARTICULO_92'] ?? null;
-            if (empty($art92) || $art92 === 0 || $art92 === '0' || strtoupper(trim((string)$art92)) === 'NO APLICA') {
+            $art92Str = strtoupper(trim((string)$art92));
+            if (empty($art92) || $art92 === 0 || $art92 === '0' || in_array($art92Str, ['NO APLICA', 'PENDIENTE_REGLA', 'PENDIENTE', 'NULL'])) {
                 $art92 = 'NO APLICA';
             }
 
