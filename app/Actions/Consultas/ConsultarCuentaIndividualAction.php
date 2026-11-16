@@ -31,7 +31,8 @@ class ConsultarCuentaIndividualAction
             $cursFicha = $pdo->getNewCursor();
             $cursCuenta = $pdo->getNewCursor();
 
-            $stmt = $pdo->prepare('BEGIN OBTENER_CUENTA_INDIVIDUAL_V2(:p_cedula, :p_ficha, :p_cuenta); END;');
+            $procName = env('ORACLE_PROC_CUENTA_INDIVIDUAL', 'OBTENER_CUENTA_INDIVIDUAL_V2');
+            $stmt = $pdo->prepare("BEGIN {$procName}(:p_cedula, :p_ficha, :p_cuenta); END;");
             $stmt->bindParam(':p_cedula', $p_cedula, \PDO::PARAM_STR);
             $stmt->bindParam(':p_ficha', $cursFicha, \PDO::PARAM_STMT);
             $stmt->bindParam(':p_cuenta', $cursCuenta, \PDO::PARAM_STMT);
@@ -171,7 +172,9 @@ class ConsultarCuentaIndividualAction
 
             return [
                 'success' => false,
-                'message' => 'No fue posible consultar la cuenta individual en este momento. Por favor intente más tarde.'
+                'message' => config('app.debug')
+                    ? 'Error de conexión o procedimiento Oracle: ' . $e->getMessage()
+                    : 'No fue posible consultar la cuenta individual en este momento. Por favor intente más tarde.'
             ];
         }
     }

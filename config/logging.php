@@ -91,6 +91,15 @@ return [
             'replace_placeholders' => true,
         ],
 
+        'job' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/jobs/jobs.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 90,
+            'permission' => 0644,
+            'replace_placeholders' => true,
+        ],
+
         'slack' => [
             'driver' => 'slack',
             'url' => env('LOG_SLACK_WEBHOOK_URL'),
