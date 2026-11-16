@@ -53,25 +53,19 @@ class ConsultarCuentaIndividualAction
 
             // Validar coincidencia de fecha de nacimiento si fue proporcionada
             if (!empty($data['d1']) && !empty($data['m1']) && !empty($data['y1'])) {
-                $diaInput = str_pad((string)(int)$data['d1'], 2, '0', STR_PAD_LEFT);
-                $mesInput = str_pad((string)(int)$data['m1'], 2, '0', STR_PAD_LEFT);
-                $anioInput = (string)(int)$data['y1'];
-                $fechaInputStr = "{$diaInput}/{$mesInput}/{$anioInput}";
+                $inD = (int)$data['d1'];
+                $inM = (int)$data['m1'];
+                $inY = (int)$data['y1'];
 
-                $fechaBdStr = null;
-                if (!empty($ficha['FECHA_NACIMIENTO'])) {
-                    try {
-                        $fechaBdStr = Carbon::parse($ficha['FECHA_NACIMIENTO'])->format('d/m/Y');
-                    } catch (\Throwable $e) {
-                        $fechaBdStr = (string)$ficha['FECHA_NACIMIENTO'];
+                $fechaBd = $this->descomponerFecha($ficha['FECHA_NACIMIENTO'] ?? null);
+
+                if ($fechaBd) {
+                    if ($fechaBd['d'] !== $inD || $fechaBd['m'] !== $inM || $fechaBd['y'] !== $inY) {
+                        return [
+                            'success' => false,
+                            'message' => 'La fecha de nacimiento ingresada no coincide con los registros del asegurado.'
+                        ];
                     }
-                }
-
-                if ($fechaBdStr && $fechaBdStr !== $fechaInputStr) {
-                    return [
-                        'success' => false,
-                        'message' => 'La fecha de nacimiento ingresada no coincide con los registros del asegurado.'
-                    ];
                 }
             }
 
@@ -97,11 +91,11 @@ class ConsultarCuentaIndividualAction
                 if (empty($value)) {
                     return null;
                 }
-                try {
-                    return Carbon::parse($value)->format('d/m/Y');
-                } catch (\Throwable $e) {
-                    return (string)$value;
+                $partes = $this->descomponerFecha($value);
+                if ($partes) {
+                    return sprintf('%02d/%02d/%04d', $partes['d'], $partes['m'], $partes['y']);
                 }
+                return (string)$value;
             };
 
             // Estructurar datos del Asegurado
@@ -200,6 +194,67 @@ class ConsultarCuentaIndividualAction
                     ? 'Error de conexión o procedimiento Oracle: ' . $e->getMessage()
                     : 'No fue posible consultar la cuenta individual en este momento. Por favor intente más tarde.'
             ];
+        }
+    }
+
+    /**
+     * Extrae día, mes y año de cualquier formato de fecha retornado por Oracle
+     * evitando errores de interpretación entre formatos regionales (DD/MM/YYYY vs MM/DD/YYYY).
+     */
+    protected function descomponerFecha(mixed $rawDate): ?array
+    {
+        if (empty($rawDate)) {
+            return null;
+        }
+
+        $rawDate = trim((string)$rawDate);
+
+        // Formato DD/MM/YYYY o DD/MM/YY (opcionalmente con hora)
+        if (preg_match('/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})/', $rawDate, $m)) {
+            $y = (int)$m[3];
+            if ($y < 100) {
+                $y += ($y > 30 ? 1900 : 2000);
+            }
+            return ['d' => (int)$m[1], 'm' => (int)$m[2], 'y' => $y];
+        }
+
+        // Formato YYYY-MM-DD o YYYY/MM/DD
+        if (preg_match('/^(\d{4})[-\/](\d{1,2})[-\/](\d{1,2})/', $rawDate, $m)) {
+            return ['d' => (int)$m[3], 'm' => (int)$m[2], 'y' => (int)$m[1]];
+        }
+
+        // Formato DD-MM-YYYY o DD-MM-YY
+        if (preg_match('/^(\d{1,2})-(\d{1,2})-(\d{2,4})/', $rawDate, $m)) {
+            $y = (int)$m[3];
+            if ($y < 100) {
+                $y += ($y > 30 ? 1900 : 2000);
+            }
+            return ['d' => (int)$m[1], 'm' => (int)$m[2], 'y' => $y];
+        }
+
+        // Formato Oracle alfanumérico DD-MON-RR o DD-MON-YYYY (ej. 14-AUG-58 o 14-AGO-1958)
+        $mesesTexto = [
+            'JAN' => 1, 'FEB' => 2, 'MAR' => 3, 'APR' => 4, 'MAY' => 5, 'JUN' => 6,
+            'JUL' => 7, 'AUG' => 8, 'SEP' => 9, 'OCT' => 10, 'NOV' => 11, 'DEC' => 12,
+            'ENE' => 1, 'ABR' => 4, 'AGO' => 8, 'DIC' => 12
+        ];
+        if (preg_match('/^(\d{1,2})-([A-Za-z]{3})-(\d{2,4})/', $rawDate, $m)) {
+            $monStr = strtoupper($m[2]);
+            $mesNum = $mesesTexto[$monStr] ?? null;
+            $y = (int)$m[3];
+            if ($y < 100) {
+                $y += ($y > 30 ? 1900 : 2000);
+            }
+            if ($mesNum) {
+                return ['d' => (int)$m[1], 'm' => $mesNum, 'y' => $y];
+            }
+        }
+
+        try {
+            $c = Carbon::parse(str_replace('/', '-', $rawDate));
+            return ['d' => (int)$c->day, 'm' => (int)$c->month, 'y' => (int)$c->year];
+        } catch (\Throwable $e) {
+            return null;
         }
     }
 }
