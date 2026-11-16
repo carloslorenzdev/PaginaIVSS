@@ -17,6 +17,9 @@ class Inicio extends Component
     // Propiedades Cuenta Individual
     public string $ci_nacionalidad = 'V';
     public string $ci_cedula = '';
+    public string $ci_d1 = '';
+    public string $ci_m1 = '';
+    public string $ci_y1 = '';
 
     // Propiedades Consulta Pensionado
     public string $pen_nacionalidad = 'V';
@@ -45,18 +48,27 @@ class Inicio extends Component
         $this->validate([
             'ci_nacionalidad' => 'required|in:V,E',
             'ci_cedula' => 'required|numeric|min:1',
+            'ci_d1' => 'required|numeric|between:1,31',
+            'ci_m1' => 'required|numeric|between:1,12',
+            'ci_y1' => 'required|numeric|min:1900',
         ], [
             'ci_cedula.required' => 'Debe ingresar el número de cédula.',
             'ci_cedula.numeric' => 'La cédula debe contener solo números.',
+            'ci_d1.required' => 'Seleccione el día de nacimiento.',
+            'ci_m1.required' => 'Seleccione el mes de nacimiento.',
+            'ci_y1.required' => 'Seleccione el año de nacimiento.',
         ]);
 
         $result = $action->execute([
             'nacionalidad' => $this->ci_nacionalidad,
             'cedula' => $this->ci_cedula,
+            'd1' => $this->ci_d1,
+            'm1' => $this->ci_m1,
+            'y1' => $this->ci_y1,
         ]);
 
         // Limpiar datos de la consulta para que la modal esté limpia al reabrirla
-        $this->reset(['ci_cedula']);
+        $this->reset(['ci_cedula', 'ci_d1', 'ci_m1', 'ci_y1']);
         $this->ci_nacionalidad = 'V';
         $this->resetValidation();
 

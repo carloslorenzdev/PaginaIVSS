@@ -806,7 +806,7 @@
 
         <form id="formCuentaIndividual" data-url="{{ route('consulta.cuenta_individual') }}" class="text-start">
             @csrf
-            <div class="mb-4">
+            <div class="mb-3">
                 <label class="form-label text-muted small fw-bold text-uppercase mb-2">Cédula del Asegurado</label>
                 <div class="input-group border rounded shadow-sm">
                     <select name="nacionalidad" class="form-select border-0 bg-light text-muted fw-bold" style="max-width: 80px;" required>
@@ -814,6 +814,39 @@
                         <option value="E">E.</option>
                     </select>
                     <input type="number" name="cedula" class="form-control border-0" placeholder="Ej. 12345678" required>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label text-muted small fw-bold text-uppercase mb-2">Fecha de Nacimiento</label>
+                <div class="row g-2">
+                    <div class="col-4">
+                        <select name="d1" class="form-select border rounded shadow-sm" required>
+                            <option value="" disabled selected>Día</option>
+                            @for($i=1; $i<=31; $i++)
+                                <option value="{{ $i }}">{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
+                            @endfor
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <select name="m1" class="form-select border rounded shadow-sm px-1" required>
+                            <option value="" disabled selected>Mes</option>
+                            @php
+                                $meses = [1=>'ENE',2=>'FEB',3=>'MAR',4=>'ABR',5=>'MAY',6=>'JUN',7=>'JUL',8=>'AGO',9=>'SEP',10=>'OCT',11=>'NOV',12=>'DIC'];
+                            @endphp
+                            @foreach($meses as $num => $nombre)
+                                <option value="{{ $num }}">{{ $nombre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <select name="y1" class="form-select border rounded shadow-sm px-1" required>
+                            <option value="" disabled selected>Año</option>
+                            @for($i=date('Y'); $i>=1900; $i--)
+                                <option value="{{ $i }}">{{ $i }}</option>
+                            @endfor
+                        </select>
+                    </div>
                 </div>
             </div>
 

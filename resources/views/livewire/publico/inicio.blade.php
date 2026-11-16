@@ -840,11 +840,11 @@
               Cuenta Individual
             </h4>
             <p class="small text-muted mb-4">
-              Ingrese su número de cédula para consultar su estado de cuenta individual.
+              Consulte su estado de cuenta individual ingresando su cédula y fecha de nacimiento.
             </p>
 
             <form wire:submit.prevent="consultarCuentaIndividual" id="formCuentaIndividual" class="text-start" autocomplete="off">
-                <div class="mb-4">
+                <div class="mb-3">
                     <label class="form-label text-muted small fw-bold text-uppercase mb-2">Cédula del Asegurado</label>
                     <div class="input-group border rounded shadow-sm">
                         <select wire:model="ci_nacionalidad" class="form-select border-0 bg-light text-muted fw-bold" style="max-width: 80px;" required>
@@ -854,6 +854,42 @@
                         <input type="number" wire:model="ci_cedula" class="form-control border-0" placeholder="Ej. 12345678" required>
                     </div>
                     @error('ci_cedula') <span class="text-danger small d-block mt-1">{{ $message }}</span> @enderror
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label text-muted small fw-bold text-uppercase mb-2">Fecha de Nacimiento</label>
+                    <div class="row g-2">
+                        <div class="col-4">
+                            <select wire:model="ci_d1" class="form-select border rounded shadow-sm" required>
+                                <option value="" disabled selected>Día</option>
+                                @for($i=1; $i<=31; $i++)
+                                    <option value="{{ $i }}">{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
+                                @endfor
+                            </select>
+                            @error('ci_d1') <span class="text-danger small d-block mt-1">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="col-4">
+                            <select wire:model="ci_m1" class="form-select border rounded shadow-sm px-1" required>
+                                <option value="" disabled selected>Mes</option>
+                                @php
+                                    $meses = [1=>'ENE',2=>'FEB',3=>'MAR',4=>'ABR',5=>'MAY',6=>'JUN',7=>'JUL',8=>'AGO',9=>'SEP',10=>'OCT',11=>'NOV',12=>'DIC'];
+                                @endphp
+                                @foreach($meses as $num => $nombre)
+                                    <option value="{{ $num }}">{{ $nombre }}</option>
+                                @endforeach
+                            </select>
+                            @error('ci_m1') <span class="text-danger small d-block mt-1">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="col-4">
+                            <select wire:model="ci_y1" class="form-select border rounded shadow-sm px-1" required>
+                                <option value="" disabled selected>Año</option>
+                                @for($i=date('Y'); $i>=1900; $i--)
+                                    <option value="{{ $i }}">{{ $i }}</option>
+                                @endfor
+                            </select>
+                            @error('ci_y1') <span class="text-danger small d-block mt-1">{{ $message }}</span> @enderror
+                        </div>
+                    </div>
                 </div>
 
                 <button type="submit" class="btn btn-danger w-100 py-3 fw-bold rounded-pill shadow-sm text-uppercase" id="btnConsultarCuenta" wire:loading.attr="disabled">

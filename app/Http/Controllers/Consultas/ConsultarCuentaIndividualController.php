@@ -19,7 +19,10 @@ class ConsultarCuentaIndividualController extends Controller
 
         $result = $action->execute([
             'nacionalidad' => $nacionalidad,
-            'cedula' => $cedula
+            'cedula' => $cedula,
+            'd1' => $request->input('d1'),
+            'm1' => $request->input('m1'),
+            'y1' => $request->input('y1'),
         ]);
 
         return response()->json($result);

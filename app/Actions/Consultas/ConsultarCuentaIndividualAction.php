@@ -51,6 +51,30 @@ class ConsultarCuentaIndividualAction
                 ];
             }
 
+            // Validar coincidencia de fecha de nacimiento si fue proporcionada
+            if (!empty($data['d1']) && !empty($data['m1']) && !empty($data['y1'])) {
+                $diaInput = str_pad((string)(int)$data['d1'], 2, '0', STR_PAD_LEFT);
+                $mesInput = str_pad((string)(int)$data['m1'], 2, '0', STR_PAD_LEFT);
+                $anioInput = (string)(int)$data['y1'];
+                $fechaInputStr = "{$diaInput}/{$mesInput}/{$anioInput}";
+
+                $fechaBdStr = null;
+                if (!empty($ficha['FECHA_NACIMIENTO'])) {
+                    try {
+                        $fechaBdStr = Carbon::parse($ficha['FECHA_NACIMIENTO'])->format('d/m/Y');
+                    } catch (\Throwable $e) {
+                        $fechaBdStr = (string)$ficha['FECHA_NACIMIENTO'];
+                    }
+                }
+
+                if ($fechaBdStr && $fechaBdStr !== $fechaInputStr) {
+                    return [
+                        'success' => false,
+                        'message' => 'La fecha de nacimiento ingresada no coincide con los registros del asegurado.'
+                    ];
+                }
+            }
+
             // Procesar cursor de cuenta (15 años + fila de resumen)
             $relacion_15_anios = [];
             $resumenRow = null;
