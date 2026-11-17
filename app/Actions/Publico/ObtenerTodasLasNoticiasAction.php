@@ -21,6 +21,6 @@ class ObtenerTodasLasNoticiasAction
             });
         }
 
-        return $query->orderBy('fecha_publicacion', 'desc')->paginate(10);
+        return $query->orderBy('fecha_publicacion', 'desc')->paginate(9);
     }
 }

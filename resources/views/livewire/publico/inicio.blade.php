@@ -997,7 +997,7 @@
                     <h6 class="text-danger fw-bold">SALA DE PRENSA</h6>
                     <h2 class="fw-black">Últimas Noticias</h2>
                 </div>
-                <a href="{{ route('noticias.index') }}" wire:navigate class="btn-ultimate btn-ultimate-red">VER TODAS</a>
+                <a href="{{ route('noticias.index') }}" wire:navigate class="btn-ultimate btn-ultimate-red text-decoration-none">VER TODAS</a>
             </div>
             
             <div class="row g-4">

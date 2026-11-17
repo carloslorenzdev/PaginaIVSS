@@ -221,6 +221,12 @@ h5,
     align-items: center;
     gap: 8px;
     cursor: pointer;
+    text-decoration: none !important;
+}
+
+.btn-ultimate:hover,
+.btn-ultimate:focus {
+    text-decoration: none !important;
 }
 
 .btn-ultimate-red {

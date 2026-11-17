@@ -21,7 +21,7 @@
                             </button>
                         @endif
                     </div>
-                    <a wire:navigate href="/" class="btn-ultimate btn-ultimate-red">
+                    <a wire:navigate href="/" class="btn-ultimate btn-ultimate-red text-decoration-none">
                         <i class="fas fa-arrow-left me-1"></i> VOLVER
                     </a>
                 </div>
