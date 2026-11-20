@@ -54,29 +54,6 @@
             letter-spacing: 1.5px;
             color: #212529;
         }
-
-        @media print {
-            header, footer, nav, .btn-print-hide, .pension-header-gradient, .search-card-container {
-                display: none !important;
-            }
-            body, .main-wrapper {
-                background: #FFFFFF !important;
-            }
-            .print-only-header {
-                display: block !important;
-                margin-bottom: 25px;
-                border-bottom: 2px solid #dc3545;
-                padding-bottom: 15px;
-            }
-            .card {
-                border: 1px solid #dee2e6 !important;
-                box-shadow: none !important;
-            }
-        }
-
-        .print-only-header {
-            display: none;
-        }
     </style>
 
     <!-- CABECERA INSTITUCIONAL -->
@@ -105,14 +82,6 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-8 col-lg-9 col-md-11 col-12">
-
-                    <!-- ENCABEZADO EXCLUSIVO PARA IMPRESIÓN -->
-                    <div class="print-only-header text-center">
-                        <img src="{{ asset('img/membrete.webp') }}" alt="IVSS" style="max-height: 60px;" class="mb-3">
-                        <h4 class="fw-bold mb-1">INSTITUTO VENEZOLANO DE LOS SEGUROS SOCIALES</h4>
-                        <h6 class="text-secondary mb-0">COMPROBANTE DE CONSULTA DE PENSIÓN</h6>
-                        <small class="text-muted">Fecha de Emisión: {{ now()->format('d/m/Y h:i A') }}</small>
-                    </div>
 
                     <!-- TARJETA FORMULARIO DE CONSULTA -->
                     <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden search-card-container">
@@ -174,6 +143,15 @@
                             </form>
                         </div>
                     </div>
+
+                    <!-- ENLACE VOLVER A INICIO SI NO HAY RESULTADO -->
+                    @if(!$pensionado)
+                        <div class="text-center mt-2 mb-4">
+                            <a href="{{ route('inicio') }}" wire:navigate class="btn btn-link text-secondary text-decoration-none fw-semibold">
+                                <i class="fas fa-arrow-left me-1"></i> Volver a Inicio
+                            </a>
+                        </div>
+                    @endif
 
                     <!-- MENSAJE DE ERROR O NO ENCONTRADO -->
                     @if($errorMensaje)
@@ -307,13 +285,10 @@
                                     </div>
                                 </div>
 
-                                <!-- BOTONES DE ACCIÓN (IMPRIMIR COMPROBANTE) -->
-                                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 pt-2 btn-print-hide">
-                                    <button type="button" onclick="window.print()" class="btn btn-outline-dark px-4 py-2 fw-semibold rounded-pill">
-                                        <i class="fas fa-print me-2"></i> Imprimir Comprobante
-                                    </button>
-                                    <a href="{{ route('inicio') }}" wire:navigate class="btn btn-link text-secondary text-decoration-none small">
-                                        <i class="fas fa-arrow-left me-1"></i> Volver al Portal Interno
+                                <!-- BOTÓN VOLVER A INICIO -->
+                                <div class="d-flex justify-content-end align-items-center pt-2">
+                                    <a href="{{ route('inicio') }}" wire:navigate class="btn btn-outline-danger px-4 py-2 fw-semibold rounded-pill shadow-sm">
+                                        <i class="fas fa-arrow-left me-2"></i> Volver a Inicio
                                     </a>
                                 </div>
                             </div>
