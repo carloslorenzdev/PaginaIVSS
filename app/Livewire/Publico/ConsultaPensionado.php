@@ -36,8 +36,15 @@ class ConsultaPensionado extends Component
         }
     }
 
+    public function updatedCedula($value): void
+    {
+        $this->cedula = preg_replace('/[^0-9]/', '', (string)$value);
+    }
+
     public function consultar(ConsultarPensionadoNativoAction $action): void
     {
+        $this->cedula = preg_replace('/[^0-9]/', '', (string)$this->cedula);
+
         $this->validate([
             'nacionalidad' => 'required|in:V,E',
             'cedula' => 'required|numeric|min:1',

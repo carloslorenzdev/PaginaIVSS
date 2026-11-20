@@ -111,11 +111,14 @@
                                                 <option value="E">E-</option>
                                             </select>
                                             <input type="text" 
-                                                wire:model="cedula"
+                                                wire:model.live="cedula"
                                                 class="form-control @error('cedula') is-invalid @enderror" 
                                                 placeholder="Ej: 123456 o 12345678"
                                                 maxlength="10"
                                                 inputmode="numeric"
+                                                pattern="[0-9]*"
+                                                oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                                onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
                                                 autofocus>
                                         </div>
                                         @error('cedula')
@@ -190,7 +193,7 @@
                                     <p class="text-white-50 small mb-0">Información general de la pensión registrada</p>
                                 </div>
                                 <div class="d-flex align-items-center gap-2 flex-wrap">
-                                    <span class="badge bg-white bg-opacity-20 text-white rounded-pill px-3 py-2 fw-bold fs-6">
+                                    <span class="badge bg-white rounded-pill px-3 py-2 fw-bold fs-6 shadow-sm" style="color: #0d3b66 !important;">
                                         Cédula: {{ $cedulaVisual }}
                                     </span>
                                     <span class="badge {{ $badgeClass }} rounded-pill px-3 py-2 fw-bold text-uppercase shadow-sm">
