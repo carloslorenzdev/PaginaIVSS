@@ -60,7 +60,7 @@
 </section>
 
 <!-- MISIÓN, VISIÓN Y VALORES -->
-<section class="py-5 overflow-hidden" style="background-color: #f8f9fa;">
+<section class="py-5 overflow-hidden bg-watermark-ivss" style="min-height: 70vh;">
     <div class="container py-2 py-md-4">
         <div class="text-center mb-4 mb-md-5" data-aos="fade-up">
             <h2 class="fw-bold text-dark fs-3 fs-md-2">Nuestra Esencia</h2>

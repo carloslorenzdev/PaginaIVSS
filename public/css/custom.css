@@ -64,3 +64,15 @@
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
 }
+
+/* Fondo institucional con marca de agua y efecto parallax fijo (idéntico a la vista de noticias) */
+.bg-watermark-ivss {
+    background-image: linear-gradient(rgba(243, 244, 246, 0.88), rgba(243, 244, 246, 0.88)), url('../imagenes/fondo-ivss.png') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+}
+
+.curve-watermark-fill {
+    fill: #f3f4f6 !important;
+}

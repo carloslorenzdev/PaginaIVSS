@@ -72,19 +72,19 @@
         <!-- Curva inferior suave -->
         <div class="position-absolute bottom-0 start-0 w-100 overflow-hidden" style="line-height: 0; z-index: 2;">
             <svg viewBox="0 0 1200 120" preserveAspectRatio="none" style="display: block; width: calc(100% + 1.3px); height: 25px;">
-                <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" fill="#f8f9fa"></path>
+                <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" fill="#f3f4f6"></path>
             </svg>
         </div>
     </div>
 
     <!-- CONTENIDO PRINCIPAL -->
-    <section class="py-5" style="background-color: #f8f9fa; min-height: 65vh;">
+    <section class="py-5 bg-watermark-ivss" style="min-height: 70vh;">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-8 col-lg-9 col-md-11 col-12">
 
                     <!-- TARJETA FORMULARIO DE CONSULTA -->
-                    <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden search-card-container">
+                    <div class="card border-0 shadow rounded-4 mb-4 overflow-hidden search-card-container" style="border: 1px solid rgba(0,0,0,0.06) !important;">
                         <div class="card-header bg-white border-bottom py-3 px-4">
                             <div class="d-flex align-items-center gap-2">
                                 <div class="bg-danger bg-opacity-10 text-danger rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
@@ -181,7 +181,7 @@
                                 $badgeIcon = 'fa-clock';
                             }
                         @endphp
-                        <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
+                        <div class="card border-0 shadow rounded-4 overflow-hidden mb-4" style="border: 1px solid rgba(0,0,0,0.06) !important;">
                             <!-- Cabecera de Resultado -->
                             <div class="card-header p-3 px-4 text-white d-flex flex-wrap align-items-center justify-content-between gap-2" style="background: linear-gradient(135deg, #0d3b66 0%, #1d2d44 100%);">
                                 <div class="d-flex align-items-center gap-2">
