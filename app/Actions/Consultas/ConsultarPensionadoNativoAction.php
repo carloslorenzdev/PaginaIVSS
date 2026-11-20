@@ -87,13 +87,21 @@ class ConsultarPensionadoNativoAction
 
         // Probar primero con OCI8 nativo si está disponible
         if (function_exists('oci_connect')) {
-            try {
-                $user = env('DB_CONS_USERNAME', 'clorenzano');
-                $pass = env('DB_CONS_PASSWORD', '12345678');
-                $tns = env('DB_CONS_TNS', 'ORQUIDEA');
+            $user = env('DB_CONS_USERNAME', 'WEB_PRESTACIONES_2');
+            $pass = env('DB_CONS_PASSWORD', 'Pr3$74c10n352');
+            $tns = env('DB_CONS_TNS', 'ORQUIDEA');
 
+            $conn = false;
+            for ($attempt = 1; $attempt <= 3; $attempt++) {
                 $conn = @oci_connect($user, $pass, $tns, 'AL32UTF8');
                 if ($conn) {
+                    break;
+                }
+                usleep(80000);
+            }
+
+            if ($conn) {
+                try {
                     $stid = @oci_parse($conn, $sql);
                     if ($stid) {
                         @oci_bind_by_name($stid, ':cedula', $cedulaParam);
@@ -102,7 +110,7 @@ class ConsultarPensionadoNativoAction
                             @oci_free_statement($stid);
                             @oci_close($conn);
 
-                            if ($row) {
+                            if ($row && !empty($row['TIPO_DE_PENSION'])) {
                                 return $this->formatearRespuesta($row, $nacionalidad, $rawCedula, $cedulaFormateada);
                             }
 
@@ -114,9 +122,9 @@ class ConsultarPensionadoNativoAction
                         }
                     }
                     @oci_close($conn);
+                } catch (\Throwable $e) {
+                    Log::warning('Consulta OCI8 directa falló al ejecutar SQL: ' . $e->getMessage());
                 }
-            } catch (\Throwable $e) {
-                Log::warning('Consulta OCI8 directa falló: ' . $e->getMessage());
             }
         }
 

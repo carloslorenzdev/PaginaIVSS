@@ -190,6 +190,19 @@
 
                     <!-- TARJETA DE RESULTADO DETALLADO -->
                     @if($pensionado)
+                        @php
+                            $estatusUpper = strtoupper($pensionado['estatus_pension'] ?? '');
+                            $badgeClass = 'bg-success text-white';
+                            $badgeIcon = 'fa-check-circle';
+
+                            if (str_contains($estatusUpper, 'FALLECIDO') || str_contains($estatusUpper, 'SUSPENDID') || str_contains($estatusUpper, 'CANCELAD') || str_contains($estatusUpper, 'BLOQUEAD') || str_contains($estatusUpper, 'INACTIV')) {
+                                $badgeClass = 'bg-danger text-white';
+                                $badgeIcon = 'fa-exclamation-circle';
+                            } elseif (str_contains($estatusUpper, 'TRAMITE') || str_contains($estatusUpper, 'REVISION') || str_contains($estatusUpper, 'PENDIENTE')) {
+                                $badgeClass = 'bg-warning text-dark';
+                                $badgeIcon = 'fa-clock';
+                            }
+                        @endphp
                         <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
                             <!-- Cabecera de Resultado -->
                             <div class="card-header p-3 px-4 text-white d-flex flex-wrap align-items-center justify-content-between gap-2" style="background: linear-gradient(135deg, #0d3b66 0%, #1d2d44 100%);">
@@ -198,8 +211,8 @@
                                     <span class="fw-bold text-white fs-6">Cédula: {{ $pensionado['cedula_formateada'] }}</span>
                                 </div>
                                 <div>
-                                    <span class="status-badge-active">
-                                        <i class="fas fa-check-circle"></i> {{ $pensionado['estatus_pension'] }}
+                                    <span class="badge {{ $badgeClass }} rounded-pill px-3 py-2 fw-bold text-uppercase shadow-sm">
+                                        <i class="fas {{ $badgeIcon }} me-1"></i> {{ $pensionado['estatus_pension'] }}
                                     </span>
                                 </div>
                             </div>
