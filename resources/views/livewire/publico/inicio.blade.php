@@ -285,7 +285,7 @@
                         </p>
 
                         <div class="d-flex flex-column text-start">
-                            <a href="javascript:void(0)" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalConsultaPensionado" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-user-check me-2"></i> Consulta de Pensión</a>
+                            <a href="{{ route('consulta_pension') }}" wire:navigate class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-user-check me-2"></i> Consulta de Pensión</a>
                             <a href="http://pensionresolucion.ivss.int:28082/PensionadosResolucion/criterio_cons_pensiones_intranet.jsp" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-stamp me-2"></i> Consulta de Pensión con Resolución</a>
                             <a href="{{ route('autorizacion_cobro_pension') }}" wire:navigate class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-file-signature me-2"></i> Autorización Cobro Pensión (Forma 14-179)</a>
                             <a href="http://indemnizaciones.ivss.int:28083/IndemnizacionWeb/servicios" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-notes-medical me-2"></i> Consulta de Indemnizaciones Diarias</a>

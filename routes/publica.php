@@ -54,6 +54,9 @@ Route::get('/consulta/recurso/{servicio}/{archivo}', [\App\Http\Controllers\Cons
 Route::get('/autorizacion-cobro-pension', \App\Livewire\Publico\AutorizacionCobroPension::class)->name('autorizacion_cobro_pension');
 Route::get('/autorizacion-cobro-pension/pdf/{id}', \App\Http\Controllers\Consultas\DescargarPlanilla14179Controller::class)->name('autorizacion.pdf');
 
+// CONSULTA DE PENSIÓN NATIVA (Prestaciones)
+Route::get('/consulta-pension', \App\Livewire\Publico\ConsultaPensionado::class)->name('consulta_pension');
+
 // SERVICIOS COMPLEMENTARIOS (Livewire 4 Page Components)
 Route::get('/marco-normativo', \App\Livewire\Publico\MarcoNormativo::class)->name('marco_normativo');
 Route::get('/biblioteca-formas', \App\Livewire\Publico\BibliotecaFormas::class)->name('biblioteca_formas');
