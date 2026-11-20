@@ -113,7 +113,7 @@
                                             <input type="text" 
                                                 wire:model="cedula"
                                                 class="form-control @error('cedula') is-invalid @enderror" 
-                                                placeholder="Ej: 284060 o 80422762"
+                                                placeholder="Ej: 123456 o 12345678"
                                                 maxlength="10"
                                                 inputmode="numeric"
                                                 autofocus>
@@ -180,15 +180,19 @@
                                 $badgeClass = 'bg-warning text-dark';
                                 $badgeIcon = 'fa-clock';
                             }
+                            $cedulaVisual = $pensionado['cedula_simple'] ?? ($nacionalidad . '-' . preg_replace('/[^0-9]/', '', $cedula));
                         @endphp
                         <div class="card border-0 shadow rounded-4 overflow-hidden mb-4" style="border: 1px solid rgba(0,0,0,0.06) !important;">
                             <!-- Cabecera de Resultado -->
-                            <div class="card-header p-3 px-4 text-white d-flex flex-wrap align-items-center justify-content-between gap-2" style="background: linear-gradient(135deg, #0d3b66 0%, #1d2d44 100%);">
-                                <div class="d-flex align-items-center gap-2">
-                                    <span class="badge bg-danger rounded-pill px-3 py-1 fw-bold">PENSIÓN IVSS</span>
-                                    <span class="fw-bold text-white fs-6">Cédula: {{ $pensionado['cedula_formateada'] }}</span>
-                                </div>
+                            <div class="card-header p-3 px-4 text-white d-flex flex-wrap align-items-center justify-content-between gap-3" style="background: linear-gradient(135deg, #0d3b66 0%, #1d2d44 100%);">
                                 <div>
+                                    <h4 class="fw-bold mb-1 text-white">Detalle del Pensionado</h4>
+                                    <p class="text-white-50 small mb-0">Información general de la pensión registrada</p>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 flex-wrap">
+                                    <span class="badge bg-white bg-opacity-20 text-white rounded-pill px-3 py-2 fw-bold fs-6">
+                                        Cédula: {{ $cedulaVisual }}
+                                    </span>
                                     <span class="badge {{ $badgeClass }} rounded-pill px-3 py-2 fw-bold text-uppercase shadow-sm">
                                         <i class="fas {{ $badgeIcon }} me-1"></i> {{ $pensionado['estatus_pension'] }}
                                     </span>
@@ -197,89 +201,88 @@
 
                             <div class="card-body p-4">
                                 <!-- BLOQUE 1: DATOS DEL CAUSANTE -->
-                                <div class="row align-items-center pb-4 mb-4 border-bottom">
-                                    <div class="col-auto">
-                                        <div class="avatar-circle-ivss">
+                                <div class="mb-4">
+                                    <div class="d-flex align-items-center gap-2 mb-3">
+                                        <div class="bg-danger bg-opacity-10 text-danger rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
                                             <i class="fas fa-user"></i>
                                         </div>
+                                        <h6 class="fw-bold mb-0 text-dark">Datos del Causante</h6>
                                     </div>
-                                    <div class="col">
-                                        <div class="text-muted small fw-semibold text-uppercase">Nombre del Causante</div>
-                                        <div class="h5 fw-bold text-dark mb-0">{{ $pensionado['nombre_causante'] }}</div>
-                                    </div>
-                                    <div class="col-md-auto col-12 mt-3 mt-md-0 text-md-end">
-                                        <div class="text-muted small fw-semibold text-uppercase">Cédula de Identidad</div>
-                                        <div class="fw-bold text-secondary">{{ $pensionado['cedula_formateada'] }}</div>
+                                    <div class="p-3 bg-light rounded-4">
+                                        <div class="row align-items-center g-3">
+                                            <div class="col-md-7 col-12">
+                                                <div class="text-muted small fw-semibold text-uppercase mb-1">Nombre del Causante</div>
+                                                <div class="h5 fw-bold text-dark mb-0">{{ $pensionado['nombre_causante'] }}</div>
+                                            </div>
+                                            <div class="col-md-5 col-12 border-start-md">
+                                                <div class="text-muted small fw-semibold text-uppercase mb-1">Cédula del Causante</div>
+                                                <div class="h5 fw-bold text-secondary mb-0">{{ $cedulaVisual }}</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <!-- BLOQUE 2: DETALLE DE LA PENSIÓN Y MONTO -->
-                                <div class="row g-4 align-items-center pb-4 mb-4 border-bottom">
-                                    <div class="col-md-4 col-sm-6 col-12">
-                                        <div class="d-flex align-items-center gap-3">
-                                            <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 d-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
-                                                <i class="fas fa-award"></i>
-                                            </div>
-                                            <div>
-                                                <div class="text-muted small fw-semibold text-uppercase">Tipo de Pensión</div>
-                                                <div class="fw-bold text-dark">{{ $pensionado['tipo_pension'] }}</div>
-                                            </div>
+                                <!-- BLOQUE 2: DETALLE DE LA PENSIÓN -->
+                                <div class="mb-4">
+                                    <div class="d-flex align-items-center gap-2 mb-3">
+                                        <div class="bg-danger bg-opacity-10 text-danger rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+                                            <i class="fas fa-file-invoice-dollar"></i>
                                         </div>
+                                        <h6 class="fw-bold mb-0 text-dark">Detalle de la Pensión</h6>
                                     </div>
-
-                                    <div class="col-md-4 col-sm-6 col-12">
-                                        <div class="d-flex align-items-center gap-3">
-                                            <div class="bg-success bg-opacity-10 text-success rounded-circle p-3 d-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
-                                                <i class="fas fa-shield-alt"></i>
+                                    <div class="p-3 bg-light rounded-4">
+                                        <div class="row align-items-center g-3">
+                                            <div class="col-md-4 col-sm-6 col-12">
+                                                <div class="text-muted small fw-semibold text-uppercase mb-1">Tipo de Pensión</div>
+                                                <div class="h6 fw-bold text-dark mb-0">{{ $pensionado['tipo_pension'] }}</div>
                                             </div>
-                                            <div>
-                                                <div class="text-muted small fw-semibold text-uppercase">Estatus</div>
-                                                <div class="fw-bold text-dark">{{ $pensionado['estatus_pension'] }}</div>
+                                            <div class="col-md-4 col-sm-6 col-12">
+                                                <div class="text-muted small fw-semibold text-uppercase mb-1">Estatus de la Pensión</div>
+                                                <div class="h6 fw-bold text-dark mb-0">{{ $pensionado['estatus_pension'] }}</div>
                                             </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4 col-12">
-                                        <div class="amount-box-custom">
-                                            <div class="text-muted small fw-semibold text-uppercase mb-1">Monto de la Pensión</div>
-                                            <div class="amount-val">{{ $pensionado['monto_formateado'] }}</div>
+                                            <div class="col-md-4 col-12">
+                                                <div class="amount-box-custom">
+                                                    <div class="text-muted small fw-semibold text-uppercase mb-1">Monto de Pensión</div>
+                                                    <div class="amount-val">{{ $pensionado['monto_formateado'] }}</div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- BLOQUE 3: ENTIDAD FINANCIERA Y CUENTA BANCARIA -->
-                                <div class="p-3 bg-light rounded-4 mb-4">
-                                    <div class="row g-3 align-items-center">
-                                        <div class="col-md-6 col-12 border-end-md">
-                                            <div class="d-flex align-items-center gap-3">
-                                                <div class="bg-dark bg-opacity-10 text-dark rounded-circle p-3 d-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
-                                                    <i class="fas fa-university"></i>
-                                                </div>
-                                                <div>
-                                                    <div class="text-muted small fw-semibold text-uppercase">Entidad Financiera</div>
-                                                    <div class="fw-bold text-dark fs-6">{{ $pensionado['entidad_financiera'] }}</div>
-                                                </div>
-                                            </div>
+                                <div class="mb-4">
+                                    <div class="d-flex align-items-center gap-2 mb-3">
+                                        <div class="bg-danger bg-opacity-10 text-danger rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+                                            <i class="fas fa-university"></i>
                                         </div>
-
-                                        <div class="col-md-6 col-12">
-                                            <div class="d-flex align-items-center justify-content-between px-2">
-                                                <div>
-                                                    <div class="text-muted small fw-semibold text-uppercase">Número de Cuenta</div>
-                                                    <div class="account-number-mono">
-                                                        @if($mostrarCuentaCompleta)
-                                                            {{ $pensionado['numero_cuenta'] }}
-                                                        @else
-                                                            {{ $pensionado['numero_cuenta_enmascarado'] }}
-                                                        @endif
+                                        <h6 class="fw-bold mb-0 text-dark">Entidad Financiera y Cuenta Bancaria</h6>
+                                    </div>
+                                    <div class="p-3 bg-light rounded-4">
+                                        <div class="row align-items-center g-3">
+                                            <div class="col-md-6 col-12">
+                                                <div class="text-muted small fw-semibold text-uppercase mb-1">Entidad Financiera</div>
+                                                <div class="h6 fw-bold text-dark mb-0">{{ $pensionado['entidad_financiera'] }}</div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <div>
+                                                        <div class="text-muted small fw-semibold text-uppercase mb-1">Número de Cuenta</div>
+                                                        <div class="account-number-mono mb-0">
+                                                            @if($mostrarCuentaCompleta)
+                                                                {{ $pensionado['numero_cuenta'] }}
+                                                            @else
+                                                                {{ $pensionado['numero_cuenta_enmascarado'] }}
+                                                            @endif
+                                                        </div>
                                                     </div>
+                                                    <button type="button" 
+                                                        wire:click="toggleCuenta" 
+                                                        class="btn btn-sm btn-outline-secondary rounded-circle p-2 ms-2" 
+                                                        title="{{ $mostrarCuentaCompleta ? 'Ocultar dígitos' : 'Mostrar número completo' }}">
+                                                        <i class="fas {{ $mostrarCuentaCompleta ? 'fa-eye-slash' : 'fa-eye' }}"></i>
+                                                    </button>
                                                 </div>
-                                                <button type="button" 
-                                                    wire:click="toggleCuenta" 
-                                                    class="btn btn-sm btn-outline-secondary rounded-circle p-2 ms-2 btn-print-hide" 
-                                                    title="{{ $mostrarCuentaCompleta ? 'Ocultar dígitos' : 'Mostrar número completo' }}">
-                                                    <i class="fas {{ $mostrarCuentaCompleta ? 'fa-eye-slash' : 'fa-eye' }}"></i>
-                                                </button>
                                             </div>
                                         </div>
                                     </div>

@@ -162,12 +162,14 @@ class ConsultarPensionadoNativoAction
             : $cuentaCompleta;
 
         $montoFloat = (float)($row['MONTO_DE_PENSION'] ?? 0);
+        $cedulaSimple = $nacionalidad . '-' . (int)$rawCedula;
 
         return [
             'success' => true,
             'data' => [
                 'tipo_pension' => trim($row['TIPO_DE_PENSION'] ?? 'NO ESPECIFICADO'),
                 'cedula_causante' => $row['CEDULA_CAUSANTE'] ?? ($nacionalidad . $rawCedula),
+                'cedula_simple' => $cedulaSimple,
                 'cedula_formateada' => $cedulaFormateada,
                 'nombre_causante' => trim($row['NOMBRE_CAUSANTE'] ?? 'NO REGISTRADO'),
                 'entidad_financiera' => trim($row['ENTIDAD_FINANCIERA'] ?? 'NO ASIGNADA'),
@@ -241,6 +243,7 @@ class ConsultarPensionadoNativoAction
                     'data' => [
                         'tipo_pension' => trim($mTipo[1] ?? 'TRABAJO'),
                         'cedula_causante' => $nacionalidad . $rawCedula,
+                        'cedula_simple' => $nacionalidad . '-' . (int)$rawCedula,
                         'cedula_formateada' => $cedulaFormateada,
                         'nombre_causante' => trim($mNom[1]),
                         'entidad_financiera' => trim($mBanco[1] ?? 'BANCO'),
