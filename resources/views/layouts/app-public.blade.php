@@ -119,7 +119,7 @@
                 <!-- Main Links on the right -->
                 <ul class="navbar-nav ms-auto font-medium">
                     <li class="nav-item"><a class="nav-link fw-semibold" href="/" wire:navigate>Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link fw-semibold" href="{{ route('quienes_somos') }}" wire:navigate>¿Quiénes Somos?</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="{{ route('quienes_somos') }}" wire:navigate>Historia</a></li>
                     <li class="nav-item"><a class="nav-link fw-semibold" href="/#servicios">Servicios</a></li>
                     <!--<li class="nav-item"><a class="nav-link fw-semibold" href="/#consultas">Consultas</a></li> -->
                     <li class="nav-item"><a class="nav-link fw-semibold" href="/noticias" wire:navigate>Noticias</a></li>

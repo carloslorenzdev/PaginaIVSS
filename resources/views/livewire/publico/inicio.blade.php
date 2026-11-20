@@ -112,185 +112,304 @@
     <section id="servicios" class="service-hub-section" style="background-image: linear-gradient(rgba(243, 244, 246, 0.85), rgba(243, 244, 246, 0.85)), url('{{ $fondoIvss }}') !important; background-size: cover !important; background-position: center !important; background-attachment: fixed !important;">
         <div class="container">
             <div class="row g-4 justify-content-center">
-                <div class="col-lg-3 col-md-6" data-aos="fade-up">
+                <!-- 1. Afiliación -->
+                <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up">
                     <div class="bg-white shadow-lg border rounded-4 p-4 text-center h-100 d-flex flex-column align-items-center transition-hover" style="box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important; border-color: rgba(0,0,0,0.08) !important;">
                         <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center mb-3 shadow-sm" style="width: 80px; height: 80px; font-size: 2rem;">
-                            <i class="fas fa-desktop"></i>
+                            <i class="fas fa-id-card"></i>
                         </div>
-                        <h5 class="fw-bold text-dark mt-2">SISTEMA <br>EN LÍNEA</h5>
-                        <p class="text-muted small mb-4 flex-fill mt-2">Gestión automatizada de trámites gubernamentales.</p>
-                        <a href="#" class="btn btn-outline-danger w-100 rounded-pill fw-bold" data-bs-toggle="modal" data-bs-target="#modalSistemaEnLinea">VER LISTA</a>
+                        <h5 class="fw-bold text-dark mt-2">AFILIACIÓN</h5>
+                        <p class="text-muted small mb-4 flex-fill mt-2">Planillas, TIUNA, asegurados y cuenta individual.</p>
+                        <a href="#" class="btn btn-outline-danger w-100 rounded-pill fw-bold" data-bs-toggle="modal" data-bs-target="#modalAfiliacion">VER LISTA</a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+
+                <!-- 2. Cobranzas -->
+                <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="bg-white shadow-lg border rounded-4 p-4 text-center h-100 d-flex flex-column align-items-center transition-hover" style="box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important; border-color: rgba(0,0,0,0.08) !important;">
                         <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center mb-3 shadow-sm" style="width: 80px; height: 80px; font-size: 2rem;">
-                            <i class="fas fa-user-circle"></i>
+                            <i class="fas fa-coins"></i>
                         </div>
-                        <h5 class="fw-bold text-dark mt-2">CIUDADANOS</h5>
-                        <p class="text-muted small mb-4 flex-fill mt-2">Consulta de estatus y requisitos ciudadanos.</p>
-                        <a href="#" class="btn btn-outline-danger w-100 rounded-pill fw-bold" data-bs-toggle="modal" data-bs-target="#modalCiudadanos">VER LISTA</a>
+                        <h5 class="fw-bold text-dark mt-2">COBRANZAS</h5>
+                        <p class="text-muted small mb-4 flex-fill mt-2">Recaudación, órdenes de pago y solvencias.</p>
+                        <a href="#" class="btn btn-outline-danger w-100 rounded-pill fw-bold" data-bs-toggle="modal" data-bs-target="#modalCobranzas">VER LISTA</a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+
+                <!-- 3. Prestaciones -->
+                <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="bg-white shadow-lg border rounded-4 p-4 text-center h-100 d-flex flex-column align-items-center transition-hover" style="box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important; border-color: rgba(0,0,0,0.08) !important;">
                         <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center mb-3 shadow-sm" style="width: 80px; height: 80px; font-size: 2rem;">
-                            <i class="fas fa-users"></i>
+                            <i class="fas fa-user-check"></i>
                         </div>
-                        <h5 class="fw-bold text-dark mt-2">PENSIONADOS</h5>
-                        <p class="text-muted small mb-4 flex-fill mt-2">Verificación de pagos y fe de vida digital.</p>
-                        <a href="#" class="btn btn-outline-danger w-100 rounded-pill fw-bold" data-bs-toggle="modal" data-bs-target="#modalPensionados">VER LISTA</a>
+                        <h5 class="fw-bold text-dark mt-2">PRESTACIONES</h5>
+                        <p class="text-muted small mb-4 flex-fill mt-2">Pensiones, reposos e indemnizaciones.</p>
+                        <a href="#" class="btn btn-outline-danger w-100 rounded-pill fw-bold" data-bs-toggle="modal" data-bs-target="#modalPrestaciones">VER LISTA</a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+
+                <!-- 4. Pérdida de Empleo -->
+                <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
                     <div class="bg-white shadow-lg border rounded-4 p-4 text-center h-100 d-flex flex-column align-items-center transition-hover" style="box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important; border-color: rgba(0,0,0,0.08) !important;">
                         <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center mb-3 shadow-sm" style="width: 80px; height: 80px; font-size: 2rem;">
-                            <i class="fas fa-building"></i>
+                            <i class="fas fa-briefcase"></i>
                         </div>
-                        <h5 class="fw-bold text-dark mt-2">EMPLEADORES</h5>
-                        <p class="text-muted small mb-4 flex-fill mt-2">Solvencias y obligaciones para patronos.</p>
-                        <a href="#" class="btn btn-outline-danger w-100 rounded-pill fw-bold" data-bs-toggle="modal" data-bs-target="#modalEmpleadores">VER LISTA</a>
+                        <h5 class="fw-bold text-dark mt-2">PÉRDIDA DE <br class="d-none d-xl-block">EMPLEO</h5>
+                        <p class="text-muted small mb-4 flex-fill mt-2">Sistema SAPPIE e indemnización al parado.</p>
+                        <a href="#" class="btn btn-outline-danger w-100 rounded-pill fw-bold" data-bs-toggle="modal" data-bs-target="#modalPerdidaEmpleo">VER LISTA</a>
+                    </div>
+                </div>
+
+                <!-- 5. Salud -->
+                <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up">
+                    <div class="bg-white shadow-lg border rounded-4 p-4 text-center h-100 d-flex flex-column align-items-center transition-hover" style="box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important; border-color: rgba(0,0,0,0.08) !important;">
+                        <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center mb-3 shadow-sm" style="width: 80px; height: 80px; font-size: 2rem;">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h5 class="fw-bold text-dark mt-2">SALUD</h5>
+                        <p class="text-muted small mb-4 flex-fill mt-2">Historias médicas, morbilidad y alto costo.</p>
+                        <a href="#" class="btn btn-outline-danger w-100 rounded-pill fw-bold" data-bs-toggle="modal" data-bs-target="#modalSalud">VER LISTA</a>
+                    </div>
+                </div>
+
+                <!-- 6. Servidor Público -->
+                <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-white shadow-lg border rounded-4 p-4 text-center h-100 d-flex flex-column align-items-center transition-hover" style="box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important; border-color: rgba(0,0,0,0.08) !important;">
+                        <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center mb-3 shadow-sm" style="width: 80px; height: 80px; font-size: 2rem;">
+                            <i class="fas fa-users-cog"></i>
+                        </div>
+                        <h5 class="fw-bold text-dark mt-2">SERVIDOR <br class="d-none d-xl-block">PÚBLICO</h5>
+                        <p class="text-muted small mb-4 flex-fill mt-2">Autoservicio RRHH, clave, carnet QR y soporte.</p>
+                        <a href="#" class="btn btn-outline-danger w-100 rounded-pill fw-bold" data-bs-toggle="modal" data-bs-target="#modalServidorPublico">VER LISTA</a>
+                    </div>
+                </div>
+
+                <!-- 7. Fiscalización -->
+                <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-white shadow-lg border rounded-4 p-4 text-center h-100 d-flex flex-column align-items-center transition-hover" style="box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important; border-color: rgba(0,0,0,0.08) !important;">
+                        <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center mb-3 shadow-sm" style="width: 80px; height: 80px; font-size: 2rem;">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <h5 class="fw-bold text-dark mt-2">FISCALIZACIÓN</h5>
+                        <p class="text-muted small mb-4 flex-fill mt-2">Control y seguimiento de auditorías patronales.</p>
+                        <a href="#" class="btn btn-outline-danger w-100 rounded-pill fw-bold" data-bs-toggle="modal" data-bs-target="#modalFiscalizacion">VER LISTA</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Modals for Section 2 -->
-        <!-- Modal Sistema En Linea -->
-                        <div class="modal fade" id="modalSistemaEnLinea" tabindex="-1" aria-labelledby="modalSistemaEnLineaLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content border-0 shadow-lg" style="border-radius: 1.5rem; overflow: hidden;">
-      <div class="p-4 text-center position-relative">
-        <button type="button" class="btn-close position-absolute top-0 end-0 m-4" data-bs-dismiss="modal" aria-label="Close"></button>
+        <!-- Modals for Section 2 (7 Áreas Internas) -->
+        <!-- Modal 1: Afiliación -->
+        <div class="modal fade" id="modalAfiliacion" tabindex="-1" aria-labelledby="modalAfiliacionLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow-lg" style="border-radius: 1.5rem; overflow: hidden;">
+                    <div class="p-4 text-center position-relative">
+                        <button type="button" class="btn-close position-absolute top-0 end-0 m-4" data-bs-dismiss="modal" aria-label="Close"></button>
 
-        <div class="mx-auto mb-4 d-flex justify-content-center align-items-center bg-danger bg-opacity-10 text-danger rounded-circle" style="width: 64px; height: 64px;">
-          <i class="fas fa-desktop fa-2x"></i>
+                        <div class="mx-auto mb-4 d-flex justify-content-center align-items-center bg-danger bg-opacity-10 text-danger rounded-circle" style="width: 64px; height: 64px;">
+                            <i class="fas fa-id-card fa-2x"></i>
+                        </div>
+
+                        <h4 id="modalAfiliacionLabel" class="fw-bold text-dark mb-2">
+                            Afiliación
+                        </h4>
+                        <p class="small text-muted mb-4">
+                            Sistemas y herramientas de afiliación para funcionarios y patronos.
+                        </p>
+
+                        <div class="d-flex flex-column text-start">
+                            <a href="http://planillaselectronicas.ivss.int:28085/WsIvssTranscripWeb/" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-invoice me-2"></i> Sistema de Planillas Electrónicas</a>
+                            <a href="http://autorizadorregistro.ivss.int:28084/Funcionario/login.jsp" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-user-shield me-2"></i> Autorizador de Registro TIUNA</a>
+                            <a href="http://registronodependientes.ivss.int/" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-user-tie me-2"></i> Reg. NO Dependientes y Continuación Facultativa</a>
+                            <a href="http://actualizacionasegurado.ivss.int:28081/Sacea/" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-user-edit me-2"></i> Actualización de Estado de Asegurado (SACEA)</a>
+                            <a href="javascript:void(0)" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalCuentaIndividual" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-id-card-alt me-2"></i> Consulta de Cuenta Individual</a>
+                            <a href="http://cantidadempresas.ivss.int:28080/SACEOA/" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-building me-2"></i> Empleadores por Oficina Administrativa (SACEOA)</a>
+                            <a href="http://patronocedula.ivss.int:28081/consultasIntra/consultarEmpresaRepresentante.ivss" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-search-plus me-2"></i> Consulta de Empleadores por Cédula</a>
+                            <a href="http://listadotrabajadores.ivss.int:28081/consultasIntra/consultarAsegurados.ivss" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-users me-2"></i> Trabajadores Activos por Empleador</a>
+                            <a href="http://consultaempresa.ivss.int:28082/VerificarEmpresa" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-network-wired me-2"></i> Consulta Empresa TIUNA / SIRA</a>
+                            <a href="http://administracionusuarios.ivss.int:28081/AdmUsuarios/" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-user-cog me-2"></i> Adm. de Usuarios (Afiliación)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <h4 id="modalSistemaEnLineaLabel" class="fw-bold text-dark mb-2">
-          Sistema en Línea
-        </h4>
-        <p class="small text-muted mb-4">
-          Gestión automatizada de trámites gubernamentales y servicios en línea.
-        </p>
+        <!-- Modal 2: Cobranzas -->
+        <div class="modal fade" id="modalCobranzas" tabindex="-1" aria-labelledby="modalCobranzasLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow-lg" style="border-radius: 1.5rem; overflow: hidden;">
+                    <div class="p-4 text-center position-relative">
+                        <button type="button" class="btn-close position-absolute top-0 end-0 m-4" data-bs-dismiss="modal" aria-label="Close"></button>
 
-        <div class="d-flex flex-column text-start">
-              @if(($configuraciones['visible_url_sistema_estado_cuenta'] ?? '1') !== '0')
-              <a href="{{ formatear_enlace($configuraciones['url_sistema_estado_cuenta'] ?? '#') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-invoice-dollar me-2"></i> Estado de Cuenta</a>
-              @endif
-              <a href="javascript:void(0)" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalAvisoIntimacion" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-money-check-alt me-2"></i> Orden de Pago</a>
-              @if(($configuraciones['visible_url_sistema_solvencias'] ?? '1') !== '0')
-              <a href="{{ formatear_enlace($configuraciones['url_sistema_solvencias'] ?? '#') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-certificate me-2"></i> Solvencias Electrónicas</a>
-              @endif
-              @if(($configuraciones['visible_url_sistema_indemnizaciones_diarias'] ?? '1') !== '0')
-              <a href="{{ formatear_enlace($configuraciones['url_sistema_indemnizaciones_diarias'] ?? '#') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-hand-holding-medical me-2"></i> Indemnizaciones Diarias</a>
-              @endif
-              @if(($configuraciones['visible_url_sistema_verificacion_solvencia'] ?? '1') !== '0')
-              <a href="{{ formatear_enlace($configuraciones['url_sistema_verificacion_solvencia'] ?? '#') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-check-circle me-2"></i> Verificación de Solvencia</a>
-              @endif
-              @if(($configuraciones['visible_url_sistema_indemnizaciones_unicas'] ?? '1') !== '0')
-              <a href="{{ formatear_enlace($configuraciones['url_sistema_indemnizaciones_unicas'] ?? '#') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-hand-holding-usd me-2"></i> Indemnizaciones Únicas</a>
-              @endif
-              @if(($configuraciones['visible_url_sistema_sigesp_v3'] ?? '1') !== '0')
-              <a href="{{ formatear_enlace($configuraciones['url_sistema_sigesp_v3'] ?? '#') }}" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-laptop-code me-2"></i> Sigesp_v3</a>
-              @endif
-              @if(($configuraciones['visible_url_sistema_sigesp_v4'] ?? '1') !== '0')
-              <a href="{{ formatear_enlace($configuraciones['url_sistema_sigesp_v4'] ?? '#') }}" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-laptop-code me-2"></i> Sigesp_v4</a>
-              @endif
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+                        <div class="mx-auto mb-4 d-flex justify-content-center align-items-center bg-danger bg-opacity-10 text-danger rounded-circle" style="width: 64px; height: 64px;">
+                            <i class="fas fa-coins fa-2x"></i>
+                        </div>
 
-        <!-- Modal Ciudadanos -->
-        <div class="modal fade" id="modalCiudadanos" tabindex="-1" aria-labelledby="modalCiudadanosLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content border-0 shadow-lg" style="border-radius: 1.5rem; overflow: hidden;">
-      <div class="p-4 text-center position-relative">
-        <button type="button" class="btn-close position-absolute top-0 end-0 m-4" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h4 id="modalCobranzasLabel" class="fw-bold text-dark mb-2">
+                            Cobranzas
+                        </h4>
+                        <p class="small text-muted mb-4">
+                            Recaudación, órdenes de pago, convenios y solvencias patronales.
+                        </p>
 
-        <div class="mx-auto mb-4 d-flex justify-content-center align-items-center bg-danger bg-opacity-10 text-danger rounded-circle" style="width: 64px; height: 64px;">
-          <i class="fas fa-user-circle fa-2x"></i>
+                        <div class="d-flex flex-column text-start">
+                            <a href="http://cobranzas.ivss.int:28080/IVSSCobranzas/" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-coins me-2"></i> Sistema de Gestión de Cobranzas</a>
+                            <a href="http://recaudacion.ivss.int:8080/RecaudacionWeb/login.jsp" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-cash-register me-2"></i> Sistema de Recaudación</a>
+                            <a href="javascript:void(0)" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalAvisoIntimacion" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-money-check-alt me-2"></i> Consulta de Orden de Pago</a>
+                            <a href="http://empresas.ivss.int:28081/consultasIntra/consultarEmpresa.ivss" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-chart-line me-2"></i> Estado de Cuenta del Empleador</a>
+                            <a href="http://constanciasolvencia.ivss.int:28080/CESolvencia/configuracion/Default.html" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-certificate me-2"></i> Verificación de Solvencias y Comprobantes</a>
+                            <a href="http://registrosolvencias.ivss.int:28084/solvencia/login.jsp" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-clipboard-check me-2"></i> Sistema de Registro de Solvencias</a>
+                            <a href="http://administracionusuarios.ivss.int:28081/AdmUsuarios/" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-user-lock me-2"></i> Adm. de Usuarios (Cobranzas)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <h4 id="modalCiudadanosLabel" class="fw-bold text-dark mb-2">
-          Ciudadanos
-        </h4>
-        <p class="small text-muted mb-4">
-          Consulta de estatus, constancias y requisitos para los ciudadanos.
-        </p>
+        <!-- Modal 3: Prestaciones -->
+        <div class="modal fade" id="modalPrestaciones" tabindex="-1" aria-labelledby="modalPrestacionesLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow-lg" style="border-radius: 1.5rem; overflow: hidden;">
+                    <div class="p-4 text-center position-relative">
+                        <button type="button" class="btn-close position-absolute top-0 end-0 m-4" data-bs-dismiss="modal" aria-label="Close"></button>
 
-        <div class="d-flex flex-column text-start">
-              <a href="{{ route('ciudadano.informacion') }}" wire:navigate class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-info-circle me-2"></i> Información General</a>
-              <a href="{{ route('ciudadano.beneficio') }}" wire:navigate class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-heartbeat me-2"></i> Beneficio Médico Integral</a>
-              <a href="{{ route('ciudadano.continuidad') }}" wire:navigate class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-route me-2"></i> Continuidad Facultativa</a>
-              <a href="{{ route('ciudadano.perdida') }}" wire:navigate class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-user-injured me-2"></i> ¿Perdiste tu empleo?</a>
-              <a href="{{ route('ciudadano.tramites') }}" wire:navigate class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0"><i class="fas fa-file-signature me-2"></i> Trámites</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+                        <div class="mx-auto mb-4 d-flex justify-content-center align-items-center bg-danger bg-opacity-10 text-danger rounded-circle" style="width: 64px; height: 64px;">
+                            <i class="fas fa-user-check fa-2x"></i>
+                        </div>
 
-        <!-- Modal Pensionados -->
-        <div class="modal fade" id="modalPensionados" tabindex="-1" aria-labelledby="modalPensionadosLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content border-0 shadow-lg" style="border-radius: 1.5rem; overflow: hidden;">
-      <div class="p-4 text-center position-relative">
-        <button type="button" class="btn-close position-absolute top-0 end-0 m-4" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h4 id="modalPrestacionesLabel" class="fw-bold text-dark mb-2">
+                            Prestaciones
+                        </h4>
+                        <p class="small text-muted mb-4">
+                            Pensiones, reposos e indemnizaciones económicas.
+                        </p>
 
-        <div class="mx-auto mb-4 d-flex justify-content-center align-items-center bg-danger bg-opacity-10 text-danger rounded-circle" style="width: 64px; height: 64px;">
-          <i class="fas fa-users fa-2x"></i>
-        </div>
-
-        <h4 id="modalPensionadosLabel" class="fw-bold text-dark mb-2">
-          Pensionados
-        </h4>
-        <p class="small text-muted mb-4">
-          Verificación de pagos, constancias y fe de vida digital.
-        </p>
-
-        <div class="d-flex flex-column text-start">
-              <a href="{{ route('pensionado.informacion') }}" wire:navigate class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-info-circle me-2"></i> Información General</a>
-              <a href="{{ route('pensionado.tipos_pensiones') }}" wire:navigate class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-list-ul me-2"></i> Tipos de Pensiones</a>
-              <a href="{{ route('pensionado.pensionados_exterior') }}" wire:navigate class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-globe-americas me-2"></i> Pensionados en el Exterior</a>
-              <a href="{{ route('pensionado.tramites') }}" wire:navigate class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0"><i class="fas fa-file-signature me-2"></i> Trámites</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-        <!-- Modal Empleadores -->
-        <div class="modal fade" id="modalEmpleadores" tabindex="-1" aria-labelledby="modalEmpleadoresLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content border-0 shadow-lg" style="border-radius: 1.5rem; overflow: hidden;">
-      <div class="p-4 text-center position-relative">
-        <button type="button" class="btn-close position-absolute top-0 end-0 m-4" data-bs-dismiss="modal" aria-label="Close"></button>
-
-        <div class="mx-auto mb-4 d-flex justify-content-center align-items-center bg-danger bg-opacity-10 text-danger rounded-circle" style="width: 64px; height: 64px;">
-          <i class="fas fa-building fa-2x"></i>
+                        <div class="d-flex flex-column text-start">
+                            <a href="javascript:void(0)" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalConsultaPensionado" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-user-check me-2"></i> Consulta de Pensión</a>
+                            <a href="http://pensionresolucion.ivss.int:28082/PensionadosResolucion/criterio_cons_pensiones_intranet.jsp" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-stamp me-2"></i> Consulta de Pensión con Resolución</a>
+                            <a href="{{ route('autorizacion_cobro_pension') }}" wire:navigate class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-file-signature me-2"></i> Autorización Cobro Pensión (Forma 14-179)</a>
+                            <a href="http://indemnizaciones.ivss.int:28083/IndemnizacionWeb/servicios" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-notes-medical me-2"></i> Consulta de Indemnizaciones Diarias</a>
+                            <a href="http://reporteindemnizaciones.ivss.int:28083/ReporteIndemnizacion/" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-chart-pie me-2"></i> Reporte de Indemnizaciones Diarias</a>
+                            <a href="http://app04-1.ivss.int:28082/PrestacionesWeb" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-hand-holding-usd me-2"></i> Sistema de Prestaciones Dinerarias</a>
+                            <a href="http://administracionusuarios.ivss.int:28081/AdmUsuarios/" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-users-cog me-2"></i> Adm. de Usuarios (Prestaciones)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <h4 id="modalEmpleadoresLabel" class="fw-bold text-dark mb-2">
-          Empleadores
-        </h4>
-        <p class="small text-muted mb-4">
-          Solvencias, obligaciones y trámites en línea para patronos.
-        </p>
+        <!-- Modal 4: Pérdida de Empleo -->
+        <div class="modal fade" id="modalPerdidaEmpleo" tabindex="-1" aria-labelledby="modalPerdidaEmpleoLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow-lg" style="border-radius: 1.5rem; overflow: hidden;">
+                    <div class="p-4 text-center position-relative">
+                        <button type="button" class="btn-close position-absolute top-0 end-0 m-4" data-bs-dismiss="modal" aria-label="Close"></button>
 
-        <div class="d-flex flex-column text-start">
-              <a href="{{ route('empleador.informacion') }}" wire:navigate class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-info-circle me-2"></i> Información General</a>
-              <a href="{{ route('empleador.quien_es') }}" wire:navigate class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-question-circle me-2"></i> ¿Quién es el Empleador(a)?</a>
-              <a href="{{ route('empleador.tipos_empresas') }}" wire:navigate class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-industry me-2"></i> Tipos de Empresas</a>
-              <a href="{{ route('empleador.sistema_autoliquidacion') }}" wire:navigate class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0"><i class="fas fa-laptop-house me-2"></i> Sistema Autoliquidación</a>
-              <a href="{{ route('empleador.tramites') }}" wire:navigate class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0"><i class="fas fa-folder-open me-2"></i> Trámites</a>
+                        <div class="mx-auto mb-4 d-flex justify-content-center align-items-center bg-danger bg-opacity-10 text-danger rounded-circle" style="width: 64px; height: 64px;">
+                            <i class="fas fa-briefcase fa-2x"></i>
+                        </div>
+
+                        <h4 id="modalPerdidaEmpleoLabel" class="fw-bold text-dark mb-2">
+                            Pérdida de Empleo
+                        </h4>
+                        <p class="small text-muted mb-4">
+                            Atención al cesante e indemnizaciones por pérdida involuntaria del trabajo.
+                        </p>
+
+                        <div class="d-flex flex-column text-start">
+                            <a href="http://sappie.ivss.int:28081/Sappie/" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-briefcase me-2"></i> SAPPIE (Atención al Parado)</a>
+                            <a href="http://administracionusuarios.ivss.int:28081/AdmUsuarios/" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-user-shield me-2"></i> Adm. de Usuarios (SAPPIE)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
+
+        <!-- Modal 5: Salud -->
+        <div class="modal fade" id="modalSalud" tabindex="-1" aria-labelledby="modalSaludLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow-lg" style="border-radius: 1.5rem; overflow: hidden;">
+                    <div class="p-4 text-center position-relative">
+                        <button type="button" class="btn-close position-absolute top-0 end-0 m-4" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                        <div class="mx-auto mb-4 d-flex justify-content-center align-items-center bg-danger bg-opacity-10 text-danger rounded-circle" style="width: 64px; height: 64px;">
+                            <i class="fas fa-heartbeat fa-2x"></i>
+                        </div>
+
+                        <h4 id="modalSaludLabel" class="fw-bold text-dark mb-2">
+                            Salud
+                        </h4>
+                        <p class="small text-muted mb-4">
+                            Indicadores, registros epidemiológicos y farmacias de alto costo.
+                        </p>
+
+                        <div class="d-flex flex-column text-start">
+                            <a href="http://indicadoressalud.ivss.int/" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-chart-line me-2"></i> Sistema de Indicadores de Salud</a>
+                            <a href="http://morbilidad.ivss.int/" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-hospital-user me-2"></i> Registro de Morbilidad Hospitalaria</a>
+                            <a href="http://historiasmedicas.ivss.int:28083/Historias_Medicas/" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-medical-alt me-2"></i> Sistema de Historias Médicas</a>
+                            <a href="http://farmaciaaltocosto.ivss.int/site/" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-pills me-2"></i> Farmacia de Alto Costo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 6: Servidor Público -->
+        <div class="modal fade" id="modalServidorPublico" tabindex="-1" aria-labelledby="modalServidorPublicoLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow-lg" style="border-radius: 1.5rem; overflow: hidden;">
+                    <div class="p-4 text-center position-relative">
+                        <button type="button" class="btn-close position-absolute top-0 end-0 m-4" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                        <div class="mx-auto mb-4 d-flex justify-content-center align-items-center bg-danger bg-opacity-10 text-danger rounded-circle" style="width: 64px; height: 64px;">
+                            <i class="fas fa-users-cog fa-2x"></i>
+                        </div>
+
+                        <h4 id="modalServidorPublicoLabel" class="fw-bold text-dark mb-2">
+                            Servidor Público
+                        </h4>
+                        <p class="small text-muted mb-4">
+                            Autoservicio para servidores públicos, credenciales y soporte DGI.
+                        </p>
+
+                        <div class="d-flex flex-column text-start">
+                            <a href="http://rrhh.ivss.int:28081/Comprobante/" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-invoice me-2"></i> Solicitud RRHH (Recibos / ARC)</a>
+                            <a href="http://cambiodeclave.ivss.gov.ve/passwd/cambiar_clave.php" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-key me-2"></i> Cambio de Clave de Red</a>
+                            <a href="http://w3.ivss.gob.ve/SIAR/" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-headset me-2"></i> Centro de Servicios SIAR (Mesa de Ayuda)</a>
+                            <a href="http://w3.ivss.gob.ve/contenido/CATIVSS" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-piggy-bank me-2"></i> Caja de Ahorro (CATIVSS)</a>
+                            <a href="https://carnet.ivss.int/login" class="btn btn-outline-danger border-0 border-bottom text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-qrcode me-2"></i> Sistema de Carnetización QR</a>
+                            <a href="https://correo.ivss.gob.ve/" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-envelope-open-text me-2"></i> Correo Institucional Webmail</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 7: Fiscalización -->
+        <div class="modal fade" id="modalFiscalizacion" tabindex="-1" aria-labelledby="modalFiscalizacionLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow-lg" style="border-radius: 1.5rem; overflow: hidden;">
+                    <div class="p-4 text-center position-relative">
+                        <button type="button" class="btn-close position-absolute top-0 end-0 m-4" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                        <div class="mx-auto mb-4 d-flex justify-content-center align-items-center bg-danger bg-opacity-10 text-danger rounded-circle" style="width: 64px; height: 64px;">
+                            <i class="fas fa-tasks fa-2x"></i>
+                        </div>
+
+                        <h4 id="modalFiscalizacionLabel" class="fw-bold text-dark mb-2">
+                            Fiscalización
+                        </h4>
+                        <p class="small text-muted mb-4">
+                            Control, seguimiento y registro de fiscalizaciones patronales.
+                        </p>
+
+                        <div class="d-flex flex-column text-start">
+                            <a href="http://fiscalizacion.ivss.int" class="btn btn-outline-danger border-0 text-start py-3 fw-bold rounded-0" target="_blank" rel="noopener noreferrer"><i class="fas fa-tasks me-2"></i> Sistema de Fiscalización</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </section>
 
